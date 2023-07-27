@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  adrianosenadev:
+    image: ${DOCKER_REGISTRY-}adrianosenadev
+    build:
+      context: .
+      dockerfile: AdrianoSenaDev/Dockerfile
