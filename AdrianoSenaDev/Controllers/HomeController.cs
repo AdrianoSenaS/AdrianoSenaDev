@@ -13,13 +13,19 @@ public class HomeController : Controller
         _logger = logger;
     }
 
+    [HttpGet]
     public IActionResult Index()
     {
         return View();
     }
 
-    public IActionResult Privacy()
+    [HttpPost]
+    public IActionResult Index(string nome, string email, string menssagem)
     {
+
+        var formulario = new Contato();
+        var result = formulario.UserMenssagem(nome, email, menssagem);
+
         return View();
     }
 
