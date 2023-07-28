@@ -13,11 +13,15 @@ public class HomeController : Controller
         _logger = logger;
     }
 
-    [HttpGet]
     public IActionResult Index()
     {
+        var total = TotalCliks.TotalClik();
+        
         return View();
     }
+
+    
+
 
     [HttpPost]
     public IActionResult Index(string nome, string email, string menssagem)

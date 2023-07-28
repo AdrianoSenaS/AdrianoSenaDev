@@ -11,4 +11,12 @@
   <ItemGroup>
     <PackageReference Include="FirebaseDatabase.net" Version="4.2.0" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="Template\" />
+    <None Remove="Views\Admin\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Template\" />
+    <Folder Include="Views\Admin\" />
+  </ItemGroup>
 </Project>
