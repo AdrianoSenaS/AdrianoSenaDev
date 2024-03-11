@@ -16,7 +16,8 @@ function login(userID){
    
     userID.forEach(element => {
         if(element.name == email.value && element.password == senha.value){
-          window.location.href = "dashboard.html"
+            localStorage.setIten('login',element.email+element.password) 
+            window.location.href = "dashboard.html"
            
         }
     });
