@@ -1,4 +1,10 @@
 const contact = document.getElementById("contact")
+const login =  localStorage.get('login')
+
+if(login == null){
+    window.location.href= "./login"
+}
+    
 api(urlApi+"/contact").then(contacts=>{
     contacts.map(contacts1=>{
       contact.innerHTML +=innerText(contacts1)
