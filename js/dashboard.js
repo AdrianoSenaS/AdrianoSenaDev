@@ -1,5 +1,5 @@
 const contact = document.getElementById("contact")
-const login =  localStorage.get('login')
+const login =  localStorage.getItem('login')
 
 if(login == null){
     window.location.href= "./login"
