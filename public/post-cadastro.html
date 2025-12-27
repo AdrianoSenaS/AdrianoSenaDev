@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin - Cadastro de Posts | Adriano Sena</title>
+  <link rel="shortcut icon" href="logo.jpg" type="image/x-icon">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=Fira+Code:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+  <!-- TinyMCE Editor -->
+  <script src="https://cdn.tiny.cloud/1/nno75607bhbm838zhdggjtt9yz0vozbqe1y4n433qvnzun9k/tinymce/8/tinymce.min.js"
+    referrerpolicy="origin"></script>
+
+  <style>
+    :root {
+      --primary: #2563eb;
+      --secondary: #10B981;
+      --dark: #1F2937;
+      --light: #F8FAFC;
+      --black: #111827;
+      --text-primary: #1F2937;
+      --text-secondary: #6B7280;
+      --text-light: #F8FAFC;
+      --bg-light: #F8FAFC;
+      --bg-card: #FFFFFF;
+      --border-color: rgba(37, 99, 235, 0.1);
+      --gradient: linear-gradient(135deg, #2563eb 0%, #10B981 100%);
+      --neon-glow: 0 0 10px rgba(37, 99, 235, 0.4), 0 0 20px rgba(16, 185, 129, 0.3);
+    }
+
+    [data-theme="dark"] {
+      --primary: #3b82f6;
+      --secondary: #10B981;
+      --dark: #0f172a;
+      --light: #0057e4;
+      --black: #f8fafc;
+      --text-primary: #F8FAFC;
+      --text-secondary: #D1D5DB;
+      --text-light: #F8FAFC;
+      --bg-light: #1e293b;
+      --bg-card: #334155;
+      --border-color: rgba(59, 130, 246, 0.2);
+      --gradient: linear-gradient(135deg, #3b82f6 0%, #10B981 100%);
+      --neon-glow: 0 0 10px rgba(59, 130, 246, 0.5), 0 0 20px rgba(16, 185, 129, 0.4);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .code-font {
+      font-family: 'Fira Code', monospace;
+    }
+
+    .btn-primary {
+      background: var(--gradient);
+      border: none;
+      color: white;
+      box-shadow: var(--neon-glow);
+      transition: all 0.3s ease;
+      font-weight: 600;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 15px rgba(37, 99, 235, 0.6), 0 0 30px rgba(16, 185, 129, 0.4);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      transition: all 0.3s ease;
+      font-weight: 600;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(37, 99, 235, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .card {
+      background: var(--bg-card);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      color: var(--text-primary);
+    }
+
+    .card:hover {
+      border-color: var(--primary);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7);
+      }
+
+      70% {
+        box-shadow: 0 0 0 15px rgba(37, 99, 235, 0);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
+      }
+    }
+
+    .glow-text {
+      text-shadow: 0 0 8px rgba(96, 165, 250, 0.4);
+    }
+
+    .feature-icon {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 2rem;
+    }
+
+    .nav-link {
+      position: relative;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .social-icon {
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .social-icon:hover {
+      transform: translateY(-5px);
+    }
+
+    .scroll-top {
+      position: fixed;
+      bottom: 80px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: 100;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .scroll-top.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .scroll-top:hover {
+      background: var(--primary);
+      transform: translateY(-3px);
+    }
+
+    /* Logo AS Geometric */
+    .logo-as {
+      width: 40px;
+      height: 40px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-as::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border: 3px solid var(--primary);
+      border-radius: 8px;
+      transform: rotate(45deg);
+    }
+
+    .logo-as::after {
+      content: '';
+      position: absolute;
+      width: 60%;
+      height: 60%;
+      border: 2px solid var(--secondary);
+      border-radius: 4px;
+      transform: rotate(45deg);
+    }
+
+    .logo-text {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .logo-subtext {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      color: var(--text-secondary);
+    }
+
+    /* Theme Toggle */
+    .theme-toggle {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--primary);
+      transform: rotate(15deg);
+    }
+
+    .theme-icon {
+      color: var(--text-primary);
+      transition: all 0.3s ease;
+    }
+
+    /* Text colors */
+    .text-custom-primary {
+      color: var(--text-primary);
+    }
+
+    .text-custom-secondary {
+      color: var(--text-secondary);
+    }
+
+    /* Background colors */
+    .bg-custom-light {
+      background-color: var(--bg-light);
+    }
+
+    .bg-custom-card {
+      background-color: var(--bg-card);
+    }
+
+    /* Border colors */
+    .border-custom {
+      border-color: var(--border-color);
+    }
+
+    /* Admin specific styles */
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .form-input,
+    .form-textarea,
+    .form-select {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      transition: all 0.3s ease;
+    }
+
+    .form-input:focus,
+    .form-textarea:focus,
+    .form-select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3);
+    }
+
+    .form-textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .tag {
+      display: inline-block;
+      background: rgba(96, 165, 250, 0.2);
+      color: var(--primary);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      margin-right: 8px;
+      margin-bottom: 8px;
+    }
+
+    .tag-remove {
+      margin-left: 6px;
+      cursor: pointer;
+      color: var(--text-secondary);
+    }
+
+    .tag-remove:hover {
+      color: #ef4444;
+    }
+
+    .image-preview {
+      max-width: 100%;
+      max-height: 300px;
+      border-radius: 8px;
+      margin-top: 10px;
+      border: 1px solid var(--border-color);
+    }
+
+    .image-placeholder {
+      width: 100%;
+      height: 200px;
+      background: var(--bg-light);
+      border: 2px dashed var(--border-color);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+      margin-top: 10px;
+    }
+
+    .admin-sidebar {
+      position: sticky;
+      top: 100px;
+    }
+
+    .admin-nav {
+      list-style: none;
+      padding: 0;
+    }
+
+    .admin-nav li {
+      margin-bottom: 10px;
+    }
+
+    .admin-nav a {
+      display: block;
+      padding: 12px 16px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .admin-nav a:hover,
+    .admin-nav a.active {
+      background: rgba(96, 165, 250, 0.1);
+      color: var(--primary);
+    }
+
+    .admin-nav a i {
+      margin-right: 10px;
+      width: 20px;
+      text-align: center;
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .status-draft {
+      background: rgba(251, 191, 36, 0.2);
+      color: #f59e0b;
+    }
+
+    .status-published {
+      background: rgba(34, 197, 94, 0.2);
+      color: #10b981;
+    }
+
+    .status-scheduled {
+      background: rgba(59, 130, 246, 0.2);
+      color: #3b82f6;
+    }
+
+    .post-item {
+      display: flex;
+      padding: 20px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .post-item:last-child {
+      border-bottom: none;
+    }
+
+    .post-item img {
+      width: 100px;
+      height: 70px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-right: 20px;
+    }
+
+    .post-content {
+      flex: 1;
+    }
+
+    .post-title {
+      font-weight: 600;
+      margin-bottom: 5px;
+      color: var(--text-primary);
+    }
+
+    .post-meta {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+
+    .post-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .post-action {
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .post-action:hover {
+      color: var(--primary);
+    }
+
+    .tox-tinymce {
+      border-radius: 8px !important;
+      border: 1px solid var(--border-color) !important;
+    }
+
+    /* Upload customizado */
+    .file-upload-container {
+      position: relative;
+      overflow: hidden;
+      display: inline-block;
+      width: 100%;
+    }
+
+    .file-upload-btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background: var(--primary);
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      text-align: center;
+      width: 100%;
+    }
+
+    .file-upload-btn:hover {
+      background: var(--primary);
+      opacity: 0.9;
+    }
+
+    .file-upload-input {
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+    }
+
+    .file-name {
+      margin-top: 8px;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+  </style>
+</head>
+
+<body class="bg-custom-light text-custom-primary">
+  <!-- Header -->
+  <header
+    class="w-full bg-custom-light/80 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-custom transition-colors duration-300">
+    <div class="max-w-7xl mx-auto flex justify-between items-center py-4 px-6">
+      <div class="flex items-center space-x-3">
+        <div class="logo-as"></div>
+        <div>
+          <div class="logo-text text-xl">Adriano Sena</div>
+          <div class="logo-subtext text-sm">dev.br</div>
+        </div>
+      </div>
+
+      <div class="flex items-center space-x-4">
+        <nav class="space-x-8 hidden md:flex">
+          <a href="/" class="nav-link hover:text-primary transition">Início</a>
+          <a href="/blog" class="nav-link hover:text-primary transition">Blog</a>
+          <a href="/admin" class="nav-link text-primary transition">Admin</a>
+        </nav>
+
+        <button id="theme-toggle" class="theme-toggle">
+          <svg id="theme-icon-sun" class="theme-icon w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+          <svg id="theme-icon-moon" class="theme-icon w-5 h-5 hidden" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          </svg>
+        </button>
+
+        <button id="menu-btn" class="md:hidden focus:outline-none">
+          <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" viewBox="0 0 24 24">
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <nav id="mobile-menu"
+      class="hidden md:hidden bg-custom-light/95 backdrop-blur-sm border-t border-custom transition-colors duration-300">
+      <a href="/" class="block px-6 py-3 border-b border-custom hover:bg-gray-100 text-custom-primary">Início</a>
+      <a href="/blog" class="block px-6 py-3 border-b border-custom hover:bg-gray-100 text-custom-primary">Blog</a>
+      <a href="/admin" class="block px-6 py-3 border-b border-custom hover:bg-gray-100 text-custom-primary">Admin</a>
+    </nav>
+  </header>
+
+  <!-- Admin Content -->
+  <section class="py-10 px-6 bg-custom-light transition-colors duration-300">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+        <!-- Admin Sidebar -->
+        <div class="lg:col-span-1">
+          <div class="admin-sidebar">
+            <div class="card p-6 mb-6">
+              <h3 class="text-xl font-bold mb-4 text-custom-primary">Painel Admin</h3>
+              <ul class="admin-nav">
+                <li><a href="/admin"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="/blog"><i class="fas fa-file-alt"></i> Blog</a></li>
+                <li><a href="/admin/cadastrar" class="active"><i class="fas fa-plus-circle"></i> Novo Post</a></li>
+                <li><a href="#"><i class="fas fa-folder"></i> Categorias</a></li>
+                <li><a href="#"><i class="fas fa-tags"></i> Tags</a></li>
+                <li><a href="#"><i class="fas fa-users"></i> Usuários</a></li>
+                <li><a href="#"><i class="fas fa-cog"></i> Configurações</a></li>
+              </ul>
+            </div>
+
+            <div class="card p-6">
+              <h4 class="font-bold mb-4 text-custom-primary">Estatísticas</h4>
+              <div class="space-y-4">
+                <div class="flex justify-between">
+                  <span class="text-custom-secondary">Posts Publicados</span>
+                  <span class="font-bold text-primary">24</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-custom-secondary">Rascunhos</span>
+                  <span class="font-bold text-yellow-500">5</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-custom-secondary">Visualizações</span>
+                  <span class="font-bold text-green-500">12.5K</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="lg:col-span-3">
+          <div class="card p-8">
+            <div class="flex justify-between items-center mb-8">
+              <h2 class="text-2xl font-bold text-custom-primary">Cadastrar Novo Post</h2>
+              <a href="/blog" class="btn-secondary px-4 py-2 rounded-lg font-semibold text-sm">
+                <i class="fas fa-arrow-left mr-2"></i> Voltar para Posts
+              </a>
+            </div>
+
+            <form id="post-form" enctype="multipart/form-data" method="post" action="/api/posts">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Coluna 1 -->
+                <div class="space-y-6">
+                  <!-- Título -->
+                  <div class="form-group">
+                    <label for="post-title" class="form-label">Título do Post</label>
+                    <input type="text" id="post-title" name="title" class="form-input"
+                      placeholder="Digite o título do post" required>
+                  </div>
+
+                  <!-- Resumo -->
+                  <div class="form-group">
+                    <label for="post-excerpt" class="form-label">Resumo</label>
+                    <textarea id="post-excerpt" class="form-textarea" name="excerpt"
+                      placeholder="Digite um resumo do post (aparecerá na listagem)" rows="3"></textarea>
+                  </div>
+
+                  <!-- Upload de Imagem -->
+                  <div class="form-group">
+                    <label for="post-image" class="form-label">Imagem de Capa</label>
+                    <div class="file-upload-container">
+                      <div class="file-upload-btn">
+                        <i class="fas fa-cloud-upload-alt mr-2"></i> Escolher Imagem
+                      </div>
+                      <input type="file" id="post-image" class="file-upload-input" accept="image/*" name="image">
+                    </div>
+                    <div id="file-name" class="file-name"></div>
+                    <div id="image-preview-container" class="image-placeholder">
+                      <span>Pré-visualização da imagem aparecerá aqui</span>
+                    </div>
+                  </div>
+
+                  <!-- Categoria -->
+                  <div class="form-group">
+                    <label for="post-category" class="form-label">Categoria</label>
+                    <select id="post-category" class="form-select" name="category">
+                      <option value="">Selecione uma categoria</option>
+                      <option value="Desenvolvimento">Desenvolvimento</option>
+                      <option value="Inteligência Artificial">Inteligência Artificial</option>
+                      <option value="Pessoal">Pessoal</option>
+                      <option value="Tecnologia">Tecnologia</option>
+                      <option value="Mobile">Mobile</option>
+                      <option value="Web">Web</option>
+                      <option value="Jogos">Jogos</option>
+                      <option value="Carreira">Carreira</option>
+                      <option value="Negócios Digitais">Negócios Digitais</option>
+                    </select>
+                  </div>
+
+                  <!-- Tags -->
+                  <div class="form-group">
+                    <label for="post-tags" class="form-label">Tags</label>
+                    <input type="text" class="form-input" placeholder="Digite as tags separadas por vírgula"
+                      name="tags">
+                    <div id="tags-container" class="mt-2"></div>
+                  </div>
+                </div>
+
+                <!-- Coluna 2 -->
+                <div class="space-y-6">
+                  <!-- Status -->
+                  <div class="form-group">
+                    <label for="post-status" class="form-label">Status</label>
+                    <select id="post-status" class="form-select" name="status">
+                      <option value="draft">Rascunho</option>
+                      <option value="published">Publicado</option>
+                      <option value="scheduled">Agendado</option>
+                    </select>
+                  </div>
+
+                  <!-- Data de Publicação -->
+                  <div class="form-group">
+                    <label for="post-date" class="form-label">Data de Publicação</label>
+                    <input type="datetime-local" id="post-date" class="form-input" name="date">
+                  </div>
+
+                  <!-- Autor -->
+                  <div class="form-group">
+                    <label for="post-author" class="form-label">Autor</label>
+                    <select id="post-author" class="form-select" name="author">
+                      <option value="adriano">Adriano Sena</option>
+                      <option value="colaborador">Colaborador</option>
+                    </select>
+                  </div>
+
+                  <!-- Slug -->
+                  <div class="form-group">
+                    <label for="post-slug" class="form-label">Slug (URL)</label>
+                    <input type="text" id="post-slug" class="form-input" placeholder="url-amigavel-do-post" name="slug">
+                  </div>
+
+                  <!-- Meta Description -->
+                  <div class="form-group">
+                    <label for="post-meta" class="form-label">Meta Description (SEO)</label>
+                    <textarea id="post-meta" class="form-textarea" placeholder="Descrição para mecanismos de busca"
+                      name="meta" rows="3"></textarea>
+                  </div>
+
+                  <!-- Destaque -->
+                  <div class="form-group">
+                    <div class="flex items-center">
+                      <input type="checkbox" id="post-featured" class="mr-2" name="featured">
+                      <label for="post-featured" class="form-label mb-0">Destacar este post</label>
+                    </div>
+                  </div>
+
+                  <!-- Permitir Comentários -->
+                  <div class="form-group">
+                    <div class="flex items-center">
+                      <input type="checkbox" id="post-comments" class="mr-2" checked name="comments">
+                      <label for="post-comments" class="form-label mb-0">Permitir comentários</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Conteúdo -->
+              <div class="form-group mt-6">
+                <label for="post-content" class="form-label">Conteúdo do Post</label>
+                <textarea id="post-content" class="form-textarea hidden" name="content"></textarea>
+                <div id="editor-container" class="mt-2">
+                  <!-- O editor TinyMCE será carregado aqui -->
+                </div>
+              </div>
+
+              <!-- Botões de Ação -->
+              <div class="flex justify-end space-x-4 mt-8 pt-6 border-t border-custom">
+                <button type="button" id="save-draft" class="btn-secondary px-6 py-3 rounded-lg font-semibold">
+                  <i class="far fa-save mr-2"></i> Salvar Rascunho
+                </button>
+                <button type="submit" class="btn-primary px-6 py-3 rounded-lg font-semibold">
+                  <i class="fas fa-paper-plane mr-2"></i> Publicar Post
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Posts Recentes -->
+          <div class="card p-6 mt-8">
+            <h3 class="text-xl font-bold mb-4 text-custom-primary">Posts Recentes</h3>
+            <div id="recent-posts">
+              <!-- Posts serão carregados aqui -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="relative bg-custom-card border-t border-custom py-12 px-6 transition-colors duration-300">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="flex items-center space-x-3 mb-6 md:mb-0">
+          <div class="logo-as"></div>
+          <div>
+            <div class="logo-text text-xl">Adriano Sena</div>
+            <div class="logo-subtext text-sm">dev.br</div>
+          </div>
+        </div>
+
+        <div class="flex space-x-6">
+          <a href="https://wa.me/+5564933004882" target="_blank"
+            class="text-custom-secondary hover:text-primary transition">
+            <i class="fab fa-whatsapp text-xl"></i>
+          </a>
+          <a href="https://github.com/AdrianoSenaS" target="_blank"
+            class="text-custom-secondary hover:text-primary transition">
+            <i class="fab fa-github text-xl"></i>
+          </a>
+          <a href="https://www.instagram.com/adriano.sena.silva/" target="_blank"
+            class="text-custom-secondary hover:text-primary transition">
+            <i class="fab fa-instagram text-xl"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/adriano-sena-silva-a8605622a/" target="_blank"
+            class="text-custom-secondary hover:text-primary transition">
+            <i class="fab fa-linkedin-in text-xl"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="mt-12 pt-8 border-t border-custom flex flex-col md:flex-row justify-between items-center">
+        <p class="text-custom-secondary text-sm mb-4 md:mb-0">&copy; <span id="year"></span> Adriano Sena. Todos os
+          direitos reservados.</p>
+        <p class="text-custom-secondary text-sm">Transformando ideias em soluções digitais inovadoras.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Botão "Voltar ao topo" -->
+  <div class="scroll-top" id="scrollTop">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+
+  <script>
+
+    // Verificar login 
+    const token = localStorage.getItem('adminToken');
+    if (token) {
+      fetch('/token', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        },
+      }).then(response => {
+        if (response.ok) {
+          console.log('Login bem-sucedido!');
+        } else {
+          window.location.href = '/login';
+        }
+      }).catch(error => console.error('Erro ao verificar token:', error));
+    }else{
+      window.location.href = '/login';
+    }
+
+    // Atualizar o ano no footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Botão "Voltar ao topo"
+    const scrollTop = document.getElementById('scrollTop');
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 500) {
+        scrollTop.classList.add('show');
+      } else {
+        scrollTop.classList.remove('show');
+      }
+    });
+
+    scrollTop.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // Toggle menu mobile
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Tema claro/escuro
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIconSun = document.getElementById('theme-icon-sun');
+    const themeIconMoon = document.getElementById('theme-icon-moon');
+
+    // Verificar tema salvo no localStorage ou preferência do sistema
+    const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    if (savedTheme === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      themeIconSun.classList.add('hidden');
+      themeIconMoon.classList.remove('hidden');
+    }
+
+    themeToggle.addEventListener('click', () => {
+      if (document.documentElement.getAttribute('data-theme') === 'dark') {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'light');
+        themeIconSun.classList.remove('hidden');
+        themeIconMoon.classList.add('hidden');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+        themeIconSun.classList.add('hidden');
+        themeIconMoon.classList.remove('hidden');
+      }
+    });
+
+    // Inicializar o editor TinyMCE
+    tinymce.init({
+      selector: 'textarea',
+      height: 500,
+      plugins: 'advlist autolink lists link image charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table code help wordcount',
+      toolbar: 'undo redo | blocks | bold italic forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | code',
+      content_style: `body { font-family: Inter, sans-serif; font-size: 14pt; color: ${document.documentElement.getAttribute('data-theme') === 'dark' ? '#f8fafc' : '#1F2937'}; background-color: ${document.documentElement.getAttribute('data-theme') === 'dark' ? '#0f172a' : '#ffffff'}; }`,
+      skin: document.documentElement.getAttribute('data-theme') === 'dark' ? 'oxide-dark' : 'oxide',
+      content_css: document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default',
+      images_upload_url: '/api/upload',
+      automatic_uploads: true,
+      file_picker_types: 'image',
+      promotion: false
+    });
+
+    // Carregar posts recentes
+    document.addEventListener('DOMContentLoaded', function () {
+      loadRecentPosts();
+
+      // Configurar upload de imagem
+      document.getElementById('post-image').addEventListener('change', handleImageUpload);
+
+ 
+
+      // Configurar slug automático
+      document.getElementById('post-title').addEventListener('input', generateSlug);
+
+  
+
+      // Configurar botão de salvar rascunho
+      document.getElementById('save-draft').addEventListener('click', saveAsDraft);
+    });
+
+    function handleImageUpload(e) {
+      const file = e.target.files[0];
+      const fileNameElement = document.getElementById('file-name');
+      const container = document.getElementById('image-preview-container');
+
+      if (file) {
+        // Exibir nome do arquivo
+        fileNameElement.textContent = `Arquivo selecionado: ${file.name}`;
+
+        // Criar preview da imagem
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          container.innerHTML = `<img src="${e.target.result}" alt="Preview" class="image-preview">`;
+          container.className = '';
+        };
+        reader.readAsDataURL(file);
+      } else {
+        fileNameElement.textContent = '';
+        container.innerHTML = '<span>Pré-visualização da imagem aparecerá aqui</span>';
+        container.className = 'image-placeholder';
+      }
+    }
+
+    function handleTagInput(e) {
+      if (e.key === 'Enter' || e.key === ',') {
+        e.preventDefault();
+        const tagInput = document.getElementById('post-tags');
+        const tagsContainer = document.getElementById('tags-container');
+        const tagText = tagInput.value.trim().replace(/,/g, '');
+
+        if (tagText) {
+          const tagElement = document.createElement('span');
+          tagElement.className = 'tag';
+          tagElement.innerHTML = `${tagText} <span class="tag-remove" onclick="removeTag(this)">×</span>`;
+          tagsContainer.appendChild(tagElement);
+          tagInput.value = '';
+        }
+      }
+    }
+
+    function removeTag(element) {
+      element.parentElement.remove();
+    }
+
+    function generateSlug() {
+      const title = document.getElementById('post-title').value;
+      const slugInput = document.getElementById('post-slug');
+
+      if (!slugInput.value) {
+        const slug = title
+          .toLowerCase()
+          .replace(/[^\w ]+/g, '')
+          .replace(/ +/g, '-');
+        slugInput.value = slug;
+      }
+    }
+
+    function saveAsDraft() {
+      // Em um cenário real, isso salvaria o post como rascunho
+      alert('Post salvo como rascunho!');
+    }
+
+
+    async function loadRecentPosts() {
+      // Em um cenário real, isso viria de uma API
+      const res = await fetch("/api/posts");
+      const posts = await res.json();
+
+      const container = document.getElementById('recent-posts');
+
+      posts.forEach(post => {
+        const statusClass = post.status === 'published' ? 'status-published' :
+          post.status === 'draft' ? 'status-draft' : 'status-scheduled';
+        const statusText = post.status === 'published' ? 'Publicado' :
+          post.status === 'draft' ? 'Rascunho' : 'Agendado';
+
+        const postElement = document.createElement('div');
+        postElement.className = 'post-item';
+        postElement.innerHTML = `
+          <img src="${post.image}" alt="${post.title}">
+          <div class="post-content">
+            <div class="post-title">${post.title}</div>
+            <div class="post-meta">${post.date} • <span class="${statusClass} status-badge">${statusText}</span></div>
+            <div class="post-actions">
+              <span class="post-action"><i class="fas fa-edit"></i> Editar</span>
+              <span class="post-action"><i class="fas fa-trash"></i> Excluir</span>
+              <span class="post-action"><i class="fas fa-eye"></i> Visualizar</span>
+            </div>
+          </div>
+        `;
+        container.appendChild(postElement);
+      });
+    }
+  </script>
+</body>
+
+</html>

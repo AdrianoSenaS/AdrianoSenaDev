@@ -1,0 +1,23 @@
+{
+  "name": "adrinao-sena-dev",
+  "version": "1.0.0",
+  "description": "servido para meu sitea",
+  "license": "ISC",
+  "author": "Adriano Sena",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "device-detector-js": "^3.0.3",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "express-session": "^1.18.2",
+    "geoip-lite": "^1.4.10",
+    "multer": "^2.0.2",
+    "nodemailer": "^7.0.11",
+    "sqlite3": "^5.1.7",
+    "ua-parser-js": "^2.0.6"
+  }
+}

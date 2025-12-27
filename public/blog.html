@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Blog | Adriano Sena - Desenvolvedor Full-Stack</title>
+  <meta property="og:title" content="Blog | Adriano Sena - Artigos sobre Desenvolvimento e Tecnologia" />
+  <meta property="og:description"
+    content="Artigos, tutoriais e insights sobre desenvolvimento full-stack, tecnologias modernas e soluções digitais." />
+  <meta property="og:image" content="logo.png" />
+  <meta property="og:url" content="https://adrianosena.dev.br/blog" />
+  <meta property="og:type" content="website" />
+  
+  <link rel="shortcut icon" href="logo.png" type="image/x-icon">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=Fira+Code:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  
+  <!-- AOS Animation Library -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --secondary: #10B981;
+      --secondary-dark: #059669;
+      --accent: #8b5cf6;
+      --dark: #0F172A;
+      --light: #FFFFFF;
+      --gray-50: #F8FAFC;
+      --gray-100: #F1F5F9;
+      --gray-200: #E2E8F0;
+      --gray-300: #CBD5E1;
+      --gray-400: #94A3B8;
+      --gray-500: #64748B;
+      --gray-600: #475569;
+      --gray-700: #334155;
+      --gray-800: #1E293B;
+      --gray-900: #0F172A;
+      --text-primary: #1E293B;
+      --text-secondary: #64748B;
+      --gradient: linear-gradient(135deg, #2563eb 0%, #10B981 100%);
+      --gradient-hover: linear-gradient(135deg, #1d4ed8 0%, #059669 100%);
+      --gradient-accent: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+      --card-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+      --card-shadow-hover: 0 20px 40px rgba(37, 99, 235, 0.1);
+      --neon-glow: 0 0 30px rgba(37, 99, 235, 0.1);
+      --neon-glow-accent: 0 0 30px rgba(139, 92, 246, 0.1);
+    }
+
+    [data-theme="dark"] {
+      --primary: #60a5fa;
+      --primary-dark: #3b82f6;
+      --secondary: #34d399;
+      --secondary-dark: #10b981;
+      --accent: #a78bfa;
+      --light: #0F172A;
+      --gray-50: #1E293B;
+      --gray-100: #334155;
+      --gray-200: #475569;
+      --gray-300: #64748b;
+      --gray-400: #94A3B8;
+      --gray-500: #cbd5e1;
+      --gray-600: #e2e8f0;
+      --gray-700: #f1f5f9;
+      --gray-800: #f8fafc;
+      --gray-900: #ffffff;
+      --text-primary: #F1F5F9;
+      --text-secondary: #94A3B8;
+      --gradient: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
+      --gradient-hover: linear-gradient(135deg, #2563eb 0%, #059669 100%);
+      --gradient-accent: linear-gradient(135deg, #a78bfa 0%, #ec4899 100%);
+      --card-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      --card-shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--light);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      transition: all 0.3s ease;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .gradient-text {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .gradient-text-accent {
+      background: var(--gradient-accent);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .btn-primary {
+      background: var(--gradient);
+      color: white;
+      padding: 14px 36px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      box-shadow: var(--neon-glow);
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: var(--gradient-hover);
+      transition: left 0.5s ease;
+      z-index: -1;
+    }
+
+    .btn-primary:hover::before {
+      left: 0;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 30px rgba(37, 99, 235, 0.2);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--primary);
+      padding: 14px 36px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 1rem;
+      border: 2px solid var(--primary);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(37, 99, 235, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .btn-accent {
+      background: var(--gradient-accent);
+      color: white;
+      padding: 14px 36px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      box-shadow: var(--neon-glow-accent);
+    }
+
+    .btn-accent::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #7c3aed 0%, #db2777 100%);
+      transition: left 0.5s ease;
+      z-index: -1;
+    }
+
+    .btn-accent:hover::before {
+      left: 0;
+    }
+
+    .btn-accent:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 30px rgba(139, 92, 246, 0.2);
+    }
+
+    .card {
+      background: var(--light);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: var(--card-shadow);
+      transition: all 0.4s ease;
+      border: 1px solid var(--gray-200);
+      height: 100%;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--card-shadow-hover);
+      border-color: var(--primary);
+    }
+
+    .section-title {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 3rem;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: var(--gradient);
+      border-radius: 2px;
+    }
+
+    .nav-link {
+      position: relative;
+      padding: 8px 0;
+      color: var(--text-primary);
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gradient);
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .nav-link:hover {
+      color: var(--primary);
+    }
+
+    .glass-effect {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+    }
+
+    [data-theme="dark"] .glass-effect {
+      background: rgba(15, 23, 42, 0.8);
+    }
+
+    .scroll-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: var(--gradient);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.3s ease;
+      z-index: 1000;
+      box-shadow: var(--neon-glow);
+    }
+
+    .scroll-top.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Blog specific styles */
+    .blog-hero {
+      background: linear-gradient(135deg, var(--gray-50) 0%, var(--light) 100%);
+      min-height: 400px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    [data-theme="dark"] .blog-hero {
+      background: linear-gradient(135deg, var(--gray-100) 0%, var(--dark) 100%);
+    }
+
+    .blog-hero-pattern {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%232563eb' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .blog-card {
+      background: var(--light);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      border: 1px solid var(--gray-200);
+      box-shadow: var(--card-shadow);
+      height: 100%;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--card-shadow-hover);
+      border-color: var(--primary);
+    }
+
+    .blog-image {
+      height: 200px;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .blog-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .blog-card:hover .blog-image img {
+      transform: scale(1.1);
+    }
+
+    .post-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .post-meta i {
+      margin-right: 4px;
+    }
+
+    .category-tag {
+      display: inline-block;
+      padding: 4px 12px;
+      background: rgba(37, 99, 235, 0.1);
+      color: var(--primary);
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      border: 1px solid rgba(37, 99, 235, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .category-tag:hover {
+      background: rgba(37, 99, 235, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .filter-btn {
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      background: var(--gray-100);
+      color: var(--text-secondary);
+      border: 1px solid var(--gray-200);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: 10px;
+      border: 1px solid var(--gray-300);
+      background: var(--light);
+      color: var(--text-primary);
+      transition: all 0.3s ease;
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+
+    [data-theme="dark"] .search-input {
+      background: var(--gray-100);
+      border-color: var(--gray-600);
+    }
+
+    .bg-section-light {
+      background-color: var(--gray-50);
+    }
+
+    [data-theme="dark"] .bg-section-light {
+      background-color: var(--gray-100);
+    }
+
+    .bg-section-dark {
+      background-color: var(--dark);
+      color: white;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .blog-hero {
+        min-height: 300px;
+        text-align: center;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-light text-text-primary">
+  <!-- Header -->
+  <header class="fixed w-full z-50 glass-effect transition-all duration-300">
+    <div class="container mx-auto px-6 py-4">
+      <div class="flex justify-between items-center">
+        <!-- Logo -->
+        <a href="/" class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+            <img src="https://adrianosena.dev.br/logo.png" alt="Adriano Sena Logo" class="w-10 h-10">
+          </div>
+          <div>
+            <h1 class="text-lg font-bold">Adriano Sena</h1>
+            <p class="text-xs text-text-secondary">Full-Stack Developer</p>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center space-x-8">
+          <a href="/" class="nav-link">Início</a>
+          <a href="/#skills" class="nav-link">Skills</a>
+          <a href="/#projects" class="nav-link">Projetos</a>
+          <a href="/#services" class="nav-link">Serviços</a>
+          <a href="/blog" class="nav-link text-primary font-semibold">Blog</a>
+          <a href="/#contact" class="nav-link">Contato</a>
+          <a href="/privacidade" class="nav-link">Privacidade</a>
+        </nav>
+
+        <!-- Theme Toggle & CTA -->
+        <div class="flex items-center space-x-4">
+          <button id="theme-toggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+            <i id="theme-icon" class="fas fa-moon text-gray-600"></i>
+          </button>
+          <a href="/#contact" class="btn-primary hidden md:block">
+            Iniciar Projeto
+          </a>
+          <button id="menu-toggle" class="md:hidden">
+            <i class="fas fa-bars text-xl"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Navigation -->
+      <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+        <div class="flex flex-col space-y-4">
+          <a href="/" class="nav-link">Início</a>
+          <a href="/#skills" class="nav-link">Skills</a>
+          <a href="/#projects" class="nav-link">Projetos</a>
+          <a href="/#services" class="nav-link">Serviços</a>
+          <a href="/blog" class="nav-link text-primary font-semibold">Blog</a>
+          <a href="/#contact" class="nav-link">Contato</a>
+          <a href="/privacidade" class="nav-link">Privacidade</a>
+          <a href="/#contact" class="btn-primary w-full text-center">
+            Iniciar Projeto
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Blog Hero Section -->
+  <section class="blog-hero pt-32">
+    <div class="blog-hero-pattern"></div>
+    <div class="container mx-auto px-6 relative z-10">
+      <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
+        <!-- Gatilho de Status -->
+        <div class="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-primary/10 to-secondary/10 mb-6">
+          <div class="w-2 h-2 rounded-full bg-primary mr-2 animate-pulse"></div>
+          <span class="text-sm font-medium text-primary">Novos artigos toda semana</span>
+        </div>
+        
+        <!-- Título Principal -->
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+          Blog & <span class="gradient-text">Artigos</span> Técnicos
+        </h1>
+        
+        <!-- Subtitle -->
+        <p class="text-lg md:text-xl text-text-secondary mb-8 leading-relaxed max-w-2xl mx-auto">
+          Compartilhando conhecimentos, experiências e insights sobre desenvolvimento full-stack, 
+          tecnologias modernas e soluções digitais que geram resultados.
+        </p>
+        
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Content -->
+  <section class="py-16 px-6 bg-section-light">
+    <div class="container mx-auto">
+      <!-- Filtros e Busca -->
+      <div class="mb-12" data-aos="fade-up">
+        <div class="flex flex-col md:flex-row gap-6 justify-between items-center mb-8">
+          <!-- Campo de Pesquisa -->
+          <div class="w-full md:w-96 relative">
+            <input 
+              type="text" 
+              id="search-input" 
+              placeholder="Pesquisar artigos por palavra-chave..." 
+              class="w-full px-4 py-3 rounded-lg search-input"
+            >
+            <i class="fas fa-search absolute right-3 top-1/2 transform -translate-y-1/2 text-text-secondary"></i>
+          </div>
+          
+          <!-- Seletor de Categorias -->
+          <div class="w-full md:w-auto">
+            <select id="category-filter" class="w-full md:w-48 px-4 py-3 rounded-lg search-input">
+              <option value="">Todas as categorias</option>
+              <!-- As categorias serão preenchidas via JavaScript -->
+            </select>
+          </div>
+        </div>
+        
+        <!-- Filtros Rápidos -->
+        <div id="category-filters" class="flex flex-wrap gap-2 justify-center">
+          <!-- Os botões de categoria serão preenchidos via JavaScript -->
+        </div>
+      </div>
+
+      <!-- Posts Grid -->
+      <div id="posts-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <!-- Posts serão carregados via JavaScript -->
+      </div>
+
+      <!-- Load More Button -->
+      <div class="text-center" data-aos="fade-up">
+        <button id="load-more" class="btn-primary inline-flex items-center">
+          <i class="fas fa-plus-circle mr-2"></i>Carregar Mais Artigos
+        </button>
+      </div>
+
+      <!-- Newsletter Section -->
+      <div class="mt-20" data-aos="fade-up">
+        <div class="card max-w-3xl mx-auto text-center">
+          <div class="w-20 h-20 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-envelope-open-text text-white text-2xl"></i>
+          </div>
+          <h2 class="text-2xl md:text-3xl font-bold mb-4">Receba Novos Artigos no Email</h2>
+          <p class="text-text-secondary mb-6 max-w-2xl mx-auto">
+            Inscreva-se na newsletter para receber os artigos mais recentes sobre desenvolvimento, 
+            tutoriais práticos e dicas exclusivas diretamente na sua caixa de entrada.
+          </p>
+          <form class="flex flex-col md:flex-row gap-4 max-w-md mx-auto">
+            <input type="email" placeholder="Seu melhor email" 
+                   class="flex-1 px-4 py-3 rounded-lg search-input">
+            <button type="submit" class="btn-primary px-6 py-3">
+              Inscrever-se
+            </button>
+          </form>
+          <p class="text-sm text-text-secondary mt-4">
+            Não compartilhamos seu email. Você pode cancelar a qualquer momento.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white py-12 px-6">
+    <div class="container mx-auto">
+      <div class="grid md:grid-cols-4 gap-8">
+        <div>
+          <div class="flex items-center space-x-3 mb-6">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+              <img src="https://adrianosena.dev.br/logo.png" alt="Adriano Sena Logo" class="w-10 h-10">
+            </div>
+            <div>
+              <div class="font-bold text-lg">Adriano Sena</div>
+              <div class="text-gray-400 text-sm">Full-Stack Developer</div>
+            </div>
+          </div>
+          <p class="text-gray-400">
+            Transformando ideias em soluções digitais de alta performance desde 2019.
+          </p>
+        </div>
+        
+        <div>
+          <h4 class="text-lg font-bold mb-6">Categorias do Blog</h4>
+          <ul class="space-y-3">
+            <li><a href="blog?category=frontend" class="text-gray-400 hover:text-white transition">Frontend</a></li>
+            <li><a href="blog?category=backend" class="text-gray-400 hover:text-white transition">Backend</a></li>
+            <li><a href="blog?category=devops" class="text-gray-400 hover:text-white transition">DevOps</a></li>
+            <li><a href="blog?category=unity" class="text-gray-400 hover:text-white transition">Unity3D</a></li>
+            <li><a href="blog?category=seguranca" class="text-gray-400 hover:text-white transition">Segurança</a></li>
+            <li><a href="blog?category=apis" class="text-gray-400 hover:text-white transition">APIs</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="text-lg font-bold mb-6">Links Rápidos</h4>
+          <ul class="space-y-3">
+            <li><a href="/" class="text-gray-400 hover:text-white transition">Início</a></li>
+            <li><a href="/#skills" class="text-gray-400 hover:text-white transition">Skills</a></li>
+            <li><a href="/#projects" class="text-gray-400 hover:text-white transition">Projetos</a></li>
+            <li><a href="/blog" class="text-gray-400 hover:text-white transition">Blog</a></li>
+            <li><a href="/#contact" class="text-gray-400 hover:text-white transition">Contato</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="text-lg font-bold mb-6">Conecte-se</h4>
+          <div class="flex space-x-4 mb-6">
+            <a href="https://github.com/AdrianoSenaS" target="_blank" 
+               class="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center hover:bg-gray-900 transition">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/adriano-sena-silva-a8605622a/" target="_blank"
+               class="w-10 h-10 rounded-lg bg-blue-700 flex items-center justify-center hover:bg-blue-800 transition">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://www.instagram.com/adriano.sena.silva/" target="_blank"
+               class="w-10 h-10 rounded-lg bg-pink-600 flex items-center justify-center hover:bg-pink-700 transition">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://wa.me/5564933004882" target="_blank"
+               class="w-10 h-10 rounded-lg bg-green-600 flex items-center justify-center hover:bg-green-700 transition">
+              <i class="fab fa-whatsapp"></i>
+            </a>
+          </div>
+          <p class="text-gray-400 text-sm">
+            © <span id="current-year">2024</span> Adriano Sena. Todos os direitos reservados.
+          </p>
+          <a href="/privacidade" class="text-gray-400 hover:text-white text-sm">Política de Privacidade</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top -->
+  <div class="scroll-top" id="scrollTop">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    // Initialize AOS
+    AOS.init({
+      duration: 1000,
+      once: true,
+      offset: 100
+    });
+
+    // Tema - Correção definitiva
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    
+    // Verificar tema salvo ou preferência do sistema
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    // Função para aplicar tema
+    function applyTheme(theme) {
+      if (theme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        themeIcon.classList.remove('fa-moon', 'text-gray-600');
+        themeIcon.classList.add('fa-sun', 'text-yellow-400');
+      } else {
+        document.documentElement.removeAttribute('data-theme');
+        themeIcon.classList.remove('fa-sun', 'text-yellow-400');
+        themeIcon.classList.add('fa-moon', 'text-gray-600');
+      }
+    }
+    
+    // Definir tema inicial
+    if (savedTheme) {
+      applyTheme(savedTheme);
+    } else if (systemPrefersDark) {
+      applyTheme('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      applyTheme('light');
+      localStorage.setItem('theme', 'light');
+    }
+
+    // Alternar tema
+    themeToggle.addEventListener('click', () => {
+      if (document.documentElement.getAttribute('data-theme') === 'dark') {
+        applyTheme('light');
+        localStorage.setItem('theme', 'light');
+      } else {
+        applyTheme('dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    });
+
+    // CORREÇÃO DO MENU MOBILE - SIMPLIFICADO E FUNCIONAL
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    menuToggle.addEventListener('click', function(e) {
+      e.stopPropagation(); // Evita que o clique se propague
+      mobileMenu.classList.toggle('hidden');
+      
+      // Mudar o ícone do botão
+      const icon = menuToggle.querySelector('i');
+      if (mobileMenu.classList.contains('hidden')) {
+        icon.className = 'fas fa-bars text-xl';
+      } else {
+        icon.className = 'fas fa-times text-xl';
+      }
+    });
+
+    // Fechar o menu quando clicar em um link
+    document.querySelectorAll('#mobile-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        menuToggle.querySelector('i').className = 'fas fa-bars text-xl';
+      });
+    });
+
+    // Fechar o menu quando clicar fora (somente se estiver aberto)
+    document.addEventListener('click', function(e) {
+      if (!mobileMenu.classList.contains('hidden') && 
+          !mobileMenu.contains(e.target) && 
+          !menuToggle.contains(e.target)) {
+        mobileMenu.classList.add('hidden');
+        menuToggle.querySelector('i').className = 'fas fa-bars text-xl';
+      }
+    });
+
+    // Smooth Scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        if (this.getAttribute('href') === '#') return;
+        
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Scroll to Top
+    const scrollTop = document.getElementById('scrollTop');
+    
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        scrollTop.classList.add('show');
+      } else {
+        scrollTop.classList.remove('show');
+      }
+    });
+    
+    scrollTop.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // Atualizar ano no footer
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+
+    // Variáveis globais para posts e filtros
+    let allPosts = [];
+    let filteredPosts = [];
+    let currentPage = 1;
+    const postsPerPage = 3;
+    let currentCategory = '';
+    let currentSearchTerm = '';
+
+    // Carregar posts
+    document.addEventListener('DOMContentLoaded', function() {
+      // Inicializar posts de exemplo
+      initializeExamplePosts();
+      
+      // Configurar botão de carregar mais posts
+      document.getElementById('load-more').addEventListener('click', loadMorePosts);
+      
+      // Configurar campo de pesquisa
+      document.getElementById('search-input').addEventListener('input', function() {
+        currentSearchTerm = this.value.toLowerCase();
+        filterPosts();
+      });
+      
+      // Configurar filtro de categoria
+      document.getElementById('category-filter').addEventListener('change', function() {
+        currentCategory = this.value;
+        filterPosts();
+      });
+    });
+
+    async function  initializeExamplePosts() {
+      // Posts de exemplo
+       // Em um cenário real, isso viria de uma API
+        const res = await fetch("/api/posts");
+        allPosts = await res.json();
+      
+      // Extrair categorias únicas
+      const categories = [...new Set(allPosts.map(post => post.category).filter(Boolean))];
+      
+      // Preencher o seletor de categorias
+      const categoryFilter = document.getElementById('category-filter');
+      categories.forEach(category => {
+        const option = document.createElement('option');
+        option.value = category;
+        option.textContent = category;
+        categoryFilter.appendChild(option);
+      });
+      
+      // Preencher os botões de filtro rápido
+      const categoryFilters = document.getElementById('category-filters');
+      categories.forEach(category => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'filter-btn';
+        button.textContent = category;
+        button.dataset.category = category;
+        
+        button.addEventListener('click', function() {
+          // Ativar/desativar filtro
+          if (currentCategory === category) {
+            currentCategory = '';
+            button.classList.remove('active');
+          } else {
+            currentCategory = category;
+            // Remover classe ativa de todos os botões
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+          }
+          
+          // Atualizar o seletor
+          document.getElementById('category-filter').value = currentCategory;
+          filterPosts();
+        });
+        
+        categoryFilters.appendChild(button);
+      });
+      
+      // Adicionar botão "Todos"
+      const allButton = document.createElement('button');
+      allButton.type = 'button';
+      allButton.className = 'filter-btn active';
+      allButton.textContent = 'Todos';
+      allButton.dataset.category = '';
+      allButton.addEventListener('click', function() {
+        currentCategory = '';
+        document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+        allButton.classList.add('active');
+        document.getElementById('category-filter').value = '';
+        filterPosts();
+      });
+      categoryFilters.prepend(allButton);
+      
+      // Inicializar posts filtrados
+      filteredPosts = allPosts.filter(post => post.status === "published");
+      
+      // Exibir posts iniciais
+      displayPosts();
+    }
+
+    function filterPosts() {
+      filteredPosts = allPosts.filter(post => {
+        // Filtrar por status
+        if (post.status !== "published") return false;
+        
+        // Filtrar por categoria
+        if (currentCategory && post.category !== currentCategory) return false;
+        
+        // Filtrar por termo de busca
+        if (currentSearchTerm) {
+          const searchFields = [post.title, post.description, post.category].filter(Boolean);
+          const matchesSearch = searchFields.some(field => 
+            field.toLowerCase().includes(currentSearchTerm)
+          );
+          if (!matchesSearch) return false;
+        }
+        
+        return true;
+      });
+      
+      // Resetar para a primeira página
+      currentPage = 1;
+      displayPosts();
+    }
+
+    function displayPosts() {
+      const postsContainer = document.getElementById('posts-container');
+      
+      // Se for a primeira página, limpar os posts de exemplo
+      if (currentPage === 1) {
+        postsContainer.innerHTML = '';
+      }
+      
+      const startIndex = (currentPage - 1) * postsPerPage;
+      const endIndex = startIndex + postsPerPage;
+      const postsToShow = filteredPosts.slice(startIndex, endIndex);
+
+      if (postsToShow.length === 0 && currentPage === 1) {
+        postsContainer.innerHTML = `
+          <div class="col-span-full text-center py-12">
+            <i class="fas fa-search text-4xl text-text-secondary mb-4"></i>
+            <h3 class="text-xl font-bold text-text-primary mb-2">Nenhum artigo encontrado</h3>
+            <p class="text-text-secondary">Tente ajustar seus filtros ou termos de busca.</p>
+          </div>
+        `;
+        return;
+      }
+
+      postsToShow.forEach(post => {
+        const postElement = document.createElement('div');
+        postElement.className = 'blog-card animate__animated animate__fadeInUp';
+        
+        postElement.innerHTML = `
+          <div class="blog-image">
+            <img src="${post.image}" alt="${post.title}">
+          </div>
+          <div class="p-6">
+            <div class="post-meta">
+              <span><i class="far fa-calendar mr-1"></i> ${formatDate(post.createdAt)}</span>
+              
+            </div>
+            <div class="flex justify-between items-start mb-3">
+              <h3 class="text-xl font-bold mb-3">${post.title}</h3>
+              <span class="category-tag">${post.category}</span>
+            </div>
+            <p class="text-text-secondary mb-4">${post.description}</p>
+            <div class="text-center mt-12">
+                <a href="/post?id=${post.id}" class="btn-secondary inline-flex items-center">
+                    <i class="fas fa-newspaper mr-2"></i>Ler artigo completo
+                </a>
+            </div>
+          </div>
+        `;
+        
+        postsContainer.appendChild(postElement);
+      });
+
+      // Esconder botão se não há mais posts para carregar
+      const loadMoreBtn = document.getElementById('load-more');
+      if (endIndex >= filteredPosts.length) {
+        loadMoreBtn.style.display = 'none';
+      } else {
+        loadMoreBtn.style.display = 'inline-flex';
+      }
+    }
+
+    function loadMorePosts() {
+      currentPage++;
+      displayPosts();
+    }
+
+    function formatDate(dateString) {
+      const date = new Date(dateString);
+      const options = { year: 'numeric', month: 'short', day: 'numeric' };
+      return date.toLocaleDateString('pt-BR', options);
+    }
+
+    // Newsletter form
+    const newsletterForm = document.querySelector('form');
+    if (newsletterForm) {
+      newsletterForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const emailInput = this.querySelector('input[type="email"]');
+        if (emailInput.value) {
+          alert('Obrigado por se inscrever! Você receberá nossos próximos artigos.');
+          emailInput.value = '';
+        }
+      });
+    }
+  </script>
+</body>
+</html>

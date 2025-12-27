@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Política de Privacidade e Cookies | Adriano Sena</title>
+  <meta property="og:title" content="Política de Privacidade e Cookies | Adriano Sena" />
+  <meta property="og:description"
+    content="Saiba como coletamos, usamos e protegemos suas informações pessoais em nosso site." />
+  <meta property="og:url" content="https://adrianosena.dev.br/privacy" />
+  <meta property="og:type" content="website" />
+
+  <link rel="shortcut icon" href="logo.png" type="image/x-icon">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=Fira+Code:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+  <!-- AOS Animation Library -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --secondary: #10B981;
+      --secondary-dark: #059669;
+      --accent: #8b5cf6;
+      --dark: #0F172A;
+      --light: #FFFFFF;
+      --gray-50: #F8FAFC;
+      --gray-100: #F1F5F9;
+      --gray-200: #E2E8F0;
+      --gray-300: #CBD5E1;
+      --gray-400: #94A3B8;
+      --gray-500: #64748B;
+      --gray-600: #475569;
+      --gray-700: #334155;
+      --gray-800: #1E293B;
+      --gray-900: #0F172A;
+      --text-primary: #1E293B;
+      --text-secondary: #64748B;
+      --gradient: linear-gradient(135deg, #2563eb 0%, #10B981 100%);
+      --gradient-hover: linear-gradient(135deg, #1d4ed8 0%, #059669 100%);
+      --gradient-accent: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+      --card-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+      --card-shadow-hover: 0 20px 40px rgba(37, 99, 235, 0.1);
+      --neon-glow: 0 0 30px rgba(37, 99, 235, 0.1);
+      --neon-glow-accent: 0 0 30px rgba(139, 92, 246, 0.1);
+    }
+
+    [data-theme="dark"] {
+      --primary: #60a5fa;
+      --primary-dark: #3b82f6;
+      --secondary: #34d399;
+      --secondary-dark: #10b981;
+      --accent: #a78bfa;
+      --light: #0F172A;
+      --gray-50: #1E293B;
+      --gray-100: #334155;
+      --gray-200: #475569;
+      --gray-300: #64748b;
+      --gray-400: #94A3B8;
+      --gray-500: #cbd5e1;
+      --gray-600: #e2e8f0;
+      --gray-700: #f1f5f9;
+      --gray-800: #f8fafc;
+      --gray-900: #ffffff;
+      --text-primary: #F1F5F9;
+      --text-secondary: #94A3B8;
+      --gradient: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
+      --gradient-hover: linear-gradient(135deg, #2563eb 0%, #059669 100%);
+      --gradient-accent: linear-gradient(135deg, #a78bfa 0%, #ec4899 100%);
+      --card-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      --card-shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--light);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      transition: all 0.3s ease;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .gradient-text {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .gradient-text-accent {
+      background: var(--gradient-accent);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .btn-primary {
+      background: var(--gradient);
+      color: white;
+      padding: 14px 36px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      box-shadow: var(--neon-glow);
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: var(--gradient-hover);
+      transition: left 0.5s ease;
+      z-index: -1;
+    }
+
+    .btn-primary:hover::before {
+      left: 0;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 30px rgba(37, 99, 235, 0.2);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--primary);
+      padding: 14px 36px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 1rem;
+      border: 2px solid var(--primary);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(37, 99, 235, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .card {
+      background: var(--light);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: var(--card-shadow);
+      transition: all 0.4s ease;
+      border: 1px solid var(--gray-200);
+      height: 100%;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--card-shadow-hover);
+      border-color: var(--primary);
+    }
+
+    .section-title {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 3rem;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: var(--gradient);
+      border-radius: 2px;
+    }
+
+    .nav-link {
+      position: relative;
+      padding: 8px 0;
+      color: var(--text-primary);
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gradient);
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .nav-link:hover {
+      color: var(--primary);
+    }
+
+    .glass-effect {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+    }
+
+    [data-theme="dark"] .glass-effect {
+      background: rgba(15, 23, 42, 0.8);
+    }
+
+    .scroll-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: var(--gradient);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.3s ease;
+      z-index: 1000;
+      box-shadow: var(--neon-glow);
+    }
+
+    .scroll-top.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Privacy page specific styles */
+    .privacy-content {
+      line-height: 1.8;
+      font-size: 1.1rem;
+    }
+
+    .privacy-content p {
+      margin-bottom: 1.5rem;
+      color: var(--text-primary);
+    }
+
+    .privacy-content h2 {
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+      border-bottom: 1px solid var(--gray-200);
+      padding-bottom: 0.5rem;
+    }
+
+    .privacy-content h3 {
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+    }
+
+    .privacy-content ul,
+    .privacy-content ol {
+      margin-bottom: 1.5rem;
+      padding-left: 1.5rem;
+    }
+
+    .privacy-content li {
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+
+    .privacy-content blockquote {
+      border-left: 4px solid var(--primary);
+      padding-left: 1.5rem;
+      margin: 2rem 0;
+      font-style: italic;
+      color: var(--text-secondary);
+    }
+
+    .privacy-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 2rem 0;
+    }
+
+    .privacy-table th,
+    .privacy-table td {
+      border: 1px solid var(--gray-200);
+      padding: 12px;
+      text-align: left;
+    }
+
+    .privacy-table th {
+      background-color: rgba(37, 99, 235, 0.08);
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .privacy-table tr:nth-child(even) {
+      background-color: var(--gray-50);
+    }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--gradient);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: 100;
+      box-shadow: var(--neon-glow);
+    }
+
+    .back-to-top.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .back-to-top:hover {
+      transform: translateY(-3px);
+    }
+
+    .toc {
+      position: sticky;
+      top: 100px;
+    }
+
+    .toc-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .toc-list li {
+      margin-bottom: 10px;
+    }
+
+    .toc-list a {
+      display: block;
+      padding: 8px 12px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+    }
+
+    .toc-list a:hover,
+    .toc-list a.active {
+      background: rgba(96, 165, 250, 0.1);
+      color: var(--primary);
+    }
+
+    .last-updated {
+      background: rgba(96, 165, 250, 0.1);
+      border-left: 4px solid var(--primary);
+      padding: 15px;
+      margin: 2rem 0;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .bg-section-light {
+      background-color: var(--gray-50);
+    }
+
+    [data-theme="dark"] .bg-section-light {
+      background-color: var(--gray-100);
+    }
+
+    .bg-section-dark {
+      background-color: var(--dark);
+      color: white;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .privacy-content {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-light text-text-primary">
+  <!-- Header -->
+  <header class="fixed w-full z-50 glass-effect transition-all duration-300">
+    <div class="container mx-auto px-6 py-4">
+      <div class="flex justify-between items-center">
+        <!-- Logo -->
+        <a href="/" class="flex items-center space-x-3">
+          <div
+            class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+            <img src="https://adrianosena.dev.br/logo.png" alt="Adriano Sena Logo" class="w-10 h-10">
+          </div>
+          <div>
+            <h1 class="text-lg font-bold">Adriano Sena</h1>
+            <p class="text-xs text-text-secondary">Full-Stack Developer</p>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center space-x-8">
+          <a href="/" class="nav-link">Início</a>
+          <a href="/#skills" class="nav-link">Skills</a>
+          <a href="/#projects" class="nav-link">Projetos</a>
+          <a href="/#services" class="nav-link">Serviços</a>
+          <a href="/blog" class="nav-link">Blog</a>
+          <a href="/#contact" class="nav-link">Contato</a>
+          <a href="/privacidade" class="nav-link text-primary font-semibold">Privacidade</a>
+        </nav>
+
+        <!-- Theme Toggle & CTA -->
+        <div class="flex items-center space-x-4">
+          <button id="theme-toggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+            <i id="theme-icon" class="fas fa-moon text-gray-600"></i>
+          </button>
+          <a href="/#contact" class="btn-primary hidden md:block">
+            Iniciar Projeto
+          </a>
+          <button id="menu-toggle" class="md:hidden">
+            <i class="fas fa-bars text-xl"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Navigation -->
+      <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+        <div class="flex flex-col space-y-4">
+          <a href="/" class="nav-link">Início</a>
+          <a href="/#skills" class="nav-link">Skills</a>
+          <a href="/#projects" class="nav-link">Projetos</a>
+          <a href="/#services" class="nav-link">Serviços</a>
+          <a href="/blog" class="nav-link">Blog</a>
+          <a href="/#contact" class="nav-link">Contato</a>
+          <a href="/privacidade" class="nav-link text-primary font-semibold">Privacidade</a>
+          <a href="/#contact" class="btn-primary w-full text-center">
+            Iniciar Projeto
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Privacy Content -->
+  <section class="pt-32 pb-16 px-6 bg-section-light">
+    <div class="container mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-4 gap-10">
+        <!-- Main Content -->
+        <div class="lg:col-span-3">
+          <!-- Breadcrumb -->
+          <div class="mb-8 text-sm text-text-secondary">
+            <a href="/" class="hover:text-primary transition">Início</a> /
+            <span class="text-primary font-medium">Política de Privacidade</span>
+          </div>
+
+          <!-- Header -->
+          <div class="mb-10" data-aos="fade-up">
+            <h1 class="text-3xl md:text-4xl font-bold mb-6">Política de <span class="gradient-text">Privacidade</span> e
+              Cookies</h1>
+            <div class="last-updated">
+              <p class="text-text-secondary"><strong>Última atualização:</strong> 15 de Novembro, 2023</p>
+            </div>
+          </div>
+
+          <!-- Content -->
+          <div class="privacy-content" data-aos="fade-up" data-aos-delay="100">
+            <p>Bem-vindo à Política de Privacidade do site Adriano Sena (adrianosena.dev.br). Esta página informa sobre
+              nossas políticas relativas à coleta, uso e divulgação de informações pessoais quando você usa nosso site.
+            </p>
+
+            <h2 id="informacoes-coletadas">1. Informações Coletadas</h2>
+            <p>Coletamos vários tipos de informações para fornecer e melhorar nosso serviço:</p>
+
+            <h3>1.1 Dados Pessoais</h3>
+            <p>Durante o uso do nosso site, podemos solicitar que você nos forneça certas informações de identificação
+              pessoal que podem ser usadas para contatá-lo ou identificá-lo, incluindo, mas não se limitando a:</p>
+            <ul>
+              <li>Endereço de e-mail</li>
+              <li>Nome e sobrenome</li>
+              <li>Número de telefone</li>
+              <li>Cookies e Dados de Uso</li>
+            </ul>
+
+            <h3>1.2 Dados de Uso</h3>
+            <p>Também podemos coletar informações sobre como o serviço é acessado e usado ("Dados de Uso"). Esses Dados
+              de Uso podem incluir informações como o endereço de Protocolo de Internet do seu computador (por exemplo,
+              endereço IP), tipo de navegador, versão do navegador, as páginas do nosso site que você visita, a hora e a
+              data da sua visita, o tempo gasto nessas páginas, identificadores exclusivos de dispositivos e outros
+              dados de diagnóstico.</p>
+
+            <h2 id="uso-dados">2. Uso dos Dados</h2>
+            <p>Adriano Sena usa os dados coletados para várias finalidades:</p>
+            <ul>
+              <li>Para fornecer e manter nosso serviço</li>
+              <li>Para notificá-lo sobre alterações em nosso serviço</li>
+              <li>Para permitir que você participe de recursos interativos do nosso serviço quando você optar por
+                fazê-lo</li>
+              <li>Para fornecer atendimento ao cliente e suporte</li>
+              <li>Para fornecer análise ou informações valiosas para que possamos melhorar o serviço</li>
+              <li>Para monitorar o uso do serviço</li>
+              <li>Para detectar, prevenir e resolver problemas técnicos</li>
+            </ul>
+
+            <h2 id="transferencia-dados">3. Transferência de Dados</h2>
+            <p>Suas informações, incluindo Dados Pessoais, podem ser transferidas para — e mantidas em — computadores
+              localizados fora do seu estado, província, país ou outra jurisdição governamental onde as leis de proteção
+              de dados podem ser diferentes das da sua jurisdição.</p>
+            <p>Se você estiver localizado fora do Brasil e optar por nos fornecer informações, observe que transferimos
+              os dados, incluindo Dados Pessoais, para o Brasil e os processamos lá.</p>
+            <p>Seu consentimento para esta Política de Privacidade, seguido pelo envio de tais informações, representa
+              sua concordância com essa transferência.</p>
+
+            <h2 id="seguranca-dados">4. Segurança de Dados</h2>
+            <p>A segurança dos seus dados é importante para nós, mas lembre-se de que nenhum método de transmissão pela
+              Internet ou método de armazenamento eletrônico é 100% seguro. Embora nos esforcemos para usar meios
+              comercialmente aceitáveis para proteger seus Dados Pessoais, não podemos garantir sua segurança absoluta.
+            </p>
+
+            <h2 id="cookies">5. Cookies e Tecnologias Similares</h2>
+            <p>Usamos cookies e tecnologias de rastreamento semelhantes para rastrear a atividade em nosso site e manter
+              certas informações.</p>
+
+            <h3>5.1 O que são Cookies?</h3>
+            <p>Cookies são pequenos arquivos de dados que podem incluir um identificador único anônimo. Os cookies são
+              enviados para o seu navegador a partir de um site e armazenados no seu dispositivo. Outras tecnologias de
+              rastreamento também são usadas, como beacons, tags e scripts, para coletar e rastrear informações e para
+              melhorar e analisar nosso serviço.</p>
+
+            <h3>5.2 Tipos de Cookies que Utilizamos</h3>
+
+            <table class="privacy-table">
+              <thead>
+                <tr>
+                  <th>Tipo</th>
+                  <th>Finalidade</th>
+                  <th>Duração</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Cookies Essenciais</strong></td>
+                  <td>Necessários para o funcionamento básico do site</td>
+                  <td>Sessão/Persistentes</td>
+                </tr>
+                <tr>
+                  <td><strong>Cookies de Desempenho</strong></td>
+                  <td>Coletam informações sobre como os visitantes usam o site</td>
+                  <td>Persistentes</td>
+                </tr>
+                <tr>
+                  <td><strong>Cookies de Funcionalidade</strong></td>
+                  <td>Permitem que o site lembre das escolhas que você faz</td>
+                  <td>Persistentes</td>
+                </tr>
+                <tr>
+                  <td><strong>Cookies de Marketing</strong></td>
+                  <td>Rastreiam visitantes entre sites para exibir anúncios relevantes</td>
+                  <td>Persistentes</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h3>5.3 Controle de Cookies</h3>
+            <p>Você pode instruir seu navegador a recusar todos os cookies ou a indicar quando um cookie está sendo
+              enviado. No entanto, se você não aceitar cookies, talvez não consiga usar algumas partes do nosso serviço.
+            </p>
+
+            <h2 id="direitos-usuario">6. Direitos do Usuário</h2>
+            <p>De acordo com a Lei Geral de Proteção de Dados (LGPD), você tem os seguintes direitos:</p>
+            <ul>
+              <li><strong>Direito de acesso:</strong> Solicitar cópias de seus dados pessoais</li>
+              <li><strong>Direito de retificação:</strong> Solicitar que corrijamos qualquer informação que você
+                acredite estar imprecisa</li>
+              <li><strong>Direito à eliminação:</strong> Solicitar que apaguemos seus dados pessoais</li>
+              <li><strong>Direito de restringir o processamento:</strong> Solicitar que restrinjamos o processamento de
+                seus dados pessoais</li>
+              <li><strong>Direito de oposição ao processamento:</strong> Opor-se ao nosso processamento de seus dados
+                pessoais</li>
+              <li><strong>Direito à portabilidade de dados:</strong> Solicitar que transfiramos os dados que coletamos
+                para outra organização, ou diretamente para você</li>
+            </ul>
+
+            <h2 id="terceiros">7. Provedores de Serviço</h2>
+            <p>Podemos empregar empresas e indivíduos de terceiros para facilitar nosso serviço ("Provedores de
+              Serviço"), para fornecer o serviço em nosso nome, para executar serviços relacionados ao serviço ou para
+              nos auxiliar na análise de como nosso serviço é usado.</p>
+            <p>Esses terceiros têm acesso aos seus Dados Pessoais apenas para executar essas tarefas em nosso nome e são
+              obrigados a não divulgá-los ou usá-los para qualquer outra finalidade.</p>
+
+            <h2 id="links-externos">8. Links para Outros Sites</h2>
+            <p>Nosso serviço pode conter links para outros sites que não são operados por nós. Se você clicar em um link
+              de terceiros, será direcionado para o site desse terceiro. Aconselhamos vivamente que revise a Política de
+              Privacidade de cada site que visitar.</p>
+            <p>Não temos controle e não assumimos responsabilidade pelo conteúdo, políticas de privacidade ou práticas
+              de quaisquer sites ou serviços de terceiros.</p>
+
+            <h2 id="alteracoes">9. Alterações a Esta Política de Privacidade</h2>
+            <p>Podemos atualizar nossa Política de Privacidade de tempos em tempos. Notificaremos você sobre quaisquer
+              alterações, publicando a nova Política de Privacidade nesta página.</p>
+            <p>Informaremos você por e-mail e/ou um aviso em destaque em nosso serviço, antes que a alteração entre em
+              vigor e atualizaremos a "data de última atualização" na parte superior desta Política de Privacidade.</p>
+            <p>Recomendamos que você revise esta Política de Privacidade periodicamente para quaisquer alterações. As
+              alterações a esta Política de Privacidade são efetivas quando são publicadas nesta página.</p>
+
+            <h2 id="contato">10. Contato</h2>
+            <p>Se você tiver alguma dúvida sobre esta Política de Privacidade, entre em contato conosco:</p>
+            <ul>
+              <li>Por e-mail: dry@adrianosena.dev.br</li>
+              <li>Visite esta página em nosso site: https://adrianosena.dev.br/privacidade</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="lg:col-span-1">
+          <div class="toc" data-aos="fade-left">
+            <div class="card p-6 mb-6">
+              <h3 class="text-xl font-bold mb-4">Nesta Página</h3>
+              <ul class="toc-list">
+                <li><a href="#informacoes-coletadas" class="toc-link">1. Informações Coletadas</a></li>
+                <li><a href="#uso-dados" class="toc-link">2. Uso dos Dados</a></li>
+                <li><a href="#transferencia-dados" class="toc-link">3. Transferência de Dados</a></li>
+                <li><a href="#seguranca-dados" class="toc-link">4. Segurança de Dados</a></li>
+                <li><a href="#cookies" class="toc-link">5. Cookies</a></li>
+                <li><a href="#direitos-usuario" class="toc-link">6. Direitos do Usuário</a></li>
+                <li><a href="#terceiros" class="toc-link">7. Provedores de Serviço</a></li>
+                <li><a href="#links-externos" class="toc-link">8. Links Externos</a></li>
+                <li><a href="#alteracoes" class="toc-link">9. Alterações</a></li>
+                <li><a href="#contato" class="toc-link">10. Contato</a></li>
+              </ul>
+            </div>
+
+            <div class="card p-6">
+              <h4 class="font-bold mb-4">Configurar Cookies</h4>
+              <p class="text-text-secondary text-sm mb-4">Gerencie suas preferências de cookies:</p>
+              <button id="open-cookie-settings" class="btn-secondary w-full py-3 rounded-lg font-semibold text-center">
+                <i class="fas fa-cog mr-2"></i> Configurar Cookies
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white py-12 px-6">
+    <div class="container mx-auto">
+      <div class="grid md:grid-cols-4 gap-8">
+        <div>
+          <div class="flex items-center space-x-3 mb-6">
+            <div
+              class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+              <img src="https://adrianosena.dev.br/logo.png" alt="Adriano Sena Logo" class="w-10 h-10">
+            </div>
+            <div>
+              <div class="font-bold text-lg">Adriano Sena</div>
+              <div class="text-gray-400 text-sm">Full-Stack Developer</div>
+            </div>
+          </div>
+          <p class="text-gray-400">
+            Transformando ideias em soluções digitais de alta performance desde 2019.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="text-lg font-bold mb-6">Serviços</h4>
+          <ul class="space-y-3">
+            <li><a href="/#services" class="text-gray-400 hover:text-white transition">Sistemas Web</a></li>
+            <li><a href="/#services" class="text-gray-400 hover:text-white transition">Gateways de Pagamento</a></li>
+            <li><a href="/#services" class="text-gray-400 hover:text-white transition">Servidores IPTV</a></li>
+            <li><a href="/#services" class="text-gray-400 hover:text-white transition">Apps Mobile</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-lg font-bold mb-6">Links Rápidos</h4>
+          <ul class="space-y-3">
+            <li><a href="/" class="text-gray-400 hover:text-white transition">Início</a></li>
+            <li><a href="/#skills" class="text-gray-400 hover:text-white transition">Skills</a></li>
+            <li><a href="/#projects" class="text-gray-400 hover:text-white transition">Projetos</a></li>
+            <li><a href="/blog" class="text-gray-400 hover:text-white transition">Blog</a></li>
+            <li><a href="/#contact" class="text-gray-400 hover:text-white transition">Contato</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-lg font-bold mb-6">Conecte-se</h4>
+          <div class="flex space-x-4 mb-6">
+            <a href="https://github.com/AdrianoSenaS" target="_blank"
+              class="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center hover:bg-gray-900 transition">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/adriano-sena-silva-a8605622a/" target="_blank"
+              class="w-10 h-10 rounded-lg bg-blue-700 flex items-center justify-center hover:bg-blue-800 transition">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://www.instagram.com/adriano.sena.silva/" target="_blank"
+              class="w-10 h-10 rounded-lg bg-pink-600 flex items-center justify-center hover:bg-pink-700 transition">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://wa.me/5564933004882" target="_blank"
+              class="w-10 h-10 rounded-lg bg-green-600 flex items-center justify-center hover:bg-green-700 transition">
+              <i class="fab fa-whatsapp"></i>
+            </a>
+          </div>
+          <p class="text-gray-400 text-sm">
+            © <span id="current-year">2024</span> Adriano Sena. Todos os direitos reservados.
+          </p>
+          <a href="/privacidade" class="text-gray-400 hover:text-white text-sm">Política de Privacidade</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top -->
+  <div class="scroll-top" id="scrollTop">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+
+  <!-- Modal de Configurações de Cookies -->
+  <div id="cookie-settings-modal"
+    class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 hidden transition-opacity duration-300">
+    <div class="card max-w-lg mx-4 p-6 animate__animated animate__fadeInUp h-auto">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-xl font-bold">Configurações de Cookies</h3>
+        <button id="close-settings" class="text-text-secondary hover:text-primary">
+          <i class="fas fa-times text-xl"></i>
+        </button>
+      </div>
+
+      <p class="text-text-secondary mb-6">
+        Selecione quais tipos de cookies você permite que utilizemos:
+      </p>
+
+      <div class="space-y-4 mb-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <h4 class="font-semibold">Cookies Essenciais</h4>
+            <p class="text-sm text-text-secondary">Necessários para o funcionamento básico do site</p>
+          </div>
+          <div class="relative inline-block w-12 h-6">
+            <input type="checkbox" id="essential-cookies" class="sr-only" checked disabled>
+            <label for="essential-cookies" class="block w-12 h-6 bg-gray-300 rounded-full cursor-not-allowed"></label>
+            <span class="absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition transform translate-x-6"></span>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between">
+          <div>
+            <h4 class="font-semibold">Cookies de Desempenho</h4>
+            <p class="text-sm text-text-secondary">Nos ajudam a entender como os visitantes usam o site</p>
+          </div>
+          <div class="relative inline-block w-12 h-6">
+            <input type="checkbox" id="performance-cookies" class="sr-only">
+            <label for="performance-cookies"
+              class="block w-12 h-6 bg-gray-300 rounded-full cursor-pointer toggle-label"></label>
+            <span class="absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition toggle-switch"></span>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between">
+          <div>
+            <h4 class="font-semibold">Cookies de Marketing</h4>
+            <p class="text-sm text-text-secondary">Usados para rastrear visitantes entre sites</p>
+          </div>
+          <div class="relative inline-block w-12 h-6">
+            <input type="checkbox" id="marketing-cookies" class="sr-only">
+            <label for="marketing-cookies"
+              class="block w-12 h-6 bg-gray-300 rounded-full cursor-pointer toggle-label"></label>
+            <span class="absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition toggle-switch"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-end space-x-3">
+        <button id="save-settings" class="btn-primary px-6 py-3 rounded-lg font-semibold">
+          Salvar Preferências
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    // Initialize AOS
+    AOS.init({
+      duration: 1000,
+      once: true,
+      offset: 100
+    });
+
+    // Tema - Correção definitiva
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+
+    // Verificar tema salvo ou preferência do sistema
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    // Função para aplicar tema
+    function applyTheme(theme) {
+      if (theme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        themeIcon.classList.remove('fa-moon', 'text-gray-600');
+        themeIcon.classList.add('fa-sun', 'text-yellow-400');
+      } else {
+        document.documentElement.removeAttribute('data-theme');
+        themeIcon.classList.remove('fa-sun', 'text-yellow-400');
+        themeIcon.classList.add('fa-moon', 'text-gray-600');
+      }
+    }
+
+    // Definir tema inicial
+    if (savedTheme) {
+      applyTheme(savedTheme);
+    } else if (systemPrefersDark) {
+      applyTheme('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      applyTheme('light');
+      localStorage.setItem('theme', 'light');
+    }
+
+    // Alternar tema
+    themeToggle.addEventListener('click', () => {
+      if (document.documentElement.getAttribute('data-theme') === 'dark') {
+        applyTheme('light');
+        localStorage.setItem('theme', 'light');
+      } else {
+        applyTheme('dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    });
+
+    // CORREÇÃO DO MENU MOBILE - SIMPLIFICADO E FUNCIONAL
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuToggle.addEventListener('click', function (e) {
+      e.stopPropagation(); // Evita que o clique se propague
+      mobileMenu.classList.toggle('hidden');
+
+      // Mudar o ícone do botão
+      const icon = menuToggle.querySelector('i');
+      if (mobileMenu.classList.contains('hidden')) {
+        icon.className = 'fas fa-bars text-xl';
+      } else {
+        icon.className = 'fas fa-times text-xl';
+      }
+    });
+
+    // Fechar o menu quando clicar em um link
+    document.querySelectorAll('#mobile-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        menuToggle.querySelector('i').className = 'fas fa-bars text-xl';
+      });
+    });
+
+    // Fechar o menu quando clicar fora (somente se estiver aberto)
+    document.addEventListener('click', function (e) {
+      if (!mobileMenu.classList.contains('hidden') &&
+        !mobileMenu.contains(e.target) &&
+        !menuToggle.contains(e.target)) {
+        mobileMenu.classList.add('hidden');
+        menuToggle.querySelector('i').className = 'fas fa-bars text-xl';
+      }
+    });
+
+    // Smooth Scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        if (this.getAttribute('href') === '#') return;
+
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Scroll to Top
+    const scrollTop = document.getElementById('scrollTop');
+
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        scrollTop.classList.add('show');
+      } else {
+        scrollTop.classList.remove('show');
+      }
+    });
+
+    scrollTop.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // Atualizar ano no footer
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+
+    // Navegação da tabela de conteúdo
+    document.addEventListener('DOMContentLoaded', function () {
+      const tocLinks = document.querySelectorAll('.toc-link');
+      const sections = document.querySelectorAll('h2');
+
+      // Ativar link correspondente ao scroll
+      window.addEventListener('scroll', () => {
+        let current = '';
+
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+
+          if (pageYOffset >= sectionTop - 100) {
+            current = section.getAttribute('id');
+          }
+        });
+
+        tocLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href').substring(1) === current) {
+            link.classList.add('active');
+          }
+        });
+      });
+
+      if (!localStorage.getItem('cookiePreferences')) {
+        // Exibir modal de cookies na primeira visita
+        const cookieSettingsModal = document.getElementById('cookie-settings-modal');
+        cookieSettingsModal.classList.remove('hidden');
+      }
+
+
+      // Configurar modal de cookies
+      const cookieSettingsModal = document.getElementById('cookie-settings-modal');
+      const openCookieSettings = document.getElementById('open-cookie-settings');
+      const closeSettings = document.getElementById('close-settings');
+      const saveSettings = document.getElementById('save-settings');
+
+      openCookieSettings.addEventListener('click', () => {
+        cookieSettingsModal.classList.remove('hidden');
+      });
+
+      closeSettings.addEventListener('click', () => {
+        cookieSettingsModal.classList.add('hidden');
+      });
+
+      saveSettings.addEventListener('click', () => {
+        // Salvar preferências de cookies
+        const performanceCookies = document.getElementById('performance-cookies').checked;
+        const marketingCookies = document.getElementById('marketing-cookies').checked;
+
+        localStorage.setItem('cookiePreferences', JSON.stringify({
+          performance: performanceCookies,
+          marketing: marketingCookies,
+          essential: true // Sempre verdadeiro
+        }));
+
+        cookieSettingsModal.classList.add('hidden');
+        alert('Preferências de cookies salvas com sucesso!');
+      });
+
+      // Configurar toggles de cookies
+      const toggles = document.querySelectorAll('input[type="checkbox"]:not(:disabled)');
+      toggles.forEach(toggle => {
+        const label = toggle.nextElementSibling;
+        const switchElement = label.nextElementSibling;
+
+        toggle.addEventListener('change', () => {
+          if (toggle.checked) {
+            switchElement.style.transform = 'translateX(24px)';
+            label.style.backgroundColor = 'var(--primary)';
+          } else {
+            switchElement.style.transform = 'translateX(0)';
+            label.style.backgroundColor = '#d1d5db';
+          }
+        });
+
+        // Inicializar estado dos toggles
+        if (toggle.checked) {
+          switchElement.style.transform = 'translateX(24px)';
+          label.style.backgroundColor = 'var(--primary)';
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

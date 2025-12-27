@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard - Contatos | Adriano Sena</title>
+  <link rel="shortcut icon" href="logo.jpg" type="image/x-icon">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+  <style>
+    :root {
+      --primary: #2563eb;
+      --secondary: #10B981;
+      --dark: #1F2937;
+      --light: #F8FAFC;
+      --black: #111827;
+      --text-primary: #1F2937;
+      --text-secondary: #6B7280;
+      --text-light: #F8FAFC;
+      --bg-light: #F8FAFC;
+      --bg-card: #FFFFFF;
+      --border-color: rgba(37, 99, 235, 0.1);
+      --gradient: linear-gradient(135deg, #2563eb 0%, #10B981 100%);
+      --neon-glow: 0 0 10px rgba(37, 99, 235, 0.4), 0 0 20px rgba(16, 185, 129, 0.3);
+    }
+
+    [data-theme="dark"] {
+      --primary: #3b82f6;
+      --secondary: #10B981;
+      --dark: #0f172a;
+      --light: #0057e4;
+      --black: #f8fafc;
+      --text-primary: #F8FAFC;
+      --text-secondary: #D1D5DB;
+      --text-light: #F8FAFC;
+      --bg-light: #1e293b;
+      --bg-card: #334155;
+      --border-color: rgba(59, 130, 246, 0.2);
+      --gradient: linear-gradient(135deg, #3b82f6 0%, #10B981 100%);
+      --neon-glow: 0 0 10px rgba(59, 130, 246, 0.5), 0 0 20px rgba(16, 185, 129, 0.4);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .code-font {
+      font-family: 'Fira Code', monospace;
+    }
+
+    .btn-primary {
+      background: var(--gradient);
+      border: none;
+      color: white;
+      box-shadow: var(--neon-glow);
+      transition: all 0.3s ease;
+      font-weight: 600;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 15px rgba(37, 99, 235, 0.6), 0 0 30px rgba(16, 185, 129, 0.4);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      transition: all 0.3s ease;
+      font-weight: 600;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(37, 99, 235, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .card {
+      background: var(--bg-card);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      color: var(--text-primary);
+    }
+
+    .card:hover {
+      border-color: var(--primary);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-link {
+      position: relative;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* Logo AS Geometric */
+    .logo-as {
+      width: 40px;
+      height: 40px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-as::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border: 3px solid var(--primary);
+      border-radius: 8px;
+      transform: rotate(45deg);
+    }
+
+    .logo-as::after {
+      content: '';
+      position: absolute;
+      width: 60%;
+      height: 60%;
+      border: 2px solid var(--secondary);
+      border-radius: 4px;
+      transform: rotate(45deg);
+    }
+
+    .logo-text {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .logo-subtext {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      color: var(--text-secondary);
+    }
+
+    /* Theme Toggle */
+    .theme-toggle {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--primary);
+      transform: rotate(15deg);
+    }
+
+    .theme-icon {
+      color: var(--text-primary);
+      transition: all 0.3s ease;
+    }
+
+    /* Text colors */
+    .text-custom-primary {
+      color: var(--text-primary);
+    }
+    
+    .text-custom-secondary {
+      color: var(--text-secondary);
+    }
+
+    /* Background colors */
+    .bg-custom-light {
+      background-color: var(--bg-light);
+    }
+    
+    .bg-custom-card {
+      background-color: var(--bg-card);
+    }
+
+    /* Border colors */
+    .border-custom {
+      border-color: var(--border-color);
+    }
+
+    /* Dashboard specific styles */
+    .admin-sidebar {
+      position: sticky;
+      top: 100px;
+    }
+    
+    .admin-nav {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .admin-nav li {
+      margin-bottom: 10px;
+    }
+    
+    .admin-nav a {
+      display: block;
+      padding: 12px 16px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+    
+    .admin-nav a:hover, .admin-nav a.active {
+      background: rgba(96, 165, 250, 0.1);
+      color: var(--primary);
+    }
+    
+    .admin-nav a i {
+      margin-right: 10px;
+      width: 20px;
+      text-align: center;
+    }
+    
+    .stats-card {
+      text-align: center;
+      padding: 1.5rem;
+    }
+    
+    .stats-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      background: var(--gradient);
+      color: white;
+      font-size: 1.5rem;
+    }
+    
+    .stats-number {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+    
+    .stats-label {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+    
+    .contact-item {
+      border-bottom: 1px solid var(--border-color);
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+    }
+    
+    .contact-item:last-child {
+      border-bottom: none;
+    }
+    
+    .contact-item:hover {
+      background: rgba(96, 165, 250, 0.05);
+    }
+    
+    .contact-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+    
+    .contact-name {
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: var(--text-primary);
+      margin-bottom: 0.25rem;
+    }
+    
+    .contact-email {
+      color: var(--primary);
+      font-size: 0.9rem;
+    }
+    
+    .contact-date {
+      color: var(--text-secondary);
+      font-size: 0.8rem;
+    }
+    
+    .contact-project {
+      display: inline-block;
+      background: rgba(96, 165, 250, 0.1);
+      color: var(--primary);
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      margin-bottom: 1rem;
+    }
+    
+    .contact-message {
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-bottom: 1rem;
+    }
+    
+    .contact-actions {
+      display: flex;
+      gap: 0.5rem;
+    }
+    
+    .contact-action {
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .action-view {
+      background: rgba(96, 165, 250, 0.1);
+      color: var(--primary);
+    }
+    
+    .action-view:hover {
+      background: rgba(96, 165, 250, 0.2);
+    }
+    
+    .action-delete {
+      background: rgba(239, 68, 68, 0.1);
+      color: #ef4444;
+    }
+    
+    .action-delete:hover {
+      background: rgba(239, 68, 68, 0.2);
+    }
+    
+    .action-respond {
+      background: rgba(34, 197, 94, 0.1);
+      color: #10b981;
+    }
+    
+    .action-respond:hover {
+      background: rgba(34, 197, 94, 0.2);
+    }
+    
+    .filter-bar {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+    
+    .filter-select {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 0.5rem 1rem;
+      color: var(--text-primary);
+      font-size: 0.9rem;
+      min-width: 150px;
+    }
+    
+    .search-input {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 0.5rem 1rem;
+      color: var(--text-primary);
+      font-size: 0.9rem;
+      flex: 1;
+      min-width: 200px;
+    }
+    
+    .empty-state {
+      text-align: center;
+      padding: 3rem;
+      color: var(--text-secondary);
+    }
+    
+    .empty-state i {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: var(--border-color);
+    }
+    
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 1rem;
+    }
+    
+    .modal-content {
+      background: var(--bg-card);
+      border-radius: 12px;
+      max-width: 600px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    
+    .modal-header {
+      padding: 1.5rem;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .modal-body {
+      padding: 1.5rem;
+    }
+    
+    .modal-field {
+      margin-bottom: 1rem;
+    }
+    
+    .modal-label {
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    
+    .modal-value {
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+    
+    .status-badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    
+    .status-new {
+      background: rgba(59, 130, 246, 0.1);
+      color: #3b82f6;
+    }
+    
+    .status-responded {
+      background: rgba(34, 197, 94, 0.1);
+      color: #10b981;
+    }
+    
+    .status-archived {
+      background: rgba(107, 114, 128, 0.1);
+      color: #6b7280;
+    }
+   
+  </style>
+</head>
+
+<body class="bg-custom-light text-custom-primary " >
+  <!-- Header -->
+  <header class="w-full bg-custom-light/80 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-custom transition-colors duration-300">
+    <div class="max-w-7xl mx-auto flex justify-between items-center py-4 px-6">
+      <div class="flex items-center space-x-3">
+        <div class="logo-as"></div>
+        <div>
+          <div class="logo-text text-xl">Adriano Sena</div>
+          <div class="logo-subtext text-sm">dev.br</div>
+        </div>
+      </div>
+      
+      <div class="flex items-center space-x-4">
+        <nav class="space-x-8 hidden md:flex">
+          <a href="index.html" class="nav-link hover:text-primary transition">Início</a>
+          <a href="blog.html" class="nav-link hover:text-primary transition">Blog</a>
+          <a href="admin-dashboard.html" class="nav-link text-primary transition">Dashboard</a>
+        </nav>
+        
+        <button id="theme-toggle" class="theme-toggle">
+          <svg id="theme-icon-sun" class="theme-icon w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+          <svg id="theme-icon-moon" class="theme-icon w-5 h-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          </svg>
+        </button>
+        
+        <button id="menu-btn" class="md:hidden focus:outline-none">
+          <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" viewBox="0 0 24 24">
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <nav id="mobile-menu" class="hidden md:hidden bg-custom-light/95 backdrop-blur-sm border-t border-custom transition-colors duration-300">
+      <a href="/" class="block px-6 py-3 border-b border-custom hover:bg-gray-100 text-custom-primary">Início</a>
+      <a href="blog" class="block px-6 py-3 border-b border-custom hover:bg-gray-100 text-custom-primary">Blog</a>
+      <a href="/admin" class="block px-6 py-3 border-b border-custom hover:bg-gray-100 text-custom-primary">Dashboard</a>
+    </nav>
+  </header>
+
+  <!-- Dashboard Content -->
+  <section class="py-10 px-6 bg-custom-light transition-colors duration-300">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+        <!-- Admin Sidebar -->
+        <div class="lg:col-span-1">
+          <div class="admin-sidebar">
+            <div class="card p-6 mb-6">
+              <h3 class="text-xl font-bold mb-4 text-custom-primary">Painel Admin</h3>
+              <ul class="admin-nav">
+                <li><a href="/admin"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="/blog"><i class="fas fa-file-alt"></i> Posts</a></li>
+                <li><a href="/admin/cadastrar"><i class="fas fa-plus-circle"></i> Novo Post</a></li>
+                <li><a href="admin/contatos" class="active"><i class="fas fa-envelope"></i> Contatos</a></li>
+                <li><a href="#"><i class="fas fa-folder"></i> Categorias</a></li>
+                <li><a href="#"><i class="fas fa-tags"></i> Tags</a></li>
+                <li><a href="#"><i class="fas fa-users"></i> Usuários</a></li>
+                <li><a href="#"><i class="fas fa-cog"></i> Configurações</a></li>
+              </ul>
+            </div>
+            
+            <div class="card p-6">
+              <h4 class="font-bold mb-4 text-custom-primary">Exportar Dados</h4>
+              <div class="space-y-3">
+                <button id="export-csv" class="btn-secondary w-full py-2 rounded-lg font-semibold text-sm">
+                  <i class="fas fa-file-csv mr-2"></i> Exportar CSV
+                </button>
+                <button id="export-json" class="btn-secondary w-full py-2 rounded-lg font-semibold text-sm">
+                  <i class="fas fa-file-code mr-2"></i> Exportar JSON
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="lg:col-span-3">
+          <!-- Header -->
+          <div class="flex justify-between items-center mb-8">
+            <div>
+              <h2 class="text-2xl font-bold text-custom-primary">Contatos Recebidos</h2>
+              <p class="text-custom-secondary">Gerencie os contatos recebidos pelo formulário do site</p>
+            </div>
+            <button id="refresh-data" class="btn-primary px-4 py-2 rounded-lg font-semibold text-sm">
+              <i class="fas fa-sync-alt mr-2"></i> Atualizar
+            </button>
+          </div>
+
+          <!-- Stats Cards -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="card stats-card">
+              <div class="stats-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div class="stats-number" id="total-contacts">0</div>
+              <div class="stats-label">Total de Contatos</div>
+            </div>
+            
+            <div class="card stats-card">
+              <div class="stats-icon">
+                <i class="fas fa-clock"></i>
+              </div>
+              <div class="stats-number" id="new-contacts">0</div>
+              <div class="stats-label">Novos (7 dias)</div>
+            </div>
+            
+            <div class="card stats-card">
+              <div class="stats-icon">
+                <i class="fas fa-chart-pie"></i>
+              </div>
+              <div class="stats-number" id="response-rate">0%</div>
+              <div class="stats-label">Taxa de Resposta</div>
+            </div>
+          </div>
+
+          <!-- Filters -->
+          <div class="card p-6 mb-6">
+            <div class="filter-bar">
+              <input type="text" id="search-contacts" class="search-input" placeholder="Buscar por nome, email ou mensagem...">
+              
+              <select id="filter-project" class="filter-select">
+                <option value="">Todos os projetos</option>
+                <option value="Dashboard">Dashboard</option>
+                <option value="Site completo">Site completo</option>
+                <option value="App para igreja">App para igreja</option>
+                <option value="App de mídia">App de mídia</option>
+                <option value="App IPTV Android/IOS">App IPTV Android & IOS</option>
+                <option value="Landing page">Landing page</option>
+                <option value="Script">Script</option>
+                <option value="Script para Unity">Script para Unity</option>
+                <option value="Outros">Outros</option>
+              </select>
+              
+              <select id="filter-status" class="filter-select">
+                <option value="">Todos os status</option>
+                <option value="new">Novo</option>
+                <option value="responded">Respondido</option>
+                <option value="archived">Arquivado</option>
+              </select>
+              
+              <select id="filter-date" class="filter-select">
+                <option value="">Todos os períodos</option>
+                <option value="today">Hoje</option>
+                <option value="week">Esta semana</option>
+                <option value="month">Este mês</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Contacts List -->
+          <div class="card">
+            <div id="contacts-container">
+              <!-- Contacts will be loaded here -->
+            </div>
+            
+            <!-- Empty State -->
+            <div id="empty-state" class="empty-state hidden">
+              <i class="fas fa-inbox"></i>
+              <h3 class="text-xl font-bold mb-2">Nenhum contato encontrado</h3>
+              <p class="text-custom-secondary">Não há contatos que correspondam aos seus filtros.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Detail Modal -->
+  <div id="contact-modal" class="modal hidden">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="text-xl font-bold text-custom-primary">Detalhes do Contato</h3>
+        <button id="close-modal" class="text-custom-secondary hover:text-primary">
+          <i class="fas fa-times text-xl"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-field">
+          <span class="modal-label">Nome</span>
+          <div class="modal-value" id="modal-name"></div>
+        </div>
+        
+        <div class="modal-field">
+          <span class="modal-label">Email</span>
+          <div class="modal-value" id="modal-email"></div>
+        </div>
+        
+        <div class="modal-field">
+          <span class="modal-label">Tipo de Projeto</span>
+          <div class="modal-value" id="modal-project"></div>
+        </div>
+        
+        <div class="modal-field">
+          <span class="modal-label">Data de Envio</span>
+          <div class="modal-value" id="modal-date"></div>
+        </div>
+        
+        <div class="modal-field">
+          <span class="modal-label">Status</span>
+          <div class="modal-value">
+            <span id="modal-status" class="status-badge status-new">Novo</span>
+          </div>
+        </div>
+        
+        <div class="modal-field">
+          <span class="modal-label">Mensagem</span>
+          <div class="modal-value" id="modal-message" style="white-space: pre-line;"></div>
+        </div>
+        
+        <div class="flex justify-end space-x-3 mt-6 pt-6 border-t border-custom">
+          <button id="respond-btn" class="btn-primary px-4 py-2 rounded-lg font-semibold text-sm">
+            <i class="fas fa-reply mr-2"></i> Responder
+          </button>
+          <button id="archive-btn" class="btn-secondary px-4 py-2 rounded-lg font-semibold text-sm">
+            <i class="fas fa-archive mr-2"></i> Arquivar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="relative bg-custom-card border-t border-custom py-12 px-6 transition-colors duration-300">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="flex items-center space-x-3 mb-6 md:mb-0">
+          <div class="logo-as"></div>
+          <div>
+            <div class="logo-text text-xl">Adriano Sena</div>
+            <div class="logo-subtext text-sm">dev.br</div>
+          </div>
+        </div>
+
+        <div class="flex space-x-6">
+          <a href="https://wa.me/+5564933004882" target="_blank" class="text-custom-secondary hover:text-primary transition">
+            <i class="fab fa-whatsapp text-xl"></i>
+          </a>
+          <a href="https://github.com/AdrianoSenaS" target="_blank" class="text-custom-secondary hover:text-primary transition">
+            <i class="fab fa-github text-xl"></i>
+          </a>
+          <a href="https://www.instagram.com/adriano.sena.silva/" target="_blank" class="text-custom-secondary hover:text-primary transition">
+            <i class="fab fa-instagram text-xl"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/adriano-sena-silva-a8605622a/" target="_blank" class="text-custom-secondary hover:text-primary transition">
+            <i class="fab fa-linkedin-in text-xl"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="mt-12 pt-8 border-t border-custom flex flex-col md:flex-row justify-between items-center">
+        <p class="text-custom-secondary text-sm mb-4 md:mb-0">&copy; <span id="year"></span> Adriano Sena. Todos os direitos reservados.</p>
+        <p class="text-custom-secondary text-sm">Transformando ideias em soluções digitais inovadoras.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+
+  // Verificar login 
+   const token = localStorage.getItem('adminToken');
+    if (token) {
+      fetch('/token', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        },
+      }).then(response => {
+        if (response.ok) {
+          console.log('Login bem-sucedido!');
+        }else{
+          window.location.href = '/login';
+        }
+      }).catch(error => console.error('Erro ao verificar token:', error));
+    }else{
+      window.location.href = '/login';
+    }
+
+    // Atualizar o ano no footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Toggle menu mobile
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Tema claro/escuro
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIconSun = document.getElementById('theme-icon-sun');
+    const themeIconMoon = document.getElementById('theme-icon-moon');
+    
+    // Verificar tema salvo no localStorage ou preferência do sistema
+    const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    if (savedTheme === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      themeIconSun.classList.add('hidden');
+      themeIconMoon.classList.remove('hidden');
+    }
+    
+    themeToggle.addEventListener('click', () => {
+      if (document.documentElement.getAttribute('data-theme') === 'dark') {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'light');
+        themeIconSun.classList.remove('hidden');
+        themeIconMoon.classList.add('hidden');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+        themeIconSun.classList.add('hidden');
+        themeIconMoon.classList.remove('hidden');
+      }
+    });
+
+    // Dados de exemplo (em um cenário real, isso viria de uma API)
+     // const contacts = await fetch('/api/contact').then(res => res.json());
+
+      fetch('/api/contact').then(res => {
+        res.json().then(data => {
+          contacts = data;
+          localStorage.setItem('contactSubmissions', JSON.stringify(contacts));
+        });
+      })
+
+    let contacts = JSON.parse(localStorage.getItem('contactSubmissions')) 
+
+    console.log(contacts)
+
+    // Carregar contatos
+    document.addEventListener('DOMContentLoaded', function() {
+      loadContacts();
+      updateStats();
+      
+      // Configurar filtros
+      document.getElementById('search-contacts').addEventListener('input', filterContacts);
+      document.getElementById('filter-project').addEventListener('change', filterContacts);
+      document.getElementById('filter-status').addEventListener('change', filterContacts);
+      document.getElementById('filter-date').addEventListener('change', filterContacts);
+      
+      // Configurar botões
+      document.getElementById('refresh-data').addEventListener('click', refreshData);
+      document.getElementById('export-csv').addEventListener('click', exportCSV);
+      document.getElementById('export-json').addEventListener('click', exportJSON);
+      
+      // Configurar modal
+      document.getElementById('close-modal').addEventListener('click', closeModal);
+      document.getElementById('respond-btn').addEventListener('click', respondToContact);
+      document.getElementById('archive-btn').addEventListener('click', archiveContact);
+    });
+
+    function loadContacts(filteredContacts = null) {
+      const contactsToShow = filteredContacts || contacts;
+      const container = document.getElementById('contacts-container');
+      const emptyState = document.getElementById('empty-state');
+      
+      container.innerHTML = '';
+      
+      if (contactsToShow.length === 0) {
+        emptyState.classList.remove('hidden');
+        return;
+      }
+      
+      emptyState.classList.add('hidden');
+      
+      contactsToShow.forEach(contact => {
+        const contactElement = document.createElement('div');
+        contactElement.className = 'contact-item';
+        contactElement.innerHTML = `
+          <div class="contact-header">
+            <div>
+              <div class="contact-name">${contact.name}</div>
+              <div class="contact-email">${contact.email}</div>
+            </div>
+            <div class="text-right">
+              <div class="contact-date">${formatDate(contact.date)}</div>
+              <span class="status-badge status-${contact.status}">
+                ${contact.status === 'new' ? 'Novo' : contact.status === 'responded' ? 'Respondido' : 'Arquivado'}
+              </span>
+            </div>
+          </div>
+          
+          <div class="contact-project">${contact.project}</div>
+          
+          <div class="contact-message">
+            ${contact.message.length > 150 ? contact.message.substring(0, 150) + '...' : contact.message}
+          </div>
+          
+          <div class="contact-actions">
+            <div class="contact-action action-view" data-id="${contact.id}">
+              <i class="fas fa-eye mr-1"></i> Ver Detalhes
+            </div>
+            <div class="contact-action action-respond" data-id="${contact.id}">
+              <i class="fas fa-reply mr-1"></i> Responder
+            </div>
+            <div class="contact-action action-delete" data-id="${contact.id}">
+              <i class="fas fa-trash mr-1"></i> Excluir
+            </div>
+          </div>
+        `;
+        container.appendChild(contactElement);
+      });
+      
+      // Adicionar eventos aos botões
+      document.querySelectorAll('.action-view').forEach(button => {
+        button.addEventListener('click', (e) => {
+          const contactId = parseInt(e.currentTarget.getAttribute('data-id'));
+          showContactDetails(contactId);
+        });
+      });
+      
+      document.querySelectorAll('.action-respond').forEach(button => {
+        button.addEventListener('click', (e) => {
+          const contactId = parseInt(e.currentTarget.getAttribute('data-id'));
+          respondToContact(contactId);
+        });
+      });
+      
+      document.querySelectorAll('.action-delete').forEach(button => {
+        button.addEventListener('click', (e) => {
+          const contactId = parseInt(e.currentTarget.getAttribute('data-id'));
+          deleteContact(contactId);
+        });
+      });
+    }
+
+    function filterContacts() {
+      const searchTerm = document.getElementById('search-contacts').value.toLowerCase();
+      const projectFilter = document.getElementById('filter-project').value;
+      const statusFilter = document.getElementById('filter-status').value;
+      const dateFilter = document.getElementById('filter-date').value;
+      
+      const filteredContacts = contacts.filter(contact => {
+        // Filtro de busca
+        if (searchTerm && 
+            !contact.name.toLowerCase().includes(searchTerm) && 
+            !contact.email.toLowerCase().includes(searchTerm) &&
+            !contact.message.toLowerCase().includes(searchTerm)) {
+          return false;
+        }
+        
+        // Filtro de projeto
+        if (projectFilter && contact.project !== projectFilter) {
+          return false;
+        }
+        
+        // Filtro de status
+        if (statusFilter && contact.status !== statusFilter) {
+          return false;
+        }
+        
+        // Filtro de data
+        if (dateFilter) {
+          const contactDate = new Date(contact.date);
+          const today = new Date();
+          
+          if (dateFilter === 'today') {
+            if (contactDate.toDateString() !== today.toDateString()) {
+              return false;
+            }
+          } else if (dateFilter === 'week') {
+            const weekAgo = new Date(today);
+            weekAgo.setDate(today.getDate() - 7);
+            
+            if (contactDate < weekAgo) {
+              return false;
+            }
+          } else if (dateFilter === 'month') {
+            const monthAgo = new Date(today);
+            monthAgo.setMonth(today.getMonth() - 1);
+            
+            if (contactDate < monthAgo) {
+              return false;
+            }
+          }
+        }
+        
+        return true;
+      });
+      
+      loadContacts(filteredContacts);
+    }
+
+    function updateStats() {
+      const totalContacts = contacts.length;
+      const newContacts = contacts.filter(contact => {
+        const contactDate = new Date(contact.date);
+        const weekAgo = new Date();
+        weekAgo.setDate(weekAgo.getDate() - 7);
+        return contactDate >= weekAgo;
+      }).length;
+      
+      const respondedContacts = contacts.filter(contact => contact.status === 'responded').length;
+      const responseRate = totalContacts > 0 ? Math.round((respondedContacts / totalContacts) * 100) : 0;
+      
+      document.getElementById('total-contacts').textContent = totalContacts;
+      document.getElementById('new-contacts').textContent = newContacts;
+      document.getElementById('response-rate').textContent = `${responseRate}%`;
+    }
+
+    function formatDate(dateString) {
+      const date = new Date(dateString);
+      return date.toLocaleDateString('pt-BR') + ' ' + date.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+    }
+
+    function showContactDetails(contactId) {
+      const contact = contacts.find(c => c.id === contactId);
+      if (!contact) return;
+      
+      document.getElementById('modal-name').textContent = contact.name;
+      document.getElementById('modal-email').textContent = contact.email;
+      document.getElementById('modal-project').textContent = contact.project;
+      document.getElementById('modal-date').textContent = formatDate(contact.date);
+      document.getElementById('modal-message').textContent = contact.message;
+      
+      // Atualizar status
+      const statusElement = document.getElementById('modal-status');
+      statusElement.className = `status-badge status-${contact.status}`;
+      statusElement.textContent = contact.status === 'new' ? 'Novo' : contact.status === 'responded' ? 'Respondido' : 'Arquivado';
+      
+      // Configurar botões do modal
+      document.getElementById('respond-btn').setAttribute('data-id', contactId);
+      document.getElementById('archive-btn').setAttribute('data-id', contactId);
+      
+      // Mostrar modal
+      document.getElementById('contact-modal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('contact-modal').classList.add('hidden');
+    }
+
+    function respondToContact(contactId) {
+      if (!contactId) {
+        contactId = parseInt(document.getElementById('respond-btn').getAttribute('data-id'));
+      }
+      
+      const contact = contacts.find(c => c.id === contactId);
+      if (!contact) return;
+      
+      // Simular envio de resposta
+      contact.status = 'responded';
+      localStorage.setItem('contactSubmissions', JSON.stringify(contacts));
+      
+      // Atualizar UI
+      loadContacts();
+      updateStats();
+      closeModal();
+      
+      alert(`Resposta enviada para ${contact.email}`);
+    }
+
+    function archiveContact() {
+      const contactId = parseInt(document.getElementById('archive-btn').getAttribute('data-id'));
+      const contact = contacts.find(c => c.id === contactId);
+      if (!contact) return;
+      
+      contact.status = 'archived';
+      localStorage.setItem('contactSubmissions', JSON.stringify(contacts));
+      
+      // Atualizar UI
+      loadContacts();
+      updateStats();
+      closeModal();
+      
+      alert(`Contato de ${contact.name} arquivado`);
+    }
+
+    function deleteContact(contactId) {
+      if (!confirm('Tem certeza que deseja excluir este contato?')) {
+        return;
+      }
+      
+      contacts = contacts.filter(contact => contact.id !== contactId);
+      localStorage.setItem('contactSubmissions', JSON.stringify(contacts));
+      
+      // Atualizar UI
+      loadContacts();
+      updateStats();
+    }
+
+    function refreshData() {
+      // Em um cenário real, isso buscaria novos dados da API
+      loadContacts();
+      updateStats();
+      
+      // Simular carregamento
+      const refreshBtn = document.getElementById('refresh-data');
+      const originalText = refreshBtn.innerHTML;
+      refreshBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Atualizando...';
+      refreshBtn.disabled = true;
+      
+      setTimeout(() => {
+        refreshBtn.innerHTML = originalText;
+        refreshBtn.disabled = false;
+        alert('Dados atualizados com sucesso!');
+      }, 1000);
+    }
+
+    function exportCSV() {
+      if (contacts.length === 0) {
+        alert('Não há dados para exportar');
+        return;
+      }
+      
+      const headers = ['Nome', 'Email', 'Projeto', 'Mensagem', 'Data', 'Status'];
+      const csvContent = [
+        headers.join(','),
+        ...contacts.map(contact => [
+          `"${contact.name}"`,
+          `"${contact.email}"`,
+          `"${contact.project}"`,
+          `"${contact.message.replace(/"/g, '""')}"`,
+          `"${contact.date}"`,
+          `"${contact.status}"`
+        ].join(','))
+      ].join('\n');
+      
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.setAttribute('href', url);
+      link.setAttribute('download', `contatos-${new Date().toISOString().split('T')[0]}.csv`);
+      link.style.visibility = 'hidden';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    function exportJSON() {
+      if (contacts.length === 0) {
+        alert('Não há dados para exportar');
+        return;
+      }
+      
+      const dataStr = JSON.stringify(contacts, null, 2);
+      const blob = new Blob([dataStr], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.setAttribute('href', url);
+      link.setAttribute('download', `contatos-${new Date().toISOString().split('T')[0]}.json`);
+      link.style.visibility = 'hidden';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+  </script>
+</body>
+
+</html>
