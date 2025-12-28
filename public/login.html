@@ -4,171 +4,580 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
+  <title>Login | Sistema</title>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Inter', sans-serif;
+    }
+
+    :root {
+      --primary-color: #2563eb;
+      --secondary-color: #10B981;
+      --accent-color: #8b5cf6;
+      --danger-color: #ef4444;
+      --warning-color: #f59e0b;
+      --success-color: #4ade80;
+      --light-color: #f8f9fa;
+      --dark-color: #212529;
+      --gray-color: #6c757d;
+      --glass-bg: rgba(255, 255, 255, 0.08);
+      --glass-border: rgba(255, 255, 255, 0.1);
+      --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s ease;
     }
 
     body {
-      height: 100vh;
-      background: linear-gradient(135deg, #5373ff, #6400c9);
+      min-height: 100vh;
+      background: linear-gradient(135deg, #2563eb, #10B981, #8b5cf6);
+      background-size: 400% 400%;
+      animation: gradient 15s ease infinite;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
       display: flex;
       justify-content: center;
       align-items: center;
     }
 
-    .login-box {
-      width: 350px;
-      padding: 40px;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-      text-align: center;
-      color: #fff;
-      animation: fadeIn 1s ease;
-    }
-
-    h2 {
-      margin-bottom: 20px;
-      font-size: 2rem;
-    }
-
-    .input-group {
-      margin-bottom: 20px;
-      text-align: left;
-    }
-
-    label {
-      font-size: .9rem;
-      margin-bottom: 5px;
-      display: block;
-    }
-
-    input {
+    .login-wrapper {
+      display: flex;
       width: 100%;
-      padding: 12px;
-      border: none;
-      outline: none;
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.2);
-      color: #fff;
-      font-size: 1rem;
-      transition: 0.3s;
+      max-width: 900px;
+      min-height: 550px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      animation: fadeInUp 0.8s ease;
     }
 
-    input:focus {
-      background: rgba(255, 255, 255, 0.3);
-    }
-
-    button {
-      width: 100%;
-      padding: 12px;
-      background: #ff6b6b;
-      border: none;
-      border-radius: 8px;
-      color: #fff;
-      font-size: 1rem;
-      cursor: pointer;
-      margin-top: 10px;
-      transition: 0.3s;
-    }
-
-    button:hover {
-      background: #ff8787;
-    }
-
-    .footer {
-      margin-top: 15px;
-      font-size: .9rem;
-      opacity: .8;
-    }
-
-    @keyframes fadeIn {
+    @keyframes fadeInUp {
       from {
         opacity: 0;
-        transform: translateY(-20px);
+        transform: translateY(30px);
       }
-
       to {
         opacity: 1;
         transform: translateY(0);
+      }
+    }
+
+    .login-left {
+      flex: 1;
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      border-right: 1px solid var(--glass-border);
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: var(--light-color);
+    }
+
+    .login-right {
+      flex: 1.2;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 50px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .logo {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+    }
+
+    .logo i {
+      font-size: 24px;
+      color: white;
+    }
+
+    .logo-text {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--light-color);
+    }
+
+    .welcome-text {
+      margin-bottom: 30px;
+    }
+
+    .welcome-text h1 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      background: linear-gradient(to right, #fff, #e0e0e0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .welcome-text p {
+      font-size: 16px;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .features {
+      margin-top: 30px;
+    }
+
+    .feature {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .feature i {
+      width: 36px;
+      height: 36px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+      color: var(--accent-color);
+    }
+
+    .feature h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 4px;
+      color: white;
+    }
+
+    .feature p {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .login-header {
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .login-header h2 {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--dark-color);
+      margin-bottom: 10px;
+    }
+
+    .login-header p {
+      color: var(--gray-color);
+      font-size: 16px;
+    }
+
+    .form-group {
+      margin-bottom: 24px;
+      position: relative;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--dark-color);
+      margin-bottom: 8px;
+    }
+
+    .input-with-icon {
+      position: relative;
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gray-color);
+      font-size: 18px;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 14px 14px 14px 45px;
+      border: 1.5px solid #e1e5e9;
+      border-radius: 10px;
+      font-size: 16px;
+      color: var(--dark-color);
+      transition: var(--transition);
+      background-color: white;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
+    }
+
+    .password-toggle {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--gray-color);
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    .remember-forgot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+
+    .checkbox-container {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .checkbox-container input {
+      display: none;
+    }
+
+    .checkmark {
+      width: 18px;
+      height: 18px;
+      border: 2px solid #ddd;
+      border-radius: 4px;
+      margin-right: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+
+    .checkbox-container input:checked ~ .checkmark {
+      background-color: var(--primary-color);
+      border-color: var(--primary-color);
+    }
+
+    .checkmark:after {
+      content: "✓";
+      color: white;
+      font-size: 12px;
+      display: none;
+    }
+
+    .checkbox-container input:checked ~ .checkmark:after {
+      display: block;
+    }
+
+    .checkbox-text {
+      font-size: 14px;
+      color: var(--gray-color);
+    }
+
+    .forgot-link {
+      font-size: 14px;
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .forgot-link:hover {
+      color: var(--secondary-color);
+    }
+
+    .btn-login {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .btn-login:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(67, 97, 238, 0.3);
+    }
+
+    .btn-login i {
+      font-size: 18px;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      margin: 25px 0;
+      color: var(--gray-color);
+      font-size: 14px;
+    }
+
+    .divider:before,
+    .divider:after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: #e1e5e9;
+    }
+
+    .divider span {
+      padding: 0 15px;
+    }
+
+    .social-login {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    .social-btn {
+      flex: 1;
+      padding: 14px;
+      border: 1.5px solid #e1e5e9;
+      border-radius: 10px;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--dark-color);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .social-btn:hover {
+      border-color: var(--primary-color);
+      background-color: #f8f9ff;
+    }
+
+    .social-btn i {
+      font-size: 18px;
+    }
+
+    .signup-link {
+      text-align: center;
+      font-size: 15px;
+      color: var(--gray-color);
+    }
+
+    .signup-link a {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 600;
+      margin-left: 5px;
+    }
+
+    .signup-link a:hover {
+      text-decoration: underline;
+    }
+
+    .footer {
+      margin-top: 40px;
+      text-align: center;
+      color: var(--gray-color);
+      font-size: 14px;
+      padding-top: 20px;
+      border-top: 1px solid #e1e5e9;
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+      .login-wrapper {
+        flex-direction: column;
+        max-width: 450px;
+      }
+      
+      .login-left {
+        padding: 30px;
+        border-right: none;
+        border-bottom: 1px solid var(--glass-border);
+      }
+      
+      .login-right {
+        padding: 40px 30px;
+      }
+      
+      .welcome-text h1 {
+        font-size: 26px;
+      }
+      
+      .social-login {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .login-wrapper {
+        border-radius: 15px;
+      }
+      
+      .login-left, .login-right {
+        padding: 25px 20px;
+      }
+      
+      .login-header h2 {
+        font-size: 26px;
+      }
+      
+      .remember-forgot {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
       }
     }
   </style>
 </head>
 
 <body>
-  <div class="login-box">
-    <h2>Entrar</h2>
-
-    <form action="/login" method="POST">
-
-      <div class="input-group">
-        <label for="username">Usuário</label>
-        <input type="text" id="username" name="username" required>
+  <div class="container">
+    <div class="login-wrapper">
+      <!-- Lado esquerdo com informações -->
+      <div class="login-left">
+        <div class="logo-container">
+          <div class="logo">
+            <i class="fas fa-lock"></i>
+          </div>
+          <div class="logo-text">Sistema</div>
+        </div>
+        
+        <div class="welcome-text">
+          <h1>Bem-vindo de volta</h1>
+          <p>Faça login para acessar sua conta e gerenciar o sistema com segurança e eficiência.</p>
+        </div>
+        
+        <div class="features">
+          <div class="feature">
+            <i class="fas fa-shield-alt"></i>
+            <div>
+              <h3>Segurança máxima</h3>
+              <p>Proteção avançada para seus dados</p>
+            </div>
+          </div>
+          
+          <div class="feature">
+            <i class="fas fa-bolt"></i>
+            <div>
+              <h3>Acesso rápido</h3>
+              <p>Interface otimizada para produtividade</p>
+            </div>
+          </div>
+          
+          <div class="feature">
+            <i class="fas fa-chart-line"></i>
+            <div>
+              <h3>Controle total</h3>
+              <p>Gerencie todas as funcionalidades</p>
+            </div>
+          </div>
+        </div>
       </div>
-
-      <div class="input-group">
-        <label for="password">password</label>
-        <input type="password" id="password" name="password" required>
+      
+      <!-- Lado direito com formulário -->
+      <div class="login-right">
+        <div class="login-header">
+          <h2>Fazer Login</h2>
+          <p>Entre com suas credenciais para continuar</p>
+        </div>
+        
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="username" class="form-label">Usuário ou E-mail</label>
+            <div class="input-with-icon">
+              <i class="fas fa-user input-icon"></i>
+              <input type="text" id="username" name="username" class="form-control" placeholder="Digite seu usuário ou e-mail" required>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="password" class="form-label">Senha</label>
+            <div class="input-with-icon">
+              <i class="fas fa-lock input-icon"></i>
+              <input type="password" id="password" name="password" class="form-control" placeholder="Digite sua senha" required>
+              <button type="button" class="password-toggle" id="togglePassword">
+                <i class="far fa-eye"></i>
+              </button>
+            </div>
+          </div>
+          
+          <div class="remember-forgot">
+            <label class="checkbox-container">
+              <input type="checkbox" id="remember">
+              <span class="checkmark"></span>
+              <span class="checkbox-text">Lembrar-me</span>
+            </label>
+            <a href="#" class="forgot-link">Esqueceu a senha?</a>
+          </div>
+          
+          <button type="submit" class="btn-login">
+            <i class="fas fa-sign-in-alt"></i> Entrar na Conta
+          </button>
+        </form>
+        
+        <div class="footer">
+          Transformando ideias em soluções digitais de alta performance desde 2019 • Todos os direitos reservados
+        </div>
       </div>
-
-      <button type="submit">Login</button>
-    </form>
-
-    <div class="footer">
-      © 2025 • Seu Sistema
     </div>
   </div>
 
   <script>
-
-
-
-    const btnLogin = document.querySelector('button[type="submit"]');
-    const user = document.getElementById('username');
-    const pass = document.getElementById('password');
-    btnLogin.addEventListener('click', e => {
-      e.preventDefault()
-
-
-      const api = fetch('/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          username: user.value,
-          password: pass.value
-        })
-      })
-
-      api.then(response => response.text())
-        .then(token => {
-          if (token) {
-            localStorage.setItem('adminToken', token);
-            fetch('/token', {
-              method: 'POST',
-              headers: {
+    // Toggle para mostrar/ocultar senha
+    const togglePassword = document.getElementById('togglePassword');
+    const passwordInput = document.getElementById('password');
     
-                'Authorization': `Bearer ${token}`
-              },
-            }).then(response => {
-              if (response.ok) {
-                window.location.href = '/admin';
-              }
-            }).catch(error => console.error('Erro ao verificar token:', error));
-          }
-        })
-        .catch(error => console.error('Erro ao fazer login:', error));
+    togglePassword.addEventListener('click', function() {
+      const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+      passwordInput.setAttribute('type', type);
+      
+      // Alterar o ícone
+      this.innerHTML = type === 'password' ? '<i class="far fa-eye"></i>' : '<i class="far fa-eye-slash"></i>';
     });
 
+    // Verificar se já existe um token
     const token = localStorage.getItem('adminToken');
     if (token) {
       fetch('/token', {
@@ -182,6 +591,157 @@
         }
       }).catch(error => console.error('Erro ao verificar token:', error));
     }
+
+    // Submissão do formulário
+    const loginForm = document.getElementById('loginForm');
+    
+    loginForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      const remember = document.getElementById('remember').checked;
+      
+      const btnLogin = document.querySelector('.btn-login');
+      const originalText = btnLogin.innerHTML;
+      
+      // Mostrar estado de carregamento
+      btnLogin.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Entrando...';
+      btnLogin.disabled = true;
+      
+      // Enviar requisição de login
+      fetch('/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          username: username,
+          password: password
+        })
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Credenciais inválidas');
+        }
+        return response.text();
+      })
+      .then(token => {
+        if (token) {
+          // Salvar token no localStorage
+          localStorage.setItem('adminToken', token);
+          
+          // Se o usuário marcou "Lembrar-me", salvar username
+          if (remember) {
+            localStorage.setItem('rememberedUser', username);
+          } else {
+            localStorage.removeItem('rememberedUser');
+          }
+          
+          // Verificar token e redirecionar
+          fetch('/token', {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${token}`
+            },
+          })
+          .then(response => {
+            if (response.ok) {
+              // Adicionar efeito visual antes do redirecionamento
+              document.querySelector('.login-wrapper').style.animation = 'fadeOut 0.5s ease forwards';
+              setTimeout(() => {
+                window.location.href = '/admin';
+              }, 500);
+            } else {
+              throw new Error('Token inválido');
+            }
+          })
+          .catch(error => {
+            console.error('Erro ao verificar token:', error);
+            showError('Erro na autenticação. Tente novamente.');
+            btnLogin.innerHTML = originalText;
+            btnLogin.disabled = false;
+          });
+        } else {
+          throw new Error('Token não recebido');
+        }
+      })
+      .catch(error => {
+        console.error('Erro ao fazer login:', error);
+        showError('Usuário ou senha incorretos. Tente novamente.');
+        btnLogin.innerHTML = originalText;
+        btnLogin.disabled = false;
+      });
+    });
+
+    // Função para mostrar mensagem de erro
+    function showError(message) {
+      // Remover mensagem de erro anterior, se existir
+      const existingError = document.querySelector('.error-message');
+      if (existingError) {
+        existingError.remove();
+      }
+      
+      // Criar elemento de erro
+      const errorDiv = document.createElement('div');
+      errorDiv.className = 'error-message';
+      errorDiv.style.cssText = `
+        background-color: #fee;
+        color: #c33;
+        padding: 12px 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        border-left: 4px solid #c33;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        animation: fadeIn 0.3s ease;
+      `;
+      
+      errorDiv.innerHTML = `
+        <i class="fas fa-exclamation-circle"></i>
+        <span>${message}</span>
+      `;
+      
+      // Inserir após o cabeçalho
+      const loginHeader = document.querySelector('.login-header');
+      loginHeader.parentNode.insertBefore(errorDiv, loginHeader.nextSibling);
+      
+      // Remover após 5 segundos
+      setTimeout(() => {
+        if (errorDiv.parentNode) {
+          errorDiv.style.opacity = '0';
+          errorDiv.style.transition = 'opacity 0.3s ease';
+          setTimeout(() => {
+            if (errorDiv.parentNode) {
+              errorDiv.parentNode.removeChild(errorDiv);
+            }
+          }, 300);
+        }
+      }, 5000);
+    }
+
+    // Verificar se há usuário lembrado
+    window.addEventListener('DOMContentLoaded', function() {
+      const rememberedUser = localStorage.getItem('rememberedUser');
+      if (rememberedUser) {
+        document.getElementById('username').value = rememberedUser;
+        document.getElementById('remember').checked = true;
+      }
+      
+      // Adicionar animação para os inputs
+      const inputs = document.querySelectorAll('.form-control');
+      inputs.forEach(input => {
+        input.addEventListener('focus', function() {
+          this.parentElement.style.transform = 'translateY(-2px)';
+        });
+        
+        input.addEventListener('blur', function() {
+          this.parentElement.style.transform = 'translateY(0)';
+        });
+      });
+    });
   </script>
 </body>
 

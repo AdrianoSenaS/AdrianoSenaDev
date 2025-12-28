@@ -1,0 +1,1664 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Central de Suporte | Adriano Sena - Desenvolvedor Full-Stack</title>
+    <meta property="og:title" content="Central de Suporte | Adriano Sena" />
+    <meta property="og:description"
+        content="Suporte técnico especializado para sistemas, apps e soluções digitais. Respostas rápidas e soluções eficientes." />
+    <meta property="og:image" content="logo.png" />
+    <meta property="og:url" content="https://adrianosena.dev.br/suporte" />
+    <meta property="og:type" content="website" />
+
+    <link rel="shortcut icon" href="logo.png" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=Fira+Code:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #10B981;
+            --secondary-dark: #059669;
+            --accent: #8b5cf6;
+            --dark: #0F172A;
+            --light: #FFFFFF;
+            --gray-50: #F8FAFC;
+            --gray-100: #F1F5F9;
+            --gray-200: #E2E8F0;
+            --gray-300: #CBD5E1;
+            --gray-400: #94A3B8;
+            --gray-500: #64748B;
+            --gray-600: #475569;
+            --gray-700: #334155;
+            --gray-800: #1E293B;
+            --gray-900: #0F172A;
+            --text-primary: #1E293B;
+            --text-secondary: #64748B;
+            --gradient: linear-gradient(135deg, #2563eb 0%, #10B981 100%);
+            --gradient-hover: linear-gradient(135deg, #1d4ed8 0%, #059669 100%);
+            --gradient-accent: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+            --card-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            --card-shadow-hover: 0 20px 40px rgba(37, 99, 235, 0.1);
+            --neon-glow: 0 0 30px rgba(37, 99, 235, 0.1);
+        }
+
+        [data-theme="dark"] {
+            --primary: #60a5fa;
+            --primary-dark: #3b82f6;
+            --secondary: #34d399;
+            --secondary-dark: #10b981;
+            --accent: #a78bfa;
+            --light: #0F172A;
+            --gray-50: #1E293B;
+            --gray-100: #334155;
+            --gray-200: #475569;
+            --gray-300: #64748b;
+            --gray-400: #94A3B8;
+            --gray-500: #cbd5e1;
+            --gray-600: #e2e8f0;
+            --gray-700: #f1f5f9;
+            --gray-800: #f8fafc;
+            --gray-900: #ffffff;
+            --text-primary: #F1F5F9;
+            --text-secondary: #94A3B8;
+            --gradient: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
+            --gradient-hover: linear-gradient(135deg, #2563eb 0%, #059669 100%);
+            --gradient-accent: linear-gradient(135deg, #a78bfa 0%, #ec4899 100%);
+            --card-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            --card-shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light);
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            overflow-x: hidden;
+        }
+
+        html,
+        body {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .gradient-text {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+            padding: 14px 36px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            box-shadow: var(--neon-glow);
+            display: inline-block;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-hover);
+            transition: left 0.5s ease;
+            z-index: -1;
+        }
+
+        .btn-primary:hover::before {
+            left: 0;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(37, 99, 235, 0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            padding: 14px 36px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1rem;
+            border: 2px solid var(--primary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(37, 99, 235, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .btn-accent {
+            background: var(--gradient-accent);
+            color: white;
+            padding: 14px 36px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            display: inline-block;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .btn-accent:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(139, 92, 246, 0.2);
+        }
+
+        .card {
+            background: var(--light);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+            transition: all 0.4s ease;
+            border: 1px solid var(--gray-200);
+            height: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--card-shadow-hover);
+            border-color: var(--primary);
+        }
+
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 3rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        .nav-link {
+            position: relative;
+            padding: 8px 0;
+            color: var(--text-primary);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+            z-index: 1000;
+        }
+
+        [data-theme="dark"] .glass-effect {
+            background: rgba(15, 23, 42, 0.8);
+        }
+
+        .section-spacing {
+            padding: 80px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .bg-section-light {
+            background-color: var(--gray-50);
+        }
+
+        [data-theme="dark"] .bg-section-light {
+            background-color: var(--gray-100);
+        }
+
+        .bg-section-dark {
+            background-color: var(--dark);
+            color: white;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 8px;
+            border: 1px solid var(--gray-300);
+            background: var(--light);
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        [data-theme="dark"] .form-input {
+            background: var(--gray-100);
+            border-color: var(--gray-600);
+        }
+
+        /* Animações */
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .float-animation {
+            animation: float 5s ease-in-out infinite;
+        }
+
+        /* Estilos específicos para suporte */
+        .support-hero {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%);
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 100px;
+        }
+
+        .support-hero-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%232563eb' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            z-index: 0;
+        }
+
+        .status-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+        }
+
+        .status-online {
+            background-color: #10B981;
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+        }
+
+        .status-offline {
+            background-color: #EF4444;
+        }
+
+        .status-busy {
+            background-color: #F59E0B;
+        }
+
+        .priority-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .priority-high {
+            background-color: #FEE2E2;
+            color: #DC2626;
+            border: 1px solid #FCA5A5;
+        }
+
+        [data-theme="dark"] .priority-high {
+            background-color: rgba(220, 38, 38, 0.2);
+            color: #FCA5A5;
+        }
+
+        .priority-medium {
+            background-color: #FEF3C7;
+            color: #D97706;
+            border: 1px solid #FBBF24;
+        }
+
+        [data-theme="dark"] .priority-medium {
+            background-color: rgba(217, 119, 6, 0.2);
+            color: #FBBF24;
+        }
+
+        .priority-low {
+            background-color: #DCFCE7;
+            color: #16A34A;
+            border: 1px solid #86EFAC;
+        }
+
+        [data-theme="dark"] .priority-low {
+            background-color: rgba(22, 163, 74, 0.2);
+            color: #86EFAC;
+        }
+
+        .ticket-status {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .status-open {
+            background-color: #DBEAFE;
+            color: #1D4ED8;
+        }
+
+        .status-in-progress {
+            background-color: #FEF3C7;
+            color: #D97706;
+        }
+
+        .status-resolved {
+            background-color: #DCFCE7;
+            color: #16A34A;
+        }
+
+        .status-closed {
+            background-color: #F3F4F6;
+            color: #6B7280;
+        }
+
+        /* Accordion styles */
+        .accordion-item {
+            border-bottom: 1px solid var(--gray-200);
+            position: relative;
+            z-index: 1;
+        }
+
+        .accordion-header {
+            padding: 20px 0;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .accordion-content.active {
+            max-height: 500px;
+            padding-bottom: 20px;
+        }
+
+        .accordion-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-icon.active {
+            transform: rotate(180deg);
+        }
+
+        /* Botões de filtro */
+        .filter-faq {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .filter-faq.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Botões de prioridade */
+        .priority-btn {
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid var(--gray-300);
+            background: var(--light);
+            color: var(--text-primary);
+        }
+
+        .priority-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Chat Widget Styles */
+        .chat-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            width: 380px;
+            max-width: calc(100vw - 40px);
+            background: var(--light);
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            display: none;
+        }
+
+        .chat-widget.active {
+            display: block;
+            animation: slideInUp 0.3s ease;
+        }
+
+        @keyframes slideInUp {
+            from {
+                transform: translateY(100px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-messages {
+            height: 300px;
+            overflow-y: auto;
+            padding: 20px;
+            background: var(--gray-50);
+        }
+
+        [data-theme="dark"] .chat-messages {
+            background: var(--gray-800);
+        }
+
+        .message {
+            margin-bottom: 15px;
+            max-width: 80%;
+            clear: both;
+        }
+
+        .message.bot {
+            float: left;
+        }
+
+        .message.user {
+            float: right;
+        }
+
+        .message-content {
+            padding: 12px 16px;
+            border-radius: 18px;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .message.bot .message-content {
+            background: var(--gray-200);
+            color: var(--text-primary);
+            border-bottom-left-radius: 4px;
+        }
+
+        
+
+        .message.user .message-content {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+
+        .message-time {
+            font-size: 11px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+            display: block;
+        }
+
+        .chat-input-area {
+            padding: 20px;
+            border-top: 1px solid var(--gray-200);
+            background: var(--light);
+        }
+
+        .chat-input {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 8px;
+            border: 1px solid var(--gray-300);
+            background: var(--light);
+            color: var(--text-primary);
+            font-size: 14px;
+        }
+
+        .chat-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .chat-toggle-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.3);
+            z-index: 999;
+            transition: all 0.3s ease;
+        }
+
+        .chat-toggle-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(37, 99, 235, 0.4);
+        }
+
+        .chat-toggle-btn .badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 24px;
+            height: 24px;
+            background: #EF4444;
+            color: white;
+            border-radius: 50%;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .section-spacing {
+                padding: 60px 0;
+            }
+
+            .support-hero {
+                padding-top: 120px;
+                min-height: 70vh;
+            }
+
+            .chat-widget {
+                width: calc(100vw - 40px);
+                right: 20px;
+                left: 20px;
+            }
+
+            .chat-toggle-btn {
+                right: 20px;
+                bottom: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            .btn-primary,
+            .btn-secondary,
+            .btn-accent {
+                padding: 12px 24px;
+                font-size: 0.9rem;
+            }
+
+            .section-spacing {
+                padding: 40px 0;
+            }
+        }
+
+        /* Scrollbar personalizada */
+        .chat-messages::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .chat-messages::-webkit-scrollbar-track {
+            background: var(--gray-100);
+            border-radius: 3px;
+        }
+
+        [data-theme="dark"] .chat-messages::-webkit-scrollbar-track {
+            background: var(--gray-800);
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 3px;
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+    </style>
+</head>
+
+<body class="bg-light text-text-primary">
+    <!-- Header -->
+    <header class="fixed w-full glass-effect transition-all duration-300" style="z-index: 1000;">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <a href="/" class="flex items-center space-x-3">
+                    <div
+                        class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+                        <img src="./logo.png" alt="Logo" style="width: 24px; height: 24px;">
+                    </div>
+                    <div>
+                        <h1 class="text-lg font-bold">Adriano Sena</h1>
+                        <p class="text-xs text-text-secondary">Full-Stack Developer</p>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="/" class="nav-link">Início</a>
+                    <a href="/#skills" class="nav-link">Skills</a>
+                    <a href="/#projects" class="nav-link">Projetos</a>
+                    <a href="/#services" class="nav-link">Serviços</a>
+                    <a href="/blog" class="nav-link">Blog</a>
+                    <a href="/#contact" class="nav-link">Contato</a>
+                    <a href="/suporte" class="nav-link text-primary font-semibold">Suporte</a>
+                </nav>
+
+                <!-- Theme Toggle & CTA -->
+                <div class="flex items-center space-x-4">
+                    <button id="theme-toggle"
+                        class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+                        <i id="theme-icon" class="fas fa-moon text-gray-600"></i>
+                    </button>
+                    <a href="/#contact" class="btn-primary hidden md:inline-flex items-center justify-center">
+                        Iniciar Projeto
+                    </a>
+                    <button id="menu-toggle" class="md:hidden">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+                <div class="flex flex-col space-y-4">
+                    <a href="/" class="nav-link">Início</a>
+                    <a href="/#skills" class="nav-link">Skills</a>
+                    <a href="/#projects" class="nav-link">Projetos</a>
+                    <a href="/#services" class="nav-link">Serviços</a>
+                    <a href="/blog" class="nav-link">Blog</a>
+                    <a href="/#contact" class="nav-link">Contato</a>
+                    <a href="/suporte" class="nav-link text-primary font-semibold">Suporte</a>
+                    <a href="/#contact" class="btn-primary w-full text-center">
+                        Iniciar Projeto
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="support-hero">
+        <div class="support-hero-pattern"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="max-w-4xl mx-auto text-center">
+                <div data-aos="fade-up" class="mb-8">
+                    <div
+                        class="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-primary/10 to-secondary/10 mb-6">
+                        <div class="status-indicator status-online animate-pulse"></div>
+                        <span class="text-sm font-medium text-primary">Suporte Online • Tempo médio de resposta: 2
+                            horas</span>
+                    </div>
+
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+                        Central de <span class="gradient-text">Suporte</span>
+                    </h1>
+
+                    <p class="text-lg md:text-xl text-text-secondary mb-8 leading-relaxed">
+                        Suporte técnico especializado para sistemas, aplicativos e soluções digitais.
+                        Estamos aqui para resolver seus problemas e responder suas dúvidas.
+                    </p>
+                </div>
+
+                <!-- Quick Actions -->
+                <div data-aos="fade-up" data-aos-delay="100" class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                    <div class="card text-center hover:border-primary transition-all">
+                        <div
+                            class="w-14 h-14 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-ticket-alt text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Abrir Ticket</h3>
+                        <p class="text-text-secondary mb-4">Crie um novo ticket para suporte técnico</p>
+                        <a href="#ticket-form" class="btn-primary w-full inline-block">Abrir Ticket</a>
+                    </div>
+
+                    <div class="card text-center hover:border-primary transition-all">
+                        <div
+                            class="w-14 h-14 rounded-xl bg-gradient-to-br from-green-500 to-emerald-400 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-comments text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Chat ao Vivo</h3>
+                        <p class="text-text-secondary mb-4">Converse em tempo real com nossa equipe</p>
+                        <button id="live-chat-btn" class="btn-secondary w-full inline-block">
+                            <span class="status-indicator status-online mr-2"></span>
+                            Iniciar Chat
+                        </button>
+                    </div>
+
+                    <div class="card text-center hover:border-primary transition-all">
+                        <div
+                            class="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-500 to-pink-400 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-book text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Documentação</h3>
+                        <p class="text-text-secondary mb-4">Acesse manuais e guias técnicos</p>
+                        <a href="#documentacao" class="btn-secondary w-full inline-block">Acessar Docs</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- System Status -->
+    <section class="section-spacing">
+        <div class="container mx-auto px-6">
+            <div data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
+                    Status dos <span class="gradient-text">Sistemas</span>
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="card">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-lg font-bold">Servidores Web</h3>
+                            <div class="status-indicator status-online"></div>
+                        </div>
+                        <p class="text-text-secondary text-sm mb-2">Status: Operacional</p>
+                        <p class="text-text-secondary text-sm">Uptime: 99.9% (30 dias)</p>
+                    </div>
+
+                    <div class="card">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-lg font-bold">Banco de Dados</h3>
+                            <div class="status-indicator status-online"></div>
+                        </div>
+                        <p class="text-text-secondary text-sm mb-2">Status: Operacional</p>
+                        <p class="text-text-secondary text-sm">Latência: 12ms</p>
+                    </div>
+
+                    <div class="card">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-lg font-bold">APIs</h3>
+                            <div class="status-indicator status-online"></div>
+                        </div>
+                        <p class="text-text-secondary text-sm mb-2">Status: Operacional</p>
+                        <p class="text-text-secondary text-sm">Tempo resposta: 180ms</p>
+                    </div>
+
+                    <div class="card">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-lg font-bold">Gateway Pagamentos</h3>
+                            <div class="status-indicator status-online"></div>
+                        </div>
+                        <p class="text-text-secondary text-sm mb-2">Status: Operacional</p>
+                        <p class="text-text-secondary text-sm">Transações: 100%</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section-spacing bg-section-light">
+        <div class="container mx-auto px-6">
+            <div data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
+                    Perguntas <span class="gradient-text">Frequentes</span>
+                </h2>
+
+                <div class="max-w-3xl mx-auto">
+                    <!-- Categorias FAQ -->
+                    <div class="flex flex-wrap justify-center gap-2 mb-8">
+                        <button class="filter-faq active" data-category="all">
+                            Todas
+                        </button>
+                        <button class="filter-faq" data-category="technical">
+                            Técnicas
+                        </button>
+                        <button class="filter-faq" data-category="billing">
+                            Faturamento
+                        </button>
+                        <button class="filter-faq" data-category="account">
+                            Conta
+                        </button>
+                        <button class="filter-faq" data-category="projects">
+                            Projetos
+                        </button>
+                    </div>
+
+                    <!-- Lista FAQ -->
+                    <div class="space-y-4" id="faq-container">
+                        <!-- Item 1 -->
+                        <div class="card accordion-item" data-category="technical">
+                            <div class="accordion-header">
+                                <h3 class="text-lg font-bold">Como faço para resetar minha senha?</h3>
+                                <i class="fas fa-chevron-down accordion-icon text-primary"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <p class="text-text-secondary">
+                                    Para resetar sua senha, acesse a página de login e clique em "Esqueci minha senha".
+                                    Você receberá um email com um link para criar uma nova senha. O link é válido por 24
+                                    horas.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Item 2 -->
+                        <div class="card accordion-item" data-category="technical">
+                            <div class="accordion-header">
+                                <h3 class="text-lg font-bold">Meu sistema está lento, o que fazer?</h3>
+                                <i class="fas fa-chevron-down accordion-icon text-primary"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <p class="text-text-secondary mb-3">
+                                    Se seu sistema está lento, siga estes passos:
+                                </p>
+                                <ol class="list-decimal list-inside text-text-secondary space-y-2">
+                                    <li>Limpe o cache do seu navegador</li>
+                                    <li>Verifique sua conexão com a internet</li>
+                                    <li>Feche outras abas e aplicativos em execução</li>
+                                    <li>Tente acessar de outro navegador</li>
+                                    <li>Se o problema persistir, entre em contato conosco</li>
+                                </ol>
+                            </div>
+                        </div>
+
+                        <!-- Item 3 -->
+                        <div class="card accordion-item" data-category="billing">
+                            <div class="accordion-header">
+                                <h3 class="text-lg font-bold">Como funciona a renovação dos planos?</h3>
+                                <i class="fas fa-chevron-down accordion-icon text-primary"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <p class="text-text-secondary">
+                                    Os planos são renovados automaticamente na data de vencimento.
+                                    Você receberá um email de aviso 7 dias antes da renovação.
+                                    Para cancelar a renovação automática, acesse sua conta e vá em "Configurações de
+                                    Pagamento".
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Item 4 -->
+                        <div class="card accordion-item" data-category="account">
+                            <div class="accordion-header">
+                                <h3 class="text-lg font-bold">Posso alterar meu plano a qualquer momento?</h3>
+                                <i class="fas fa-chevron-down accordion-icon text-primary"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <p class="text-text-secondary">
+                                    Sim, você pode alterar seu plano a qualquer momento.
+                                    Ao fazer o upgrade, o novo plano será aplicado imediatamente.
+                                    Ao fazer o downgrade, a alteração ocorrerá na próxima renovação.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Item 5 -->
+                        <div class="card accordion-item" data-category="projects">
+                            <div class="accordion-header">
+                                <h3 class="text-lg font-bold">Como acompanho o progresso do meu projeto?</h3>
+                                <i class="fas fa-chevron-down accordion-icon text-primary"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <p class="text-text-secondary">
+                                    Você pode acompanhar o progresso através do painel de controle do projeto.
+                                    Lá você encontrará:
+                                </p>
+                                <ul class="list-disc list-inside text-text-secondary mt-2 space-y-1">
+                                    <li>Tarefas em andamento</li>
+                                    <li>Próximas entregas</li>
+                                    <li>Comunicações da equipe</li>
+                                    <li>Arquivos compartilhados</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Item 6 -->
+                        <div class="card accordion-item" data-category="technical">
+                            <div class="accordion-header">
+                                <h3 class="text-lg font-bold">Como faço backup dos meus dados?</h3>
+                                <i class="fas fa-chevron-down accordion-icon text-primary"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <p class="text-text-secondary">
+                                    Os backups são realizados automaticamente todos os dias às 02:00.
+                                    Você também pode realizar backups manuais a qualquer momento através do painel de
+                                    administração.
+                                    Os backups são armazenados por 30 dias.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ticket Form Section -->
+    <section id="ticket-form" class="section-spacing">
+        <div class="container mx-auto px-6">
+            <div data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
+                    Abrir <span class="gradient-text">Ticket</span> de Suporte
+                </h2>
+
+                <div class="grid lg:grid-cols-3 gap-12">
+
+                    <div class="card">
+                        <h3 class="text-2xl font-bold mb-6">Informações do Ticket</h3>
+
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-text-secondary mb-2">Assunto *</label>
+                                <input type="text" class="form-input" placeholder="Descreva brevemente o problema"
+                                    id="ticket-subject">
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-text-secondary mb-2">Categoria *</label>
+                                <select class="form-input" id="ticket-category">
+                                    <option value="">Selecione uma categoria</option>
+                                    <option value="technical">Problema Técnico</option>
+                                    <option value="billing">Dúvida sobre Faturamento</option>
+                                    <option value="account">Problema com Conta</option>
+                                    <option value="bug">Relatar Bug</option>
+                                    <option value="feature">Sugestão de Melhoria</option>
+                                    <option value="other">Outro</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-text-secondary mb-2">Prioridade *</label>
+                                <div class="grid grid-cols-3 gap-2">
+                                    <button type="button" class="priority-btn priority-low text-center py-3 rounded-lg"
+                                        data-priority="low">
+                                        Baixa
+                                    </button>
+                                    <button type="button"
+                                        class="priority-btn priority-medium text-center py-3 rounded-lg"
+                                        data-priority="medium">
+                                        Média
+                                    </button>
+                                    <button type="button" class="priority-btn priority-high text-center py-3 rounded-lg"
+                                        data-priority="high">
+                                        Alta
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-text-secondary mb-2">Descrição Detalhada
+                                    *</label>
+                                <textarea class="form-input" rows="6"
+                                    placeholder="Descreva o problema em detalhes. Inclua passos para reproduzir, mensagens de erro e prints se necessário."
+                                    id="ticket-description"></textarea>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-text-secondary mb-2">Anexar
+                                    Arquivos</label>
+                                <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+                                    <i class="fas fa-cloud-upload-alt text-3xl text-gray-400 mb-2"></i>
+                                    <p class="text-text-secondary mb-2">Arraste arquivos ou clique para selecionar</p>
+                                    <p class="text-sm text-gray-500">Tamanho máximo: 10MB • Formatos: JPG, PNG, PDF, TXT
+                                    </p>
+                                    <input type="file" class="hidden" id="file-upload" multiple>
+                                    <button type="button" class="btn-secondary mt-4 inline-block"
+                                        onclick="document.getElementById('file-upload').click()">
+                                        Selecionar Arquivos
+                                    </button>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn-primary w-full inline-block" id="submit-ticket">
+                                <i class="fas fa-paper-plane mr-2"></i>Enviar Ticket
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card mb-6">
+                        <h3 class="text-2xl font-bold mb-6">Dicas para um Bom Ticket</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                <div>
+                                    <h4 class="font-bold">Seja Específico</h4>
+                                    <p class="text-text-secondary text-sm">Descreva exatamente o que aconteceu e quando
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                <div>
+                                    <h4 class="font-bold">Inclua Detalhes</h4>
+                                    <p class="text-text-secondary text-sm">Mensagens de erro, passos para reproduzir,
+                                        URLs</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                <div>
+                                    <h4 class="font-bold">Anexe Evidências</h4>
+                                    <p class="text-text-secondary text-sm">Screenshots, logs e vídeos ajudam muito</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                <div>
+                                    <h4 class="font-bold">Defina Prioridade</h4>
+                                    <p class="text-text-secondary text-sm">Use "Alta" apenas para problemas críticos</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3 class="text-2xl font-bold mb-6">Tempo de Resposta Estimado</h3>
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center">
+                                <div class="flex items-center">
+                                    <div class="status-indicator priority-high mr-3"></div>
+                                    <span>Prioridade Alta</span>
+                                </div>
+                                <span class="font-bold">2 horas</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <div class="flex items-center">
+                                    <div class="status-indicator priority-medium mr-3"></div>
+                                    <span>Prioridade Média</span>
+                                </div>
+                                <span class="font-bold">8 horas</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <div class="flex items-center">
+                                    <div class="status-indicator priority-low mr-3"></div>
+                                    <span>Prioridade Baixa</span>
+                                </div>
+                                <span class="font-bold">24 horas</span>
+                            </div>
+                        </div>
+                        <p class="text-sm text-text-secondary mt-4">
+                            * Horários válidos para dias úteis, das 8h às 18h (GMT-3)
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- Contact Channels -->
+    <section class="section-spacing bg-section-light">
+        <div class="container mx-auto px-6">
+            <div data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
+                    Outros <span class="gradient-text">Canais</span> de Contato
+                </h2>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="card text-center">
+                        <div
+                            class="w-14 h-14 rounded-xl bg-gradient-to-br from-green-500 to-emerald-400 flex items-center justify-center mx-auto mb-4">
+                            <i class="fab fa-whatsapp text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">WhatsApp</h3>
+                        <p class="text-text-secondary mb-4">Suporte rápido via mensagem</p>
+                        <a href="https://wa.me/5564933004882" target="_blank" class="btn-primary w-full inline-block">
+                            <i class="fab fa-whatsapp mr-2"></i>Enviar Mensagem
+                        </a>
+                        <p class="text-sm text-text-secondary mt-2">Resposta em até 1 hora</p>
+                    </div>
+
+                    <div class="card text-center">
+                        <div
+                            class="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-envelope text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Email</h3>
+                        <p class="text-text-secondary mb-4">Para questões detalhadas</p>
+                        <a href="mailto:dry@adrianosena.dev.br" class="btn-secondary w-full inline-block">
+                            <i class="fas fa-envelope mr-2"></i>Enviar Email
+                        </a>
+                        <p class="text-sm text-text-secondary mt-2">Resposta em até 4 horas</p>
+                    </div>
+
+                    <div class="card text-center">
+                        <div
+                            class="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-500 to-pink-400 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-phone text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Telefone</h3>
+                        <p class="text-text-secondary mb-4">Atendimento direto</p>
+                        <a href="tel:+5564933004882" class="btn-secondary w-full inline-block">
+                            <i class="fas fa-phone mr-2"></i>Ligar Agora
+                        </a>
+                        <p class="text-sm text-text-secondary mt-2">Seg-Sex: 8h-18h</p>
+                    </div>
+
+                  
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Documentation Section -->
+    <section id="documentacao" class="section-spacing">
+        <div class="container mx-auto px-6">
+            <div data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
+                    <span class="gradient-text">Documentação</span> & Recursos
+                </h2>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
+                    <div class="card">
+                        <div
+                            class="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-400 to-indigo-400 flex items-center justify-center mb-6">
+                            <i class="fas fa-book-open text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">Manuais do Usuário</h3>
+                        <p class="text-text-secondary mb-6">Guias detalhados para uso dos sistemas</p>
+                        <a href="#" class="text-primary font-semibold hover:underline inline-flex items-center">
+                            Acessar Manuais
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+
+                    
+
+                    <div class="card">
+                        <div
+                            class="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-400 to-pink-400 flex items-center justify-center mb-6">
+                            <i class="fas fa-code text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">API Documentation</h3>
+                        <p class="text-text-secondary mb-6">Documentação técnica completa das APIs</p>
+                        <a href="#" class="text-primary font-semibold hover:underline inline-flex items-center">
+                            Ver Documentação API
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark py-12 px-6" style="position: relative; z-index: 1;">
+        <div class="container mx-auto">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div
+                            class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+                            <img src="./logo.png" alt="Logo" style="width: 24px; height: 24px;">
+                        </div>
+                        <div>
+                            <div class="font-bold text-lg text-white">Adriano Sena</div>
+                            <div class="text-gray-400 text-sm">Full-Stack Developer</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-400">
+                        Transformando ideias em soluções digitais de alta performance desde 2019.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-bold mb-6 text-white">Serviços</h4>
+                    <ul class="space-y-3">
+                        <li><a href="/#services" class="text-gray-400 hover:text-white transition">Sistemas Web</a></li>
+                        <li><a href="/#services" class="text-gray-400 hover:text-white transition">Gateways de
+                                Pagamento</a></li>
+                        <li><a href="/#services" class="text-gray-400 hover:text-white transition">Servidores IPTV</a>
+                        </li>
+                        <li><a href="/#services" class="text-gray-400 hover:text-white transition">Apps Mobile</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-bold mb-6 text-white">Links Rápidos</h4>
+                    <ul class="space-y-3">
+                        <li><a href="/" class="text-gray-400 hover:text-white transition">Início</a></li>
+                        <li><a href="/#skills" class="text-gray-400 hover:text-white transition">Skills</a></li>
+                        <li><a href="/#projects" class="text-gray-400 hover:text-white transition">Projetos</a></li>
+                        <li><a href="/blog" class="text-gray-400 hover:text-white transition">Blog</a></li>
+                        <li><a href="/suporte" class="text-gray-400 hover:text-white transition">Suporte</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-bold mb-6 text-white">Conecte-se</h4>
+                    <div class="flex space-x-4 mb-6">
+                        <a href="https://github.com/AdrianoSenaS" target="_blank"
+                            class="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center hover:bg-gray-900 transition">
+                            <i class="fab fa-github text-white"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/adriano-sena-silva-a8605622a/" target="_blank"
+                            class="w-10 h-10 rounded-lg bg-blue-700 flex items-center justify-center hover:bg-blue-800 transition">
+                            <i class="fab fa-linkedin-in text-white"></i>
+                        </a>
+                        <a href="https://www.instagram.com/adriano.sena.silva/" target="_blank"
+                            class="w-10 h-10 rounded-lg bg-pink-600 flex items-center justify-center hover:bg-pink-700 transition">
+                            <i class="fab fa-instagram text-white"></i>
+                        </a>
+                        <a href="https://wa.me/5564933004882" target="_blank"
+                            class="w-10 h-10 rounded-lg bg-green-600 flex items-center justify-center hover:bg-green-700 transition">
+                            <i class="fab fa-whatsapp text-white"></i>
+                        </a>
+                    </div>
+                    <p class="text-gray-400 text-sm">
+                        © <span id="current-year">2024</span> Adriano Sena. Todos os direitos reservados.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat Widget -->
+    <div id="chat-widget" class="chat-widget ">
+        <div class="chat-header">
+            <div class="flex items-center">
+                <div class="status-indicator status-online mr-3"></div>
+                <div>
+                    <h4 class="font-bold">Suporte ao Vivo</h4>
+                    <p class="text-sm opacity-90">Respondemos em minutos</p>
+                </div>
+            </div>
+            <button id="close-chat" class="text-white hover:text-gray-200">
+                <i class="fas fa-times text-lg"></i>
+            </button>
+        </div>
+
+        <div class="chat-messages" id="chat-messages">
+            <div class="message bot">
+                <div class="message-content">
+                    Olá! Sou o assistente virtual do suporte. Como posso ajudar você hoje?
+                </div>
+                <span class="message-time">Agora</span>
+            </div>
+        </div>
+
+        <div class="chat-input-area">
+            <div class="flex space-x-2">
+                <input type="text" id="chat-input" placeholder="Digite sua mensagem..." class="chat-input">
+                <button id="send-chat" class="btn-primary px-4 py-2 inline-flex items-center justify-center">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat Toggle Button -->
+    <button id="chat-toggle" class="chat-toggle-btn">
+        <i class="fas fa-comment-dots text-xl"></i>
+        <span class="badge">3</span>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Inicializar AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Tema
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+
+        function applyTheme(theme) {
+            if (theme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                themeIcon.className = 'fas fa-sun text-yellow-400';
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+                themeIcon.className = 'fas fa-moon text-gray-600';
+            }
+        }
+
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        if (savedTheme) {
+            applyTheme(savedTheme);
+        } else if (systemPrefersDark) {
+            applyTheme('dark');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            applyTheme('light');
+            localStorage.setItem('theme', 'light');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            if (document.documentElement.getAttribute('data-theme') === 'dark') {
+                applyTheme('light');
+                localStorage.setItem('theme', 'light');
+            } else {
+                applyTheme('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+
+        // Menu Mobile
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuToggle.addEventListener('click', function (e) {
+            e.stopPropagation();
+            mobileMenu.classList.toggle('hidden');
+            const icon = menuToggle.querySelector('i');
+            if (mobileMenu.classList.contains('hidden')) {
+                icon.className = 'fas fa-bars text-xl';
+            } else {
+                icon.className = 'fas fa-times text-xl';
+            }
+        });
+
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuToggle.querySelector('i').className = 'fas fa-bars text-xl';
+            });
+        });
+
+        document.addEventListener('click', function (e) {
+            if (!mobileMenu.classList.contains('hidden') &&
+                !mobileMenu.contains(e.target) &&
+                !menuToggle.contains(e.target)) {
+                mobileMenu.classList.add('hidden');
+                menuToggle.querySelector('i').className = 'fas fa-bars text-xl';
+            }
+        });
+
+        // Accordion FAQ
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                const icon = header.querySelector('.accordion-icon');
+
+                content.classList.toggle('active');
+                icon.classList.toggle('active');
+            });
+        });
+
+        // Filter FAQ
+        document.querySelectorAll('.filter-faq').forEach(button => {
+            button.addEventListener('click', () => {
+                const category = button.getAttribute('data-category');
+
+                // Update active button
+                document.querySelectorAll('.filter-faq').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                button.classList.add('active');
+
+                // Filter items
+                document.querySelectorAll('.accordion-item').forEach(item => {
+                    if (category === 'all' || item.getAttribute('data-category') === category) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Ticket Priority Selection
+        document.querySelectorAll('.priority-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                document.querySelectorAll('.priority-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                button.classList.add('active');
+            });
+        });
+
+        // Chat Widget
+        const chatToggle = document.getElementById('chat-toggle');
+        const chatWidget = document.getElementById('chat-widget');
+        const closeChat = document.getElementById('close-chat');
+        const liveChatBtn = document.getElementById('live-chat-btn');
+        const sendChat = document.getElementById('send-chat');
+        const chatInput = document.getElementById('chat-input');
+        const chatMessages = document.getElementById('chat-messages');
+
+        chatToggle.addEventListener('click', () => {
+            chatWidget.classList.toggle('active');
+        });
+
+        closeChat.addEventListener('click', () => {
+            chatWidget.classList.remove('active');
+        });
+
+        liveChatBtn.addEventListener('click', () => {
+            chatWidget.classList.add('active');
+        });
+
+        function addMessage(message, isUser = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'user' : 'bot'}`;
+
+            const now = new Date();
+            const timeString = now.getHours().toString().padStart(2, '0') + ':' +
+                now.getMinutes().toString().padStart(2, '0');
+
+            messageDiv.innerHTML = `
+                <div class="message-content">
+                    ${message}
+                </div>
+                <span class="message-time">${timeString}</span>
+            `;
+
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        sendChat.addEventListener('click', () => {
+            const message = chatInput.value.trim();
+            if (message) {
+                addMessage(message, true);
+                chatInput.value = '';
+
+                // Simulate bot response
+                setTimeout(() => {
+                    const responses = [
+                        "Entendi sua dúvida. Deixe-me verificar isso para você...",
+                        "Vou procurar a melhor solução para o seu problema.",
+                        "Essa é uma questão comum. Deixe-me explicar como resolver...",
+                        "Agradeço pela sua mensagem. Estou analisando o caso..."
+                    ];
+                    const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                    addMessage(randomResponse, false);
+                }, 1000);
+            }
+        });
+
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendChat.click();
+            }
+        });
+
+        // Ticket Submission
+        document.getElementById('submit-ticket').addEventListener('click', () => {
+            const subject = document.getElementById('ticket-subject').value;
+            const category = document.getElementById('ticket-category').value;
+            const description = document.getElementById('ticket-description').value;
+
+            if (!subject || !category || !description) {
+                alert('Por favor, preencha todos os campos obrigatórios.');
+                return;
+            }
+
+            const submitBtn = document.getElementById('submit-ticket');
+            const originalText = submitBtn.innerHTML;
+
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Enviando...';
+            submitBtn.disabled = true;
+
+            // Simulate API call
+            setTimeout(() => {
+                alert('Ticket enviado com sucesso! Número do ticket: #' + Math.floor(Math.random() * 10000) + '\nVocê receberá um email de confirmação em breve.');
+
+                // Reset form
+                document.getElementById('ticket-subject').value = '';
+                document.getElementById('ticket-category').value = '';
+                document.getElementById('ticket-description').value = '';
+                document.querySelectorAll('.priority-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }, 1500);
+        });
+
+        // Video Call Button
+        document.getElementById('video-call-btn').addEventListener('click', () => {
+            const date = new Date();
+            date.setDate(date.getDate() + 1);
+            const formattedDate = date.toLocaleDateString('pt-BR');
+
+            alert(`Chamada de vídeo agendada para amanhã (${formattedDate}) às 14:00.\nVocê receberá um link por email 30 minutos antes.`);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Update current year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+
+</html>

@@ -50,6 +50,7 @@
       color: var(--text-primary);
       overflow-x: hidden;
       transition: background-color 0.3s ease, color 0.3s ease;
+      visibility: hidden  ;
     }
 
     h1, h2, h3, h4, h5, h6 {
@@ -763,6 +764,7 @@
       }).then(response => {
         if (response.ok) {
           console.log('Login bem-sucedido!');
+          document.body.style.visibility = 'visible'; 
         }else{
           window.location.href = '/login';
         }
