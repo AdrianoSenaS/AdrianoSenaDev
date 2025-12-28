@@ -147,6 +147,7 @@
                         <h3 class="text-lg font-bold mb-4 text-primary">Navegação</h3>
                         <ul>
                             <li><a href="#overview" class="active">Visão Geral</a></li>
+                            <li><a href="#version-warning">⚠️ Aviso da Versão</a></li>
                             <li><a href="#requirements">Requisitos</a></li>
                             <li><a href="#installation">Instalação</a></li>
                             <li><a href="#configuration">Configuração</a></li>
@@ -220,13 +221,130 @@
                         </div>
                     </section>
 
+                     <!-- Aviso da Versão -->
+                    <section id="version-warning" class="mb-16 scroll-mt-24">
+                        <h2 class="text-3xl font-bold mb-6">⚠️ Aviso Importante sobre Esta Versão</h2>
+                        
+                        <div class="card mb-6">
+                            <div class="alert alert-critical mb-6">
+                                <div class="flex items-start">
+                                    <i class="fas fa-exclamation-triangle text-2xl mr-4 text-red-500 mt-1"></i>
+                                    <div>
+                                        <h4 class="font-bold text-lg mb-2">ATENÇÃO: VERSÃO MÍNIMA PARA DESENVOLVEDORES</h4>
+                                        <p class="mb-2">
+                                            Esta versão disponível no GitHub é uma <strong>versão mínima e básica</strong> do sistema de blog, 
+                                            desenvolvida especificamente para <strong>desenvolvedores e criadores de conteúdo</strong> que desejam 
+                                            ter o mínimo necessário para começar e escalar conforme suas necessidades.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="grid md:grid-cols-2 gap-6 mb-6">
+                                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+                                    <h4 class="font-bold mb-3 flex items-center">
+                                        <i class="fas fa-code mr-2 text-primary"></i>
+                                        O que esta versão inclui:
+                                    </h4>
+                                    <ul class="space-y-2 text-text-secondary">
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                            Funcionalidades básicas de blog
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                            Estrutura mínima para escalar
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                            Documentação completa
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                            Código aberto e modificável
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+                                    <h4 class="font-bold mb-3 flex items-center">
+                                        <i class="fas fa-exclamation-circle mr-2 text-yellow-500"></i>
+                                        Limitações importantes:
+                                    </h4>
+                                    <ul class="space-y-2 text-text-secondary">
+                                        <li class="flex items-start">
+                                            <i class="fas fa-times text-red-500 mr-2 mt-1"></i>
+                                            Sem melhorias ou atualizações garantidas
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-times text-red-500 mr-2 mt-1"></i>
+                                            Suporte técnico limitado
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-times text-red-500 mr-2 mt-1"></i>
+                                            Pode conter bugs não corrigidos
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-times text-red-500 mr-2 mt-1"></i>
+                                            Performance não otimizada para alta escala
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="alert alert-warning mb-6">
+                                <div class="flex items-start">
+                                    <i class="fas fa-balance-scale mr-3 mt-1"></i>
+                                    <div>
+                                        <h5 class="font-bold mb-1">Responsabilidade Limitada</h5>
+                                        <p>
+                                            <strong>NÃO ME RESPONSABILIZO</strong> por qualquer tipo de problema, bug, perda de dados, 
+                                            vulnerabilidade de segurança ou qualquer outro dano que possa ocorrer ao usar este projeto 
+                                            baseado nesta documentação ou no código disponibilizado.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="alert alert-info">
+                                <div class="flex items-start">
+                                    <i class="fas fa-lightbulb mr-3 mt-1"></i>
+                                    <div>
+                                        <h5 class="font-bold mb-1">Para quem é recomendado:</h5>
+                                        <ul class="list-disc list-inside ml-2 space-y-1">
+                                            <li>Desenvolvedores que precisam de uma base para customizar</li>
+                                            <li>Criadores de conteúdo que entendem de tecnologia</li>
+                                            <li>Projetos pessoais ou de pequena escala</li>
+                                            <li>Aprendizado e estudo de Node.js/APIs</li>
+                                            <li>Prototipação rápida de sistemas de blog</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-8 p-6 bg-gradient-to-r from-primary/5 to-secondary/5 rounded-lg border border-primary/20">
+                                <h4 class="font-bold mb-3 flex items-center">
+                                    <i class="fas fa-rocket mr-2"></i>
+                                    Próximos Passos Recomendados:
+                                </h4>
+                                <ol class="list-decimal list-inside space-y-2 text-text-secondary ml-2">
+                                    <li>Teste localmente antes de usar em produção</li>
+                                    <li>Faça backup regular dos seus dados</li>
+                                    <li>Implemente suas próprias melhorias de segurança</li>
+                                    <li>Considere contratar um desenvolvedor para customizações</li>
+                                    <li>Monitore a aplicação constantemente se usar em produção</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </section>
+
                     <!-- Início Rápido -->
                     <section id="quick-start" class="mb-16 scroll-mt-24">
                         <h2 class="text-3xl font-bold mb-6">⚡ Início Rápido</h2>
                         <div class="card mb-6">
                             <h3 class="text-xl font-bold mb-4">1. Clone o Repositório</h3>
                             <div class="code-block">
-                                <pre><code>git clone https://github.com/AdrianoSenaS/blog-api.git
+                                <pre><code>git clone https://github.com/AdrianoSenaS/AdrianoSenaDev.git
 cd blog-api</code></pre>
                             </div>
 
@@ -254,6 +372,7 @@ npm run dev</code></pre>
                             </div>
                         </div>
                     </section>
+                    
 
                     <!-- Requisitos -->
                     <section id="requirements" class="mb-16 scroll-mt-24">
@@ -318,10 +437,10 @@ npm --version</code></pre>
                                 <p class="text-text-secondary mb-3">Faça download do projeto:</p>
                                 <div class="code-block">
                                     <pre><code># Opção 1: Clone via Git
-git clone https://github.com/AdrianoSenaS/blog-api.git
+git clone https://github.com/AdrianoSenaS/AdrianoSenaDev.git
 
 # Opção 2: Download direto
-# Acesse: https://github.com/AdrianoSenaS/blog-api
+# Acesse: http://adrianosena.dev.br/download
 # Clique em "Code" → "Download ZIP"</code></pre>
                                 </div>
                             </div>
@@ -925,7 +1044,7 @@ SMTP_PASS=sua_senha_app_gmail
                             <h4 class="font-bold mb-3">Relatando Issues:</h4>
                             <p class="text-text-secondary mb-4">
                                 Encontrou um bug ou tem uma sugestão? 
-                                <a href="https://github.com/AdrianoSenaS/blog-api/issues" class="text-primary hover:underline">
+                                <a href="https://github.com/AdrianoSenaS/AdrianoSenaDev/issues" class="text-primary hover:underline">
                                     Abra uma issue no GitHub
                                 </a>
                             </p>
@@ -990,10 +1109,10 @@ SMTP_PASS=sua_senha_app_gmail
                 </p>
                 
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="https://github.com/AdrianoSenaS/blog-api/archive/refs/heads/main.zip" class="btn-primary inline-flex items-center justify-center">
+                    <a href="https://adrianosena.dev.br/download" class="btn-primary inline-flex items-center justify-center">
                         <i class="fas fa-download mr-2"></i>Baixar Código Completo
                     </a>
-                    <a href="https://github.com/AdrianoSenaS/blog-api" target="_blank" class="btn-secondary inline-flex items-center justify-center">
+                    <a href="https://github.com/AdrianoSenaS/AdrianoSenaDev" target="_blank" class="btn-secondary inline-flex items-center justify-center">
                         <i class="fab fa-github mr-2"></i>Ver no GitHub
                     </a>
                 </div>
