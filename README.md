@@ -1,146 +1,171 @@
- Visão Geral
-API RESTful desenvolvida em Node.js para gerenciamento completo de blog com autenticação JWT, CRUD de posts, sistema de contatos e analytics em tempo real.
+📘 Blog API — Node.js RESTful
+
+API RESTful desenvolvida em Node.js para gerenciamento completo de blogs, com autenticação JWT, CRUD de posts, sistema de contatos e analytics em tempo real.
+
+🚀 Visão Geral
+
+Esta API fornece uma solução completa para blogs modernos, incluindo:
+
+Área administrativa protegida por JWT
+
+Gerenciamento de posts com upload de imagens
+
+Sistema de contatos com notificação por e-mail
+
+Coleta automática de dados de acesso (analytics)
+
+Ideal para blogs pessoais, institucionais ou projetos profissionais.
 
 ✨ Funcionalidades Principais
 🔐 Autenticação
-Sistema JWT para área administrativa
 
-Login protegido com credenciais
+Autenticação via JWT
 
-Validação de token automática
+Login administrativo protegido
+
+Validação automática de token
 
 📝 Posts
+
 CRUD completo de posts
 
 Upload de imagens (até 5MB)
 
-Categorias e tags
+Suporte a categorias e tags
 
-Status (publicado/rascunho)
+Status de publicação (publicado / rascunho)
 
-Conteúdo HTML formatado
+Conteúdo em HTML formatado
 
 📧 Contatos
+
 Envio de mensagens via formulário
 
 Armazenamento em banco de dados
 
-Notificação por e-mail
+Notificação automática por e-mail
 
 Gerenciamento administrativo
 
 📊 Analytics
+
 Monitoramento automático de acessos
 
-Detecção de dispositivo (tipo, navegador, SO)
-
-Envio de relatórios por e-mail
+Detecção de dispositivo (tipo, navegador e SO)
 
 Rastreamento de IP e referência
 
-🛠 Tecnologias
+Relatórios enviados por e-mail
+
+🛠 Tecnologias Utilizadas
 Backend
+
 Node.js (>= 16.0.0)
 
-Express.js - Framework web
+Express.js
 
-SQLite3 - Banco de dados
+SQLite3
 
-JWT - Autenticação
+JWT (JSON Web Token)
 
-Nodemailer - Envio de e-mails
+Nodemailer
 
-Multer - Upload de arquivos
+Multer
 
 Frontend (Documentação)
-Tailwind CSS - Estilização
 
-AOS - Animações
+Tailwind CSS
 
-Highlight.js - Syntax highlighting
+AOS
 
-Font Awesome - Ícones
+Highlight.js
 
-Google Fonts - Tipografia
+Font Awesome
+
+Google Fonts
 
 Outras Dependências
-express-rate-limit - Limitação de requisições
 
-helmet - Segurança HTTP
+express-rate-limit — Limitação de requisições
 
-cors - Compartilhamento de recursos
+helmet — Segurança HTTP
 
-dotenv - Variáveis de ambiente
+cors — Compartilhamento de recursos
+
+dotenv — Variáveis de ambiente
 
 📁 Estrutura do Projeto
-text
 blog-api/
 ├── database/
-│   ├── contatos.db          # Banco de dados de contatos
-│   ├── posts.db             # Banco de dados de posts
-│   ├── contatosDb.js        # Modelo de contatos
-│   └── postsDb.js           # Modelo de posts
+│   ├── contatos.db
+│   ├── posts.db
+│   ├── contatosDb.js
+│   └── postsDb.js
 ├── public/
-│   ├── uploads/             # Imagens e arquivos
-│   ├── index.html           # Página inicial
-│   ├── blog.html            # Lista de posts
-│   ├── login.html           # Página de login
-│   ├── admin.html           # Painel administrativo
-│   └── error.html           # Erro 404
+│   ├── uploads/
+│   ├── index.html
+│   ├── blog.html
+│   ├── login.html
+│   ├── admin.html
+│   └── error.html
 ├── services/
-│   ├── contato.js           # Serviço de contatos
-│   ├── deviceInfo.js        # Detecção de dispositivos
-│   ├── email.js             # Envio de e-mails
-│   ├── filtroRotas.js       # Middleware de analytics
-│   ├── innerHtmlPost.js     # Renderização de posts
-│   ├── login.js             # Autenticação
-│   ├── posts.js             # CRUD de posts
-│   ├── testeEmail.js        # Teste de e-mail
-│   └── upload.js            # Upload de arquivos
+│   ├── contato.js
+│   ├── deviceInfo.js
+│   ├── email.js
+│   ├── filtroRotas.js
+│   ├── innerHtmlPost.js
+│   ├── login.js
+│   ├── posts.js
+│   ├── testeEmail.js
+│   └── upload.js
 ├── views/
-│   └── post.js              # Template de post
-├── server.js                # Arquivo principal
-├── package.json             # Dependências
-├── .env.example             # Modelo de configuração
-└── README.md                # Documentação
+│   └── post.js
+├── server.js
+├── package.json
+├── .env.example
+└── README.md
+
 ⚙️ Instalação
-Pré-requisitos
+📌 Pré-requisitos
+
 Node.js >= 16.0.0
 
 npm >= 8.0.0
 
 SQLite3 >= 3.0.0
 
-512MB RAM mínimo
+512MB de RAM
 
-100MB espaço em disco
+100MB de espaço em disco
 
-Passos
-Clone o repositório
+📥 Passos
 
-bash
+1️⃣ Clone o repositório:
+
 git clone https://github.com/AdrianoSenaS/blog-api.git
 cd blog-api
-Instale as dependências
 
-bash
+
+2️⃣ Instale as dependências:
+
 npm install
-Configure o ambiente
 
-bash
+
+3️⃣ Configure o ambiente:
+
 cp .env.example .env
-# Edite o arquivo .env com suas configurações
-Inicie o servidor
 
-bash
+
+4️⃣ Inicie o servidor:
+
 # Produção
 npm start
 
 # Desenvolvimento
 npm run dev
+
 🔧 Configuração do Ambiente
-Arquivo .env
-env
+📄 .env
 # Servidor
 PORT=3000
 NODE_ENV=development
@@ -162,108 +187,107 @@ DB_PATH=./database
 
 # Upload
 UPLOAD_PATH=./public/uploads
-MAX_FILE_SIZE=5242880  # 5MB
+MAX_FILE_SIZE=5242880
+
 📡 Endpoints da API
-Autenticação
-POST /login - Obter token JWT
+🔐 Autenticação
 
-POST /token - Verificar token
+POST /login — Obter token JWT
 
-Posts
-GET /api/posts - Listar posts
+POST /token — Validar token
 
-GET /api/posts/:id - Buscar post específico
+📝 Posts
 
-POST /api/posts - Criar post (autenticado)
+GET /api/posts
 
-PUT /api/posts/:id - Atualizar post (autenticado)
+GET /api/posts/:id
 
-DELETE /api/posts/:id - Deletar post (autenticado)
+POST /api/posts 🔒
 
-Contatos
-POST /api/contact - Enviar mensagem
+PUT /api/posts/:id 🔒
 
-GET /api/contact - Listar mensagens (autenticado)
+DELETE /api/posts/:id 🔒
 
-Analytics
-Monitoramento automático das rotas principais
+📧 Contatos
 
-E-mail com informações detalhadas de cada acesso
+POST /api/contact
+
+GET /api/contact 🔒
+
+📊 Analytics
+
+Monitoramento automático das rotas
+
+Envio de relatórios por e-mail
 
 🚀 Deploy em Produção
 Usando PM2 (Recomendado)
-bash
-# Instalar PM2 globalmente
 npm install -g pm2
-
-# Iniciar aplicação
 pm2 start server.js --name "blog-api"
-
-# Configurar inicialização automática
 pm2 startup
 pm2 save
 
-# Monitorar
+
+Monitoramento:
+
 pm2 monit
 pm2 logs blog-api
-Configurações de Produção
-env
-NODE_ENV=production
-PORT=80  # ou 443 para HTTPS
-ADMIN_TOKEN=token_muito_longo_e_aleatorio_aqui
-# Configurar SMTP real
+
 🔒 Segurança
-JWT Tokens para autenticação
 
-Rate Limiting para prevenção de ataques
+Autenticação JWT
 
-Helmet.js para headers de segurança
+Rate Limiting
 
-Validação de entrada em todos os endpoints
+Helmet.js
 
-Upload seguro com validação de tipos e tamanhos
+Validação de dados
 
-CORS configurado para origens específicas
+Upload seguro (tipo e tamanho)
 
-📊 Analytics
-O sistema coleta automaticamente:
+CORS configurado
 
-Informações do dispositivo (tipo, marca, modelo)
+📊 Dados Coletados (Analytics)
 
-Sistema operacional e versão
+Dispositivo
 
-Navegador e versão
+Sistema operacional
+
+Navegador
 
 Localização via IP
 
-Referência (de onde veio o acesso)
+Referência de acesso
 
-Hora exata do acesso
+Data e hora exata
 
 🤝 Contribuindo
-Faça um fork do projeto
 
-Crie uma branch para sua feature (git checkout -b feature/AmazingFeature)
+Fork o projeto
 
-Commit suas mudanças (git commit -m 'Add: AmazingFeature')
+Crie sua branch:
 
-Push para a branch (git push origin feature/AmazingFeature)
+git checkout -b feature/NovaFeature
+
+
+Commit:
+
+git commit -m "Add: NovaFeature"
+
+
+Push:
+
+git push origin feature/NovaFeature
+
 
 Abra um Pull Request
 
-Padrões de Código
-Use ESLint para manter padrão
-
-Escreva comentários em português
-
-Mantenha a estrutura de pastas
-
-Teste suas mudanças localmente
-
 📄 Licença
+
 Este projeto é open source sob a licença MIT.
 
-📞 Suporte e Contato
+📞 Contato
+
 GitHub: AdrianoSenaS
 
 LinkedIn: Adriano Sena Silva
@@ -273,39 +297,26 @@ WhatsApp: +55 64 93300-4882
 Instagram: @adriano.sena.silva
 
 ⚠️ Troubleshooting
-Problemas Comuns
-Erro de porta já em uso
-
-bash
-# Encontre o processo usando a porta
+Porta em uso
 sudo lsof -i :3000
-# Mate o processo
 kill -9 PID
+
 Erro de permissão no upload
-
-bash
 sudo chmod -R 755 public/uploads
-E-mail não está sendo enviado
-
-Verifique configurações SMTP no .env
-
-Teste com node services/testeEmail.js
 
 Token JWT inválido
-
-Gere novo token seguro:
-
-bash
 node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+
 🔄 Changelog
-Versão 1.0.0
+v1.0.0
+
 API RESTful completa
 
-Sistema de autenticação JWT
+Autenticação JWT
 
-CRUD de posts com upload de imagens
+CRUD de posts
 
-Sistema de contatos com envio de e-mail
+Sistema de contatos
 
 Analytics em tempo real
 
