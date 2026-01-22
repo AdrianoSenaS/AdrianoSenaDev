@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Visitas</title>
+
+    <!-- Tailwind + Animate.css + Font -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #2563eb;
+            --accent: #60a5fa;
+            --dark: #0f172a;
+            --light: #e2e8f0;
+            --gradient: linear-gradient(135deg,#2563eb 0%,#0ea5e9 100%);
+            --glow: 0 0 20px rgba(37,99,235,0.5);
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .card {
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(96, 165, 250, 0.2);
+            border-radius: 14px;
+            backdrop-filter: blur(12px);
+            transition: 0.3s;
+        }
+        .card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: var(--glow);
+        }
+
+        .title-gradient {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        table th {
+            background: rgba(37,99,235,0.15);
+            color: var(--accent);
+            font-weight: 600;
+        }
+        table tr:hover {
+            background: rgba(96,165,250,0.08);
+        }
+    </style>
+</head>
+
+<body class="min-h-screen p-6">
+
+    <div class="max-w-7xl mx-auto">
+
+        <!-- HEADER -->
+        <header class="text-center mb-12 animate__animated animate__fadeIn">
+            <h1 class="text-4xl font-bold title-gradient">📊 Dashboard de Visitas</h1>
+            <p class="text-blue-300 mt-2">Monitoramento em tempo real</p>
+        </header>
+
+        <!-- CARDS DE ESTATÍSTICAS -->
+        <div id="statsGrid"
+             class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mb-16 animate__animated animate__fadeInUp">
+            <!-- Os cards serão carregados aqui -->
+        </div>
+
+        <!-- TABELA -->
+        <section class="card p-6 animate__animated animate__fadeInUp">
+            <h2 class="text-2xl font-bold mb-4 title-gradient">Últimas Visitas</h2>
+
+            <div class="overflow-x-auto rounded-lg border border-blue-900/40">
+                <table class="w-full text-left text-sm">
+                    <thead>
+                        <tr>
+                            <th class="px-4 py-3">IP</th>
+                            <th class="px-4 py-3">Localização</th>
+                            <th class="px-4 py-3">Dispositivo</th>
+                            <th class="px-4 py-3">Navegador</th>
+                            <th class="px-4 py-3">Sistema</th>
+                            <th class="px-4 py-3">Data/Hora</th>
+                        </tr>
+                    </thead>
+                    <tbody id="visitsBody" class="divide-y divide-blue-900/40">
+                        <!-- Conteúdo carregado via JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+<script>
+    // --------- STATS ---------
+    async function loadStats() {
+        try {
+            const response = await fetch('/api/stats');
+            const stats = await response.json();
+
+            document.getElementById('statsGrid').innerHTML = `
+                <div class="card p-6 text-center">
+                    <h3 class="text-3xl font-bold text-blue-400">${stats.total_visits}</h3>
+                    <p class="text-gray-300 mt-2">Total de Visitas</p>
+                </div>
+                <div class="card p-6 text-center">
+                    <h3 class="text-3xl font-bold text-blue-400">${stats.unique_visitors}</h3>
+                    <p class="text-gray-300 mt-2">Visitantes Únicos</p>
+                </div>
+                <div class="card p-6 text-center">
+                    <h3 class="text-3xl font-bold text-blue-400">${stats.desktop_visits}</h3>
+                    <p class="text-gray-300 mt-2">Desktop</p>
+                </div>
+                <div class="card p-6 text-center">
+                    <h3 class="text-3xl font-bold text-blue-400">${stats.mobile_visits}</h3>
+                    <p class="text-gray-300 mt-2">Mobile</p>
+                </div>
+                <div class="card p-6 text-center">
+                    <h3 class="text-3xl font-bold text-blue-400">${stats.tablet_visits}</h3>
+                    <p class="text-gray-300 mt-2">Tablet</p>
+                </div>
+            `;
+        } catch (e) {
+            console.error("Erro ao carregar estatísticas:", e);
+        }
+    }
+
+    // --------- VISITAS ---------
+    async function loadVisits() {
+        try {
+            const response = await fetch('/api/visits');
+            const visits = await response.json();
+
+            const tbody = document.getElementById('visitsBody');
+
+            tbody.innerHTML = visits.map(visit => `
+                <tr class="hover:bg-blue-900/10 transition">
+                    <td class="px-4 py-3">${visit.ip_address}</td>
+                    <td class="px-4 py-3">${visit.city}, ${visit.region}, ${visit.country}</td>
+                    <td class="px-4 py-3">${visit.device_type}</td>
+                    <td class="px-4 py-3">${visit.browser}</td>
+                    <td class="px-4 py-3">${visit.operating_system}</td>
+                    <td class="px-4 py-3">${new Date(visit.timestamp).toLocaleString('pt-BR')}</td>
+                </tr>
+            `).join('');
+
+        } catch (e) {
+            console.error("Erro ao carregar visitas:", e);
+        }
+    }
+
+    loadStats();
+    loadVisits();
+
+    setInterval(() => {
+        loadStats();
+        loadVisits();
+    }, 30000);
+</script>
+
+</body>
+</html>

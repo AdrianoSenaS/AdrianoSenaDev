@@ -1,4 +1,5 @@
 const { createPost, getPosts, getPostById, updatePost, deletePost } = require('../database/postsDB');
+const {fetchPushTokens} = require('../services/notificationServices');
 
 module.exports = {
 
@@ -38,7 +39,17 @@ module.exports = {
             };
 
             const result = await createPost(post);
-            res.redirect("/admin/cadastrar")
+          const sendNotification =  await fetchPushTokens({
+                title: post.author,
+                body: post.title,
+                postId: result.id
+            });
+            //console.log(sendNotification);
+            res.json({
+                success: true,
+                id: result.id,
+                post
+            });
 
         } catch (err) {
             console.error("Erro ao criar post:", err);

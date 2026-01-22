@@ -1,22 +1,25 @@
 {
-  "name": "adrinao-sena-dev",
+  "name": "adrianosena-dev",
   "version": "1.0.0",
-  "description": "servido para meu sitea",
+  "description": "servidor para meu site pessoal",
   "license": "ISC",
   "author": "Adriano Sena",
   "type": "commonjs",
   "main": "server.js",
   "scripts": {
-    "dev": "node server.js"
+    "dev": "nodemon server.js",
+    "production": "node server.js"
   },
   "dependencies": {
     "device-detector-js": "^3.0.3",
     "dotenv": "^17.2.3",
-    "express": "^5.2.1",
+    "express": "^5.1.0",
     "express-session": "^1.18.2",
+    "firebase-admin": "^13.6.0",
     "geoip-lite": "^1.4.10",
     "multer": "^2.0.2",
     "nodemailer": "^7.0.11",
+    "nodemon": "^3.1.11",
     "sqlite3": "^5.1.7",
     "ua-parser-js": "^2.0.6"
   }

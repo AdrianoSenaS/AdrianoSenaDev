@@ -1,12 +1,15 @@
 require('dotenv').config();
 const express = require('express');
-const {filtraRotas} = require('./services/filtroRotas');
-const {addPost, getAllPosts, getPostId, updatePostId, deletePostId, uploadPost} = require('./services/posts');
-const {uploadPostFile} = require('./services/upload');
+const { filtraRotas } = require('./services/filtroRotas');
+const { addPost, getAllPosts, getPostId, updatePostId, deletePostId, uploadPost } = require('./services/posts');
+const { uploadPostFile } = require('./services/upload');
 const { htmlInner } = require('./services/innerHtmlPost');
 const { loginAdmin, tokemAdmin } = require('./services/login');
-const { sendContact, getContacts} = require('./services/contato');
+const { sendContact, getContacts } = require('./services/contato');
 const { testEmail } = require('./services/testeEmail');
+const { postView } = require('./services/postViews')
+const {registerPushToken} = require('./services/notificationServices');
+
 
 const app = express();
 const PORT = 3000;
@@ -80,7 +83,7 @@ app.get('/api/posts/:id', async (req, res) => {
 
 // Atualizar post
 app.put('/api/posts/:id', upload.single('image'), async (req, res) => {
- await updatePostId(req, res);
+  await updatePostId(req, res);
 });
 
 // Deletar post
@@ -114,7 +117,21 @@ app.get('/api/contact', async (req, res) => {
 // ROTA PARA TESTAR O ENVIO DE E-MAIL
 // ----------------------------------------------------------------
 app.get('/test-email', async (req, res) => {
- testEmail(req, res);
+  testEmail(req, res);
+});
+
+// ----------------------------------------------------------------
+// ROTA PARA Views de posts
+// ----------------------------------------------------------------
+app.get('/api/post/views/:id', async (req, res) => {
+  await postView(req, res);
+});
+
+// ---------------------------------------------------------------
+// ROTAS De notificalção
+//-----------------------------------------------------------------
+app.post('/api/push/public-token', async (req, res) => {
+  await registerPushToken(req, res);
 });
 
 // ---------------------------------------------------------------

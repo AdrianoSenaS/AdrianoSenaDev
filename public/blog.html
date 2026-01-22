@@ -4,14 +4,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Blog | Adriano Sena - Desenvolvedor Full-Stack</title>
-  <meta property="og:title" content="Blog | Adriano Sena - Artigos sobre Desenvolvimento e Tecnologia" />
-  <meta property="og:description"
-    content="Artigos, tutoriais e insights sobre desenvolvimento full-stack, tecnologias modernas e soluções digitais." />
-  <meta property="og:image" content="logo.png" />
-  <meta property="og:url" content="https://adrianosena.dev.br/blog" />
-  <meta property="og:type" content="website" />
-  
+
+<title>Blog | Adriano Sena - Desenvolvedor Full-Stack</title>
+    <link rel="canonical" href="https://adrianosena.dev.br/blog"/>
+    <meta name="description" content="Artigos, tutoriais e insights sobre desenvolvimento full-stack, tecnologias modernas e soluções digitais. | Adriano Sena">
+    <!-- Open Graph -->
+    <meta property="og:title"
+        content="Blog | Adriano Sena - Artigos sobre Desenvolvimento e Tecnologia | Adriano Sena" />
+    <meta property="og:description" content="Artigos, tutoriais e insights sobre desenvolvimento full-stack, tecnologias modernas e soluções digitais. | Adriano Sena" />
+    <meta property="og:image" content="https://adrianosena.dev.br/logoWeb.png" />
+    <meta property="og:url" content="https://adrianosena.dev.br/blog" />
+    <meta property="og:type" content="article" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@adrianosenas" />
+    <meta name="twitter:title"
+        content="Blog | Adriano Sena - Artigos sobre Desenvolvimento e Tecnologia" />
+    <meta name="twitter:description" content="Artigos, tutoriais e insights sobre desenvolvimento full-stack, tecnologias modernas e soluções digitais. | Adriano Sena" />
+    <meta name="twitter:image" content="https://adrianosena.dev.br/logoWeb.png" />
+
+
   <link rel="shortcut icon" href="logo.png" type="image/x-icon">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
@@ -19,7 +32,8 @@
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=Fira+Code:wght@400;500&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-  
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1602165210298822"
+     crossorigin="anonymous"></script>
   <!-- AOS Animation Library -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
@@ -33,7 +47,8 @@
       <div class="flex justify-between items-center">
         <!-- Logo -->
         <a href="/" class="flex items-center space-x-3">
-          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+          <div
+            class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
             <img src="https://adrianosena.dev.br/logo.png" alt="Adriano Sena Logo" class="w-10 h-10">
           </div>
           <div>
@@ -91,23 +106,24 @@
     <div class="container mx-auto px-6 relative z-10">
       <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
         <!-- Gatilho de Status -->
-        <div class="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-primary/10 to-secondary/10 mb-6">
+        <div
+          class="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-primary/10 to-secondary/10 mb-6">
           <div class="w-2 h-2 rounded-full bg-primary mr-2 animate-pulse"></div>
           <span class="text-sm font-medium text-primary">Novos artigos toda semana</span>
         </div>
-        
+
         <!-- Título Principal -->
         <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
           Blog & <span class="gradient-text">Artigos</span> Técnicos
         </h1>
-        
+
         <!-- Subtitle -->
         <p class="text-lg md:text-xl text-text-secondary mb-8 leading-relaxed max-w-2xl mx-auto">
-          Compartilhando conhecimentos, experiências e insights sobre desenvolvimento full-stack, 
+          Compartilhando conhecimentos, experiências e insights sobre desenvolvimento full-stack,
           tecnologias modernas e soluções digitais que geram resultados.
         </p>
-        
-        
+
+
       </div>
     </div>
   </section>
@@ -120,15 +136,11 @@
         <div class="flex flex-col md:flex-row gap-6 justify-between items-center mb-8">
           <!-- Campo de Pesquisa -->
           <div class="w-full md:w-96 relative">
-            <input 
-              type="text" 
-              id="search-input" 
-              placeholder="Pesquisar artigos por palavra-chave..." 
-              class="w-full px-4 py-3 rounded-lg search-input"
-            >
+            <input type="text" id="search-input" placeholder="Pesquisar artigos por palavra-chave..."
+              class="w-full px-4 py-3 rounded-lg search-input">
             <i class="fas fa-search absolute right-3 top-1/2 transform -translate-y-1/2 text-text-secondary"></i>
           </div>
-          
+
           <!-- Seletor de Categorias -->
           <div class="w-full md:w-auto">
             <select id="category-filter" class="w-full md:w-48 px-4 py-3 rounded-lg search-input">
@@ -137,7 +149,7 @@
             </select>
           </div>
         </div>
-        
+
         <!-- Filtros Rápidos -->
         <div id="category-filters" class="flex flex-wrap gap-2 justify-center">
           <!-- Os botões de categoria serão preenchidos via JavaScript -->
@@ -159,17 +171,17 @@
       <!-- Newsletter Section -->
       <div class="mt-20" data-aos="fade-up">
         <div class="card max-w-3xl mx-auto text-center">
-          <div class="w-20 h-20 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center mx-auto mb-6">
+          <div
+            class="w-20 h-20 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center mx-auto mb-6">
             <i class="fas fa-envelope-open-text text-white text-2xl"></i>
           </div>
           <h2 class="text-2xl md:text-3xl font-bold mb-4">Receba Novos Artigos no Email</h2>
           <p class="text-text-secondary mb-6 max-w-2xl mx-auto">
-            Inscreva-se na newsletter para receber os artigos mais recentes sobre desenvolvimento, 
+            Inscreva-se na newsletter para receber os artigos mais recentes sobre desenvolvimento,
             tutoriais práticos e dicas exclusivas diretamente na sua caixa de entrada.
           </p>
           <form class="flex flex-col md:flex-row gap-4 max-w-md mx-auto">
-            <input type="email" placeholder="Seu melhor email" 
-                   class="flex-1 px-4 py-3 rounded-lg search-input">
+            <input type="email" placeholder="Seu melhor email" class="flex-1 px-4 py-3 rounded-lg search-input">
             <button type="submit" class="btn-primary px-6 py-3">
               Inscrever-se
             </button>
@@ -188,7 +200,8 @@
       <div class="grid md:grid-cols-4 gap-8">
         <div>
           <div class="flex items-center space-x-3 mb-6">
-            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+            <div
+              class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
               <img src="https://adrianosena.dev.br/logo.png" alt="Adriano Sena Logo" class="w-10 h-10">
             </div>
             <div>
@@ -200,7 +213,7 @@
             Transformando ideias em soluções digitais de alta performance desde 2019.
           </p>
         </div>
-        
+
         <div>
           <h4 class="text-lg font-bold mb-6">Categorias do Blog</h4>
           <ul class="space-y-3">
@@ -212,7 +225,7 @@
             <li><a href="blog?category=apis" class="text-gray-400 hover:text-white transition">APIs</a></li>
           </ul>
         </div>
-        
+
         <div>
           <h4 class="text-lg font-bold mb-6">Links Rápidos</h4>
           <ul class="space-y-3">
@@ -223,24 +236,24 @@
             <li><a href="/#contact" class="text-gray-400 hover:text-white transition">Contato</a></li>
           </ul>
         </div>
-        
+
         <div>
           <h4 class="text-lg font-bold mb-6">Conecte-se</h4>
           <div class="flex space-x-4 mb-6">
-            <a href="https://github.com/AdrianoSenaS" target="_blank" 
-               class="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center hover:bg-gray-900 transition">
+            <a href="https://github.com/AdrianoSenaS" target="_blank"
+              class="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center hover:bg-gray-900 transition">
               <i class="fab fa-github"></i>
             </a>
             <a href="https://www.linkedin.com/in/adriano-sena-silva-a8605622a/" target="_blank"
-               class="w-10 h-10 rounded-lg bg-blue-700 flex items-center justify-center hover:bg-blue-800 transition">
+              class="w-10 h-10 rounded-lg bg-blue-700 flex items-center justify-center hover:bg-blue-800 transition">
               <i class="fab fa-linkedin-in"></i>
             </a>
             <a href="https://www.instagram.com/adriano.sena.silva/" target="_blank"
-               class="w-10 h-10 rounded-lg bg-pink-600 flex items-center justify-center hover:bg-pink-700 transition">
+              class="w-10 h-10 rounded-lg bg-pink-600 flex items-center justify-center hover:bg-pink-700 transition">
               <i class="fab fa-instagram"></i>
             </a>
             <a href="https://wa.me/5564933004882" target="_blank"
-               class="w-10 h-10 rounded-lg bg-green-600 flex items-center justify-center hover:bg-green-700 transition">
+              class="w-10 h-10 rounded-lg bg-green-600 flex items-center justify-center hover:bg-green-700 transition">
               <i class="fab fa-whatsapp"></i>
             </a>
           </div>
@@ -271,11 +284,11 @@
     // Tema - Correção definitiva
     const themeToggle = document.getElementById('theme-toggle');
     const themeIcon = document.getElementById('theme-icon');
-    
+
     // Verificar tema salvo ou preferência do sistema
     const savedTheme = localStorage.getItem('theme');
     const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    
+
     // Função para aplicar tema
     function applyTheme(theme) {
       if (theme === 'dark') {
@@ -288,7 +301,7 @@
         themeIcon.classList.add('fa-moon', 'text-gray-600');
       }
     }
-    
+
     // Definir tema inicial
     if (savedTheme) {
       applyTheme(savedTheme);
@@ -314,11 +327,11 @@
     // CORREÇÃO DO MENU MOBILE - SIMPLIFICADO E FUNCIONAL
     const menuToggle = document.getElementById('menu-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
-    
-    menuToggle.addEventListener('click', function(e) {
+
+    menuToggle.addEventListener('click', function (e) {
       e.stopPropagation(); // Evita que o clique se propague
       mobileMenu.classList.toggle('hidden');
-      
+
       // Mudar o ícone do botão
       const icon = menuToggle.querySelector('i');
       if (mobileMenu.classList.contains('hidden')) {
@@ -337,10 +350,10 @@
     });
 
     // Fechar o menu quando clicar fora (somente se estiver aberto)
-    document.addEventListener('click', function(e) {
-      if (!mobileMenu.classList.contains('hidden') && 
-          !mobileMenu.contains(e.target) && 
-          !menuToggle.contains(e.target)) {
+    document.addEventListener('click', function (e) {
+      if (!mobileMenu.classList.contains('hidden') &&
+        !mobileMenu.contains(e.target) &&
+        !menuToggle.contains(e.target)) {
         mobileMenu.classList.add('hidden');
         menuToggle.querySelector('i').className = 'fas fa-bars text-xl';
       }
@@ -350,7 +363,7 @@
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         if (this.getAttribute('href') === '#') return;
-        
+
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
@@ -364,7 +377,7 @@
 
     // Scroll to Top
     const scrollTop = document.getElementById('scrollTop');
-    
+
     window.addEventListener('scroll', () => {
       if (window.pageYOffset > 300) {
         scrollTop.classList.add('show');
@@ -372,7 +385,7 @@
         scrollTop.classList.remove('show');
       }
     });
-    
+
     scrollTop.addEventListener('click', () => {
       window.scrollTo({
         top: 0,
@@ -392,35 +405,49 @@
     let currentSearchTerm = '';
 
     // Carregar posts
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       // Inicializar posts de exemplo
       initializeExamplePosts();
-      
+
       // Configurar botão de carregar mais posts
       document.getElementById('load-more').addEventListener('click', loadMorePosts);
-      
+
       // Configurar campo de pesquisa
-      document.getElementById('search-input').addEventListener('input', function() {
+      document.getElementById('search-input').addEventListener('input', function () {
         currentSearchTerm = this.value.toLowerCase();
         filterPosts();
       });
-      
+
       // Configurar filtro de categoria
-      document.getElementById('category-filter').addEventListener('change', function() {
+      document.getElementById('category-filter').addEventListener('change', function () {
         currentCategory = this.value;
         filterPosts();
       });
     });
 
-    async function  initializeExamplePosts() {
+
+
+    async function initializeExamplePosts() {
       // Posts de exemplo
-       // Em um cenário real, isso viria de uma API
-        const res = await fetch("/api/posts");
-        allPosts = await res.json();
-      
+      // Em um cenário real, isso viria de uma API
+
+      const res = await fetch("/api/posts");
+      allPosts = await res.json();
+
+      try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get('category');
+
+        if (id !== undefined) {
+          console.log(id)
+          document.getElementById('search-input').value = id
+        }
+      }catch(e){
+        console.log("erro "+e)
+      }
       // Extrair categorias únicas
       const categories = [...new Set(allPosts.map(post => post.category).filter(Boolean))];
-      
+
       // Preencher o seletor de categorias
       const categoryFilter = document.getElementById('category-filter');
       categories.forEach(category => {
@@ -429,7 +456,7 @@
         option.textContent = category;
         categoryFilter.appendChild(option);
       });
-      
+
       // Preencher os botões de filtro rápido
       const categoryFilters = document.getElementById('category-filters');
       categories.forEach(category => {
@@ -438,8 +465,8 @@
         button.className = 'filter-btn';
         button.textContent = category;
         button.dataset.category = category;
-        
-        button.addEventListener('click', function() {
+
+        button.addEventListener('click', function () {
           // Ativar/desativar filtro
           if (currentCategory === category) {
             currentCategory = '';
@@ -450,22 +477,22 @@
             document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
           }
-          
+
           // Atualizar o seletor
           document.getElementById('category-filter').value = currentCategory;
           filterPosts();
         });
-        
+
         categoryFilters.appendChild(button);
       });
-      
+
       // Adicionar botão "Todos"
       const allButton = document.createElement('button');
       allButton.type = 'button';
       allButton.className = 'filter-btn active';
       allButton.textContent = 'Todos';
       allButton.dataset.category = '';
-      allButton.addEventListener('click', function() {
+      allButton.addEventListener('click', function () {
         currentCategory = '';
         document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
         allButton.classList.add('active');
@@ -473,34 +500,38 @@
         filterPosts();
       });
       categoryFilters.prepend(allButton);
-      
+
       // Inicializar posts filtrados
       filteredPosts = allPosts.filter(post => post.status === "published");
-      
+
       // Exibir posts iniciais
       displayPosts();
     }
 
     function filterPosts() {
       filteredPosts = allPosts.filter(post => {
+
+
         // Filtrar por status
         if (post.status !== "published") return false;
-        
+
         // Filtrar por categoria
         if (currentCategory && post.category !== currentCategory) return false;
-        
+
+
+
         // Filtrar por termo de busca
         if (currentSearchTerm) {
           const searchFields = [post.title, post.description, post.category].filter(Boolean);
-          const matchesSearch = searchFields.some(field => 
+          const matchesSearch = searchFields.some(field =>
             field.toLowerCase().includes(currentSearchTerm)
           );
           if (!matchesSearch) return false;
         }
-        
+
         return true;
       });
-      
+
       // Resetar para a primeira página
       currentPage = 1;
       displayPosts();
@@ -508,12 +539,12 @@
 
     function displayPosts() {
       const postsContainer = document.getElementById('posts-container');
-      
+
       // Se for a primeira página, limpar os posts de exemplo
       if (currentPage === 1) {
         postsContainer.innerHTML = '';
       }
-      
+
       const startIndex = (currentPage - 1) * postsPerPage;
       const endIndex = startIndex + postsPerPage;
       const postsToShow = filteredPosts.slice(startIndex, endIndex);
@@ -532,7 +563,7 @@
       postsToShow.forEach(post => {
         const postElement = document.createElement('div');
         postElement.className = 'blog-card animate__animated animate__fadeInUp';
-        
+
         postElement.innerHTML = `
           <div class="blog-image">
             <img src="${post.image}" alt="${post.title}">
@@ -554,7 +585,7 @@
             </div>
           </div>
         `;
-        
+
         postsContainer.appendChild(postElement);
       });
 
@@ -581,7 +612,7 @@
     // Newsletter form
     const newsletterForm = document.querySelector('form');
     if (newsletterForm) {
-      newsletterForm.addEventListener('submit', function(e) {
+      newsletterForm.addEventListener('submit', function (e) {
         e.preventDefault();
         const emailInput = this.querySelector('input[type="email"]');
         if (emailInput.value) {
@@ -592,4 +623,5 @@
     }
   </script>
 </body>
+
 </html>
