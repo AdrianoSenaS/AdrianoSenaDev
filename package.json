@@ -20,6 +20,7 @@
     "multer": "^2.0.2",
     "nodemailer": "^7.0.11",
     "sqlite3": "^5.1.7",
-    "ua-parser-js": "^2.0.6"
+    "ua-parser-js": "^2.0.6",
+    "web-push": "^3.6.7"
   }
 }

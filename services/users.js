@@ -6,14 +6,15 @@ const {
   createUser,
   updateUser,
   updateUserPassword,
-  deleteUser
+  deleteUser,
+  getPublicAuthorProfile
 } = require('../database/usersDb');
 
 const SALT_ROUNDS = 10;
 
 async function getUsers(req, res) {
   try {
-    const users = listUsers();
+    const users = await listUsers();
     res.json(users);
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
@@ -32,7 +33,7 @@ async function getUser(req, res) {
 
 async function addUser(req, res) {
   try {
-    const { name, email, password, role } = req.body;
+    const { name, email, password, photo, bio, role } = req.body;
 
     if (!name || !email || !password) {
       return res.status(400).json({ success: false, error: 'Nome, e-mail e senha são obrigatórios.' });
@@ -48,7 +49,14 @@ async function addUser(req, res) {
     }
 
     const password_hash = await bcrypt.hash(password, SALT_ROUNDS);
-    const result = await createUser({ name, email, password_hash, role });
+    const result = await createUser({
+      name,
+      email,
+      password_hash,
+      photo: photo || '',
+      bio: bio || '',
+      role
+    });
     res.status(201).json({ success: true, id: result.id });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
@@ -58,7 +66,7 @@ async function addUser(req, res) {
 async function editUser(req, res) {
   try {
     const id = Number(req.params.id);
-    const { name, email, role } = req.body;
+    const { name, email, photo, bio, role } = req.body;
 
     if (!name || !email) {
       return res.status(400).json({ success: false, error: 'Nome e e-mail são obrigatórios.' });
@@ -73,7 +81,13 @@ async function editUser(req, res) {
       return res.status(409).json({ success: false, error: 'Esse e-mail já está em uso por outro usuário.' });
     }
 
-    await updateUser(id, { name, email, role: role || existing.role });
+    await updateUser(id, {
+      name,
+      email,
+      photo: photo || '',
+      bio: bio || '',
+      role: role || existing.role
+    });
     res.json({ success: true });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
@@ -112,4 +126,18 @@ async function removeUser(req, res) {
   }
 }
 
-module.exports = { getUsers, getUser, addUser, editUser, changePassword, removeUser };
+async function getAuthorProfile(req, res) {
+  try {
+    const author = String(req.query.author || '').trim();
+    if (!author) {
+      return res.status(400).json({ success: false, error: 'Autor não informado.' });
+    }
+
+    const profile = await getPublicAuthorProfile(author);
+    return res.json({ success: true, profile: profile || null });
+  } catch (err) {
+    return res.status(500).json({ success: false, error: err.message });
+  }
+}
+
+module.exports = { getUsers, getUser, addUser, editUser, changePassword, removeUser, getAuthorProfile };

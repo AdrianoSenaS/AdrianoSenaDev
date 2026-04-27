@@ -1,8 +1,10 @@
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
 const { randomUUID } = require('crypto');
+const bcrypt = require('bcryptjs');
 const { createSession, revokeSession } = require('../database/adminSessionsDb');
 const { parseAdminToken } = require('./adminAuth');
+const { getUserByEmail } = require('../database/usersDb');
 
 // --- Credenciais Admin ---
 const adminUser = {
@@ -16,34 +18,55 @@ const JWT_EXPIRES_IN = process.env.ADMIN_JWT_EXPIRES || '2h';
 module.exports = {
 
     async loginAdmin(username, password, res) {
-        if (username === adminUser.email && password === adminUser.password) {
-            try {
-                const jti = randomUUID();
-                const token = jwt.sign(
-                    {
-                        sub: username,
-                        role: 'admin',
-                        jti
-                    },
-                    JWT_SECRET,
-                    { expiresIn: JWT_EXPIRES_IN }
-                );
+        try {
+            let canLogin = false;
+            let role = 'admin';
 
-                const decoded = jwt.decode(token);
-                await createSession({
-                    jti,
-                    username,
-                    exp: decoded?.exp || 0
-                });
-
-                res.send(token);
-                return;
-            } catch (err) {
-                return res.status(500).json({ success: false, error: 'Erro ao iniciar sessão.' });
+            // 1) Compatibilidade com admin por .env
+            if (username === adminUser.email && password === adminUser.password) {
+                canLogin = true;
+                role = 'admin';
             }
-        }
 
-        return res.status(401).json({ success: false, error: 'Credenciais inválidas.' });
+            // 2) Login por usuário do sistema
+            if (!canLogin) {
+                const user = await getUserByEmail(String(username || '').trim().toLowerCase());
+                if (user) {
+                    const ok = await bcrypt.compare(password || '', user.password_hash || '');
+                    if (ok) {
+                        canLogin = true;
+                        role = user.role || 'editor';
+                    }
+                }
+            }
+
+            if (!canLogin) {
+                return res.status(401).json({ success: false, error: 'Credenciais inválidas.' });
+            }
+
+            const jti = randomUUID();
+            const token = jwt.sign(
+                {
+                    sub: username,
+                    role,
+                    jti
+                },
+                JWT_SECRET,
+                { expiresIn: JWT_EXPIRES_IN }
+            );
+
+            const decoded = jwt.decode(token);
+            await createSession({
+                jti,
+                username,
+                exp: decoded?.exp || 0
+            });
+
+            res.send(token);
+            return;
+        } catch (err) {
+            return res.status(500).json({ success: false, error: 'Erro ao iniciar sessão.' });
+        }
     },
 
     async tokemAdmin(req, res) {

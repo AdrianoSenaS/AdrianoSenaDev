@@ -9,7 +9,7 @@ const { requireAdminAuth } = require('./services/adminAuth');
 const { sendContact, getContacts, updateStatus, deleteContactById } = require('./services/contato');
 const { testEmail } = require('./services/testeEmail');
 const { postView } = require('./services/postViews')
-const {registerPushToken} = require('./services/notificationServices');
+const { registerPushToken, getPublicVapidKeyHandler } = require('./services/notificationServices');
 const { getVisitStats, listRecentVisits, getVisitsByDay, getDetailedStats, listDeviceLogs } = require('./database/deviceLogs');
 const { getPostsStatusSummary, getPosts, getPostBySlug } = require('./database/postsDB');
 const { listTopViewedPosts } = require('./database/postViewsDb');
@@ -23,7 +23,7 @@ const {
   updateTag,
   deleteTag
 } = require('./services/taxonomies');
-const { getUsers, getUser, addUser, editUser, changePassword, removeUser } = require('./services/users');
+const { getUsers, getUser, addUser, editUser, changePassword, removeUser, getAuthorProfile } = require('./services/users');
 const { getHomepage, getHomepageSection, updateHomepageSection } = require('./services/homepage');
 const {
   getComments,
@@ -332,6 +332,10 @@ app.get('/api/users', async (req, res) => {
   });
 });
 
+app.get('/api/public/author-profile', async (req, res) => {
+  await getAuthorProfile(req, res);
+});
+
 app.get('/api/users/:id', async (req, res) => {
   await requireAdminAuth(req, res, async () => {
     await getUser(req, res);
@@ -396,6 +400,14 @@ app.get('/api/devices/stats', async (req, res) => {
 // ROTAS De notificalção
 //-----------------------------------------------------------------
 app.post('/api/push/public-token', async (req, res) => {
+  await registerPushToken(req, res);
+});
+
+app.get('/api/push/vapid-public-key', async (req, res) => {
+  await getPublicVapidKeyHandler(req, res);
+});
+
+app.post('/api/push/subscribe', async (req, res) => {
   await registerPushToken(req, res);
 });
 

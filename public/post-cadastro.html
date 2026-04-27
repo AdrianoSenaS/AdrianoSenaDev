@@ -951,6 +951,7 @@
     // Carregar posts recentes
     document.addEventListener('DOMContentLoaded', function () {
       loadTaxonomies();
+      loadAuthors();
       loadRecentPosts();
 
       // Configurar upload de imagem
@@ -988,7 +989,16 @@
       document.getElementById('post-excerpt').value = post.excerpt || post.description || '';
       document.getElementById('post-category').value = post.category || '';
       document.getElementById('post-status').value = post.status || 'draft';
-      document.getElementById('post-author').value = post.author || 'adriano';
+      const authorSelect = document.getElementById('post-author');
+      const authorValue = post.author || 'adriano';
+      const hasAuthor = Array.from(authorSelect.options).some((o) => o.value === authorValue);
+      if (!hasAuthor) {
+        const option = document.createElement('option');
+        option.value = authorValue;
+        option.textContent = `Autor atual (${authorValue})`;
+        authorSelect.appendChild(option);
+      }
+      authorSelect.value = authorValue;
       document.getElementById('post-slug').value = post.slug || '';
       // Se o slug estiver vazio, gera automaticamente a partir do título
       if (!post.slug) generateSlug(true);
@@ -1043,6 +1053,48 @@
         option.value = tag.name;
         tagsSuggestions.appendChild(option);
       });
+    }
+
+    async function loadAuthors() {
+      const authorSelect = document.getElementById('post-author');
+      const currentValue = authorSelect.value;
+
+      try {
+        const res = await authFetch('/api/users');
+        const users = await res.json();
+
+        if (!Array.isArray(users) || !users.length) return;
+
+        authorSelect.innerHTML = '';
+        users.forEach((u) => {
+          const option = document.createElement('option');
+          option.value = u.email;
+          option.textContent = `${u.name} (${u.email})`;
+          authorSelect.appendChild(option);
+        });
+
+        if (editingId) {
+          const postRes = await fetch(`/api/posts/${editingId}`);
+          if (postRes.ok) {
+            const post = await postRes.json();
+            const hasAuthor = users.some((u) => u.email === (post.author || ''));
+            if (hasAuthor) {
+              authorSelect.value = post.author;
+            } else if (post.author) {
+              const fallback = document.createElement('option');
+              fallback.value = post.author;
+              fallback.textContent = `Autor atual (${post.author})`;
+              authorSelect.appendChild(fallback);
+              authorSelect.value = post.author;
+            }
+          }
+        } else if (currentValue) {
+          const hasCurrent = users.some((u) => u.email === currentValue);
+          if (hasCurrent) authorSelect.value = currentValue;
+        }
+      } catch (_) {
+        // Mantém opções padrão se não carregar autores.
+      }
     }
 
     async function submitPostForm(e) {

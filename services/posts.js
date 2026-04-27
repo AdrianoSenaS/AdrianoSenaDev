@@ -43,11 +43,16 @@ module.exports = {
             const result = await createPost(post);
             await createCategoryIfNotExists(post.category);
             await createTagsIfNotExists(post.tags);
-            await fetchPushTokens({
-                title: post.author,
-                body: post.title,
-                postId: result.id
-            });
+
+            if (post.status === 'published') {
+                await fetchPushTokens({
+                    title: 'Novo post no blog',
+                    body: post.title,
+                    postId: result.id,
+                    slug: post.slug,
+                    url: '/post?slug=' + encodeURIComponent(post.slug)
+                });
+            }
 
             res.json({
                 success: true,

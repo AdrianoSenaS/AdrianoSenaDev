@@ -43,6 +43,7 @@ module.exports = {
   <meta name="twitter:title" content="${title} | Adriano Sena Dev" />
   <meta name="twitter:description" content="${excerpt}" />
   <meta name="twitter:image" content="${fullImage}" />
+  <link rel="alternate" type="application/rss+xml" title="RSS Adriano Sena Dev" href="https://www.adrianosena.dev.br/rss.xml" />
 
   <link rel="shortcut icon" href="https://adrianosena.dev.br/logo.png" type="image/x-icon" />
   <script src="https://cdn.tailwindcss.com"></script>
@@ -428,6 +429,15 @@ module.exports = {
       color: #e2e8f0;
     }
 
+    .footer-link-list a {
+      color: #9ca3af;
+      transition: color 0.2s ease;
+    }
+
+    .footer-link-list a:hover {
+      color: #fff;
+    }
+
     @media (max-width: 1024px) {
       .layout { grid-template-columns: 1fr; }
       .sidebar { position: static; }
@@ -561,7 +571,7 @@ module.exports = {
           <div class="card mt-8">
             <h3 class="text-xl mb-3">Autor responsavel pelo post</h3>
             <div class="flex flex-col sm:flex-row items-start gap-4">
-              <img src="https://adrianosena.dev.br/logo-white.png" alt="Autor" class="w-16 h-16 rounded-full border-2" style="border-color:var(--primary)" />
+              <img id="author-avatar" src="https://adrianosena.dev.br/logo-white.png" alt="Autor" class="w-16 h-16 rounded-full border-2 object-cover" style="border-color:var(--primary)" />
               <div class="flex-1">
                 <div id="author-name" class="font-bold text-lg mb-1">Equipe Adriano Sena Dev</div>
                 <p id="author-bio" style="color: var(--text-secondary)">Conteudo revisado para decisao tecnica e operacional de empresas.</p>
@@ -627,6 +637,18 @@ module.exports = {
           </div>
 
           <div class="card mb-6">
+            <h3 class="text-xl mb-2">RSS e Notificacoes no Chrome</h3>
+            <p class="mb-4" style="color: var(--text-secondary)">
+              Assine o feed RSS para acompanhar novos posts e ative notificacoes no Chrome para receber alertas diretamente no navegador.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-3">
+              <a class="btn-secondary text-center" href="/rss.xml" target="_blank" rel="noopener noreferrer"><i class="fas fa-rss mr-2"></i>Assinar RSS</a>
+              <button id="enable-chrome-notifications" type="button" class="btn-primary"><i class="fab fa-chrome mr-2"></i>Ativar no Chrome</button>
+            </div>
+            <p id="chrome-notify-feedback" class="text-sm mt-3" style="color: var(--text-secondary)"></p>
+          </div>
+
+          <div class="card mb-6">
             <h3 class="text-xl mb-3">Categorias</h3>
             <ul id="category-list" class="space-y-2"></ul>
           </div>
@@ -641,15 +663,61 @@ module.exports = {
     </div>
   </main>
 
-  <footer class="py-10 px-6 mt-10">
-    <div class="container mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-      <div>
-        <div class="font-bold">Adriano Sena Dev</div>
-        <div class="text-sm" style="color:#94a3b8">Tecnologia para crescimento com estabilidade</div>
-      </div>
-      <div class="flex gap-4 text-xl">
-        <a href="https://www.instagram.com/adrianosena.dev.br/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
-        <a href="https://wa.me/5564933004882" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i></a>
+  <footer class="bg-dark py-12 px-6 mt-10">
+    <div class="container mx-auto">
+      <div class="grid md:grid-cols-4 gap-8">
+        <div>
+          <div class="flex items-center space-x-3 mb-6">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+              <img src="https://adrianosena.dev.br/logo.png" alt="Logo Adriano Sena Dev" class="w-10 h-10" />
+            </div>
+            <div>
+              <div class="font-bold text-lg">Adriano Sena Dev</div>
+              <div class="text-gray-400 text-sm">Empresa de Desenvolvimento e Infraestrutura</div>
+            </div>
+          </div>
+          <p class="text-gray-400">
+            Solucoes empresariais em software, infraestrutura e suporte tecnico para crescimento sustentavel.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="text-lg font-bold mb-6">Especialidades</h4>
+          <ul class="space-y-3 footer-link-list">
+            <li><a href="/#projects">Projetos Open Source</a></li>
+            <li><a href="/#portfolio">Websites e Aplicacoes</a></li>
+            <li><a href="/#skills">Tecnologias e Stack</a></li>
+            <li><a href="/blog">Artigos e Conteudo</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-lg font-bold mb-6">Navegacao</h4>
+          <ul class="space-y-3 footer-link-list">
+            <li><a href="/">Visao geral</a></li>
+            <li><a href="/#services">Frentes de atuacao</a></li>
+            <li><a href="/#projects">Projetos e cenarios</a></li>
+            <li><a href="/#skills">Modelo de entrega</a></li>
+            <li><a href="/blog">Conteudo</a></li>
+            <li><a href="/#contact">Contato</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-lg font-bold mb-6">Conecte-se</h4>
+          <div class="flex space-x-4 mb-6 text-white">
+            <a href="https://www.instagram.com/adrianosena.dev.br/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg bg-pink-600 flex items-center justify-center hover:bg-pink-700 transition">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://wa.me/5564933004882" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg bg-green-600 flex items-center justify-center hover:bg-green-700 transition">
+              <i class="fab fa-whatsapp"></i>
+            </a>
+          </div>
+          <p class="text-gray-400 text-sm">
+            © <span id="current-year">2024</span> Adriano Sena Dev • CNPJ 63.005.629/0001-44. Todos os direitos reservados.
+          </p>
+          <a href="/privacidade" class="text-gray-400 hover:text-white text-sm">Politica de Privacidade</a>
+        </div>
       </div>
     </div>
   </footer>
@@ -788,6 +856,93 @@ module.exports = {
         localStorage.setItem(keyName, key);
       }
       return key;
+    }
+
+    function isSupportedWebPushBrowser() {
+      const ua = navigator.userAgent || "";
+      const isChrome = /Chrome/.test(ua) && !/OPR|Brave|SamsungBrowser/.test(ua);
+      const isEdge = /Edg/.test(ua);
+      return isChrome || isEdge;
+    }
+
+    function urlBase64ToUint8Array(base64String) {
+      const padding = '='.repeat((4 - (base64String.length % 4)) % 4);
+      const base64 = (base64String + padding).replace(/-/g, '+').replace(/_/g, '/');
+      const rawData = window.atob(base64);
+      const outputArray = new Uint8Array(rawData.length);
+
+      for (let i = 0; i < rawData.length; ++i) {
+        outputArray[i] = rawData.charCodeAt(i);
+      }
+
+      return outputArray;
+    }
+
+    async function ensureChromeNotifications(emailForRegistration) {
+      const feedback = document.getElementById("chrome-notify-feedback");
+
+      if (!isSupportedWebPushBrowser()) {
+        feedback.textContent = "Use Google Chrome ou Microsoft Edge para ativar notificacoes.";
+        return false;
+      }
+
+      if (!("serviceWorker" in navigator) || !("PushManager" in window) || !("Notification" in window)) {
+        feedback.textContent = "Seu navegador nao oferece suporte completo a Web Push.";
+        return false;
+      }
+
+      let permission = Notification.permission;
+      if (permission === "default") {
+        try {
+          permission = await Notification.requestPermission();
+        } catch (_) {
+          feedback.textContent = "Nao foi possivel solicitar permissao de notificacao.";
+          return false;
+        }
+      }
+
+      if (permission !== "granted") {
+        feedback.textContent = "Permissao nao concedida. Voce pode liberar nas configuracoes do Chrome.";
+        return false;
+      }
+
+      feedback.textContent = "Ativando notificacoes em background...";
+
+      const keyRes = await fetch('/api/push/vapid-public-key');
+      const keyData = await keyRes.json();
+      if (!keyRes.ok || !keyData?.publicKey) {
+        feedback.textContent = "Nao foi possivel obter a chave de notificacoes no servidor.";
+        return false;
+      }
+
+      const registration = await navigator.serviceWorker.register('/sw.js');
+      const existingSub = await registration.pushManager.getSubscription();
+
+      const subscription = existingSub || await registration.pushManager.subscribe({
+        userVisibleOnly: true,
+        applicationServerKey: urlBase64ToUint8Array(keyData.publicKey)
+      });
+
+      try {
+        const subscribeRes = await fetch('/api/push/subscribe', {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            subscription,
+            email: emailForRegistration || "",
+            source: "post",
+            userAgent: navigator.userAgent || ""
+          })
+        });
+
+        if (!subscribeRes.ok) {
+          feedback.textContent = "Falha ao concluir assinatura no servidor.";
+          return false;
+        }
+      } catch (_) {}
+
+      feedback.textContent = "Notificacoes ativadas com sucesso para novos posts.";
+      return true;
     }
 
     async function loadLikes(postId) {
@@ -1061,6 +1216,26 @@ module.exports = {
         document.getElementById("author-name").textContent = post.author || "Equipe Adriano Sena Dev";
         document.getElementById("view-count").textContent = viewsData.totalViews || 0;
 
+        // Perfil público do autor (foto e bio)
+        try {
+          const authorQuery = encodeURIComponent(post.author || '');
+          if (authorQuery) {
+            const authorRes = await fetch('/api/public/author-profile?author=' + authorQuery);
+            if (authorRes.ok) {
+              const authorData = await authorRes.json();
+              const profile = authorData?.profile;
+              if (profile) {
+                document.getElementById("author-name").textContent = profile.name || post.author || "Equipe Adriano Sena Dev";
+                document.getElementById("post-author").textContent = profile.name || post.author || "Equipe Adriano Sena Dev";
+                document.getElementById("author-bio").textContent = profile.bio || "Conteudo revisado para decisao tecnica e operacional de empresas.";
+                if (profile.photo) {
+                  document.getElementById("author-avatar").src = profile.photo;
+                }
+              }
+            }
+          }
+        } catch (_) {}
+
         // SEO dinamico real
         const seoTitle = (post.title || "Post") + ' | Adriano Sena Dev';
         const seoDesc = stripHtml(post.description || post.excerpt || post.content || "").slice(0, 170);
@@ -1162,6 +1337,10 @@ module.exports = {
 
       feedback.textContent = "Enviando...";
       const ok = await submitNewsletter(email);
+      const wantsPush = document.getElementById("newsletter-push").checked;
+      if (ok && wantsPush) {
+        await ensureChromeNotifications(email);
+      }
       if (ok) {
         feedback.textContent = "Inscricao confirmada! Voce recebera novos conteudos por email e notificacoes quando habilitadas.";
         e.target.reset();
@@ -1169,6 +1348,13 @@ module.exports = {
         feedback.textContent = "Nao foi possivel concluir agora. Tente novamente em instantes.";
       }
     });
+
+    document.getElementById("enable-chrome-notifications").addEventListener("click", async () => {
+      const email = document.getElementById("newsletter-email").value.trim();
+      await ensureChromeNotifications(email);
+    });
+
+    document.getElementById("current-year").textContent = new Date().getFullYear();
 
     bootstrapFacebookSdk();
     loadPostData();

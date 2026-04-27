@@ -250,6 +250,10 @@
       border-radius: 12px;
       width: 100%;
       max-width: 480px;
+      max-height: calc(100vh - 2rem);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
     }
 
@@ -261,7 +265,27 @@
       align-items: center;
     }
 
-    .modal-body { padding: 1.5rem; }
+    .modal-body {
+      padding: 1.5rem;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    @media (max-height: 760px) {
+      .modal-overlay {
+        align-items: flex-start;
+        overflow-y: auto;
+      }
+
+      .modal-box {
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .modal-body {
+        padding: 1rem 1.25rem;
+      }
+    }
 
     .form-group { margin-bottom: 1rem; }
     .form-label {
@@ -489,6 +513,22 @@
           <input id="user-email" type="email" class="form-input" placeholder="email@exemplo.com" autocomplete="off">
         </div>
 
+        <div class="form-group">
+          <label class="form-label">Foto (URL)</label>
+          <input id="user-photo" type="url" class="form-input" placeholder="https://.../foto.jpg" autocomplete="off">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Foto (Upload opcional)</label>
+          <input id="user-photo-file" type="file" accept="image/*" class="form-input">
+          <p class="text-xs text-custom-secondary mt-1">Ao selecionar uma imagem, o sistema faz upload e preenche o campo de URL automaticamente.</p>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Bio do Autor</label>
+          <textarea id="user-bio" class="form-input" rows="3" placeholder="Breve descrição para aparecer no post"></textarea>
+        </div>
+
         <div class="form-group" id="password-group">
           <label class="form-label">Senha <span id="password-hint" class="text-custom-secondary font-normal text-xs">(mín. 6 caracteres)</span></label>
           <input id="user-password" type="password" class="form-input" placeholder="••••••" autocomplete="new-password">
@@ -628,10 +668,7 @@
         <tr class="border-t border-custom" style="transition: background 0.2s;">
           <td class="px-4 py-3">
             <div class="flex items-center gap-3">
-              <div class="w-9 h-9 rounded-full flex items-center justify-center text-white text-sm font-bold flex-shrink-0"
-                style="background: var(--gradient);">
-                ${(u.name || '?')[0].toUpperCase()}
-              </div>
+              ${u.photo ? `<img src="${escapeHtml(u.photo)}" alt="${escapeHtml(u.name)}" class="w-9 h-9 rounded-full object-cover flex-shrink-0" />` : `<div class="w-9 h-9 rounded-full flex items-center justify-center text-white text-sm font-bold flex-shrink-0" style="background: var(--gradient);">${(u.name || '?')[0].toUpperCase()}</div>`}
               <span class="font-semibold text-custom-primary">${escapeHtml(u.name)}</span>
             </div>
           </td>
@@ -687,6 +724,9 @@
       document.getElementById('save-label').textContent = 'Cadastrar';
       document.getElementById('user-name').value = '';
       document.getElementById('user-email').value = '';
+      document.getElementById('user-photo').value = '';
+      document.getElementById('user-photo-file').value = '';
+      document.getElementById('user-bio').value = '';
       document.getElementById('user-password').value = '';
       document.getElementById('user-password').required = true;
       document.getElementById('password-hint').textContent = '(mín. 6 caracteres)';
@@ -704,6 +744,9 @@
       document.getElementById('save-label').textContent = 'Salvar';
       document.getElementById('user-name').value = u.name;
       document.getElementById('user-email').value = u.email;
+      document.getElementById('user-photo').value = u.photo || '';
+      document.getElementById('user-photo-file').value = '';
+      document.getElementById('user-bio').value = u.bio || '';
       document.getElementById('user-role').value = u.role;
       document.getElementById('password-group').classList.add('hidden');
       clearModalError();
@@ -729,6 +772,8 @@
     async function saveUser() {
       const name = document.getElementById('user-name').value.trim();
       const email = document.getElementById('user-email').value.trim();
+      const photo = document.getElementById('user-photo').value.trim();
+      const bio = document.getElementById('user-bio').value.trim();
       const password = document.getElementById('user-password').value;
       const role = document.getElementById('user-role').value;
 
@@ -743,8 +788,8 @@
       }
 
       const body = editingId
-        ? { name, email, role }
-        : { name, email, password, role };
+        ? { name, email, photo, bio, role }
+        : { name, email, photo, bio, password, role };
 
       const res = await authFetch(
         editingId ? `/api/users/${editingId}` : '/api/users',
@@ -834,6 +879,21 @@
       window.location.href = '/login';
     }
 
+    async function uploadUserPhoto(file) {
+      const fd = new FormData();
+      fd.append('file', file);
+
+      const res = await authFetch('/api/upload', {
+        method: 'POST',
+        body: fd
+      });
+
+      if (!res.ok) throw new Error('Falha no upload da foto.');
+      const data = await res.json();
+      if (!data.location) throw new Error('Upload sem retorno da URL.');
+      document.getElementById('user-photo').value = data.location;
+    }
+
     // ---- Eventos ----
     document.getElementById('new-user-btn').addEventListener('click', openCreate);
     document.getElementById('new-user-btn-top').addEventListener('click', openCreate);
@@ -845,6 +905,16 @@
     document.getElementById('save-password-btn').addEventListener('click', savePassword);
     document.getElementById('search').addEventListener('input', applySearch);
     document.getElementById('logout-btn').addEventListener('click', logout);
+    document.getElementById('user-photo-file').addEventListener('change', async (e) => {
+      const file = e.target.files && e.target.files[0];
+      if (!file) return;
+
+      try {
+        await uploadUserPhoto(file);
+      } catch (err) {
+        showModalError(err.message || 'Erro ao enviar foto.');
+      }
+    });
 
     // Fechar modal ao clicar fora
     document.getElementById('user-modal').addEventListener('click', (e) => {

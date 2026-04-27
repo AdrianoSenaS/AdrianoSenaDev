@@ -11,6 +11,7 @@
   
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
     * {
@@ -40,10 +41,7 @@
       background: linear-gradient(135deg, #2563eb, #10B981, #8b5cf6);
       background-size: 400% 400%;
       animation: gradient 15s ease infinite;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
+      padding-top: 100px;
       overflow-x: hidden;
     }
 
@@ -53,12 +51,69 @@
       100% { background-position: 0% 50%; }
     }
 
-    .container {
+    .page-container {
       width: 100%;
       max-width: 1200px;
       display: flex;
       justify-content: center;
       align-items: center;
+    }
+
+    .page-content {
+      min-height: calc(100vh - 280px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .glass-effect {
+      background: rgba(255, 255, 255, 0.84);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+    }
+
+    .nav-link {
+      position: relative;
+      color: #1e293b;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(135deg, #2563eb 0%, #10B981 100%);
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after { width: 100%; }
+
+    .site-btn-primary {
+      background: linear-gradient(135deg, #2563eb 0%, #10B981 100%);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-weight: 600;
+      display: inline-block;
+    }
+
+    .site-footer {
+      background: #0f172a;
+      color: #f8fafc;
+    }
+
+    .site-footer a {
+      color: #9ca3af;
+      transition: color 0.2s ease;
+    }
+
+    .site-footer a:hover {
+      color: #ffffff;
     }
 
     .error-wrapper {
@@ -500,7 +555,46 @@
 </head>
 
 <body>
-  <div class="container">
+  <header class="fixed w-full z-50 glass-effect top-0">
+    <div class="container mx-auto px-6 py-4">
+      <div class="flex justify-between items-center">
+        <a href="/" class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-emerald-500 flex items-center justify-center">
+            <img src="https://adrianosena.dev.br/logo.png" alt="Adriano Sena Dev" class="w-10 h-10" />
+          </div>
+          <div>
+            <h1 class="text-lg font-bold text-slate-800">Adriano Sena Dev</h1>
+            <p class="text-xs text-slate-500">Empresa de Desenvolvimento e Infraestrutura</p>
+          </div>
+        </a>
+
+        <nav class="hidden md:flex items-center space-x-8">
+          <a href="/" class="nav-link">Início</a>
+          <a href="/#skills" class="nav-link">Tecnologias</a>
+          <a href="/#projects" class="nav-link">Cases</a>
+          <a href="/blog" class="nav-link">Blog</a>
+          <a href="/privacidade" class="nav-link">Privacidade</a>
+        </nav>
+
+        <div class="flex items-center space-x-4">
+          <a href="/#contact" class="site-btn-primary hidden md:block">Entre em Contato</a>
+          <button id="menu-toggle" class="md:hidden text-slate-700"><i class="fas fa-bars text-xl"></i></button>
+        </div>
+      </div>
+      <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+        <div class="flex flex-col space-y-4">
+          <a href="/" class="nav-link">Início</a>
+          <a href="/#skills" class="nav-link">Tecnologias</a>
+          <a href="/#projects" class="nav-link">Cases</a>
+          <a href="/blog" class="nav-link">Blog</a>
+          <a href="/privacidade" class="nav-link">Privacidade</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-content">
+  <div class="page-container">
     <div class="error-wrapper">
       <!-- Lado esquerdo com gráfico do erro -->
       <div class="error-left">
@@ -583,8 +677,68 @@
       </div>
     </div>
   </div>
+  </main>
+
+  <footer class="site-footer py-12 px-6">
+    <div class="container mx-auto">
+      <div class="grid md:grid-cols-4 gap-8">
+        <div>
+          <div class="flex items-center space-x-3 mb-6">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-emerald-500 flex items-center justify-center">
+              <img src="https://adrianosena.dev.br/logo.png" alt="Adriano Sena Dev" class="w-10 h-10">
+            </div>
+            <div>
+              <div class="font-bold text-lg">Adriano Sena Dev</div>
+              <div class="text-gray-400 text-sm">Empresa de Desenvolvimento e Infraestrutura</div>
+            </div>
+          </div>
+          <p class="text-gray-400">Soluções empresariais em software, infraestrutura e suporte técnico para crescimento sustentável.</p>
+        </div>
+
+        <div>
+          <h4 class="text-lg font-bold mb-6">Especialidades</h4>
+          <ul class="space-y-3">
+            <li><a href="/#projects">Projetos Open Source</a></li>
+            <li><a href="/#portfolio">Websites e Aplicações</a></li>
+            <li><a href="/#skills">Tecnologias e Stack</a></li>
+            <li><a href="/blog">Artigos e Conteúdo</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-lg font-bold mb-6">Navegação</h4>
+          <ul class="space-y-3">
+            <li><a href="/">Visão geral</a></li>
+            <li><a href="/#services">Frentes de atuação</a></li>
+            <li><a href="/#projects">Projetos e cenários</a></li>
+            <li><a href="/#skills">Modelo de entrega</a></li>
+            <li><a href="/blog">Conteúdo</a></li>
+            <li><a href="/#contact">Contato</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-lg font-bold mb-6">Conecte-se</h4>
+          <div class="flex space-x-4 mb-6 text-white">
+            <a href="https://www.instagram.com/adrianosena.dev.br/" target="_blank" class="w-10 h-10 rounded-lg bg-pink-600 flex items-center justify-center hover:bg-pink-700 transition"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/5564933004882" target="_blank" class="w-10 h-10 rounded-lg bg-green-600 flex items-center justify-center hover:bg-green-700 transition"><i class="fab fa-whatsapp"></i></a>
+          </div>
+          <p class="text-gray-400 text-sm">© <span id="current-year">2024</span> Adriano Sena Dev • CNPJ 63.005.629/0001-44. Todos os direitos reservados.</p>
+          <a href="/privacidade" class="text-gray-400 hover:text-white text-sm">Política de Privacidade</a>
+        </div>
+      </div>
+    </div>
+  </footer>
 
   <script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+
     // Adicionar partículas de erro flutuantes dinâmicas
     document.addEventListener('DOMContentLoaded', function() {
       const errorLeft = document.querySelector('.error-left');
