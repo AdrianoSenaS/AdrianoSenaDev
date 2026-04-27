@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login | Sistema</title>
+  <title>Login Administrativo | Adriano Sena Dev</title>
   
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -481,12 +481,12 @@
           <div class="logo">
             <i class="fas fa-lock"></i>
           </div>
-          <div class="logo-text">Sistema</div>
+          <div class="logo-text">Adriano Sena Dev</div>
         </div>
         
         <div class="welcome-text">
-          <h1>Bem-vindo de volta</h1>
-          <p>Faça login para acessar sua conta e gerenciar o sistema com segurança e eficiência.</p>
+          <h1>Bem-vindo ao painel</h1>
+          <p>Faça login para acessar o ambiente administrativo e gerenciar os serviços com segurança e eficiência.</p>
         </div>
         
         <div class="features">
@@ -520,7 +520,7 @@
       <div class="login-right">
         <div class="login-header">
           <h2>Fazer Login</h2>
-          <p>Entre com suas credenciais para continuar</p>
+          <p>Entre com suas credenciais para continuar no ambiente corporativo</p>
         </div>
         
         <form id="loginForm">
@@ -558,7 +558,7 @@
         </form>
         
         <div class="footer">
-          Transformando ideias em soluções digitais de alta performance desde 2019 • Todos os direitos reservados
+          Adriano Sena Dev • CNPJ 63.005.629/0001-44 • Todos os direitos reservados
         </div>
       </div>
     </div>
@@ -606,7 +606,7 @@
       const originalText = btnLogin.innerHTML;
       
       // Mostrar estado de carregamento
-      btnLogin.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Entrando...';
+      btnLogin.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Validando acesso...';
       btnLogin.disabled = true;
       
       // Enviar requisição de login
@@ -658,7 +658,7 @@
           })
           .catch(error => {
             console.error('Erro ao verificar token:', error);
-            showError('Erro na autenticação. Tente novamente.');
+            showError('Não foi possível validar sua sessão. Tente novamente.');
             btnLogin.innerHTML = originalText;
             btnLogin.disabled = false;
           });
@@ -668,7 +668,7 @@
       })
       .catch(error => {
         console.error('Erro ao fazer login:', error);
-        showError('Usuário ou senha incorretos. Tente novamente.');
+        showError('Credenciais inválidas. Verifique seus dados e tente novamente.');
         btnLogin.innerHTML = originalText;
         btnLogin.disabled = false;
       });

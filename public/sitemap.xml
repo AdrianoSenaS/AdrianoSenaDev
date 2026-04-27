@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+    
+    <!-- URL Principal - Prioridade máxima -->
+     <url>
+        <loc>https://adrianosena.dev.br/#home</loc>
+        <lastmod>2024-09-01</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+    <url>
+        <loc>https://adrianosena.dev.br/#skills</loc>
+        <lastmod>2024-09-01</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+    <url>
+        <loc>https://adrianosena.dev.br/#projects</loc>
+        <lastmod>2024-09-01</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+    <url>
+        <loc>https://adrianosena.dev.br/#contact</loc>
+        <lastmod>2024-09-01</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+    <url>
+        <loc>https://adrianosena.dev.br/blog</loc>
+        <lastmod>2024-09-01</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+    
+    <!-- Exemplos de projetos específicos 
+    <url>
+        <loc>https://adrianosena.dev.br/projeto/ecommerce-system</loc>
+        <lastmod>2024-11-20</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    
+    <url>
+        <loc>https://adrianosena.dev.br/projeto/api-microservices</loc>
+        <lastmod>2024-10-15</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>-->
+    
+    <!-- Recursos/Downloads (se tiver) 
+    <url>
+        <loc>https://adrianosena.dev.br/curriculo</loc>
+        <lastmod>2024-12-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>-->
+    
+    <!-- Políticas (se tiver) -->
+    <url>
+        <loc>https://adrianosena.dev.br/privacidade</loc>
+        <lastmod>2024-09-01</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+    
+
+   
+
+</urlset>

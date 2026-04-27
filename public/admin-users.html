@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Usuários | Adriano Sena Dev</title>
+  <link rel="shortcut icon" href="logo.jpg" type="image/x-icon">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    :root {
+      --primary: #2563eb;
+      --secondary: #10B981;
+      --dark: #1F2937;
+      --light: #F8FAFC;
+      --black: #111827;
+      --text-primary: #1F2937;
+      --text-secondary: #6B7280;
+      --text-light: #F8FAFC;
+      --bg-light: #F8FAFC;
+      --bg-card: #FFFFFF;
+      --border-color: rgba(37, 99, 235, 0.1);
+      --gradient: linear-gradient(135deg, #2563eb 0%, #10B981 100%);
+      --neon-glow: 0 0 10px rgba(37, 99, 235, 0.4), 0 0 20px rgba(16, 185, 129, 0.3);
+    }
+
+    [data-theme="dark"] {
+      --primary: #3b82f6;
+      --secondary: #10B981;
+      --dark: #0f172a;
+      --light: #0057e4;
+      --black: #f8fafc;
+      --text-primary: #F8FAFC;
+      --text-secondary: #D1D5DB;
+      --text-light: #F8FAFC;
+      --bg-light: #1e293b;
+      --bg-card: #334155;
+      --border-color: rgba(59, 130, 246, 0.2);
+      --gradient: linear-gradient(135deg, #3b82f6 0%, #10B981 100%);
+      --neon-glow: 0 0 10px rgba(59, 130, 246, 0.5), 0 0 20px rgba(16, 185, 129, 0.4);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      visibility: hidden;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .btn-primary {
+      background: var(--gradient);
+      border: none;
+      color: white;
+      box-shadow: var(--neon-glow);
+      transition: all 0.3s ease;
+      font-weight: 600;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 15px rgba(37, 99, 235, 0.6), 0 0 30px rgba(16, 185, 129, 0.4);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      transition: all 0.3s ease;
+      font-weight: 600;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(37, 99, 235, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .card {
+      background: var(--bg-card);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      color: var(--text-primary);
+    }
+
+    .card:hover {
+      border-color: var(--primary);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-link {
+      position: relative;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after { width: 100%; }
+
+    .logo-as {
+      width: 40px;
+      height: 40px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-as::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border: 3px solid var(--primary);
+      border-radius: 8px;
+      transform: rotate(45deg);
+    }
+
+    .logo-as::after {
+      content: '';
+      position: absolute;
+      width: 60%;
+      height: 60%;
+      border: 2px solid var(--secondary);
+      border-radius: 4px;
+      transform: rotate(45deg);
+    }
+
+    .logo-text {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .logo-subtext {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      color: var(--text-secondary);
+    }
+
+    .theme-toggle {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--primary);
+      transform: rotate(15deg);
+    }
+
+    .theme-icon { color: var(--text-primary); transition: all 0.3s ease; }
+
+    .text-custom-primary { color: var(--text-primary); }
+    .text-custom-secondary { color: var(--text-secondary); }
+    .bg-custom-light { background-color: var(--bg-light); }
+    .bg-custom-card { background-color: var(--bg-card); }
+    .border-custom { border-color: var(--border-color); }
+
+    .admin-sidebar { position: sticky; top: 100px; }
+
+    .admin-nav { list-style: none; padding: 0; }
+    .admin-nav li { margin-bottom: 10px; }
+    .admin-nav a {
+      display: block;
+      padding: 12px 16px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+    .admin-nav a:hover, .admin-nav a.active {
+      background: rgba(96, 165, 250, 0.1);
+      color: var(--primary);
+    }
+    .admin-nav a i { margin-right: 10px; width: 20px; text-align: center; }
+
+    .filter-input {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 0.5rem 1rem;
+      color: var(--text-primary);
+      font-size: 0.9rem;
+    }
+
+    .filter-input:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    .role-badge {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .role-admin { background: rgba(37, 99, 235, 0.12); color: #1d4ed8; }
+    .role-editor { background: rgba(16, 185, 129, 0.12); color: #065f46; }
+    .role-viewer { background: rgba(107, 114, 128, 0.12); color: #374151; }
+
+    [data-theme="dark"] .role-editor { color: #34d399; }
+    [data-theme="dark"] .role-viewer { color: #9ca3af; }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 1rem;
+    }
+
+    .modal-box {
+      background: var(--bg-card);
+      border-radius: 12px;
+      width: 100%;
+      max-width: 480px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    .modal-header {
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-body { padding: 1.5rem; }
+
+    .form-group { margin-bottom: 1rem; }
+    .form-label {
+      display: block;
+      font-weight: 600;
+      font-size: 0.875rem;
+      margin-bottom: 0.4rem;
+      color: var(--text-primary);
+    }
+
+    .form-input {
+      width: 100%;
+      background: var(--bg-light);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 0.6rem 0.9rem;
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      transition: border-color 0.2s;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    .form-select {
+      width: 100%;
+      background: var(--bg-light);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 0.6rem 0.9rem;
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+    }
+
+    .error-msg {
+      background: rgba(239, 68, 68, 0.1);
+      color: #dc2626;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      border-radius: 8px;
+      padding: 0.6rem 1rem;
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+
+<body class="bg-custom-light text-custom-primary">
+  <!-- Header -->
+  <header class="w-full bg-custom-light/80 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-custom transition-colors duration-300">
+    <div class="max-w-7xl mx-auto flex justify-between items-center py-4 px-6">
+      <div class="flex items-center space-x-3">
+        <div class="logo-as"></div>
+        <div>
+          <div class="logo-text text-xl">Adriano Sena</div>
+          <div class="logo-subtext text-sm">dev.br</div>
+        </div>
+      </div>
+
+      <div class="flex items-center space-x-4">
+        <nav class="space-x-8 hidden md:flex">
+          <a href="index.html" class="nav-link hover:text-primary transition">Início</a>
+          <a href="blog.html" class="nav-link hover:text-primary transition">Blog</a>
+          <a href="/admin/dashboard" class="nav-link hover:text-primary transition">Dashboard</a>
+        </nav>
+
+        <button id="theme-toggle" class="theme-toggle">
+          <svg id="theme-icon-sun" class="theme-icon w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+          <svg id="theme-icon-moon" class="theme-icon w-5 h-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          </svg>
+        </button>
+
+        <button id="menu-btn" class="md:hidden focus:outline-none">
+          <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <nav id="mobile-menu" class="hidden md:hidden bg-custom-light/95 backdrop-blur-sm border-t border-custom transition-colors duration-300">
+      <a href="/" class="block px-6 py-3 border-b border-custom hover:bg-gray-100 text-custom-primary">Início</a>
+      <a href="blog" class="block px-6 py-3 border-b border-custom hover:bg-gray-100 text-custom-primary">Blog</a>
+      <a href="/admin/dashboard" class="block px-6 py-3 border-b border-custom hover:bg-gray-100 text-custom-primary">Dashboard</a>
+    </nav>
+  </header>
+
+  <!-- Page Content -->
+  <section class="py-10 px-6 bg-custom-light transition-colors duration-300">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+
+        <!-- Admin Sidebar -->
+        <div class="lg:col-span-1">
+          <div class="admin-sidebar">
+            <div class="card p-6 mb-6">
+              <h3 class="text-xl font-bold mb-4 text-custom-primary">Painel Admin</h3>
+              <ul class="admin-nav">
+                <li><a href="/admin/dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="/admin/posts"><i class="fas fa-file-alt"></i> Posts</a></li>
+                <li><a href="/admin/cadastrar"><i class="fas fa-plus-circle"></i> Novo Post</a></li>
+                <li><a href="/admin/contatos"><i class="fas fa-envelope"></i> Contatos</a></li>
+                <li><a href="/admin/posts#categorias"><i class="fas fa-folder"></i> Categorias</a></li>
+                <li><a href="/admin/posts#tags"><i class="fas fa-tags"></i> Tags</a></li>
+                <li><a href="/admin/usuarios" class="active"><i class="fas fa-users"></i> Usuários</a></li>
+                <li><a href="/admin/dispositivos"><i class="fas fa-mobile-alt"></i> Dispositivos</a></li>
+                <li><a href="/admin/comentarios"><i class="fas fa-comments"></i> Comentários</a></li>
+                <li><a href="/admin/homepage"><i class="fas fa-home"></i> Página Inicial</a></li>
+              </ul>
+            </div>
+
+            <div class="card p-6">
+              <h4 class="font-bold mb-4 text-custom-primary">Ações rápidas</h4>
+              <div class="space-y-3">
+                <button id="new-user-btn" class="btn-primary w-full py-2 rounded-lg font-semibold text-sm">
+                  <i class="fas fa-user-plus mr-2"></i> Novo Usuário
+                </button>
+                <button id="logout-btn" class="btn-secondary w-full py-2 rounded-lg font-semibold text-sm">
+                  <i class="fas fa-sign-out-alt mr-2"></i> Sair
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="lg:col-span-3 space-y-6">
+          <!-- Page Title -->
+          <div class="flex justify-between items-center">
+            <div>
+              <h2 class="text-2xl font-bold text-custom-primary">Gerenciar Usuários</h2>
+              <p class="text-custom-secondary">Cadastre, edite e remova usuários do sistema.</p>
+            </div>
+            <button id="new-user-btn-top" class="btn-primary px-4 py-2 rounded-lg font-semibold text-sm">
+              <i class="fas fa-user-plus mr-2"></i> Novo Usuário
+            </button>
+          </div>
+
+          <!-- Search -->
+          <div class="card p-4">
+            <input id="search" type="text" placeholder="Buscar por nome, e-mail ou papel..."
+              class="filter-input w-full">
+          </div>
+
+          <!-- Users Table -->
+          <div class="card overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="w-full text-sm">
+                <thead>
+                  <tr class="border-b border-custom" style="background: rgba(37, 99, 235, 0.05);">
+                    <th class="px-4 py-3 text-left text-custom-secondary font-semibold">Nome</th>
+                    <th class="px-4 py-3 text-left text-custom-secondary font-semibold">E-mail</th>
+                    <th class="px-4 py-3 text-left text-custom-secondary font-semibold">Papel</th>
+                    <th class="px-4 py-3 text-left text-custom-secondary font-semibold">Cadastro</th>
+                    <th class="px-4 py-3 text-right text-custom-secondary font-semibold">Ações</th>
+                  </tr>
+                </thead>
+                <tbody id="users-table">
+                  <tr>
+                    <td colspan="5" class="px-4 py-8 text-center text-custom-secondary">
+                      <i class="fas fa-spinner fa-spin mr-2"></i> Carregando...
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="relative bg-custom-card border-t border-custom py-12 px-6 transition-colors duration-300">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="flex items-center space-x-3 mb-6 md:mb-0">
+          <div class="logo-as"></div>
+          <div>
+            <div class="logo-text text-xl">Adriano Sena</div>
+            <div class="logo-subtext text-sm">dev.br</div>
+          </div>
+        </div>
+        <div class="flex space-x-6">
+          <a href="https://wa.me/+5564933004882" target="_blank" class="text-custom-secondary hover:text-primary transition"><i class="fab fa-whatsapp text-xl"></i></a>
+          <a href="https://github.com/AdrianoSenaS" target="_blank" class="text-custom-secondary hover:text-primary transition"><i class="fab fa-github text-xl"></i></a>
+          <a href="https://www.instagram.com/adrianosena.dev.br/" target="_blank" class="text-custom-secondary hover:text-primary transition"><i class="fab fa-instagram text-xl"></i></a>
+          <a href="https://www.linkedin.com/in/adriano-sena-silva-a8605622a/" target="_blank" class="text-custom-secondary hover:text-primary transition"><i class="fab fa-linkedin-in text-xl"></i></a>
+        </div>
+      </div>
+      <div class="mt-12 pt-8 border-t border-custom flex flex-col md:flex-row justify-between items-center">
+        <p class="text-custom-secondary text-sm mb-4 md:mb-0">&copy; <span id="year"></span> Adriano Sena. Todos os direitos reservados.</p>
+        <p class="text-custom-secondary text-sm">Transformando ideias em soluções digitais inovadoras.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal: Criar / Editar Usuário -->
+  <div id="user-modal" class="modal-overlay hidden">
+    <div class="modal-box animate__animated animate__fadeInDown animate__faster">
+      <div class="modal-header">
+        <h3 id="modal-title" class="text-lg font-bold text-custom-primary">Novo Usuário</h3>
+        <button id="close-modal" class="text-custom-secondary hover:text-primary text-xl">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="modal-error" class="error-msg hidden"></div>
+
+        <div class="form-group">
+          <label class="form-label">Nome</label>
+          <input id="user-name" type="text" class="form-input" placeholder="Nome completo" autocomplete="off">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">E-mail</label>
+          <input id="user-email" type="email" class="form-input" placeholder="email@exemplo.com" autocomplete="off">
+        </div>
+
+        <div class="form-group" id="password-group">
+          <label class="form-label">Senha <span id="password-hint" class="text-custom-secondary font-normal text-xs">(mín. 6 caracteres)</span></label>
+          <input id="user-password" type="password" class="form-input" placeholder="••••••" autocomplete="new-password">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Papel</label>
+          <select id="user-role" class="form-select">
+            <option value="editor">Editor</option>
+            <option value="admin">Admin</option>
+            <option value="viewer">Visualizador</option>
+          </select>
+        </div>
+
+        <div class="flex justify-end gap-3 mt-6 pt-4 border-t border-custom">
+          <button id="cancel-modal" class="btn-secondary px-4 py-2 rounded-lg text-sm">Cancelar</button>
+          <button id="save-user-btn" class="btn-primary px-6 py-2 rounded-lg text-sm">
+            <i class="fas fa-save mr-2"></i><span id="save-label">Cadastrar</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Alterar Senha -->
+  <div id="password-modal" class="modal-overlay hidden">
+    <div class="modal-box animate__animated animate__fadeInDown animate__faster">
+      <div class="modal-header">
+        <h3 class="text-lg font-bold text-custom-primary">Alterar Senha</h3>
+        <button id="close-password-modal" class="text-custom-secondary hover:text-primary text-xl">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="pwd-modal-error" class="error-msg hidden"></div>
+        <p class="text-custom-secondary text-sm mb-4">Definindo nova senha para: <strong id="pwd-user-name" class="text-custom-primary"></strong></p>
+
+        <div class="form-group">
+          <label class="form-label">Nova Senha</label>
+          <input id="new-password" type="password" class="form-input" placeholder="Mínimo 6 caracteres" autocomplete="new-password">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Confirmar Senha</label>
+          <input id="confirm-password" type="password" class="form-input" placeholder="Repita a senha" autocomplete="new-password">
+        </div>
+
+        <div class="flex justify-end gap-3 mt-6 pt-4 border-t border-custom">
+          <button id="cancel-password-modal" class="btn-secondary px-4 py-2 rounded-lg text-sm">Cancelar</button>
+          <button id="save-password-btn" class="btn-primary px-6 py-2 rounded-lg text-sm">
+            <i class="fas fa-lock mr-2"></i> Salvar Senha
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const token = localStorage.getItem('adminToken');
+    if (!token) window.location.href = '/login';
+
+    let users = [];
+    let editingId = null;
+    let pwdUserId = null;
+
+    // Theme toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIconSun = document.getElementById('theme-icon-sun');
+    const themeIconMoon = document.getElementById('theme-icon-moon');
+
+    const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    if (savedTheme === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      themeIconSun.classList.add('hidden');
+      themeIconMoon.classList.remove('hidden');
+    }
+
+    themeToggle.addEventListener('click', () => {
+      if (document.documentElement.getAttribute('data-theme') === 'dark') {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'light');
+        themeIconSun.classList.remove('hidden');
+        themeIconMoon.classList.add('hidden');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+        themeIconSun.classList.add('hidden');
+        themeIconMoon.classList.remove('hidden');
+      }
+    });
+
+    document.getElementById('menu-btn').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    async function authFetch(url, options = {}) {
+      const headers = { ...(options.headers || {}), Authorization: `Bearer ${token}` };
+      const response = await fetch(url, { ...options, headers });
+      if (response.status === 401) {
+        localStorage.removeItem('adminToken');
+        window.location.href = '/login';
+        throw new Error('Sessão expirada');
+      }
+      return response;
+    }
+
+    async function validateToken() {
+      const response = await authFetch('/token', { method: 'POST', headers: {} });
+      if (!response.ok) {
+        localStorage.removeItem('adminToken');
+        window.location.href = '/login';
+        return;
+      }
+      document.body.style.visibility = 'visible';
+    }
+
+    function formatDate(dateStr) {
+      return new Date(dateStr).toLocaleDateString('pt-BR');
+    }
+
+    function roleBadge(role) {
+      const labels = { admin: 'Admin', editor: 'Editor', viewer: 'Visualizador' };
+      const cls = { admin: 'role-admin', editor: 'role-editor', viewer: 'role-viewer' };
+      return `<span class="role-badge ${cls[role] || 'role-viewer'}">${labels[role] || role}</span>`;
+    }
+
+    function renderTable(list = users) {
+      const tbody = document.getElementById('users-table');
+      if (!list.length) {
+        tbody.innerHTML = '<tr><td colspan="5" class="px-4 py-8 text-center text-custom-secondary">Nenhum usuário encontrado.</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = list.map(u => `
+        <tr class="border-t border-custom" style="transition: background 0.2s;">
+          <td class="px-4 py-3">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full flex items-center justify-center text-white text-sm font-bold flex-shrink-0"
+                style="background: var(--gradient);">
+                ${(u.name || '?')[0].toUpperCase()}
+              </div>
+              <span class="font-semibold text-custom-primary">${escapeHtml(u.name)}</span>
+            </div>
+          </td>
+          <td class="px-4 py-3 text-custom-secondary">${escapeHtml(u.email)}</td>
+          <td class="px-4 py-3">${roleBadge(u.role)}</td>
+          <td class="px-4 py-3 text-custom-secondary">${formatDate(u.created_at)}</td>
+          <td class="px-4 py-3">
+            <div class="flex justify-end gap-2">
+              <button onclick="openEdit(${u.id})" class="px-2 py-1 rounded text-xs btn-secondary">
+                <i class="fas fa-edit mr-1"></i>Editar
+              </button>
+              <button onclick="openChangePassword(${u.id}, '${escapeHtml(u.name)}')" class="px-2 py-1 rounded text-xs" style="border: 1px solid var(--border-color); color: var(--text-secondary);">
+                <i class="fas fa-lock mr-1"></i>Senha
+              </button>
+              <button onclick="deleteUser(${u.id}, '${escapeHtml(u.name)}')" class="px-2 py-1 rounded text-xs text-white" style="background: #ef4444;">
+                <i class="fas fa-trash mr-1"></i>Excluir
+              </button>
+            </div>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function applySearch() {
+      const term = document.getElementById('search').value.toLowerCase().trim();
+      if (!term) return renderTable(users);
+      renderTable(users.filter(u =>
+        u.name.toLowerCase().includes(term) ||
+        u.email.toLowerCase().includes(term) ||
+        u.role.toLowerCase().includes(term)
+      ));
+    }
+
+    async function loadUsers() {
+      const res = await authFetch('/api/users');
+      users = await res.json();
+      renderTable();
+    }
+
+    // ---- Modal Criar/Editar ----
+    function openCreate() {
+      editingId = null;
+      document.getElementById('modal-title').textContent = 'Novo Usuário';
+      document.getElementById('save-label').textContent = 'Cadastrar';
+      document.getElementById('user-name').value = '';
+      document.getElementById('user-email').value = '';
+      document.getElementById('user-password').value = '';
+      document.getElementById('user-password').required = true;
+      document.getElementById('password-hint').textContent = '(mín. 6 caracteres)';
+      document.getElementById('user-role').value = 'editor';
+      document.getElementById('password-group').classList.remove('hidden');
+      clearModalError();
+      document.getElementById('user-modal').classList.remove('hidden');
+    }
+
+    function openEdit(id) {
+      const u = users.find(x => x.id === id);
+      if (!u) return;
+      editingId = id;
+      document.getElementById('modal-title').textContent = 'Editar Usuário';
+      document.getElementById('save-label').textContent = 'Salvar';
+      document.getElementById('user-name').value = u.name;
+      document.getElementById('user-email').value = u.email;
+      document.getElementById('user-role').value = u.role;
+      document.getElementById('password-group').classList.add('hidden');
+      clearModalError();
+      document.getElementById('user-modal').classList.remove('hidden');
+    }
+
+    function closeUserModal() {
+      document.getElementById('user-modal').classList.add('hidden');
+    }
+
+    function clearModalError() {
+      const el = document.getElementById('modal-error');
+      el.textContent = '';
+      el.classList.add('hidden');
+    }
+
+    function showModalError(msg) {
+      const el = document.getElementById('modal-error');
+      el.textContent = msg;
+      el.classList.remove('hidden');
+    }
+
+    async function saveUser() {
+      const name = document.getElementById('user-name').value.trim();
+      const email = document.getElementById('user-email').value.trim();
+      const password = document.getElementById('user-password').value;
+      const role = document.getElementById('user-role').value;
+
+      if (!name || !email) {
+        showModalError('Nome e e-mail são obrigatórios.');
+        return;
+      }
+
+      if (!editingId && password.length < 6) {
+        showModalError('A senha deve ter no mínimo 6 caracteres.');
+        return;
+      }
+
+      const body = editingId
+        ? { name, email, role }
+        : { name, email, password, role };
+
+      const res = await authFetch(
+        editingId ? `/api/users/${editingId}` : '/api/users',
+        {
+          method: editingId ? 'PUT' : 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        }
+      );
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        showModalError(data.error || 'Erro ao salvar usuário.');
+        return;
+      }
+
+      closeUserModal();
+      await loadUsers();
+    }
+
+    // ---- Modal Senha ----
+    function openChangePassword(id, name) {
+      pwdUserId = id;
+      document.getElementById('pwd-user-name').textContent = name;
+      document.getElementById('new-password').value = '';
+      document.getElementById('confirm-password').value = '';
+      const el = document.getElementById('pwd-modal-error');
+      el.textContent = '';
+      el.classList.add('hidden');
+      document.getElementById('password-modal').classList.remove('hidden');
+    }
+
+    function closePasswordModal() {
+      document.getElementById('password-modal').classList.add('hidden');
+    }
+
+    async function savePassword() {
+      const password = document.getElementById('new-password').value;
+      const confirm = document.getElementById('confirm-password').value;
+      const errEl = document.getElementById('pwd-modal-error');
+
+      errEl.classList.add('hidden');
+
+      if (password.length < 6) {
+        errEl.textContent = 'A senha deve ter no mínimo 6 caracteres.';
+        errEl.classList.remove('hidden');
+        return;
+      }
+
+      if (password !== confirm) {
+        errEl.textContent = 'As senhas não coincidem.';
+        errEl.classList.remove('hidden');
+        return;
+      }
+
+      const res = await authFetch(`/api/users/${pwdUserId}/password`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password })
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        errEl.textContent = data.error || 'Erro ao alterar senha.';
+        errEl.classList.remove('hidden');
+        return;
+      }
+
+      closePasswordModal();
+    }
+
+    // ---- Delete ----
+    async function deleteUser(id, name) {
+      if (!confirm(`Confirma a exclusão do usuário "${name}"? Esta ação não pode ser desfeita.`)) return;
+
+      const res = await authFetch(`/api/users/${id}`, { method: 'DELETE' });
+      if (!res.ok) {
+        alert('Não foi possível excluir o usuário.');
+        return;
+      }
+      await loadUsers();
+    }
+
+    async function logout() {
+      await authFetch('/logout', { method: 'POST' });
+      localStorage.removeItem('adminToken');
+      window.location.href = '/login';
+    }
+
+    // ---- Eventos ----
+    document.getElementById('new-user-btn').addEventListener('click', openCreate);
+    document.getElementById('new-user-btn-top').addEventListener('click', openCreate);
+    document.getElementById('close-modal').addEventListener('click', closeUserModal);
+    document.getElementById('cancel-modal').addEventListener('click', closeUserModal);
+    document.getElementById('save-user-btn').addEventListener('click', saveUser);
+    document.getElementById('close-password-modal').addEventListener('click', closePasswordModal);
+    document.getElementById('cancel-password-modal').addEventListener('click', closePasswordModal);
+    document.getElementById('save-password-btn').addEventListener('click', savePassword);
+    document.getElementById('search').addEventListener('input', applySearch);
+    document.getElementById('logout-btn').addEventListener('click', logout);
+
+    // Fechar modal ao clicar fora
+    document.getElementById('user-modal').addEventListener('click', (e) => {
+      if (e.target === document.getElementById('user-modal')) closeUserModal();
+    });
+
+    document.getElementById('password-modal').addEventListener('click', (e) => {
+      if (e.target === document.getElementById('password-modal')) closePasswordModal();
+    });
+
+    async function init() {
+      await validateToken();
+      await loadUsers();
+    }
+
+    init();
+  </script>
+</body>
+</html>

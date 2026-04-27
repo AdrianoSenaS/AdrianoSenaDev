@@ -1,168 +1,779 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard de Visitas</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard CMS | Adriano Sena Dev</title>
+  <link rel="shortcut icon" href="logo.jpg" type="image/x-icon">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    :root {
+      --primary: #2563eb;
+      --secondary: #10B981;
+      --dark: #1F2937;
+      --light: #F8FAFC;
+      --black: #111827;
+      --text-primary: #1F2937;
+      --text-secondary: #6B7280;
+      --text-light: #F8FAFC;
+      --bg-light: #F8FAFC;
+      --bg-card: #FFFFFF;
+      --border-color: rgba(37, 99, 235, 0.1);
+      --gradient: linear-gradient(135deg, #2563eb 0%, #10B981 100%);
+      --neon-glow: 0 0 10px rgba(37, 99, 235, 0.4), 0 0 20px rgba(16, 185, 129, 0.3);
+    }
 
-    <!-- Tailwind + Animate.css + Font -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    [data-theme="dark"] {
+      --primary: #3b82f6;
+      --secondary: #10B981;
+      --dark: #0f172a;
+      --light: #0057e4;
+      --black: #f8fafc;
+      --text-primary: #F8FAFC;
+      --text-secondary: #D1D5DB;
+      --text-light: #F8FAFC;
+      --bg-light: #1e293b;
+      --bg-card: #334155;
+      --border-color: rgba(59, 130, 246, 0.2);
+      --gradient: linear-gradient(135deg, #3b82f6 0%, #10B981 100%);
+      --neon-glow: 0 0 10px rgba(59, 130, 246, 0.5), 0 0 20px rgba(16, 185, 129, 0.4);
+    }
 
-    <style>
-        :root {
-            --primary: #2563eb;
-            --accent: #60a5fa;
-            --dark: #0f172a;
-            --light: #e2e8f0;
-            --gradient: linear-gradient(135deg,#2563eb 0%,#0ea5e9 100%);
-            --glow: 0 0 20px rgba(37,99,235,0.5);
-        }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      visibility: hidden;
+    }
 
-        body {
-            background-color: var(--dark);
-            color: var(--light);
-            font-family: 'Inter', sans-serif;
-        }
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
 
-        .card {
-            background: rgba(15, 23, 42, 0.7);
-            border: 1px solid rgba(96, 165, 250, 0.2);
-            border-radius: 14px;
-            backdrop-filter: blur(12px);
-            transition: 0.3s;
-        }
-        .card:hover {
-            border-color: var(--accent);
-            transform: translateY(-4px);
-            box-shadow: var(--glow);
-        }
+    .btn-primary {
+      background: var(--gradient);
+      border: none;
+      color: white;
+      box-shadow: var(--neon-glow);
+      transition: all 0.3s ease;
+      font-weight: 600;
+    }
 
-        .title-gradient {
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 15px rgba(37, 99, 235, 0.6), 0 0 30px rgba(16, 185, 129, 0.4);
+    }
 
-        table th {
-            background: rgba(37,99,235,0.15);
-            color: var(--accent);
-            font-weight: 600;
-        }
-        table tr:hover {
-            background: rgba(96,165,250,0.08);
-        }
-    </style>
+    .btn-secondary {
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      transition: all 0.3s ease;
+      font-weight: 600;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(37, 99, 235, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .card {
+      background: var(--bg-card);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      color: var(--text-primary);
+    }
+
+    .card:hover {
+      border-color: var(--primary);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-link {
+      position: relative;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .logo-as {
+      width: 40px;
+      height: 40px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-as::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border: 3px solid var(--primary);
+      border-radius: 8px;
+      transform: rotate(45deg);
+    }
+
+    .logo-as::after {
+      content: '';
+      position: absolute;
+      width: 60%;
+      height: 60%;
+      border: 2px solid var(--secondary);
+      border-radius: 4px;
+      transform: rotate(45deg);
+    }
+
+    .logo-text {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .logo-subtext {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      color: var(--text-secondary);
+    }
+
+    .theme-toggle {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--primary);
+      transform: rotate(15deg);
+    }
+
+    .theme-icon {
+      color: var(--text-primary);
+      transition: all 0.3s ease;
+    }
+
+    .text-custom-primary { color: var(--text-primary); }
+    .text-custom-secondary { color: var(--text-secondary); }
+    .bg-custom-light { background-color: var(--bg-light); }
+    .bg-custom-card { background-color: var(--bg-card); }
+    .border-custom { border-color: var(--border-color); }
+
+    .admin-sidebar {
+      position: sticky;
+      top: 100px;
+    }
+
+    .admin-nav {
+      list-style: none;
+      padding: 0;
+    }
+
+    .admin-nav li {
+      margin-bottom: 10px;
+    }
+
+    .admin-nav a {
+      display: block;
+      padding: 12px 16px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .admin-nav a:hover, .admin-nav a.active {
+      background: rgba(96, 165, 250, 0.1);
+      color: var(--primary);
+    }
+
+    .admin-nav a i {
+      margin-right: 10px;
+      width: 20px;
+      text-align: center;
+    }
+
+    .stats-card {
+      text-align: center;
+      padding: 1.5rem;
+    }
+
+    .stats-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      background: var(--gradient);
+      color: white;
+      font-size: 1.5rem;
+    }
+
+    .stats-number {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+
+    .stats-label {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .table-row:hover {
+      background: rgba(37, 99, 235, 0.04);
+    }
+
+    .chip {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      background: rgba(37, 99, 235, 0.12);
+      color: var(--primary);
+    }
+  </style>
 </head>
 
-<body class="min-h-screen p-6">
+<body class="bg-custom-light text-custom-primary">
+  <!-- Header -->
+  <header class="w-full bg-custom-light/80 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-custom transition-colors duration-300">
+    <div class="max-w-7xl mx-auto flex justify-between items-center py-4 px-6">
+      <div class="flex items-center space-x-3">
+        <div class="logo-as"></div>
+        <div>
+          <div class="logo-text text-xl">Adriano Sena</div>
+          <div class="logo-subtext text-sm">dev.br</div>
+        </div>
+      </div>
 
+      <div class="flex items-center space-x-4">
+        <nav class="space-x-8 hidden md:flex">
+          <a href="index.html" class="nav-link hover:text-primary transition">Início</a>
+          <a href="blog.html" class="nav-link hover:text-primary transition">Blog</a>
+          <a href="/admin/dashboard" class="nav-link text-primary transition">Dashboard</a>
+        </nav>
+
+        <button id="theme-toggle" class="theme-toggle">
+          <svg id="theme-icon-sun" class="theme-icon w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+          <svg id="theme-icon-moon" class="theme-icon w-5 h-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          </svg>
+        </button>
+
+        <button id="menu-btn" class="md:hidden focus:outline-none">
+          <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <nav id="mobile-menu" class="hidden md:hidden bg-custom-light/95 backdrop-blur-sm border-t border-custom transition-colors duration-300">
+      <a href="/" class="block px-6 py-3 border-b border-custom hover:bg-gray-100 text-custom-primary">Início</a>
+      <a href="blog" class="block px-6 py-3 border-b border-custom hover:bg-gray-100 text-custom-primary">Blog</a>
+      <a href="/admin/dashboard" class="block px-6 py-3 border-b border-custom hover:bg-gray-100 text-custom-primary">Dashboard</a>
+    </nav>
+  </header>
+
+  <!-- Dashboard Content -->
+  <section class="py-10 px-6 bg-custom-light transition-colors duration-300">
     <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
 
-        <!-- HEADER -->
-        <header class="text-center mb-12 animate__animated animate__fadeIn">
-            <h1 class="text-4xl font-bold title-gradient">📊 Dashboard de Visitas</h1>
-            <p class="text-blue-300 mt-2">Monitoramento em tempo real</p>
-        </header>
+        <!-- Admin Sidebar -->
+        <div class="lg:col-span-1">
+          <div class="admin-sidebar">
+            <div class="card p-6 mb-6">
+              <h3 class="text-xl font-bold mb-4 text-custom-primary">Painel Admin</h3>
+              <ul class="admin-nav">
+                <li><a href="/admin/dashboard" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="/admin/posts"><i class="fas fa-file-alt"></i> Posts</a></li>
+                <li><a href="/admin/cadastrar"><i class="fas fa-plus-circle"></i> Novo Post</a></li>
+                <li><a href="/admin/contatos"><i class="fas fa-envelope"></i> Contatos</a></li>
+                <li><a href="/admin/posts#categorias"><i class="fas fa-folder"></i> Categorias</a></li>
+                <li><a href="/admin/posts#tags"><i class="fas fa-tags"></i> Tags</a></li>
+                <li><a href="/admin/usuarios"><i class="fas fa-users"></i> Usuários</a></li>
+                <li><a href="/admin/dispositivos"><i class="fas fa-mobile-alt"></i> Dispositivos</a></li>
+                <li><a href="/admin/comentarios"><i class="fas fa-comments"></i> Comentários</a></li>
+                <li><a href="/admin/homepage"><i class="fas fa-home"></i> Página Inicial</a></li>
+              </ul>
+            </div>
 
-        <!-- CARDS DE ESTATÍSTICAS -->
-        <div id="statsGrid"
-             class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mb-16 animate__animated animate__fadeInUp">
-            <!-- Os cards serão carregados aqui -->
+            <div class="card p-6">
+              <h4 class="font-bold mb-4 text-custom-primary">Ações rápidas</h4>
+              <div class="space-y-3">
+                <a href="/admin/cadastrar" class="btn-primary block text-center w-full py-2 rounded-lg font-semibold text-sm">
+                  <i class="fas fa-plus mr-2"></i> Novo Post
+                </a>
+                <button id="logout-btn" class="btn-secondary w-full py-2 rounded-lg font-semibold text-sm">
+                  <i class="fas fa-sign-out-alt mr-2"></i> Sair
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <!-- TABELA -->
-        <section class="card p-6 animate__animated animate__fadeInUp">
-            <h2 class="text-2xl font-bold mb-4 title-gradient">Últimas Visitas</h2>
-
-            <div class="overflow-x-auto rounded-lg border border-blue-900/40">
-                <table class="w-full text-left text-sm">
-                    <thead>
-                        <tr>
-                            <th class="px-4 py-3">IP</th>
-                            <th class="px-4 py-3">Localização</th>
-                            <th class="px-4 py-3">Dispositivo</th>
-                            <th class="px-4 py-3">Navegador</th>
-                            <th class="px-4 py-3">Sistema</th>
-                            <th class="px-4 py-3">Data/Hora</th>
-                        </tr>
-                    </thead>
-                    <tbody id="visitsBody" class="divide-y divide-blue-900/40">
-                        <!-- Conteúdo carregado via JS -->
-                    </tbody>
-                </table>
+        <!-- Main Content -->
+        <div class="lg:col-span-3 space-y-6">
+          <!-- Page Title -->
+          <div class="flex justify-between items-center">
+            <div>
+              <h2 class="text-2xl font-bold text-custom-primary">Dashboard</h2>
+              <p class="text-custom-secondary">Visão geral do conteúdo, contatos e tráfego do site.</p>
             </div>
-        </section>
+            <button id="refresh-all" class="btn-primary px-4 py-2 rounded-lg font-semibold text-sm">
+              <i class="fas fa-sync-alt mr-2"></i> Atualizar
+            </button>
+          </div>
+
+          <!-- Stats Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4" id="stats-grid"></div>
+
+          <!-- Charts -->
+          <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+            <div class="card p-6 xl:col-span-2">
+              <h3 class="text-lg font-bold mb-4 text-custom-primary">Visitas nos últimos 14 dias</h3>
+              <canvas id="visits-line-chart" height="120"></canvas>
+            </div>
+            <div class="card p-6">
+              <h3 class="text-lg font-bold mb-4 text-custom-primary">Status dos posts</h3>
+              <canvas id="posts-donut-chart" height="120"></canvas>
+            </div>
+          </div>
+
+          <!-- Recent Posts & Contacts -->
+          <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+            <div class="card p-6">
+              <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-bold text-custom-primary">Posts recentes</h3>
+                <a href="/admin/posts" class="text-sm" style="color: var(--primary);">Ver todos</a>
+              </div>
+              <div id="recent-posts" class="space-y-3"></div>
+            </div>
+
+            <div class="card p-6">
+              <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-bold text-custom-primary">Contatos recentes</h3>
+                <a href="/admin/contatos" class="text-sm" style="color: var(--primary);">Abrir caixa</a>
+              </div>
+              <div id="recent-contacts" class="space-y-3"></div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+            <div class="card p-6">
+              <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-bold text-custom-primary">Engajamento geral</h3>
+                <a href="/admin/comentarios" class="text-sm" style="color: var(--primary);">Moderar comentários</a>
+              </div>
+              <div id="engagement-kpis" class="grid grid-cols-2 gap-3"></div>
+            </div>
+
+            <div class="card p-6">
+              <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-bold text-custom-primary">Posts com maior engajamento</h3>
+                <span class="text-xs text-custom-secondary">Curtidas + comentários</span>
+              </div>
+              <div id="engagement-top-posts" class="space-y-3"></div>
+            </div>
+          </div>
+
+          <div class="card p-6">
+            <div class="flex justify-between items-center mb-4">
+              <h3 class="text-lg font-bold text-custom-primary">Comentários recentes</h3>
+              <a href="/admin/comentarios" class="text-sm" style="color: var(--primary);">Abrir moderação</a>
+            </div>
+            <div id="engagement-recent-comments" class="space-y-3"></div>
+          </div>
+
+          <!-- Visits Table -->
+          <div class="card p-6">
+            <h3 class="text-lg font-bold mb-4 text-custom-primary">Últimas visitas</h3>
+            <div class="overflow-auto">
+              <table class="w-full text-sm">
+                <thead>
+                  <tr class="border-b border-custom" style="color: var(--text-secondary);">
+                    <th class="py-2 px-2 text-left">IP</th>
+                    <th class="py-2 px-2 text-left">Dispositivo</th>
+                    <th class="py-2 px-2 text-left">Navegador</th>
+                    <th class="py-2 px-2 text-left">Sistema</th>
+                    <th class="py-2 px-2 text-left">Página</th>
+                    <th class="py-2 px-2 text-left">Data</th>
+                  </tr>
+                </thead>
+                <tbody id="visits-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
+  </section>
 
-<script>
-    // --------- STATS ---------
+  <!-- Footer -->
+  <footer class="relative bg-custom-card border-t border-custom py-12 px-6 transition-colors duration-300">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="flex items-center space-x-3 mb-6 md:mb-0">
+          <div class="logo-as"></div>
+          <div>
+            <div class="logo-text text-xl">Adriano Sena</div>
+            <div class="logo-subtext text-sm">dev.br</div>
+          </div>
+        </div>
+        <div class="flex space-x-6">
+          <a href="https://wa.me/+5564933004882" target="_blank" class="text-custom-secondary hover:text-primary transition"><i class="fab fa-whatsapp text-xl"></i></a>
+          <a href="https://github.com/AdrianoSenaS" target="_blank" class="text-custom-secondary hover:text-primary transition"><i class="fab fa-github text-xl"></i></a>
+          <a href="https://www.instagram.com/adrianosena.dev.br/" target="_blank" class="text-custom-secondary hover:text-primary transition"><i class="fab fa-instagram text-xl"></i></a>
+          <a href="https://www.linkedin.com/in/adriano-sena-silva-a8605622a/" target="_blank" class="text-custom-secondary hover:text-primary transition"><i class="fab fa-linkedin-in text-xl"></i></a>
+        </div>
+      </div>
+      <div class="mt-12 pt-8 border-t border-custom flex flex-col md:flex-row justify-between items-center">
+        <p class="text-custom-secondary text-sm mb-4 md:mb-0">&copy; <span id="year"></span> Adriano Sena. Todos os direitos reservados.</p>
+        <p class="text-custom-secondary text-sm">Transformando ideias em soluções digitais inovadoras.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const token = localStorage.getItem('adminToken');
+    let visitsLineChart;
+    let postsDonutChart;
+
+    if (!token) {
+      window.location.href = '/login';
+    }
+
+    // Theme toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIconSun = document.getElementById('theme-icon-sun');
+    const themeIconMoon = document.getElementById('theme-icon-moon');
+
+    const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    if (savedTheme === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      themeIconSun.classList.add('hidden');
+      themeIconMoon.classList.remove('hidden');
+    }
+
+    themeToggle.addEventListener('click', () => {
+      if (document.documentElement.getAttribute('data-theme') === 'dark') {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'light');
+        themeIconSun.classList.remove('hidden');
+        themeIconMoon.classList.add('hidden');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+        themeIconSun.classList.add('hidden');
+        themeIconMoon.classList.remove('hidden');
+      }
+    });
+
+    // Mobile menu
+    document.getElementById('menu-btn').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    async function authFetch(url, options = {}) {
+      const headers = {
+        ...(options.headers || {}),
+        Authorization: `Bearer ${token}`
+      };
+
+      const response = await fetch(url, { ...options, headers });
+
+      if (response.status === 401) {
+        localStorage.removeItem('adminToken');
+        window.location.href = '/login';
+        throw new Error('Sessão expirada');
+      }
+
+      return response;
+    }
+
+    async function validateToken() {
+      const response = await authFetch('/token', {
+        method: 'POST',
+        headers: {}
+      });
+      if (!response.ok) {
+        localStorage.removeItem('adminToken');
+        window.location.href = '/login';
+        return;
+      }
+      document.body.style.visibility = 'visible';
+    }
+
+    function formatDate(date) {
+      return new Date(date).toLocaleString('pt-BR');
+    }
+
+    function normalizePostExcerpt(post) {
+      return post.excerpt || post.description || '';
+    }
+
     async function loadStats() {
-        try {
-            const response = await fetch('/api/stats');
-            const stats = await response.json();
+      const [statsRes, postsRes, contactsRes] = await Promise.all([
+        authFetch('/api/stats'),
+        fetch('/api/posts'),
+        authFetch('/api/contact')
+      ]);
 
-            document.getElementById('statsGrid').innerHTML = `
-                <div class="card p-6 text-center">
-                    <h3 class="text-3xl font-bold text-blue-400">${stats.total_visits}</h3>
-                    <p class="text-gray-300 mt-2">Total de Visitas</p>
+      const stats = await statsRes.json();
+      const posts = await postsRes.json();
+      const contacts = await contactsRes.json();
+
+      const published = posts.filter((p) => p.status === 'published').length;
+      const drafts = posts.filter((p) => p.status === 'draft').length;
+      const unanswered = contacts.filter((c) => c.status !== 'responded').length;
+
+      document.getElementById('stats-grid').innerHTML = `
+        <div class="card p-4 text-center">
+          <div class="text-custom-secondary text-sm mb-1">Visitas totais</div>
+          <div class="text-3xl font-bold" style="color: var(--primary);">${stats.total_visits || 0}</div>
+        </div>
+        <div class="card p-4 text-center">
+          <div class="text-custom-secondary text-sm mb-1">Visitantes únicos</div>
+          <div class="text-3xl font-bold" style="color: var(--primary);">${stats.unique_visitors || 0}</div>
+        </div>
+        <div class="card p-4 text-center">
+          <div class="text-custom-secondary text-sm mb-1">Posts publicados</div>
+          <div class="text-3xl font-bold" style="color: var(--primary);">${published}</div>
+        </div>
+        <div class="card p-4 text-center">
+          <div class="text-custom-secondary text-sm mb-1">Rascunhos</div>
+          <div class="text-3xl font-bold" style="color: var(--primary);">${drafts}</div>
+        </div>
+        <div class="card p-4 text-center">
+          <div class="text-custom-secondary text-sm mb-1">Contatos pendentes</div>
+          <div class="text-3xl font-bold" style="color: var(--primary);">${unanswered}</div>
+        </div>
+      `;
+
+      const recentPosts = posts.slice(0, 5);
+      document.getElementById('recent-posts').innerHTML = recentPosts.length
+        ? recentPosts.map((post) => `
+            <div class="p-3 rounded-lg border border-custom" style="background: rgba(37, 99, 235, 0.04);">
+              <div class="flex justify-between items-start gap-2">
+                <div>
+                  <div class="font-semibold text-custom-primary">${post.title}</div>
+                  <div class="text-xs text-custom-secondary mt-1">${normalizePostExcerpt(post).slice(0, 100)}</div>
                 </div>
-                <div class="card p-6 text-center">
-                    <h3 class="text-3xl font-bold text-blue-400">${stats.unique_visitors}</h3>
-                    <p class="text-gray-300 mt-2">Visitantes Únicos</p>
-                </div>
-                <div class="card p-6 text-center">
-                    <h3 class="text-3xl font-bold text-blue-400">${stats.desktop_visits}</h3>
-                    <p class="text-gray-300 mt-2">Desktop</p>
-                </div>
-                <div class="card p-6 text-center">
-                    <h3 class="text-3xl font-bold text-blue-400">${stats.mobile_visits}</h3>
-                    <p class="text-gray-300 mt-2">Mobile</p>
-                </div>
-                <div class="card p-6 text-center">
-                    <h3 class="text-3xl font-bold text-blue-400">${stats.tablet_visits}</h3>
-                    <p class="text-gray-300 mt-2">Tablet</p>
-                </div>
-            `;
-        } catch (e) {
-            console.error("Erro ao carregar estatísticas:", e);
-        }
+                <span class="chip">${post.status || 'draft'}</span>
+              </div>
+              <div class="text-xs text-custom-secondary mt-2">${formatDate(post.date || post.createdAt)}</div>
+            </div>
+          `).join('')
+        : '<div class="text-custom-secondary">Nenhum post cadastrado.</div>';
+
+      const recentContacts = contacts.slice(0, 6);
+      document.getElementById('recent-contacts').innerHTML = recentContacts.length
+        ? recentContacts.map((contact) => `
+            <div class="p-3 rounded-lg border border-custom" style="background: rgba(37, 99, 235, 0.04);">
+              <div class="font-semibold text-custom-primary">${contact.name}</div>
+              <div class="text-xs text-custom-secondary">${contact.email}</div>
+              <div class="text-xs text-custom-secondary mt-2">${contact.project || 'Outros'} · ${formatDate(contact.date)}</div>
+            </div>
+          `).join('')
+        : '<div class="text-custom-secondary">Nenhum contato recebido.</div>';
     }
 
-    // --------- VISITAS ---------
     async function loadVisits() {
-        try {
-            const response = await fetch('/api/visits');
-            const visits = await response.json();
+      const response = await authFetch('/api/visits?limit=25');
+      const visits = await response.json();
+      const tbody = document.getElementById('visits-body');
 
-            const tbody = document.getElementById('visitsBody');
-
-            tbody.innerHTML = visits.map(visit => `
-                <tr class="hover:bg-blue-900/10 transition">
-                    <td class="px-4 py-3">${visit.ip_address}</td>
-                    <td class="px-4 py-3">${visit.city}, ${visit.region}, ${visit.country}</td>
-                    <td class="px-4 py-3">${visit.device_type}</td>
-                    <td class="px-4 py-3">${visit.browser}</td>
-                    <td class="px-4 py-3">${visit.operating_system}</td>
-                    <td class="px-4 py-3">${new Date(visit.timestamp).toLocaleString('pt-BR')}</td>
-                </tr>
-            `).join('');
-
-        } catch (e) {
-            console.error("Erro ao carregar visitas:", e);
-        }
+      tbody.innerHTML = visits.length
+        ? visits.map((visit) => `
+            <tr class="table-row border-b border-custom">
+              <td class="py-2 px-2 text-custom-secondary">${visit.ip_address || '-'}</td>
+              <td class="py-2 px-2 text-custom-secondary">${visit.device_type || '-'}</td>
+              <td class="py-2 px-2 text-custom-secondary">${visit.browser || '-'}</td>
+              <td class="py-2 px-2 text-custom-secondary">${visit.operating_system || '-'}</td>
+              <td class="py-2 px-2 text-custom-secondary">${visit.url || '-'}</td>
+              <td class="py-2 px-2 text-custom-secondary">${formatDate(visit.timestamp)}</td>
+            </tr>
+          `).join('')
+        : '<tr><td colspan="6" class="py-4 px-2 text-custom-secondary">Sem dados de visita ainda.</td></tr>';
     }
 
-    loadStats();
-    loadVisits();
+    function renderCharts(payload) {
+      const visitLabels = payload.visitsByDay.map((item) => new Date(`${item.day}T00:00:00`).toLocaleDateString('pt-BR'));
+      const visitData = payload.visitsByDay.map((item) => item.total || 0);
 
-    setInterval(() => {
-        loadStats();
-        loadVisits();
-    }, 30000);
-</script>
+      const postsStatus = payload.postsByStatus || {};
+      const statusLabels = ['Publicados', 'Rascunhos', 'Agendados'];
+      const statusData = [
+        postsStatus.published || 0,
+        postsStatus.draft || 0,
+        postsStatus.scheduled || 0
+      ];
 
+      if (visitsLineChart) visitsLineChart.destroy();
+      if (postsDonutChart) postsDonutChart.destroy();
+
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      const labelColor = isDark ? '#D1D5DB' : '#6B7280';
+      const gridColor = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.06)';
+
+      visitsLineChart = new Chart(document.getElementById('visits-line-chart').getContext('2d'), {
+        type: 'line',
+        data: {
+          labels: visitLabels,
+          datasets: [{
+            label: 'Visitas',
+            data: visitData,
+            borderColor: '#2563eb',
+            backgroundColor: 'rgba(37, 99, 235, 0.12)',
+            fill: true,
+            tension: 0.25,
+            pointRadius: 3
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: { legend: { labels: { color: labelColor } } },
+          scales: {
+            x: { ticks: { color: labelColor }, grid: { color: gridColor } },
+            y: { ticks: { color: labelColor }, grid: { color: gridColor }, beginAtZero: true }
+          }
+        }
+      });
+
+      postsDonutChart = new Chart(document.getElementById('posts-donut-chart').getContext('2d'), {
+        type: 'doughnut',
+        data: {
+          labels: statusLabels,
+          datasets: [{
+            data: statusData,
+            backgroundColor: ['#10B981', '#f59e0b', '#2563eb'],
+            borderWidth: 0
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: { legend: { position: 'bottom', labels: { color: labelColor } } }
+        }
+      });
+    }
+
+    async function loadCharts() {
+      const response = await authFetch('/api/dashboard/charts');
+      const payload = await response.json();
+      renderCharts(payload);
+    }
+
+    async function loadEngagement() {
+      const response = await authFetch('/api/dashboard/engagement');
+      const payload = await response.json();
+      const totals = payload.totals || {};
+
+      document.getElementById('engagement-kpis').innerHTML = `
+        <div class="p-3 rounded-lg border border-custom text-center">
+          <div class="text-xs text-custom-secondary">Comentários aprovados</div>
+          <div class="text-2xl font-bold" style="color: var(--primary);">${totals.approvedComments || 0}</div>
+        </div>
+        <div class="p-3 rounded-lg border border-custom text-center">
+          <div class="text-xs text-custom-secondary">Comentários pendentes</div>
+          <div class="text-2xl font-bold" style="color: var(--primary);">${totals.pendingComments || 0}</div>
+        </div>
+        <div class="p-3 rounded-lg border border-custom text-center">
+          <div class="text-xs text-custom-secondary">Curtidas totais</div>
+          <div class="text-2xl font-bold" style="color: var(--primary);">${totals.likesTotal || 0}</div>
+        </div>
+        <div class="p-3 rounded-lg border border-custom text-center">
+          <div class="text-xs text-custom-secondary">Assinantes e-mail</div>
+          <div class="text-2xl font-bold" style="color: var(--primary);">${totals.emailSubscribers || 0}</div>
+        </div>
+      `;
+
+      const topPosts = payload.topPosts || [];
+      document.getElementById('engagement-top-posts').innerHTML = topPosts.length
+        ? topPosts.map((post) => `
+            <div class="p-3 rounded-lg border border-custom" style="background: rgba(37,99,235,.04)">
+              <div class="font-semibold text-custom-primary">${post.title || `Post #${post.postId}`}</div>
+              <div class="text-xs text-custom-secondary mt-1">Comentários: ${post.comments || 0} · Curtidas: ${post.likes || 0} · Engajamento: ${post.engagement || 0}</div>
+              <a class="text-xs" style="color: var(--primary);" href="/post?slug=${encodeURIComponent(post.slug || '')}" target="_blank">Abrir post</a>
+            </div>
+          `).join('')
+        : '<div class="text-custom-secondary">Sem dados de engajamento ainda.</div>';
+
+      const recentComments = payload.recentComments || [];
+      document.getElementById('engagement-recent-comments').innerHTML = recentComments.length
+        ? recentComments.map((c) => `
+            <div class="p-3 rounded-lg border border-custom" style="background: rgba(37,99,235,.04)">
+              <div class="flex justify-between items-start gap-2">
+                <div class="font-semibold text-custom-primary">${c.name}</div>
+                <span class="chip">${c.status || 'approved'}</span>
+              </div>
+              <div class="text-xs text-custom-secondary mt-1">${c.postTitle || `Post #${c.postId}`}</div>
+              <div class="text-sm text-custom-primary mt-1">${(c.message || '').slice(0, 140)}</div>
+              <div class="text-xs text-custom-secondary mt-2">${formatDate(c.createdAt)}</div>
+            </div>
+          `).join('')
+        : '<div class="text-custom-secondary">Nenhum comentário registrado.</div>';
+    }
+
+    async function logout() {
+      await authFetch('/logout', { method: 'POST' });
+      localStorage.removeItem('adminToken');
+      window.location.href = '/login';
+    }
+
+    async function loadAll() {
+      await validateToken();
+      await Promise.all([loadStats(), loadVisits(), loadCharts(), loadEngagement()]);
+    }
+
+    document.getElementById('logout-btn').addEventListener('click', logout);
+    document.getElementById('refresh-all').addEventListener('click', loadAll);
+    loadAll();
+    setInterval(loadAll, 30000);
+  </script>
 </body>
 </html>

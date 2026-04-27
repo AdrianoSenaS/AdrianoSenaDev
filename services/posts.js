@@ -1,5 +1,6 @@
 const { createPost, getPosts, getPostById, updatePost, deletePost } = require('../database/postsDB');
 const {fetchPushTokens} = require('../services/notificationServices');
+const { createCategoryIfNotExists, createTagsIfNotExists } = require('../database/taxonomiesDb');
 
 module.exports = {
 
@@ -8,13 +9,14 @@ module.exports = {
     // Função para gerar slug
     // ---------------------------------------------
      generateSlug(text) {
-      return text
+      return String(text || '')
         .toLowerCase()
         .normalize("NFD")
         .replace(/[\u0300-\u036f]/g, "")
-        .replace(/[^\w\s]/g, "")
+        .replace(/[^\w\s-]/g, "")
         .trim()
-        .replace(/\s+/g, "-");
+        .replace(/\s+/g, "-")
+        .replace(/-+/g, "-");
     },
 
     async addPost(req, res) {
@@ -34,17 +36,19 @@ module.exports = {
                 date: data.date || new Date().toISOString(),
                 featured: data.featured === "true",
                 meta: data.meta || "",
-                slug: data.slug || generateSlug(data.title || Date.now().toString()),
+                slug: data.slug || this.generateSlug(data.title || Date.now().toString()),
                 tags: data.tags ? data.tags.split(",").map(t => t.trim()) : []
             };
 
             const result = await createPost(post);
-          const sendNotification =  await fetchPushTokens({
+            await createCategoryIfNotExists(post.category);
+            await createTagsIfNotExists(post.tags);
+            await fetchPushTokens({
                 title: post.author,
                 body: post.title,
                 postId: result.id
             });
-            //console.log(sendNotification);
+
             res.json({
                 success: true,
                 id: result.id,
@@ -58,43 +62,64 @@ module.exports = {
     },
 
     async getAllPosts(req, res) {
-        const data = await getPosts();
-        res.json(data);
+        try {
+            const data = await getPosts();
+            res.json(data);
+        } catch (err) {
+            res.status(500).json({ success: false, error: err.message });
+        }
     },
 
     async getPostId(req, res) {
-        const data = await getPostById(req.params.id);
-        res.json(data);
+        try {
+            const data = await getPostById(req.params.id);
+            if (!data) {
+                return res.status(404).json({ success: false, error: "Post não encontrado" });
+            }
+            res.json(data);
+        } catch (err) {
+            res.status(500).json({ success: false, error: err.message });
+        }
     },
 
     async updatePostId(req, res) {
-        const data = req.body;
-        let imageUrl = data.oldImage;
-        if (req.file) imageUrl = `/uploads/${req.file.filename}`;
+        try {
+            const data = req.body;
+            let imageUrl = data.oldImage;
+            if (req.file) imageUrl = `/uploads/${req.file.filename}`;
 
-        const post = {
-            title: data.title || "",
-            excerpt: data.excerpt || "",
-            image: imageUrl,
-            category: data.category || "",
-            status: data.status || "draft",
-            author: data.author || "adriano",
-            comments: data.comments === "false" ? false : true,
-            content: data.content || "",
-            date: data.date || new Date().toISOString(),
-            featured: data.featured === "true",
-            meta: data.meta || "",
-            slug: data.slug || generateSlug(data.title || Date.now().toString()),
-            tags: data.tags ? data.tags.split(",").map(t => t.trim()) : []
-        };
+            const post = {
+                title: data.title || "",
+                excerpt: data.excerpt || "",
+                image: imageUrl,
+                category: data.category || "",
+                status: data.status || "draft",
+                author: data.author || "adriano",
+                comments: data.comments === "false" ? false : true,
+                content: data.content || "",
+                date: data.date || new Date().toISOString(),
+                featured: data.featured === "true",
+                meta: data.meta || "",
+                slug: data.slug || this.generateSlug(data.title || Date.now().toString()),
+                tags: data.tags ? data.tags.split(",").map(t => t.trim()) : []
+            };
 
-        await updatePost(req.params.id, post);
-        res.json({ success: true, post });
+            await updatePost(req.params.id, post);
+            await createCategoryIfNotExists(post.category);
+            await createTagsIfNotExists(post.tags);
+            res.json({ success: true, post });
+        } catch (err) {
+            res.status(500).json({ success: false, error: err.message });
+        }
     },
 
     async deletePostId(req, res) {
-        await deletePost(req.params.id);
-        res.json({ success: true });
+        try {
+            await deletePost(req.params.id);
+            res.json({ success: true });
+        } catch (err) {
+            res.status(500).json({ success: false, error: err.message });
+        }
     },
     async uploadPost(req, res) {
          res.json({

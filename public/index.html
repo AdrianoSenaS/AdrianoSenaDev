@@ -6,23 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 
-    <title>Adriano Sena | Desenvolvedor Full-Stack & Especialista em Soluções Digitais</title>
+    <title>Adriano Sena | Desenvolvedor Full Stack | Infraestrutura em Nuvem</title>
     <link rel="canonical" href="https://adrianosena.dev.br/"/>
-    <meta name="description" content="Transformo ideias em sistemas robustos com código de alta performance. 5+ anos criando soluções digitais que geram resultados. | Adriano Sena">
+    <meta name="description" content="Adriano Sena é desenvolvedor Full Stack com 12 anos de experiência em programação desde os 15 anos. Especialista em infraestrutura em nuvem, servidores, desenvolvimento web e aplicativos mobile. Trabalho com programação profissional desde 2015.">
     <!-- Open Graph -->
     <meta property="og:title"
-        content="Transformo ideias em sistemas que geram resultados | Adriano Sena" />
-    <meta property="og:description" content="Transformo ideias em sistemas robustos com código de alta performance. 5+ anos criando soluções digitais que geram resultados. | Adriano Sena" />
+        content="Adriano Sena | Desenvolvedor Full Stack & Infraestrutura" />
+    <meta property="og:description" content="Desenvolvedor desde os 15 anos com vasta experiência em estrutura em nuvem, configuração de servidores, desenvolvimento de sites e aplicações em produção. Especialista em infraestrutura crítica e aplicações escaláveis." />
     <meta property="og:image" content="https://adrianosena.dev.br/logoWeb.png" />
     <meta property="og:url" content="https://adrianosena.dev.br/" />
-    <meta property="og:type" content="article" />
+    <meta property="og:type" content="website" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@adrianosenas" />
     <meta name="twitter:title"
-        content="Transformo ideias em sistemas que geram resultados" />
-    <meta name="twitter:description" content="Transformo ideias em sistemas robustos com código de alta performance. 5+ anos criando soluções digitais que geram resultados. | Adriano Sena" />
+        content="Adriano Sena | Desenvolvedor Full Stack & DevOps" />
+    <meta name="twitter:description" content="Desenvolvimento web, mobile e infraestrutura em nuvem. Experiência desde 2015 com foco em soluções escaláveis, server configuration e aplicações em produção." />
     <meta name="twitter:image" content="https://adrianosena.dev.br/logoWeb.png" />
 
     <link rel="shortcut icon" href="logo.png" type="image/x-icon">
@@ -110,7 +110,17 @@
             color: var(--text-primary);
             overflow-x: hidden;
             transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
         }
+
+        #home { order: 1; }
+        #services { order: 2; }
+        #projects { order: 3; }
+        #skills { order: 4; }
+        #blog { order: 5; }
+        #contact { order: 6; }
+        footer { order: 7; }
 
         h1,
         h2,
@@ -242,6 +252,39 @@
             transform: translateY(-8px);
             box-shadow: var(--card-shadow-hover);
             border-color: var(--primary);
+        }
+
+        .service-hero-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .service-hero-card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .service-hero-card p {
+            margin-bottom: 1rem;
+        }
+
+        .service-hero-card ul {
+            margin-bottom: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .service-hero-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .service-hero-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
         }
 
         .section-title {
@@ -392,6 +435,7 @@
             font-weight: 800;
             background: var(--gradient);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
             line-height: 1;
             margin-bottom: 0.5rem;
@@ -416,6 +460,59 @@
         [data-theme="dark"] .trust-badge {
             background: var(--gray-100);
             border-color: var(--gray-200);
+        }
+
+        .section-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.65rem 1rem;
+            border-radius: 999px;
+            background: rgba(37, 99, 235, 0.08);
+            border: 1px solid rgba(37, 99, 235, 0.15);
+            color: var(--primary);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .executive-panel {
+            background: rgba(255, 255, 255, 0.75);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 24px;
+            box-shadow: var(--card-shadow);
+            backdrop-filter: blur(10px);
+        }
+
+        [data-theme="dark"] .executive-panel {
+            background: rgba(15, 23, 42, 0.75);
+            border-color: rgba(148, 163, 184, 0.15);
+        }
+
+        .nav-link.active {
+            color: var(--primary);
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .case-label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--primary);
+        }
+
+        .footer-link-list a {
+            color: #94a3b8;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link-list a:hover {
+            color: white;
         }
 
         .client-avatar {
@@ -728,23 +825,24 @@
         <div class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
                 <!-- Logo -->
-                <a href="#home" class="flex items-center space-x-3">
+                <a href="#about" class="flex items-center space-x-3">
                     <div
                         class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
                         <img src="./logo.png" alt="">
                     </div>
                     <div>
                         <h1 class="text-lg font-bold">Adriano Sena</h1>
-                        <p class="text-xs text-text-secondary">Full-Stack Developer</p>
+                        <p class="text-xs text-text-secondary">Desenvolvedor Full Stack</p>
                     </div>
                 </a>
 
                 <!-- Desktop Navigation -->
                 <nav class="hidden md:flex items-center space-x-8">
-                    <a href="#home" class="nav-link">Início</a>
-                    <a href="#skills" class="nav-link">Skills</a>
+                    <a href="#about" class="nav-link">Início</a>
+                    <a href="#home" class="nav-link">Sobre Mim</a>
                     <a href="#projects" class="nav-link">Projetos</a>
-                    <a href="#services" class="nav-link">Serviços</a>
+                    <a href="#portfolio" class="nav-link">Portfólio</a>
+                    <a href="#skills" class="nav-link">Tecnologias</a>
                     <a href="/blog" class="nav-link">Blog</a>
                     <a href="#contact" class="nav-link">Contato</a>
                     <a href="privacidade" class="nav-link">Privacidade</a>
@@ -757,7 +855,7 @@
                         <i id="theme-icon" class="fas fa-moon text-gray-600"></i>
                     </button>
                     <a href="#contact" class="btn-primary hidden md:block">
-                        Iniciar Projeto
+                        Entre em Contato
                     </a>
                     <button id="menu-toggle" class="md:hidden">
                         <i class="fas fa-bars text-xl"></i>
@@ -768,15 +866,16 @@
             <!-- Mobile Navigation -->
             <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
                 <div class="flex flex-col space-y-4">
-                    <a href="#home" class="nav-link">Início</a>
-                    <a href="#skills" class="nav-link">Skills</a>
+                    <a href="#about" class="nav-link">Início</a>
+                    <a href="#home" class="nav-link">Sobre Mim</a>
                     <a href="#projects" class="nav-link">Projetos</a>
-                    <a href="#services" class="nav-link">Serviços</a>
+                    <a href="#portfolio" class="nav-link">Portfólio</a>
+                    <a href="#skills" class="nav-link">Tecnologias</a>
                     <a href="/blog" class="nav-link">Blog</a>
                     <a href="#contact" class="nav-link">Contato</a>
                     <a href="privacidade" class="nav-link">Privacidade</a>
                     <a href="#contact" class="btn-primary w-full text-center">
-                        Iniciar Projeto
+                        Entre em Contato
                     </a>
                 </div>
             </div>
@@ -784,669 +883,846 @@
     </header>
 
     <!-- Hero Section -->
-    <section id="home" class="hero-section">
-        <div class="hero-bg-pattern"></div>
-        <div class="container mx-auto px-6 relative z-10">
+    <section id="home" class="section-spacing bg-section-light">
+        <div class="container mx-auto px-6">
             <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <div data-aos="fade-right" data-aos-delay="100" class="text-center lg:text-left">
-                    <!-- Gatilho de Status -->
-                    <div
-                        class="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-primary/10 to-secondary/10 mb-8">
-                        <div class="w-2 h-2 rounded-full bg-primary mr-2 animate-pulse"></div>
-                        <span class="text-sm font-medium text-primary">Disponível para novos projetos</span>
-                    </div>
-
-                    <!-- Título Principal -->
-                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                        Transformo <span class="gradient-text">ideias</span> em sistemas que geram <span
-                            class="gradient-text-accent">resultados</span>
-                    </h1>
-
-                    <!-- Subtitle -->
-                    <p class="text-lg md:text-xl text-text-secondary mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0">
-                        Desenvolvedor Full-Stack especializado em criar soluções completas que
-                        <span class="font-semibold text-primary">aumentam eficiência, reduzem custos</span> e
-                        <span class="font-semibold text-primary">impulsionam negócios digitais</span> com tecnologia de
-                        ponta.
-                    </p>
-
-                    <!-- Social Proof 
-                    <div
-                        class="flex flex-col sm:flex-row items-center justify-center lg:justify-start mb-10 space-y-4 sm:space-y-0 sm:space-x-6">
-                        <div class="flex -space-x-2">
-                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=client1" alt="Cliente"
-                                class="client-avatar">
-                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=client2" alt="Cliente"
-                                class="client-avatar">
-                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=client3" alt="Cliente"
-                                class="client-avatar">
-                            <div
-                                class="w-10 h-10 rounded-full border-2 border-white bg-gradient-to-r from-primary to-secondary flex items-center justify-center text-xs font-bold text-white client-avatar">
-                                +500
-                            </div>
-                        </div>
-                        <div class="text-center sm:text-left">
-                            <div class="font-bold text-lg">+500 projetos entregues</div>
-                            <div class="text-sm text-text-secondary">Clientes satisfeitos em 5+ anos</div>
-                        </div>
-                    </div>-->
-
-                    <!-- CTAs -->
-                    <div class="flex flex-col sm:flex-row gap-4 mb-12 justify-center lg:justify-start">
-                        <a href="#contact" class="btn-primary text-center">
-                            <i class="fas fa-rocket mr-2"></i>Solicitar Orçamento
-                        </a>
-                        <a href="#projects" class="btn-secondary text-center">
-                            <i class="fas fa-eye mr-2"></i>Ver Portfólio
-                        </a>
-                    </div>
-
-                    <!-- Trust Badges -->
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                        <div class="trust-badge">
-                            <i class="fas fa-shield-alt text-primary mr-3"></i>
-                            <span class="text-sm font-medium">Garantia de 3 Meses</span>
-                        </div>
-                        <div class="trust-badge">
-                            <i class="fas fa-clock text-primary mr-3"></i>
-                            <span class="text-sm font-medium">Entrega no prazo</span>
-                        </div>
-                        <div class="trust-badge">
-                            <i class="fas fa-headset text-primary mr-3"></i>
-                            <span class="text-sm font-medium">Suporte 24/7</span>
+                <div data-aos="fade-right">
+                    <div class="relative mb-8">
+                        <div class="absolute -top-6 -left-6 w-64 h-64 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-full blur-3xl float-animation"></div>
+                        <div class="relative rounded-[2rem] overflow-hidden executive-panel p-6 lg:p-8">
+                            <img src="./images/adrianosena.jfif" alt="Adriano Sena" class="w-full h-auto object-cover rounded-xl">
                         </div>
                     </div>
                 </div>
 
-                <!-- Imagem e Stats -->
-                <div data-aos="fade-left" data-aos-delay="200" class="relative mt-12 lg:mt-0">
-                    <div class="relative mb-16">
-                        <div
-                            class="absolute -top-6 -right-6 w-64 h-64 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-full blur-3xl float-animation">
-                        </div>
-                        <div
-                            class="relative rounded-3xl shadow-2xl overflow-hidden border-8 border-white dark:border-gray-800">
-                            <img src="./logoWeb.png" alt="Adriano Sena - Desenvolvedor Full-Stack"
-                                class="w-full h-auto object-cover">
-                        </div>
+                <div data-aos="fade-left">
+                    <div class="section-kicker mb-6">
+                        <i class="fas fa-user-tie"></i>
+                        Sobre Mim
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">Adriano Sena<br/><span class="gradient-text">Desenvolvedor desde os 15</span></h2>
+                    
+                    <p class="text-lg text-text-secondary mb-6 leading-relaxed">
+                        Meu nome é <strong>Adriano Sena</strong>, tenho <strong>27 anos</strong> e trabalho com programação desde 2015. Tenho uma vasta experiência em estrutura em nuvem, configuração de servidores, desenvolvimento de sites e aplicações em produção.
+                    </p>
 
-                        <!-- Badge de Experiência 
-                        <div class="absolute -bottom-6 left-1/2 transform -translate-x-1/2 z-10">
-                            <div class="card w-64 shadow-lg mx-auto">
-                                <div class="flex items-center">
-                                    <div
-                                        class="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center mr-4">
-                                        <i class="fas fa-code text-white"></i>
-                                    </div>
-                                    <div>
-                                        <div class="text-2xl font-bold">5+</div>
-                                        <div class="text-text-secondary text-sm">Anos de Experiência</div>
-                                    </div>
-                                </div>
+                    <p class="text-lg text-text-secondary mb-6 leading-relaxed">
+                        Ao longo dos anos, aprendi que o código é apenas uma parte da equação. A verdadeira excelência vem de entender infraestrutura, performance, segurança e como manter as coisas funcionando quando o fogo começar. É por isso que também me especializei em DevOps e cloud.
+                    </p>
+
+                    <div class="grid sm:grid-cols-2 gap-4 mb-8">
+                        <div class="rounded-xl bg-white dark:bg-gray-800 p-4 border border-gray-200 dark:border-gray-700">
+                            <div class="flex items-center mb-2">
+                                <i class="fas fa-code text-primary mr-3 text-xl"></i>
+                                <div class="font-semibold">Desenvolvimento</div>
                             </div>
-                        </div>-->
+                            <p class="text-sm text-text-secondary">Web, mobile, sistemas e APIs com tecnologias modernas</p>
+                        </div>
+                        <div class="rounded-xl bg-white dark:bg-gray-800 p-4 border border-gray-200 dark:border-gray-700">
+                            <div class="flex items-center mb-2">
+                                <i class="fas fa-server text-primary mr-3 text-xl"></i>
+                                <div class="font-semibold">Infraestrutura</div>
+                            </div>
+                            <p class="text-sm text-text-secondary">Servidores, nuvem, redes, backup e segurança</p>
+                        </div>
+                        <div class="rounded-xl bg-white dark:bg-gray-800 p-4 border border-gray-200 dark:border-gray-700">
+                            <div class="flex items-center mb-2">
+                                <i class="fas fa-rocket text-primary mr-3 text-xl"></i>
+                                <div class="font-semibold">DevOps</div>
+                            </div>
+                            <p class="text-sm text-text-secondary">Automação, CI/CD, containers e orquestração</p>
+                        </div>
+                        <div class="rounded-xl bg-white dark:bg-gray-800 p-4 border border-gray-200 dark:border-gray-700">
+                            <div class="flex items-center mb-2">
+                                <i class="fas fa-graduation-cap text-primary mr-3 text-xl"></i>
+                                <div class="font-semibold">Sempre Aprendendo</div>
+                            </div>
+                            <p class="text-sm text-text-secondary">Mantendo-me atualizado com novas tecnologias</p>
+                        </div>
                     </div>
 
-                    <!-- Stats Grid -->
-                    <div class="grid grid-cols-2 gap-4 md:gap-6">
-                        <div class="stat-item card">
-                            <div class="stat-number">100%</div>
-                            <div class="stat-label">Projetos Entregues</div>
-                        </div>
-                        <div class="stat-item card">
-                            <div class="stat-number">600+</div>
-                            <div class="stat-label">Clientes Atendidos</div>
-                        </div>
-                        <div class="stat-item card">
-                            <div class="stat-number">24h</div>
-                            <div class="stat-label">Suporte Rápido</div>
-                        </div>
-                        <div class="stat-item card">
-                            <div class="stat-number">3M</div>
-                            <div class="stat-label">Garantia</div>
-                        </div>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#projects" class="btn-primary inline-flex items-center justify-center">
+                            <i class="fas fa-briefcase mr-2"></i>Ver meus projetos
+                        </a>
+                        <a href="#contact" class="btn-secondary inline-flex items-center justify-center">
+                            <i class="fas fa-comment-dots mr-2"></i>Conversar comigo
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="section-spacing bg-section-light">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">Stack <span class="gradient-text">Tecnológico</span>
-                    Completo</h2>
-                <p class="text-lg md:text-xl text-text-secondary max-w-2xl mx-auto">
-                    Domínio completo do desenvolvimento full-stack, do frontend à infraestrutura
-                </p>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-                <!-- Frontend Skills -->
-                <div class="card" data-aos="fade-up">
-                    <div
-                        class="w-14 h-14 rounded-xl bg-gradient-to-br from-orange-400 to-cyan-400 flex items-center justify-center mb-6">
-                        <i class="fas fa-code text-white text-2xl"></i>
+     <!-- About Section -->
+    <section id="about" class="hero-section">
+        <div class="hero-bg-pattern"></div>
+        <div class="container mx-auto px-6 relative z-10 py-12">
+            <div class="grid lg:grid-cols-2 gap-12 xl:gap-16 items-center">
+                <div data-aos="fade-right" data-aos-delay="100" class="text-center lg:text-left">
+                    <div class="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-primary/10 to-secondary/10 mb-8">
+                        <div class="w-2 h-2 rounded-full bg-primary mr-2 animate-pulse"></div>
+                        <span class="text-sm font-medium text-primary">Desenvolvedor desde os 15 anos | 12+ anos de experiência</span>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Frontend & UI/UX</h3>
-                    <div class="space-y-4">
-                        <div class="skill-item">
-                            <div class="flex justify-between mb-1">
-                                <span class="text-theme-primary">HTML5/CSS3/Tailwind</span>
-                                <span class="font-bold text-primary">95%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="95%"></div>
-                            </div>
+
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+                        
+                        Desenvolvedor <span class="gradient-text-accent">Full Stack & DevOps</span>
+                    </h1>
+
+                    <p class="text-lg md:text-xl text-text-secondary mb-6 leading-relaxed max-w-2xl mx-auto lg:mx-0" data-cms-key="hero.subtitle" data-cms-mode="html">
+                        Trabalho com programação desde 2015 e tenho uma vasta experiência em infraestrutura em nuvem, configuração de servidores, desenvolvimento de sites e aplicações em produção. Especializado em soluções escaláveis e robustas que funcionam 24/7.
+                    </p>
+
+                    <p class="text-base text-text-secondary mb-8 max-w-2xl mx-auto lg:mx-0" data-cms-key="hero.description" data-cms-mode="html">
+                        Transformo ideias em aplicações web e mobile, estruturo ambientes em nuvem, e mantenho serviços críticos rodando sem problemas. Se você precisa de um desenvolvedor que entende tanto de código quanto de infraestrutura, vamos conversar.
+                    </p>
+
+                    <div class="grid sm:grid-cols-3 gap-4 mb-10 text-left">
+                        <div class="executive-panel p-5">
+                            <div class="case-label mb-2">Programação</div>
+                            <p class="text-sm text-text-secondary">Desenvolvimento web e mobile com tecnologias modernas desde 2015.</p>
                         </div>
-                        <div class="skill-item">
-                            <div class="flex justify-between mb-1">
-                                <span class="text-theme-primary">JavaScript/TypeScript</span>
-                                <span class="font-bold text-primary">90%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="90%"></div>
-                            </div>
+                        <div class="executive-panel p-5">
+                            <div class="case-label mb-2">Infraestrutura</div>
+                            <p class="text-sm text-text-secondary">Servidores, nuvem, redes e backup. Ambientes estáveis e escaláveis.</p>
                         </div>
-                        <div class="skill-item">
-                            <div class="flex justify-between mb-1">
-                                <span class="text-theme-primary">React/Vue.js</span>
-                                <span class="font-bold text-primary">88%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="88%"></div>
-                            </div>
+                        <div class="executive-panel p-5">
+                            <div class="case-label mb-2">Produção</div>
+                            <p class="text-sm text-text-secondary">Da criação até a manutenção. Aplicações que funcionam 24/7.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-4 mb-10 justify-center lg:justify-start">
+                        <a id="cms-cta1" href="#contact" class="btn-primary text-center">
+                            <i class="fas fa-handshake mr-2"></i><span data-cms-key="hero.cta1text">Vamos conversar</span>
+                        </a>
+                        <a id="cms-cta2" href="#projects" class="btn-secondary text-center">
+                            <i class="fas fa-code mr-2"></i><span data-cms-key="hero.cta2text">Ver meus projetos</span>
+                        </a>
+                    </div>
+
+                    <div id="cms-hero-tags" class="flex flex-wrap gap-3 mb-8 justify-center lg:justify-start">
+                        <span class="tech-tag">Full Stack Development</span>
+                        <span class="tech-tag">Cloud Infrastructure</span>
+                        <span class="tech-tag">DevOps</span>
+                    </div>
+
+                    <div id="cms-trust-badges" class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <div class="trust-badge">
+                            <i class="fas fa-code text-primary mr-3"></i>
+                            <span class="text-sm font-medium">Código limpo e arquitetura escalável</span>
+                        </div>
+                        <div class="trust-badge">
+                            <i class="fas fa-server text-primary mr-3"></i>
+                            <span class="text-sm font-medium">Infraestrutura robusta e segura</span>
+                        </div>
+                        <div class="trust-badge">
+                            <i class="fas fa-headset text-primary mr-3"></i>
+                            <span class="text-sm font-medium">Disponível para suporte e consultoria</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Backend Skills -->
-                <div class="card" data-aos="fade-up" data-aos-delay="100">
-                    <div
-                        class="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-400 to-green-400 flex items-center justify-center mb-6">
-                        <i class="fas fa-server text-white text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4">Backend & APIs</h3>
-                    <div class="space-y-4">
-                        <div class="skill-item">
-                            <div class="flex justify-between mb-1">
-                                <span class="text-theme-primary">Node.js/C#/.NET</span>
-                                <span class="font-bold text-primary">92%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="92%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="flex justify-between mb-1">
-                                <span class="text-theme-primary">SQL Server/MySQL/SQLite</span>
-                                <span class="font-bold text-primary">94%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="94%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="flex justify-between mb-1">
-                                <span class="text-theme-primary">APIs REST/GraphQL</span>
-                                <span class="font-bold text-primary">91%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="91%"></div>
-                            </div>
+                <div data-aos="fade-left" data-aos-delay="200" class="relative mt-12 lg:mt-0">
+                    <div class="relative mb-8">
+                        <div class="absolute -top-6 -right-6 w-64 h-64 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-full blur-3xl float-animation"></div>
+                        <div class="relative rounded-[2rem] overflow-hidden executive-panel p-6 lg:p-8">
+                            <img src="./logo-hero.png" alt="Adriano Sena - Desenvolvedor Full Stack" class="w-full h-auto object-cover">
                         </div>
                     </div>
-                </div>
 
-                <!-- DevOps & Cloud -->
-                <div class="card" data-aos="fade-up" data-aos-delay="200">
-                    <div
-                        class="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-500 to-pink-400 flex items-center justify-center mb-6">
-                        <i class="fas fa-cloud text-white text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4">DevOps & Infra</h3>
-                    <div class="space-y-4">
-                        <div class="skill-item">
-                            <div class="flex justify-between mb-1">
-                                <span class="text-theme-primary">Docker/Proxmox</span>
-                                <span class="font-bold text-primary">87%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="87%"></div>
+                    <div class="executive-panel p-6 mb-6" data-aos="fade-up" data-aos-delay="250">
+                        <div class="flex items-start justify-between gap-4 mb-5">
+                            <div>
+                                <div class="section-kicker mb-3">
+                                    <i class="fas fa-rocket"></i>
+                                    Especialidades
+                                </div>
+                                <h3 class="text-2xl font-bold mb-2">O que eu faço</h3>
+                                <p class="text-text-secondary">Desenvolvimento completo, do conceito até a produção, com foco em qualidade e performance.</p>
                             </div>
                         </div>
-                        <div class="skill-item">
-                            <div class="flex justify-between mb-1">
-                                <span class="text-theme-primary">cPanel/CyberPanel</span>
-                                <span class="font-bold text-primary">89%</span>
+                        <div class="grid sm:grid-cols-3 gap-4 text-sm">
+                            <div class="rounded-2xl bg-primary/5 border border-primary/10 p-4">
+                                <div class="font-semibold mb-1">Web & Mobile</div>
+                                <p class="text-text-secondary">Sites, apps e sistemas que funcionam perfeitamente.</p>
                             </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="89%"></div>
+                            <div class="rounded-2xl bg-primary/5 border border-primary/10 p-4">
+                                <div class="font-semibold mb-1">Infraestrutura</div>
+                                <p class="text-text-secondary">Servidores, VPS e ambientes em nuvem otimizados.</p>
                             </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="flex justify-between mb-1">
-                                <span class="text-theme-primary">Linux Server</span>
-                                <span class="font-bold text-primary">90%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="90%"></div>
+                            <div class="rounded-2xl bg-primary/5 border border-primary/10 p-4">
+                                <div class="font-semibold mb-1">DevOps</div>
+                                <p class="text-text-secondary">Automação, CI/CD e operações contínuas.</p>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Especialidades -->
-                <div class="card" data-aos="fade-up" data-aos-delay="300">
-                    <div
-                        class="w-14 h-14 rounded-xl bg-gradient-to-br from-orange-500 to-red-400 flex items-center justify-center mb-6">
-                        <i class="fas fa-star text-white text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4">Especialidades</h3>
-                    <div class="space-y-4">
-                        <div class="skill-item">
-                            <div class="flex justify-between mb-1">
-                                <span class="text-theme-primary">Unity3D & C# Scripts</span>
-                                <span class="font-bold text-primary">85%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="85%"></div>
-                            </div>
+                    <div id="cms-stats-grid" class="grid grid-cols-2 gap-4 md:gap-6">
+                        <div class="stat-item card">
+                            <div class="stat-number" data-cms-key="stat.0.number">12+</div>
+                            <div class="stat-label" data-cms-key="stat.0.label">Anos de experiência</div>
                         </div>
-                        <div class="skill-item">
-                            <div class="flex justify-between mb-1">
-                                <span class="text-theme-primary">Gateways de Pagamento</span>
-                                <span class="font-bold text-primary">93%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="93%"></div>
-                            </div>
+                        <div class="stat-item card">
+                            <div class="stat-number" data-cms-key="stat.1.number">50+</div>
+                            <div class="stat-label" data-cms-key="stat.1.label">Projetos concluídos</div>
                         </div>
-                        <div class="skill-item">
-                            <div class="flex justify-between mb-1">
-                                <span class="text-theme-primary">APIs NFe/Fiscais</span>
-                                <span class="font-bold text-primary">88%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="88%"></div>
-                            </div>
+                        <div class="stat-item card">
+                            <div class="stat-number" data-cms-key="stat.2.number">24h</div>
+                            <div class="stat-label" data-cms-key="stat.2.label">Resposta em demandas</div>
+                        </div>
+                        <div class="stat-item card">
+                            <div class="stat-number" data-cms-key="stat.3.number">∞</div>
+                            <div class="stat-label" data-cms-key="stat.3.label">Disponibilidade de aprender</div>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <!-- Tech Stack Completo -->
-            <div class="mt-8">
-                <h3 class="text-2xl font-bold text-center mb-8">Tecnologias & Ferramentas</h3>
-                <div class="flex flex-wrap justify-center gap-3">
-                    <span class="tech-tag">HTML5</span>
-                    <span class="tech-tag">CSS3</span>
-                    <span class="tech-tag">Tailwind CSS</span>
-                    <span class="tech-tag">JavaScript</span>
-                    <span class="tech-tag">TypeScript</span>
-                    <span class="tech-tag">C#</span>
-                    <span class="tech-tag">.NET</span>
-                    <span class="tech-tag">Unity3D</span>
-                    <span class="tech-tag">SQL Server</span>
-                    <span class="tech-tag">MySQL</span>
-                    <span class="tech-tag">SQLite</span>
-                    <span class="tech-tag">Node.js</span>
-                    <span class="tech-tag">React.js</span>
-                    <span class="tech-tag">Vue.js</span>
-                    <span class="tech-tag">Docker</span>
-                    <span class="tech-tag">Proxmox</span>
-                    <span class="tech-tag">cPanel</span>
-                    <span class="tech-tag">CyberPanel</span>
-                    <span class="tech-tag">Mercado Pago</span>
-                    <span class="tech-tag">Stripe</span>
-                    <span class="tech-tag">Stone API</span>
-                    <span class="tech-tag">API NFe</span>
-                    <span class="tech-tag">Android</span>
-                    <span class="tech-tag">iOS</span>
-                    <span class="tech-tag">Flutter</span>
-                    <span class="tech-tag">React Native</span>
-                    <span class="tech-tag">Firebase</span>
-                    <span class="tech-tag">AWS</span>
-                    <span class="tech-tag">Git</span>
-                    <span class="tech-tag">GitHub</span>
-                    <span class="tech-tag">CI/CD</span>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="section-spacing">
+    <section id="projects" class="section-spacing bg-section-light">
         <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">Portfólio de <span class="gradient-text">Projetos</span>
-                </h2>
-                <p class="text-lg md:text-xl text-text-secondary max-w-2xl mx-auto">
-                    Soluções reais desenvolvidas para clientes em diversos segmentos
-                </p>
-            </div>
+            <div id="cms-projects-inner">
+                <div class="text-center mb-16">
+                    <div class="section-kicker mx-auto mb-6 justify-center">
+                        <i class="fas fa-laptop-code"></i>
+                        Meus Projetos
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Projetos <span class="gradient-text">open source e produção</span></h2>
+                    <p class="text-lg md:text-xl text-text-secondary max-w-3xl mx-auto">
+                        Alguns dos meus projetos principais, do desenvolvimento IPTV até gerenciadores de mídia. Todos com código robusto e focados em performance.
+                    </p>
+                </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Sistema de Gestão Financeira -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="card" data-aos="zoom-in">
                     <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-                            alt="Sistema de Gestão" class="w-full h-full object-cover">
+                        <img src="./images/asmedia.png"
+                            alt="AS-XSTREAM-IPTV" class="w-full h-full object-contain">
                     </div>
                     <div class="flex justify-between items-start mb-3">
-                        <h3 class="text-xl font-bold">Sistema ERP Completo</h3>
+                        <h3 class="text-xl font-bold">AS-XSTREAM-IPTV</h3>
                         <span
-                            class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">Completo</span>
+                            class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">Ativo</span>
                     </div>
-                    <p class="text-text-secondary mb-4">
-                        Sistema de gestão empresarial com dashboard analítico, controle financeiro e módulos
-                        customizados.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="tech-tag">C#</span>
-                        <span class="tech-tag">SQL Server</span>
-                        <span class="tech-tag">React</span>
-                        <span class="tech-tag">TypeScript</span>
-                    </div>
-                    <a href="#contact" class="text-primary font-semibold hover:underline inline-flex items-center">
-                        Solicitar projeto similar
-                        <i class="fas fa-arrow-right ml-2"></i>
-                    </a>
-                </div>
-
-                <!-- Gateway de Pagamentos -->
-                <div class="card" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-                            alt="Gateway de Pagamentos" class="w-full h-full object-cover">
-                    </div>
-                    <div class="flex justify-between items-start mb-3">
-                        <h3 class="text-xl font-bold">Gateway de Pagamentos</h3>
-                        <span
-                            class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Integração</span>
-                    </div>
-                    <p class="text-text-secondary mb-4">
-                        Plataforma de pagamentos com integração Mercado Pago, Stone e Stripe para e-commerce.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="tech-tag">Node.js</span>
-                        <span class="tech-tag">TypeScript</span>
-                        <span class="tech-tag">API REST</span>
-                        <span class="tech-tag">Webhooks</span>
-                    </div>
-                    <a href="#contact" class="text-primary font-semibold hover:underline inline-flex items-center">
-                        Solicitar projeto similar
-                        <i class="fas fa-arrow-right ml-2"></i>
-                    </a>
-                </div>
-
-                <!-- App IPTV -->
-                <div class="card" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-                            alt="App IPTV" class="w-full h-full object-cover">
-                    </div>
-                    <div class="flex justify-between items-start mb-3">
-                        <h3 class="text-xl font-bold">Servidor IPTV + App</h3>
-                        <span
-                            class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm font-medium">Multimídia</span>
-                    </div>
-                    <p class="text-text-secondary mb-4">
-                        Solução completa de streaming com servidor Proxmox e apps Android/iOS.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="tech-tag">Proxmox</span>
-                        <span class="tech-tag">Android</span>
-                        <span class="tech-tag">iOS</span>
-                        <span class="tech-tag">FFmpeg</span>
-                    </div>
-                    <a href="#contact" class="text-primary font-semibold hover:underline inline-flex items-center">
-                        Solicitar projeto similar
-                        <i class="fas fa-arrow-right ml-2"></i>
-                    </a>
-                </div>
-
-                <!-- Landing Page High-Conversion -->
-                <div class="card" data-aos="zoom-in">
-                    <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-                            alt="Landing Page" class="w-full h-full object-cover">
-                    </div>
-                    <div class="flex justify-between items-start mb-3">
-                        <h3 class="text-xl font-bold">Landing Page High-Conversion</h3>
-                        <span
-                            class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-medium">Marketing</span>
-                    </div>
-                    <p class="text-text-secondary mb-4">
-                        Landing page otimizada para conversão com design moderno e performance excelente.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="tech-tag">HTML5</span>
-                        <span class="tech-tag">CSS3</span>
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">GSAP</span>
-                    </div>
-                    <a href="#contact" class="text-primary font-semibold hover:underline inline-flex items-center">
-                        Solicitar projeto similar
-                        <i class="fas fa-arrow-right ml-2"></i>
-                    </a>
-                </div>
-
-                <!-- Jogo Unity3D -->
-                <div class="card" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-                            alt="Jogo Unity" class="w-full h-full object-cover">
-                    </div>
-                    <div class="flex justify-between items-start mb-3">
-                        <h3 class="text-xl font-bold">Jogo Mobile Unity3D</h3>
-                        <span class="px-3 py-1 bg-pink-100 text-pink-800 rounded-full text-sm font-medium">Games</span>
-                    </div>
-                    <p class="text-text-secondary mb-4">
-                        Jogo casual para mobile com mecânicas inovadoras e sistema de monetização integrado.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="tech-tag">Unity</span>
-                        <span class="tech-tag">C#</span>
-                        <span class="tech-tag">Firebase</span>
-                        <span class="tech-tag">AdMob</span>
-                    </div>
-                    <a href="#contact" class="text-primary font-semibold hover:underline inline-flex items-center">
-                        Solicitar projeto similar
-                        <i class="fas fa-arrow-right ml-2"></i>
-                    </a>
-                </div>
-
-                <!-- App para Igreja -->
-                <div class="card" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-                            alt="App para Igreja" class="w-full h-full object-cover">
-                    </div>
-                    <div class="flex justify-between items-start mb-3">
-                        <h3 class="text-xl font-bold">App Comunidade Cristã</h3>
-                        <span
-                            class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">Social</span>
-                    </div>
-                    <p class="text-text-secondary mb-4">
-                        Aplicativo para igreja com streaming ao vivo, eventos, doações e comunidade.
-                    </p>
+                    <p class="case-label mb-1">Descrição</p>
+                    <p class="text-text-secondary mb-3">Aplicativo poderoso e intuitivo projetado para reproduzir listas IPTV no formato XStream. Oferece experiência otimizada para assistir a filmes, séries e canais de TV ao vivo diretamente de listas personalizadas.</p>
+                    <p class="case-label mb-1">Recursos</p>
+                    <p class="text-text-secondary mb-3">Suporte XStream, interface intuitiva, reprodução HLS, categorias e filtros, player embutido, compatibilidade multiplataforma.</p>
+                    <p class="case-label mb-1">Stack</p>
+                    <p class="text-text-secondary mb-4">React Native, Expo, HttpClient, HLS</p>
                     <div class="flex flex-wrap gap-2 mb-4">
                         <span class="tech-tag">React Native</span>
-                        <span class="tech-tag">Node.js</span>
-                        <span class="tech-tag">Firebase</span>
-                        <span class="tech-tag">Stripe</span>
+                        <span class="tech-tag">Expo</span>
+                        <span class="tech-tag">HLS</span>
+                        <span class="tech-tag">Streaming</span>
                     </div>
-                    <a href="#contact" class="text-primary font-semibold hover:underline inline-flex items-center">
-                        Solicitar projeto similar
-                        <i class="fas fa-arrow-right ml-2"></i>
+                    <a href="https://github.com/adrianosenas/AS-XSTREAM-IPTV" target="_blank" class="text-primary font-semibold hover:underline inline-flex items-center">
+                        Ver no GitHub
+                        <i class="fas fa-external-link-alt ml-2"></i>
                     </a>
                 </div>
-            </div>
 
-            <div class="text-center mt-12">
-                <a href="#contact" class="btn-primary inline-flex items-center">
-                    <i class="fas fa-plus-circle mr-2"></i>Ver Mais Projetos
-                </a>
+                <div class="card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="project-image">
+                        <img src="./images/asmedia.png"
+                            alt="ASMedia-Master" class="w-full h-full object-contain">
+                    </div>
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="text-xl font-bold">ASMedia</h3>
+                        <span
+                            class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Ativo</span>
+                    </div>
+                    <p class="case-label mb-1">Descrição</p>
+                    <p class="text-text-secondary mb-3">Media server robusto escrito em C# para gerenciamento de conteúdo como filmes, séries e TV ao vivo, com suporte a leitura de arquivos M3U e gerenciamento de usuários.</p>
+                    <p class="case-label mb-1">Recursos</p>
+                    <p class="text-text-secondary mb-3">Suporte a M3U e URLs, gerenciamento de usuários, compatível com Linux e Windows, controle de acesso e perfis.</p>
+                    <p class="case-label mb-1">Stack</p>
+                    <p class="text-text-secondary mb-4">.NET 8, C#, M3U Parser, Media Server</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="tech-tag">C#</span>
+                        <span class="tech-tag">.NET 8</span>
+                        <span class="tech-tag">M3U</span>
+                        <span class="tech-tag">Media Server</span>
+                    </div>
+                    <a href="https://github.com/adrianosenas/ASMedia-Master" target="_blank" class="text-primary font-semibold hover:underline inline-flex items-center">
+                        Ver no GitHub
+                        <i class="fas fa-external-link-alt ml-2"></i>
+                    </a>
+                </div>
+
+                <div class="card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="project-image">
+                        <img src="./images/asmedia.png"
+                            alt="ASIptvServer.M3U" class="w-full h-full object-contain">
+                    </div>
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="text-xl font-bold">ASIptvServer.M3U</h3>
+                        <span
+                            class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm font-medium">Beta</span>
+                    </div>
+                    <p class="case-label mb-1">Descrição</p>
+                    <p class="text-text-secondary mb-3">Biblioteca C# que fornece funcionalidades para ler listas M3U, fazer download de URLs e salvar em arquivo. Separa logo e URL, verifica se é série, filme ou programa de TV.</p>
+                    <p class="case-label mb-1">Funcionalidades</p>
+                    <p class="text-text-secondary mb-3">Lê vários formatos de listas, download e salva em arquivo M3U, separa logo e URL, classificação de conteúdo.</p>
+                    <p class="case-label mb-1">Stack</p>
+                    <p class="text-text-secondary mb-4">C#, M3U Parser, Regex, HTTP Client</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="tech-tag">C#</span>
+                        <span class="tech-tag">M3U</span>
+                        <span class="tech-tag">Parser</span>
+                        <span class="tech-tag">Regex</span>
+                    </div>
+                    <a href="https://github.com/adrianosenas/ASIptvServer.M3U" target="_blank" class="text-primary font-semibold hover:underline inline-flex items-center">
+                        Ver no GitHub
+                        <i class="fas fa-external-link-alt ml-2"></i>
+                    </a>
+                </div>
+
+                <div class="card" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="project-image">
+                        <img src="./images/asmedia.png"
+                            alt="ASIptvServer.Naming" class="w-full h-full object-contain">
+                    </div>
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="text-xl font-bold">ASIptvServer.Naming</h3>
+                        <span
+                            class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">Beta</span>
+                    </div>
+                    <p class="case-label mb-1">Descrição</p>
+                    <p class="text-text-secondary mb-3">Biblioteca C# que fornece funcionalidades para renomear strings no formato IPTV. Captura o ano, remove parênteses e traços, e organiza o texto de maneira clara e legível.</p>
+                    <p class="case-label mb-1">Funcionalidades</p>
+                    <p class="text-text-secondary mb-3">Remove parênteses e traços, verifica se é série de TV, extrai e posiciona ano ao final, organiza texto de forma legível.</p>
+                    <p class="case-label mb-1">Stack</p>
+                    <p class="text-text-secondary mb-4">C#, Regex, String Parsing, IPTV</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="tech-tag">C#</span>
+                        <span class="tech-tag">Regex</span>
+                        <span class="tech-tag">Parser</span>
+                        <span class="tech-tag">IPTV</span>
+                    </div>
+                    <a href="https://github.com/adrianosenas/ASIptvServer.Naming" target="_blank" class="text-primary font-semibold hover:underline inline-flex items-center">
+                        Ver no GitHub
+                        <i class="fas fa-external-link-alt ml-2"></i>
+                    </a>
+                </div>
+
+                <div class="card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="project-image">
+                        <img src="./images/adrianosena.PNG"
+                            alt="Site Pessoal" class="w-full h-full object-contain">
+                    </div>
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="text-xl font-bold">Site Pessoal</h3>
+                        <span
+                            class="px-3 py-1 bg-amber-100 text-amber-800 rounded-full text-sm font-medium">Portfolio</span>
+                    </div>
+                    <p class="case-label mb-1">Descrição</p>
+                    <p class="text-text-secondary mb-3">Meu site profissional e portfólio completo. Showcase de projetos, skills e forma de contato para oportunidades.</p>
+                    <p class="case-label mb-1">Stack</p>
+                    <p class="text-text-secondary mb-4">HTML5, Node.js, Tailwind CSS, Responsive</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">Tailwind CSS</span>
+                        <span class="tech-tag">Responsive</span>
+                    </div>
+                    <a href="https://adrianosena.dev.br" target="_blank" class="text-primary font-semibold hover:underline inline-flex items-center">
+                        Visitar Site
+                        <i class="fas fa-external-link-alt ml-2"></i>
+                    </a>
+                </div>
+                </div>
+
+                <div class="text-center mt-12">
+                    <a href="#contact" class="btn-primary inline-flex items-center">
+                        <i class="fas fa-envelope mr-2"></i>Quer trabalhar comigo?
+                    </a>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="section-spacing bg-section-light">
+    <!-- Portfolio/Clients Section -->
+    <section id="portfolio" class="section-spacing bg-section-light">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">Serviços <span
-                        class="gradient-text">Especializados</span></h2>
-                <p class="text-lg md:text-xl text-text-secondary max-w-2xl mx-auto">
-                    Soluções completas para transformar sua ideia em realidade digital
+                <div class="section-kicker mx-auto mb-6 justify-center">
+                    <i class="fas fa-globe"></i>
+                    Clientes e Projetos
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Websites que <span class="gradient-text">desenvolvi e mantenho</span></h2>
+                <p class="text-lg md:text-xl text-text-secondary max-w-3xl mx-auto">
+                    Alguns dos principais websites que desenvolvi e mantenho. Desde infraestrutura até design responsivo, tudo pensado em performance e conversão.
                 </p>
             </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- P3Driver -->
+                <div class="card" data-aos="fade-up">
+                    <div class="project-image">
+                        <img src="./images/p3 drive site.PNG"
+                            alt="P3Driver" class="w-full h-full object-contain">
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">P3Driver</h3>
+                    <p class="text-text-secondary mb-4">Plataforma de mobilidade e transportes. Design moderno com foco em user experience e conversão.</p>
+                    <a href="https://www.p3driver.com.br/" target="_blank" class="btn-secondary w-full text-center inline-flex items-center justify-center">
+                        <i class="fas fa-external-link-alt mr-2"></i>Visitar Site
+                    </a>
+                </div>
+
+                <!-- Hostsa -->
+                <div class="card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="project-image">
+                        <img src="./images/hostsa.PNG"
+                            alt="Hostsa" class="w-full h-full object-contain">
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Hostsa</h3>
+                    <p class="text-text-secondary mb-4">Provedor de hosting e soluções de infraestrutura. Desenvolvido com foco em segurança e performance.</p>
+                    <a href="https://www.hostsa.com.br/" target="_blank" class="btn-secondary w-full text-center inline-flex items-center justify-center">
+                        <i class="fas fa-external-link-alt mr-2"></i>Visitar Site
+                    </a>
+                </div>
+
+                <!-- CEEC -->
+                <div class="card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="project-image">
+                        <img src="./images/Site ceec.PNG"
+                            alt="CEEC" class="w-full h-full object-contain">
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">CEEC</h3>
+                    <p class="text-text-secondary mb-4">Centro de Educação e Desenvolvimento. Site institucional com conteúdo dinâmico e sistema de inscrições.</p>
+                    <a href="https://ceec.org.br/" target="_blank" class="btn-secondary w-full text-center inline-flex items-center justify-center">
+                        <i class="fas fa-external-link-alt mr-2"></i>Visitar Site
+                    </a>
+                </div>
+
+                <!-- Escola CEEC -->
+                <div class="card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="project-image">
+                        <img src="./images/Site cursos ceec.PNG"
+                            alt="Escola CEEC" class="w-full h-full object-contain">
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Escola CEEC</h3>
+                    <p class="text-text-secondary mb-4">Plataforma educacional com portal de alunos, gestão de turmas e sistema de notas integrado.</p>
+                    <a href="https://escolaceec.org.br/" target="_blank" class="btn-secondary w-full text-center inline-flex items-center justify-center">
+                        <i class="fas fa-external-link-alt mr-2"></i>Visitar Site
+                    </a>
+                </div>
+
+                <!-- ASIptvServer -->
+                <div class="card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="project-image">
+                        <img src="./images/iptv.PNG"
+                            alt="ASIptvServer" class="w-full h-full object-contain">
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">ASIptvServer</h3>
+                    <p class="text-text-secondary mb-4">Servidor IPTV com painel de controle, gestão de canais e distribuição de streaming em alta performance.</p>
+                    <a href="https://asiptv.com.br/" target="_blank" class="btn-secondary w-full text-center inline-flex items-center justify-center">
+                        <i class="fas fa-external-link-alt mr-2"></i>Visitar Site
+                    </a>
+                </div>
+
+                <!-- 4Server Tecnologia -->
+                <div class="card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="project-image">
+                        <img src="./images/4server.PNG"
+                            alt="4Server" class="w-full h-full object-contain">
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">4Server Tecnologia</h3>
+                    <p class="text-text-secondary mb-4">Soluções em tecnologia, infraestrutura e suporte técnico. Site com gestão de chamados e documentação técnica.</p>
+                    <a href="https://4servertecnologia.com.br/" target="_blank" class="btn-secondary w-full text-center inline-flex items-center justify-center">
+                        <i class="fas fa-external-link-alt mr-2"></i>Visitar Site
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Skills Section -->
+    <section id="skills" class="section-spacing bg-section-light">
+
+        <div class="container mx-auto px-6">
+            <div id="cms-process-inner">
+                <div class="text-center mb-16">
+                    <div class="section-kicker mx-auto mb-6 justify-center">
+                        <i class="fas fa-tools"></i>
+                        Stack de Tecnologias
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Tecnologias que <span class="gradient-text">domino e uso em produção</span></h2>
+                    <p class="text-lg md:text-xl text-text-secondary max-w-3xl mx-auto">
+                        Meu foco é em tecnologias maduras, well-tested e que permitem entregar código de qualidade. Estou sempre aprendendo novas ferramentas e mantendo as habilidades atualizadas.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                    <div class="card" data-aos="fade-up">
+                        <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-400 to-cyan-400 flex items-center justify-center mb-6">
+                            <i class="fas fa-code text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">Frontend</h3>
+                        <ul class="space-y-2 text-text-secondary">
+                            <li>React, Vue.js, HTML5, CSS3</li>
+                            <li>JavaScript/TypeScript moderno</li>
+                            <li>Responsive, acessível, performático</li>
+                        </ul>
+                    </div>
+
+                    <div class="card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-500 to-pink-400 flex items-center justify-center mb-6">
+                            <i class="fas fa-server text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">Backend</h3>
+                        <ul class="space-y-2 text-text-secondary">
+                            <li>Node.js, Express, .NET, C#</li>
+                            <li>REST APIs, GraphQL, WebSockets</li>
+                            <li>Segurança, autenticação, validação</li>
+                        </ul>
+                    </div>
+
+                    <div class="card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-orange-500 to-red-400 flex items-center justify-center mb-6">
+                            <i class="fas fa-database text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">Banco de Dados</h3>
+                        <ul class="space-y-2 text-text-secondary">
+                            <li>MySQL, PostgreSQL, SQL Server</li>
+                            <li>MongoDB, Firebase, Redis</li>
+                            <li>Design, otimização, queries</li>
+                        </ul>
+                    </div>
+
+                    <div class="card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-green-500 to-emerald-400 flex items-center justify-center mb-6">
+                            <i class="fas fa-cloud text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">DevOps & Cloud</h3>
+                        <ul class="space-y-2 text-text-secondary">
+                            <li>Docker, Proxmox, AWS, VPS</li>
+                            <li>CI/CD, GitHub, automação</li>
+                            <li>Linux, redes, segurança</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="grid lg:grid-cols-[1.2fr_0.8fr] gap-8 items-stretch">
+                    <div class="card" data-aos="fade-up">
+                        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
+                            <div>
+                                <h3 class="text-2xl font-bold mb-3">Capacidade homologada para ambientes empresariais</h3>
+                                <p class="text-text-secondary max-w-2xl">Seleção de tecnologias e plataformas usada conforme contexto do projeto, maturidade da operação e necessidade de escala.</p>
+                            </div>
+                            <div class="text-sm text-text-secondary font-medium">Software, apps, integrações, infraestrutura e sustentação</div>
+                        </div>
+                        <div class="grid md:grid-cols-3 gap-6">
+                            <div>
+                                <div class="case-label mb-3">Aplicações</div>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="tech-tag">HTML5</span>
+                                    <span class="tech-tag">CSS3</span>
+                                    <span class="tech-tag">JavaScript</span>
+                                    <span class="tech-tag">TypeScript</span>
+                                    <span class="tech-tag">Node.js</span>
+                                    <span class="tech-tag">React.js</span>
+                                    <span class="tech-tag">Vue.js</span>
+                                    <span class="tech-tag">.NET</span>
+                                    <span class="tech-tag">C#</span>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="case-label mb-3">Mobile e integrações</div>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="tech-tag">Android</span>
+                                    <span class="tech-tag">iOS</span>
+                                    <span class="tech-tag">Flutter</span>
+                                    <span class="tech-tag">React Native</span>
+                                    <span class="tech-tag">Firebase</span>
+                                    <span class="tech-tag">Stripe</span>
+                                    <span class="tech-tag">Mercado Pago</span>
+                                    <span class="tech-tag">Stone API</span>
+                                    <span class="tech-tag">API NFe</span>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="case-label mb-3">Infraestrutura</div>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="tech-tag">Docker</span>
+                                    <span class="tech-tag">Proxmox</span>
+                                    <span class="tech-tag">AWS</span>
+                                    <span class="tech-tag">cPanel</span>
+                                    <span class="tech-tag">CyberPanel</span>
+                                    <span class="tech-tag">MySQL</span>
+                                    <span class="tech-tag">SQL Server</span>
+                                    <span class="tech-tag">SQLite</span>
+                                    <span class="tech-tag">CI/CD</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card flex flex-col justify-between" data-aos="fade-up" data-aos-delay="100">
+                        <div>
+                            <div class="section-kicker mb-5">
+                                <i class="fas fa-clipboard-check"></i>
+                                Governança
+                            </div>
+                            <h3 class="text-2xl font-bold mb-4">O que o cliente recebe em cada frente</h3>
+                        </div>
+                        <div class="space-y-4 text-text-secondary">
+                            <div class="rounded-2xl border border-gray-200 p-4">
+                                <div class="font-semibold text-theme-primary mb-1">Direcionamento técnico</div>
+                                <p>Recomendação de caminho com linguagem clara para apoiar a decisão comercial.</p>
+                            </div>
+                            <div class="rounded-2xl border border-gray-200 p-4">
+                                <div class="font-semibold text-theme-primary mb-1">Documentação essencial</div>
+                                <p>Resumo de escopo, ambientes, acessos, dependências e rotina de sustentação.</p>
+                            </div>
+                            <div class="rounded-2xl border border-gray-200 p-4">
+                                <div class="font-semibold text-theme-primary mb-1">Continuidade operacional</div>
+                                <p>Estratégia de suporte, ajustes e evolução conforme a maturidade da operação.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Services Section -->
+    <section id="services" class="section-spacing bg-section-light">
+        <div class="container mx-auto px-6">
+            <div id="cms-services-inner">
+                <div class="text-center mb-16">
+                    <div class="section-kicker mx-auto mb-6 justify-center">
+                        <i class="fas fa-handshake"></i>
+                        O que ofereço
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Serviços que <span class="gradient-text">entrego como desenvolvedor</span></h2>
+                    <p class="text-lg md:text-xl text-text-secondary max-w-3xl mx-auto">
+                        Ofereço uma gama completa de serviços de desenvolvimento, desde websites até infraestrutura robusta. Cada projeto é tratado com profissionalismo e foco em resultados.
+                    </p>
+                </div>
+
+                <div class="service-hero-grid">
+                <div class="card service-hero-card" data-aos="fade-up">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl md:text-2xl font-bold">Plataformas e presença digital</h3>
+                        <span class="tech-tag text-xs sm:text-sm">Sites • Apps • Sistemas</span>
+                    </div>
+                    <p class="text-text-secondary mb-4">
+                        Estruturamos <span class="font-semibold text-primary">websites corporativos, landing pages,
+                            sistemas de gestão e aplicativos</span> com discurso mais maduro, arquitetura viável e foco em percepção de valor.
+                    </p>
+                    <p class="text-text-secondary mb-4">
+                        A solução é pensada para apoiar crescimento, rotina comercial e experiência do usuário sem improviso de escopo.
+                    </p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i><span>Posicionamento institucional mais sofisticado e confiável</span></li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i><span>Escopo, cronograma e responsabilidades definidos antes de iniciar</span></li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i><span>Integração com operação comercial, atendimento ou backoffice</span></li>
+                    </ul>
+                    <div class="mb-6 text-sm text-text-secondary font-medium">Ideal para empresas que precisam elevar sua imagem, vender melhor e dar escala à operação.</div>
+                    <a href="#contact" class="btn-primary inline-flex items-center justify-center mt-auto self-stretch sm:self-start"><i class="fas fa-rocket mr-2"></i>Planejar frente digital</a>
+                </div>
+
+                <div class="card service-hero-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl md:text-2xl font-bold">Sustentação técnica e continuidade</h3>
+                        <span class="tech-tag text-xs sm:text-sm">Notebooks • PCs • Servidores</span>
+                    </div>
+                    <p class="text-text-secondary mb-4">
+                        Atuação técnica para <span class="font-semibold text-primary">equipamentos, estações e servidores</span> com foco em reduzir interrupção, aumentar vida útil e padronizar o ambiente.
+                    </p>
+                    <p class="text-text-secondary mb-4">
+                        A empresa recebe explicação objetiva, diagnóstico confiável e execução orientada à continuidade da rotina operacional.
+                    </p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i><span>Diagnóstico, manutenção preventiva e correção com rastreabilidade</span></li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i><span>Suporte remoto e presencial conforme criticidade do cenário</span></li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i><span>Organização de rotina para evitar recorrência de falhas</span></li>
+                    </ul>
+                    <div class="mb-6 text-sm text-text-secondary font-medium">Ideal para empresas que não podem depender de soluções improvisadas para manter a operação funcionando.</div>
+                    <a href="#contact" class="btn-primary inline-flex items-center justify-center mt-auto self-stretch sm:self-start"><i class="fas fa-tools mr-2"></i>Solicitar sustentação</a>
+                </div>
+
+                <div class="card service-hero-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl md:text-2xl font-bold">Infraestrutura crítica e resiliência</h3>
+                        <span class="tech-tag text-xs sm:text-sm">Redes • VPS • Backup</span>
+                    </div>
+                    <p class="text-text-secondary mb-4">
+                        Estruturamos ambientes com <span class="font-semibold text-primary">VPS, Proxmox, cPanel,
+                            CyberPanel, redes corporativas e rotinas de backup</span> para proteger dados, reduzir indisponibilidade e organizar crescimento.
+                    </p>
+                    <p class="text-text-secondary mb-4">
+                        O foco é sair da dependência de configurações frágeis e entrar em um cenário monitorado, documentado e recuperável.
+                    </p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i><span>Provisionamento, migração e hardening de ambientes</span></li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i><span>Backups locais e em nuvem com política de recuperação</span></li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i><span>Documentação essencial para continuidade operacional</span></li>
+                    </ul>
+                    <div class="mb-6 text-sm text-text-secondary font-medium">Ideal para operações que exigem estabilidade, segurança e capacidade de recuperação rápida.</div>
+                    <a href="#contact" class="btn-primary inline-flex items-center justify-center mt-auto self-stretch sm:self-start"><i class="fas fa-network-wired mr-2"></i>Estruturar ambiente crítico</a>
+                </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="card text-center" data-aos="fade-up">
+                    <div class="service-icon mx-auto">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Sites institucionais e páginas de conversão</h3>
+                    <p class="text-text-secondary mb-4">
+                        Projetos para posicionar a marca com mais autoridade e transformar interesse em oportunidade comercial.
+                    </p>
+                    <ul class="text-left space-y-2 mb-6">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Arquitetura de conteúdo, oferta e credibilidade institucional</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>SEO técnico, performance e responsividade</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Foco em percepção de valor, leads e vendas</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-icon mx-auto">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Aplicativos para atendimento e produtividade</h3>
+                    <p class="text-text-secondary mb-4">
+                        Aplicativos para rotina operacional, equipe de campo, vendas ou jornada de atendimento.
+                    </p>
+                    <ul class="text-left space-y-2 mb-6">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Apps híbridos ou nativos conforme cenário</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Integração com APIs, CRM e sistemas internos</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Publicação, monitoramento e evolução contínua</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card text-center" data-aos="fade-up" data-aos-delay="200">
                     <div class="service-icon mx-auto">
                         <i class="fas fa-chart-line"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Sistemas de Gestão</h3>
+                    <h3 class="text-xl font-bold mb-3">Sistemas web e desktop para operação</h3>
                     <p class="text-text-secondary mb-4">
-                        ERPs, CRMs, dashboards e sistemas administrativos completos
+                        Sistemas sob medida para controlar processos, reduzir retrabalho e centralizar informação crítica.
                     </p>
                     <ul class="text-left space-y-2 mb-6">
                         <li class="flex items-center">
                             <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Dashboard analítico</span>
+                            <span>Modelagem aderente ao fluxo real do negócio</span>
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Relatórios em tempo real</span>
+                            <span>Dashboards, permissões e indicadores operacionais</span>
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Multi-usuário</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="card text-center" data-aos="fade-up" data-aos-delay="100">
-                    <div class="service-icon mx-auto">
-                        <i class="fas fa-shopping-cart"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Gateways de Pagamento</h3>
-                    <p class="text-text-secondary mb-4">
-                        Integração com Mercado Pago, Stone, Stripe e outras plataformas
-                    </p>
-                    <ul class="text-left space-y-2 mb-6">
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Checkout transparente</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Múltiplas formas de pagamento</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Painel de controle</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="card text-center" data-aos="fade-up" data-aos-delay="200">
-                    <div class="service-icon mx-auto">
-                        <i class="fas fa-tv"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Servidores IPTV</h3>
-                    <p class="text-text-secondary mb-4">
-                        Configuração e gerenciamento de servidores IPTV com apps personalizados
-                    </p>
-                    <ul class="text-left space-y-2 mb-6">
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Apps personalizados</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Painel de administração</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Suporte técnico</span>
+                            <span>Automação de tarefas e integrações estratégicas</span>
                         </li>
                     </ul>
                 </div>
 
                 <div class="card text-center" data-aos="fade-up">
                     <div class="service-icon mx-auto">
-                        <i class="fas fa-gamepad"></i>
+                        <i class="fas fa-laptop-medical"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Unity3D & Jogos</h3>
+                    <h3 class="text-xl font-bold mb-3">Estações de trabalho e parque computacional</h3>
                     <p class="text-text-secondary mb-4">
-                        Desenvolvimento de scripts, mecânicas e sistemas para jogos Unity
+                        Organização e manutenção do ambiente de trabalho com foco em produtividade, segurança e menos tempo parado.
                     </p>
                     <ul class="text-left space-y-2 mb-6">
                         <li class="flex items-center">
                             <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Scripts personalizados</span>
+                            <span>Diagnóstico confiável e plano de correção objetivo</span>
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Otimização de performance</span>
+                            <span>Upgrade, otimização e manutenção preventiva</span>
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Integração com APIs</span>
+                            <span>Atendimento remoto, presencial e padronização básica</span>
                         </li>
                     </ul>
                 </div>
 
                 <div class="card text-center" data-aos="fade-up" data-aos-delay="100">
                     <div class="service-icon mx-auto">
-                        <i class="fas fa-church"></i>
+                        <i class="fas fa-server"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Apps para Igrejas</h3>
+                    <h3 class="text-xl font-bold mb-3">Servidores, virtualização e painéis</h3>
                     <p class="text-text-secondary mb-4">
-                        Aplicativos personalizados para gestão, streaming e comunicação
+                        Ambientes organizados para hospedagem, aplicações internas e serviços críticos da operação.
                     </p>
                     <ul class="text-left space-y-2 mb-6">
                         <li class="flex items-center">
                             <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Streaming ao vivo</span>
+                            <span>Provisionamento, migração e isolamento de ambientes</span>
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Gestão de membros</span>
+                            <span>Configuração de Proxmox, cPanel e CyberPanel</span>
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Eventos e agendamentos</span>
+                            <span>Hardening, monitoramento e documentação essencial</span>
                         </li>
                     </ul>
                 </div>
 
                 <div class="card text-center" data-aos="fade-up" data-aos-delay="200">
                     <div class="service-icon mx-auto">
-                        <i class="fas fa-file-invoice-dollar"></i>
+                        <i class="fas fa-network-wired"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">APIs Fiscais</h3>
+                    <h3 class="text-xl font-bold mb-3">Redes corporativas e políticas de backup</h3>
                     <p class="text-text-secondary mb-4">
-                        Integração com sistemas de emissão de notas fiscais eletrônicas
+                        Estruturação para reduzir falhas, proteger dados e manter capacidade real de recuperação.
                     </p>
                     <ul class="text-left space-y-2 mb-6">
                         <li class="flex items-center">
                             <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Emissão automática</span>
+                            <span>Segmentação, topologia e revisão de ativos de rede</span>
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Consulta e cancelamento</span>
+                            <span>Backups automáticos locais e em nuvem</span>
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Relatórios fiscais</span>
+                            <span>Plano de recuperação e continuidade para incidentes</span>
                         </li>
                     </ul>
+                </div>
+                </div>
+
+                <div class="text-center mt-10">
+                    <a href="#contact" class="btn-primary inline-flex items-center">
+                        <i class="fas fa-handshake mr-2"></i>Quero uma proposta técnica e comercial
+                    </a>
                 </div>
             </div>
         </div>
@@ -1456,9 +1732,13 @@
     <section id="blog" class="section-spacing">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">Blog & <span class="gradient-text">Artigos</span></h2>
-                <p class="text-lg md:text-xl text-text-secondary max-w-2xl mx-auto">
-                    Compartilhando conhecimento, dicas e insights sobre desenvolvimento e tecnologia
+                <div class="section-kicker mx-auto mb-6 justify-center">
+                    <i class="fas fa-newspaper"></i>
+                    Conteúdo estratégico
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Blog com visão de <span class="gradient-text">gestão, tecnologia e operação</span></h2>
+                <p class="text-lg md:text-xl text-text-secondary max-w-3xl mx-auto">
+                    Artigos voltados para quem toma decisão ou precisa entender tecnologia com profundidade prática, sem ruído e sem excesso de jargão.
                 </p>
             </div>
 
@@ -1469,7 +1749,7 @@
 
             <div class="text-center" data-aos="fade-up">
                 <a href="blog" class="btn-primary inline-flex items-center">
-                    <i class="fas fa-plus-circle mr-2"></i>Carregar Mais Artigos
+                    <i class="fas fa-plus-circle mr-2"></i>Acessar acervo de artigos
                 </a>
             </div>
 
@@ -1482,10 +1762,20 @@
         <div class="container mx-auto px-6">
             <div class="grid lg:grid-cols-2 gap-12">
                 <div data-aos="fade-right">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-6">Vamos conversar sobre seu projeto?</h2>
-                    <p class="text-lg md:text-xl text-text-secondary mb-8">
-                        Entre em contato e receba uma proposta personalizada em até 24 horas.
+                    <div class="section-kicker mb-6">
+                        <i class="fas fa-envelope-open"></i>
+                        Vamos conversar
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6" data-cms-key="contact.title">Tenho interesse em trabalhar com você</h2>
+                    <p class="text-lg md:text-xl text-text-secondary mb-8" data-cms-key="contact.subtitle" data-cms-mode="html">
+                        Seja para um projeto novo, manutenção, ou consultoria técnica. Posso ajudar com desenvolvimento, infraestrutura ou ambos. Me envie os detalhes do que você precisa.
                     </p>
+
+                    <div class="flex flex-wrap gap-3 mb-8">
+                        <span class="tech-tag">Resposta rápida</span>
+                        <span class="tech-tag">Full Stack</span>
+                        <span class="tech-tag">DevOps</span>
+                    </div>
 
                     <div class="space-y-6 mb-8">
                         <div class="flex items-center">
@@ -1495,7 +1785,7 @@
                             </div>
                             <div>
                                 <div class="font-semibold">Email</div>
-                                <a href="mailto:dry@adrianosena.dev.br"
+                                <a id="cms-contact-email" href="mailto:dry@adrianosena.dev.br"
                                     class="text-primary hover:underline">dry@adrianosena.dev.br</a>
                             </div>
                         </div>
@@ -1507,7 +1797,7 @@
                             </div>
                             <div>
                                 <div class="font-semibold">Telefone/WhatsApp</div>
-                                <a href="https://wa.me/5564933004882" class="text-primary hover:underline">+55 (64)
+                                <a id="cms-contact-phone" href="https://wa.me/5564933004882" class="text-primary hover:underline">+55 (64)
                                     93300-4882</a>
                             </div>
                         </div>
@@ -1519,76 +1809,84 @@
                             </div>
                             <div>
                                 <div class="font-semibold">Localização</div>
-                                <div class="text-text-secondary">Goiás, Brasil - Trabalho Remoto Global</div>
+                                  <div id="cms-contact-location" class="text-text-secondary">Goiás, Brasil - Trabalho Remoto Global</div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center">
+                            <div
+                                class="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center mr-4">
+                                <i class="fas fa-building text-white"></i>
+                            </div>
+                            <div>
+                                <div class="font-semibold">CNPJ</div>
+                                  <div id="cms-contact-cnpj" class="text-text-secondary">63.005.629/0001-44</div>
                             </div>
                         </div>
                     </div>
 
                     <div class="flex space-x-4 mb-8">
-                        <a href="https://wa.me/5564933004882" target="_blank"
+                        <a id="cms-whatsapp-btn" href="https://wa.me/5564933004882" target="_blank"
                             class="flex-1 bg-green-500 text-white py-3 rounded-lg font-semibold text-center hover:bg-green-600 transition">
                             <i class="fab fa-whatsapp mr-2"></i>WhatsApp
                         </a>
-                        <a href="https://www.instagram.com/adriano.sena.silva/" target="_blank"
+                        <a id="cms-instagram-btn" href="https://www.instagram.com/adrianosena.dev.br/" target="_blank"
                             class="flex-1 bg-pink-600 text-white py-3 rounded-lg font-semibold text-center  hover:bg-pink-700 transition">
                             <i class="fab fa-instagram mr-2"></i>Instagram
                         </a>
                     </div>
 
-                    <div class="flex space-x-4">
-                        <a href="https://github.com/AdrianoSenaS" target="_blank"
-                            class="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center hover:bg-gray-900 transition">
-                            <i class="fab fa-github text-white"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/in/adriano-sena-silva-a8605622a/" target="_blank"
-                            class="w-10 h-10 rounded-lg bg-blue-700 flex items-center justify-center hover:bg-blue-800 transition">
-                            <i class="fab fa-linkedin-in text-white"></i>
-                        </a>
+                    <div class="executive-panel p-6">
+                        <div class="case-label mb-3">Como conduzimos a entrada de novos projetos</div>
+                        <div class="space-y-3 text-text-secondary">
+                            <p>1. Entendimento do contexto atual, gargalos e objetivo de negócio.</p>
+                            <p>2. Direcionamento técnico com proposta compatível com estágio e prioridade da empresa.</p>
+                            <p>3. Planejamento de implantação e sustentação conforme criticidade do cenário.</p>
+                        </div>
                     </div>
                 </div>
 
                 <div data-aos="fade-left">
                     <div class="card">
-                        <h3 class="text-2xl font-bold mb-6">Solicitar Orçamento</h3>
+                        <h3 class="text-2xl font-bold mb-2">Envie uma mensagem</h3>
+                        <p class="text-text-secondary mb-6">Descreva seu projeto ou necessidade. Vou analisar e retornar com um plano de ação.</p>
                         <form id="contact-form" class="space-y-4">
                             <div>
-                                <input type="text" placeholder="Seu nome completo" class="form-input" required
+                                <input type="text" placeholder="Nome completo" class="form-input" required
                                     id="name">
                             </div>
 
                             <div>
-                                <input type="email" placeholder="Seu melhor email" class="form-input" required
+                                <input type="email" placeholder="Seu email principal" class="form-input" required
                                     id="email">
                             </div>
 
                             <div>
                                 <select class="form-input" required id="project">
-                                    <option value="">Tipo de projeto</option>
+                                    <option value="">Frente de interesse</option>
+                                    <option value="site">Site Institucional</option>
                                     <option value="sistema">Sistema Web</option>
                                     <option value="app">Aplicativo Mobile</option>
-                                    <option value="jogo">Jogo/Unity</option>
-                                    <option value="landing">Landing Page</option>
-                                    <option value="servidor">Servidor/Infra</option>
-                                    <option value="pagamento">Gateway de Pagamento</option>
+                                    <option value="infra">Infraestrutura de Servidores</option>
+                                    <option value="rede">Infraestrutura de Redes</option>
+                                    <option value="backup">Backup e Recuperação</option>
+                                    <option value="assistencia">Assistência Técnica</option>
                                     <option value="api">API & Integração</option>
-                                    <option value="dashboard">Dashboard</option>
-                                    <option value="iptv">Servidor IPTV</option>
-                                    <option value="igreja">App para Igreja</option>
                                     <option value="outro">Outro</option>
                                 </select>
                             </div>
 
                             <div>
-                                <textarea placeholder="Descreva seu projeto, prazos e orçamento..." rows="4"
+                                <textarea placeholder="Descreva o cenário atual, a urgência, os principais gargalos e o resultado esperado..." rows="5"
                                     class="form-input" required id="message"></textarea>
                             </div>
 
                             <button type="submit" class="btn-primary w-full" id="btnContact">
-                                <i class="fas fa-paper-plane mr-2"></i>Enviar Proposta
+                                <i class="fas fa-paper-plane mr-2"></i>Enviar mensagem
                             </button>
 
                             <p class="text-sm text-theme-secondary text-center">
-                                Resposta garantida em até 24 horas úteis
+                                Vou retornar assim que possível com uma resposta
                             </p>
                         </form>
                     </div>
@@ -1609,49 +1907,41 @@
                         </div>
                         <div>
                             <div class="font-bold text-lg">Adriano Sena</div>
-                            <div class="text-gray-400 text-sm">Full-Stack Developer</div>
+                            <div class="text-gray-400 text-sm">Desenvolvedor Full Stack</div>
                         </div>
                     </div>
                     <p class="text-gray-400">
-                        Transformando ideias em soluções digitais de alta performance desde 2019.
+                        Desenvolvedor desde 2015. Especialista em desenvolvimento web, mobile e infraestrutura em nuvem. Focado em entregar soluções de qualidade que realmente funcionam.
                     </p>
                 </div>
 
                 <div>
-                    <h4 class="text-lg font-bold mb-6">Serviços</h4>
-                    <ul class="space-y-3">
-                        <li><a href="#services" class="text-gray-400 hover:text-white transition">Sistemas Web</a></li>
-                        <li><a href="#services" class="text-gray-400 hover:text-white transition">Gateways de
-                                Pagamento</a></li>
-                        <li><a href="#services" class="text-gray-400 hover:text-white transition">Servidores IPTV</a>
-                        </li>
-                        <li><a href="#services" class="text-gray-400 hover:text-white transition">Apps Mobile</a></li>
+                    <h4 class="text-lg font-bold mb-6">Especialidades</h4>
+                    <ul class="space-y-3 footer-link-list">
+                        <li><a href="#projects">Projetos Open Source</a></li>
+                        <li><a href="#portfolio">Websites e Aplicações</a></li>
+                        <li><a href="#skills">Tecnologias e Stack</a></li>
+                        <li><a href="/blog">Artigos e Conteúdo</a></li>
                     </ul>
                 </div>
 
                 <div>
-                    <h4 class="text-lg font-bold mb-6">Links Rápidos</h4>
-                    <ul class="space-y-3">
-                        <li><a href="#home" class="text-gray-400 hover:text-white transition">Início</a></li>
-                        <li><a href="#skills" class="text-gray-400 hover:text-white transition">Skills</a></li>
-                        <li><a href="#projects" class="text-gray-400 hover:text-white transition">Projetos</a></li>
-                        <li><a href="/blog" class="text-gray-400 hover:text-white transition">Blog</a></li>
-                        <li><a href="#contact" class="text-gray-400 hover:text-white transition">Contato</a></li>
+                    <h4 class="text-lg font-bold mb-6">Navegação</h4>
+                    <ul class="space-y-3 footer-link-list">
+                        <li><a href="#home">Visão geral</a></li>
+                        <li><a href="#services">Frentes de atuação</a></li>
+                        <li><a href="#projects">Projetos e cenários</a></li>
+                        <li><a href="#skills">Modelo de entrega</a></li>
+                        <li><a href="/blog">Conteúdo</a></li>
+                        <li><a href="#contact">Contato</a></li>
                     </ul>
                 </div>
 
                 <div>
                     <h4 class="text-lg font-bold mb-6">Conecte-se</h4>
                     <div class="flex space-x-4 mb-6 text-white">
-                        <a href="https://github.com/AdrianoSenaS" target="_blank"
-                            class="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center hover:bg-gray-900 transition">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/in/adriano-sena-silva-a8605622a/" target="_blank"
-                            class="w-10 h-10 rounded-lg bg-blue-700 flex items-center justify-center hover:bg-blue-800 transition">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="https://www.instagram.com/adriano.sena.silva/" target="_blank"
+                       
+                        <a href="https://www.instagram.com/adrianosena.dev.br/" target="_blank"
                             class="w-10 h-10 rounded-lg bg-pink-600 flex items-center justify-center hover:bg-pink-700 transition">
                             <i class="fab fa-instagram"></i>
                         </a>
@@ -1661,7 +1951,7 @@
                         </a>
                     </div>
                     <p class="text-gray-400 text-sm">
-                        © <span id="current-year">2024</span> Adriano Sena. Todos os direitos reservados.
+                        © <span id="current-year">2024</span> Adriano Sena. Desenvolvedor Full Stack | DevOps. Todos os direitos reservados.
                     </p>
                     <a href="privacidade" class="text-gray-400 hover:text-white text-sm">Política de Privacidade</a>
                 </div>
@@ -1751,45 +2041,44 @@
         let status = 'new'
         let project = document.getElementById('project')
         let message = document.getElementById('message')
-        // Enviar contato
+        const contactForm = document.getElementById('contact-form')
+        const btnContact = document.getElementById('btnContact')
 
-
-        document.getElementById('btnContact').addEventListener('click', function (e) {
+        contactForm.addEventListener('submit', async function (e) {
             e.preventDefault();
 
-            const btn = e.target;
-            btn.disabled = true;
-            btn.textContent = 'Enviando...';
+            const originalContent = btnContact.innerHTML;
+            btnContact.disabled = true;
+            btnContact.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Enviando solicitação...';
 
-            fetch('/api/contact', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    name: name.value,
-                    email: email.value,
-                    status: status,
-                    project: project.value,
-                    message: message.value
-                })
-            })
-                .then(response => {
-                    if (response.ok) {
-                        alert('Mensagem enviada com sucesso!');
-                        document.getElementById('contact-form').reset();
-                    } else {
-                        alert('Erro ao enviar.');
-                    }
-                })
-                .catch(error => {
-                    console.error(error);
-                    alert('Erro ao enviar.');
-                })
-                .finally(() => {
-                    btn.disabled = false;
-                    btn.textContent = 'Enviar';
+            try {
+                const response = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: name.value,
+                        email: email.value,
+                        status: status,
+                        project: project.value,
+                        message: message.value
+                    })
                 });
+
+                if (!response.ok) {
+                    throw new Error('Falha ao enviar contato');
+                }
+
+                alert('Mensagem enviada com sucesso! Vou retornar assim que possível.');
+                contactForm.reset();
+            } catch (error) {
+                console.error(error);
+                alert('Não foi possível enviar sua solicitação agora. Tente novamente em instantes.');
+            } finally {
+                btnContact.disabled = false;
+                btnContact.innerHTML = originalContent;
+            }
         });
 
 
@@ -1980,7 +2269,7 @@
             <p class="text-text-secondary mb-4">${post.description}</p>
 
              <div class="text-center mt-12">
-                <a href="/post?id=${post.id}" class="btn-secondary inline-flex items-center">
+                <a href="/post?slug=${post.slug || ''}" class="btn-secondary inline-flex items-center">
                     <i class="fas fa-newspaper mr-2"></i>Ler artigo completo
                 </a>
             </div>
@@ -2148,25 +2437,6 @@
             });
         });
 
-        // Contact Form
-        document.getElementById('contact-form').addEventListener('submit', function (e) {
-            e.preventDefault();
-
-            // Simulate form submission
-            const submitBtn = this.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Enviando...';
-            submitBtn.disabled = true;
-
-            setTimeout(() => {
-                alert('Mensagem enviada com sucesso! Entrarei em contato em até 24 horas.');
-                this.reset();
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            }, 1500);
-        });
-
         // Animar barras de skills quando visíveis
         const skillBars = document.querySelectorAll('.skill-progress');
 
@@ -2201,24 +2471,6 @@
             });
         });
 
-        // Efeito de digitação no hero (opcional)
-        const heroTitle = document.querySelector('.hero-section h1');
-        if (heroTitle) {
-            const text = heroTitle.textContent;
-            heroTitle.textContent = '';
-
-            let i = 0;
-            const typeWriter = () => {
-                if (i < text.length) {
-                    heroTitle.textContent += text.charAt(i);
-                    i++;
-                    setTimeout(typeWriter, 50);
-                }
-            };
-
-            typeWriter()
-        }
-
         // Animar elementos de confiança
         const trustBadges = document.querySelectorAll('.trust-badge');
         trustBadges.forEach((badge, index) => {
@@ -2226,7 +2478,7 @@
         });
 
         // Adicionar classe active aos links de navegação baseado no scroll
-        const sections = document.querySelectorAll('section[id]');
+        const sections = Array.from(document.querySelectorAll('section[id]')).sort((a, b) => a.offsetTop - b.offsetTop);
         const navLinks = document.querySelectorAll('.nav-link');
 
         window.addEventListener('scroll', () => {
@@ -2266,6 +2518,139 @@
         gtag('js', new Date());
         gtag('config', 'G-4KFFX809LT');
     </script>
+        <!-- ============================================================
+        CMS LOADER — aplica dados do banco na página inicial
+        ============================================================ -->
+        <script>
+        (async function cmsLoader() {
+            try {
+                const res = await fetch('/api/homepage');
+                if (!res.ok) return;
+                const d = await res.json();
+
+                // --- Helper: set text/html by data-cms-key attribute ---
+                function set(key, value) {
+                    if (value === undefined || value === null) return;
+                    document.querySelectorAll(`[data-cms-key="${key}"]`).forEach(el => {
+                        if (el.dataset.cmsMode === 'html') el.innerHTML = value;
+                        else el.textContent = value;
+                    });
+                }
+
+                // ---- SEO ----
+                if (d.seo) {
+                    if (d.seo.title)       document.title = d.seo.title;
+                    const metaDesc = document.querySelector('meta[name="description"]');
+                    if (metaDesc && d.seo.description) metaDesc.setAttribute('content', d.seo.description);
+                    const ogTitle = document.querySelector('meta[property="og:title"]');
+                    if (ogTitle && d.seo.ogTitle) ogTitle.setAttribute('content', d.seo.ogTitle);
+                    const ogDesc = document.querySelector('meta[property="og:description"]');
+                    if (ogDesc && d.seo.ogDescription) ogDesc.setAttribute('content', d.seo.ogDescription);
+                    const twTitle = document.querySelector('meta[name="twitter:title"]');
+                    if (twTitle && d.seo.twitterTitle) twTitle.setAttribute('content', d.seo.twitterTitle);
+                    const twDesc = document.querySelector('meta[name="twitter:description"]');
+                    if (twDesc && d.seo.twitterDescription) twDesc.setAttribute('content', d.seo.twitterDescription);
+                    const canonical = document.querySelector('link[rel="canonical"]');
+                    if (canonical && d.seo.canonical) canonical.setAttribute('href', d.seo.canonical);
+                }
+
+                // ---- Hero ----
+                if (d.hero) {
+                    const h = d.hero;
+                    // badge (span dentro do div inline-flex)
+                    const badgeSpan = document.querySelector('.inline-flex span.text-primary');
+                    if (badgeSpan && h.badge) badgeSpan.textContent = h.badge;
+
+                    set('hero.h1part1', h.h1Part1);
+                    set('hero.h1part2', h.h1Part2);
+                    set('hero.subtitle', h.subtitle);
+                    set('hero.description', h.description);
+                    set('hero.cta1text', h.cta1Text);
+                    set('hero.cta2text', h.cta2Text);
+
+                    const cta1 = document.getElementById('cms-cta1');
+                    if (cta1 && h.cta1Link) cta1.href = h.cta1Link;
+                    const cta2 = document.getElementById('cms-cta2');
+                    if (cta2 && h.cta2Link) cta2.href = h.cta2Link;
+
+                    // Tags
+                    if (h.tags && Array.isArray(h.tags)) {
+                        const tagsDiv = document.getElementById('cms-hero-tags');
+                        if (tagsDiv) {
+                            tagsDiv.innerHTML = h.tags
+                                .map(t => `<span class="tech-tag">${t}</span>`)
+                                .join('');
+                        }
+                    }
+
+                    // Trust Badges
+                    if (h.trustBadges && Array.isArray(h.trustBadges)) {
+                        const badgesDiv = document.getElementById('cms-trust-badges');
+                        if (badgesDiv) {
+                            badgesDiv.innerHTML = h.trustBadges.map(b => `
+                                <div class="trust-badge">
+                                    <i class="fas ${b.icon} text-primary mr-3"></i>
+                                    <span class="text-sm font-medium">${b.text}</span>
+                                </div>`).join('');
+                        }
+                    }
+                }
+
+                // ---- Stats ----
+                if (d.stats && Array.isArray(d.stats)) {
+                    d.stats.forEach((s, i) => {
+                        set(`stat.${i}.number`, s.number);
+                        set(`stat.${i}.label`, s.label);
+                    });
+                }
+
+                // ---- Contact ----
+                if (d.contact) {
+                    const c = d.contact;
+                    set('contact.title', c.title);
+                    set('contact.subtitle', c.subtitle);
+
+                    const emailEl = document.getElementById('cms-contact-email');
+                    if (emailEl && c.email) {
+                        emailEl.href = `mailto:${c.email}`;
+                        emailEl.textContent = c.email;
+                    }
+                    const phoneEl = document.getElementById('cms-contact-phone');
+                    if (phoneEl && c.phone) {
+                        phoneEl.href = `https://wa.me/${c.whatsapp || ''}`;
+                        phoneEl.textContent = c.phone;
+                    }
+                    const locEl = document.getElementById('cms-contact-location');
+                    if (locEl && c.location) locEl.textContent = c.location;
+                    const cnpjEl = document.getElementById('cms-contact-cnpj');
+                    if (cnpjEl && c.cnpj) cnpjEl.textContent = c.cnpj;
+
+                    const waBtn = document.getElementById('cms-whatsapp-btn');
+                    if (waBtn && c.whatsapp) waBtn.href = `https://wa.me/${c.whatsapp}`;
+                    const igBtn = document.getElementById('cms-instagram-btn');
+                    if (igBtn && c.instagram) igBtn.href = c.instagram;
+                }
+
+                // ---- Seções de HTML livre ----
+                if (d.services_html) {
+                    const el = document.getElementById('cms-services-inner');
+                    if (el) el.innerHTML = d.services_html;
+                }
+                if (d.process_html) {
+                    const el = document.getElementById('cms-process-inner');
+                    if (el) el.innerHTML = d.process_html;
+                }
+                if (d.projects_html) {
+                    const el = document.getElementById('cms-projects-inner');
+                    if (el) el.innerHTML = d.projects_html;
+                }
+
+            } catch (e) {
+                // silencioso — conteúdo padrão do HTML permanece
+                console.warn('[CMS] Falha ao carregar dados da homepage:', e.message);
+            }
+        })();
+        </script>
 </body>
 
 </html>

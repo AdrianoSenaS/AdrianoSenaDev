@@ -1,0 +1,31 @@
+User-agent: *
+Allow: /
+Allow: /css/
+Allow: /js/
+Allow: /images/
+
+# Desenvolvimento e páginas de teste
+Disallow: /admin/
+Disallow: /test/
+Disallow: /staging/
+Disallow: /temp/
+
+# Arquivos do sistema
+Disallow: /private/
+Disallow: /config/
+Disallow: /logs/
+Disallow: /vendor/
+Disallow: /node_modules/
+Disallow: /.env
+Disallow: /*.php$
+Disallow: /*.sql$
+Disallow: /*.log$
+
+# Parâmetros de sessão e rastreamento
+Disallow: /*?session_id=
+Disallow: /*?token=
+Disallow: /*?ref=
+Disallow: /*?utm_
+
+# Sitemaps
+Sitemap: https://adrianosena.dev.br/sitemap.xml

@@ -624,7 +624,7 @@
       searchBtn.addEventListener('click', function() {
         const query = searchInput.value.trim();
         if (query) {
-          alert(`Buscando por: "${query}"\n\nEsta funcionalidade de busca será implementada em breve!`);
+          alert(`Busca por: "${query}"\n\nEsse recurso estará disponível em breve.`);
           searchInput.value = '';
         }
       });
@@ -671,7 +671,7 @@
           // Se o link não tiver um href válido, prevenir o comportamento padrão
           if (this.getAttribute('href') === '#') {
             e.preventDefault();
-            alert(`Redirecionando para: ${this.textContent.trim()}\n\nEsta página será implementada em breve!`);
+            alert(`Redirecionamento para: ${this.textContent.trim()}\n\nEsta página estará disponível em breve.`);
           }
         });
       });

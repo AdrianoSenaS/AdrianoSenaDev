@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Desenvolvimento Full-Stack: Tendências e Melhores Práticas | Adriano Sena</title>
+  <meta property="og:title" content="Desenvolvimento Full-Stack: Tendências e Melhores Práticas" />
+  <meta property="og:description"
+    content="Explorando as tecnologias e metodologias mais relevantes no desenvolvimento full-stack atual." />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" />
+  <meta property="og:url" content="https://adrianosena.dev.br/blog/post.html?id=1" />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@adrianosenas" />
+  <meta name="twitter:title" content="Desenvolvimento Full-Stack: Tendências e Melhores Práticas" />
+  <meta name="twitter:description" content="Explorando as tecnologias e metodologias mais relevantes no desenvolvimento full-stack atual." />
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" />
+  
+  <link rel="shortcut icon" href="logo.jpg" type="image/x-icon">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+  <style>
+    :root {
+      --primary: #2563eb;
+      --secondary: #10B981;
+      --dark: #1F2937;
+      --light: #F8FAFC;
+      --black: #111827;
+      --text-primary: #1F2937;
+      --text-secondary: #6B7280;
+      --text-light: #F8FAFC;
+      --bg-light: #F8FAFC;
+      --bg-card: #FFFFFF;
+      --border-color: rgba(37, 99, 235, 0.1);
+      --gradient: linear-gradient(135deg, #2563eb 0%, #10B981 100%);
+      --neon-glow: 0 0 10px rgba(37, 99, 235, 0.4), 0 0 20px rgba(16, 185, 129, 0.3);
+    }
+
+    [data-theme="dark"] {
+      --primary: #3b82f6;
+      --secondary: #10B981;
+      --dark: #0f172a;
+      --light: #0057e4;
+      --black: #f8fafc;
+      --text-primary: #F8FAFC;
+      --text-secondary: #D1D5DB;
+      --text-light: #F8FAFC;
+      --bg-light: #1e293b;
+      --bg-card: #334155;
+      --border-color: rgba(59, 130, 246, 0.2);
+      --gradient: linear-gradient(135deg, #3b82f6 0%, #10B981 100%);
+      --neon-glow: 0 0 10px rgba(59, 130, 246, 0.5), 0 0 20px rgba(16, 185, 129, 0.4);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .code-font {
+      font-family: 'Fira Code', monospace;
+    }
+
+    .btn-primary {
+      background: var(--gradient);
+      border: none;
+      color: white;
+      box-shadow: var(--neon-glow);
+      transition: all 0.3s ease;
+      font-weight: 600;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 15px rgba(37, 99, 235, 0.6), 0 0 30px rgba(16, 185, 129, 0.4);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      transition: all 0.3s ease;
+      font-weight: 600;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(37, 99, 235, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .card {
+      background: var(--bg-card);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      color: var(--text-primary);
+    }
+
+    .card:hover {
+      border-color: var(--primary);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .section-divider {
+      height: 100px;
+      background: linear-gradient(180deg, rgba(248, 250, 252, 0) 0%, rgba(37, 99, 235, 0.1) 100%);
+    }
+
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7);
+      }
+      70% {
+        box-shadow: 0 0 0 15px rgba(37, 99, 235, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
+      }
+    }
+
+    .glow-text {
+      text-shadow: 0 0 8px rgba(96, 165, 250, 0.4);
+    }
+
+    .feature-icon {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 2rem;
+    }
+
+    .nav-link {
+      position: relative;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .floating {
+      animation: floating 6s ease-in-out infinite;
+    }
+
+    @keyframes floating {
+      0% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-15px);
+      }
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    .blog-content {
+      line-height: 1.8;
+      font-size: 1.1rem;
+    }
+    
+    .blog-content p {
+      margin-bottom: 1.5rem;
+      color: var(--text-primary);
+    }
+    
+    .blog-content h2 {
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+    
+    .blog-content blockquote {
+      border-left: 4px solid var(--primary);
+      padding-left: 1.5rem;
+      margin: 2rem 0;
+      font-style: italic;
+      color: var(--text-secondary);
+    }
+    
+    .service-card {
+      transition: all 0.3s ease;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .service-icon {
+      background: var(--gradient);
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+    
+    .hero-gradient {
+      background: linear-gradient(135deg, var(--bg-light), #e0f2fe);
+    }
+    
+    [data-theme="dark"] .hero-gradient {
+      background: linear-gradient(135deg, var(--bg-light), #1e3a8a);
+    }
+    
+    .social-icon {
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .social-icon:hover {
+      transform: translateY(-5px);
+    }
+    
+    .scroll-top {
+      position: fixed;
+      bottom: 80px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: 100;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    
+    .scroll-top.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .scroll-top:hover {
+      background: var(--primary);
+      transform: translateY(-3px);
+    }
+
+    /* Logo AS Geometric */
+    .logo-as {
+      width: 40px;
+      height: 40px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-as::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border: 3px solid var(--primary);
+      border-radius: 8px;
+      transform: rotate(45deg);
+    }
+
+    .logo-as::after {
+      content: '';
+      position: absolute;
+      width: 60%;
+      height: 60%;
+      border: 2px solid var(--secondary);
+      border-radius: 4px;
+      transform: rotate(45deg);
+    }
+
+    .logo-text {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .logo-subtext {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      color: var(--text-secondary);
+    }
+
+    /* Theme Toggle */
+    .theme-toggle {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--primary);
+      transform: rotate(15deg);
+    }
+
+    .theme-icon {
+      color: var(--text-primary);
+      transition: all 0.3s ease;
+    }
+
+    /* Text colors */
+    .text-custom-primary {
+      color: var(--text-primary);
+    }
+    
+    .text-custom-secondary {
+      color: var(--text-secondary);
+    }
+
+    /* Background colors */
+    .bg-custom-light {
+      background-color: var(--bg-light);
+    }
+    
+    .bg-custom-card {
+      background-color: var(--bg-card);
+    }
+
+    /* Border colors */
+    .border-custom {
+      border-color: var(--border-color);
+    }
+    
+    /* Blog specific styles */
+    .ad-container {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      margin: 30px 0;
+    }
+    
+    .ad-label {
+      display: inline-block;
+      background: rgba(96, 165, 250, 0.2);
+      color: var(--primary);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      margin-bottom: 10px;
+    }
+    
+    .ad-placeholder {
+      width: 100%;
+      height: 250px;
+      background: var(--bg-light);
+      border: 1px dashed var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      font-size: 1.2rem;
+    }
+    
+    .post-meta {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 20px;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+    
+    .post-meta i {
+      color: var(--primary);
+    }
+    
+    .tag {
+      display: inline-block;
+      background: rgba(96, 165, 250, 0.2);
+      color: var(--primary);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      margin-right: 8px;
+      margin-bottom: 8px;
+    }
+    
+    .post-sidebar {
+      position: sticky;
+      top: 100px;
+    }
+    
+    .sidebar-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 25px;
+    }
+    
+    .sidebar-title {
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+      color: var(--primary);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 10px;
+    }
+    
+    .popular-post {
+      display: flex;
+      margin-bottom: 15px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .popular-post:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+    
+    .popular-post img {
+      width: 70px;
+      height: 70px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-right: 15px;
+    }
+    
+    .popular-post-content h4 {
+      font-size: 0.9rem;
+      margin-bottom: 5px;
+      color: var(--text-primary);
+    }
+    
+    .popular-post-content .date {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+    
+    .category-list {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .category-list li {
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .category-list li:last-child {
+      border-bottom: none;
+    }
+    
+    .category-list a {
+      color: var(--text-primary);
+      text-decoration: none;
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .category-list a:hover {
+      color: var(--primary);
+    }
+    
+    .category-count {
+      background: rgba(96, 165, 250, 0.2);
+      color: var(--primary);
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-size: 0.8rem;
+    }
+    
+    .author-card {
+      display: flex;
+      align-items: center;
+      padding: 20px;
+      border-radius: 12px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      margin-top: 40px;
+    }
+    
+    .author-image {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-right: 20px;
+      border: 2px solid var(--primary);
+    }
+    
+    .author-info h4 {
+      margin-bottom: 5px;
+      color: var(--primary);
+    }
+    
+    .author-info p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+    }
+    
+    .author-social {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .author-social a {
+      color: var(--text-secondary);
+      transition: color 0.3s;
+    }
+    
+    .author-social a:hover {
+      color: var(--primary);
+    }
+  </style>
+</head>
+
+<body class="bg-custom-light text-custom-primary">
+  <!-- Header -->
+  <header class="w-full bg-custom-light/80 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-custom transition-colors duration-300">
+    <div class="max-w-7xl mx-auto flex justify-between items-center py-4 px-6">
+      <div class="flex items-center space-x-3">
+        <div class="logo-as"></div>
+        <div>
+          <div class="logo-text text-xl">Adriano Sena</div>
+          <div class="logo-subtext text-sm">dev.br</div>
+        </div>
+      </div>
+      
+      <div class="flex items-center space-x-4">
+        <nav class="space-x-8 hidden md:flex">
+          <a href="index.html" class="nav-link hover:text-primary transition">Início</a>
+          <a href="index.html#sobre" class="nav-link hover:text-primary transition">Sobre</a>
+          <a href="index.html#servicos" class="nav-link hover:text-primary transition">Serviços</a>
+          <a href="blog.html" class="nav-link text-primary transition">Blog</a>
+          <a href="index.html#contato" class="nav-link hover:text-primary transition">Contato</a>
+        </nav>
+        
+        <button id="theme-toggle" class="theme-toggle">
+          <svg id="theme-icon-sun" class="theme-icon w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+          <svg id="theme-icon-moon" class="theme-icon w-5 h-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          </svg>
+        </button>
+        
+        <button id="menu-btn" class="md:hidden focus:outline-none">
+          <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" viewBox="0 0 24 24">
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <nav id="mobile-menu" class="hidden md:hidden bg-custom-light/95 backdrop-blur-sm border-t border-custom transition-colors duration-300">
+      <a href="index.html" class="block px-6 py-3 border-b border-custom hover:bg-gray-100 text-custom-primary">Início</a>
+      <a href="index.html#sobre" class="block px-6 py-3 border-b border-custom hover:bg-gray-100 text-custom-primary">Sobre</a>
+      <a href="index.html#servicos" class="block px-6 py-3 border-b border-custom hover:bg-gray-100 text-custom-primary">Serviços</a>
+      <a href="blog.html" class="block px-6 py-3 border-b border-custom hover:bg-gray-100 text-custom-primary">Blog</a>
+      <a href="index.html#contato" class="block px-6 py-3 hover:bg-gray-100 text-custom-primary">Contato</a>
+    </nav>
+  </header>
+
+  <!-- Single Post Content -->
+  <section class="py-16 px-6 bg-custom-light transition-colors duration-300">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+        <!-- Main Content -->
+        <div class="lg:col-span-2">
+          <!-- Breadcrumb -->
+          <div class="mb-8 text-sm text-custom-secondary">
+            <a href="index.html" class="hover:text-primary">Início</a> / 
+            <a href="blog.html" class="hover:text-primary">Blog</a> / 
+            <span class="text-primary">Desenvolvimento Full-Stack</span>
+          </div>
+
+          <!-- Post Header -->
+          <div class="mb-10">
+            <div class="mb-4">
+              <span class="tag">Desenvolvimento</span>
+              <span class="tag">Full-Stack</span>
+              <span class="tag">Tecnologia</span>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-bold mb-6 text-custom-primary">Desenvolvimento Full-Stack: Tendências e Melhores Práticas</h1>
+            <div class="post-meta">
+              <span><i class="far fa-calendar"></i> 15 de Novembro, 2023</span>
+              <span><i class="far fa-clock"></i> 5 min leitura</span>
+              <span><i class="far fa-eye"></i> 1.2K visualizações</span>
+            </div>
+          </div>
+
+          <!-- Featured Image -->
+          <div class="mb-10 rounded-xl overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+                 alt="Desenvolvimento Full-Stack" class="w-full h-64 md:h-96 object-cover">
+          </div>
+
+          <!-- Ad Space Top -->
+          <div class="ad-container">
+            <div class="ad-label">PUBLICIDADE</div>
+            <div class="ad-placeholder">
+              Espaço para Anúncio (728x90)
+            </div>
+          </div>
+
+          <!-- Post Content -->
+          <div class="blog-content">
+            <p>O desenvolvimento full-stack continua evoluindo rapidamente, com novas tecnologias e metodologias surgindo constantemente. Neste artigo, exploraremos as tendências mais relevantes e as melhores práticas para criar aplicações modernas e eficientes.</p>
+
+            <h2>O que é Desenvolvimento Full-Stack?</h2>
+            <p>O desenvolvimento full-stack refere-se à capacidade de trabalhar em todas as camadas de uma aplicação, desde o front-end (interface do usuário) até o back-end (lógica de negócio e banco de dados). Um desenvolvedor full-stack possui conhecimentos diversificados que permitem criar soluções completas e integradas.</p>
+
+            <blockquote>
+              "O desenvolvedor full-stack moderno precisa ser um generalista especializado - conhecer um pouco de tudo, mas ter profundidade em áreas específicas."
+            </blockquote>
+
+            <h2>Tendências Atuais no Desenvolvimento Full-Stack</h2>
+
+            <h3>1. Arquitetura de Microsserviços</h3>
+            <p>A arquitetura de microsserviços continua ganhando popularidade, permitindo que equipes desenvolvam, implantem e escalem componentes de forma independente. Essa abordagem oferece maior flexibilidade e resiliência comparada às aplicações monolíticas tradicionais.</p>
+
+            <h3>2. Serverless Computing</h3>
+            <p>O modelo serverless está transformando como construímos e operamos aplicações. Com provedores como AWS Lambda, Azure Functions e Google Cloud Functions, os desenvolvedores podem focar na lógica de negócio sem se preocupar com a infraestrutura subjacente.</p>
+
+            <h3>3. JAMstack</h3>
+            <p>JAMstack (JavaScript, APIs e Markup) representa uma arquitetura moderna que prioriza desempenho, segurança e escalabilidade. Ao pré-renderizar conteúdo e servir via CDN, as aplicações JAMstack oferecem experiências rápidas e confiáveis aos usuários.</p>
+
+            <!-- Ad Space Middle -->
+            <div class="ad-container">
+              <div class="ad-label">PUBLICIDADE</div>
+              <div class="ad-placeholder">
+                Espaço para Anúncio (300x250)
+              </div>
+            </div>
+
+            <h2>Melhores Práticas para Desenvolvedores Full-Stack</h2>
+
+            <h3>1. Domine o Ecossistema JavaScript</h3>
+            <p>JavaScript continua sendo a linguagem fundamental para desenvolvimento full-stack. É essencial ter um bom domínio não apenas da linguagem em si, mas também de frameworks populares como React, Vue.js ou Angular para o front-end, e Node.js para o back-end.</p>
+
+            <h3>2. Adote Containers e Orquestração</h3>
+            <p>Docker e Kubernetes tornaram-se padrões da indústria para containerização e orquestração. Aprender essas tecnologias é crucial para desenvolver, empacotar e implantar aplicações de forma consistente em diferentes ambientes.</p>
+
+            <h3>3. Priorize a Segurança</h3>
+            <p>Com o aumento de ameaças cibernéticas, a segurança deve ser integrada em todas as fases do desenvolvimento. Isso inclui práticas como validação de entrada, autenticação adequada, proteção contra injeção de SQL e implementação de HTTPS.</p>
+
+            <h3>4. Implemente DevOps e CI/CD</h3>
+            <p>Integrar práticas de DevOps e pipelines de CI/CD (Integração Contínua/Entrega Contínua) acelera o desenvolvimento e garante a qualidade do código. Ferramentas como GitHub Actions, GitLab CI e Jenkins são essenciais nesse processo.</p>
+
+            <h2>Ferramentas e Tecnologias Recomendadas</h2>
+            <p>Algumas das ferramentas mais populares no ecossistema full-stack atual incluem:</p>
+            <ul>
+              <li><strong>Front-end:</strong> React, Vue.js, Angular, TypeScript, Tailwind CSS</li>
+              <li><strong>Back-end:</strong> Node.js, Express, Django, Spring Boot, FastAPI</li>
+              <li><strong>Banco de Dados:</strong> PostgreSQL, MongoDB, Redis, MySQL</li>
+              <li><strong>DevOps:</strong> Docker, Kubernetes, AWS, Azure, GitHub Actions</li>
+            </ul>
+
+            <h2>Conclusão</h2>
+            <p>O desenvolvimento full-stack continua a ser uma área dinâmica e desafiadora. Manter-se atualizado com as últimas tendências e adotar as melhores práticas é essencial para criar aplicações modernas, seguras e escaláveis. Ao dominar tanto o front-end quanto o back-end, os desenvolvedores full-stack estão bem posicionados para enfrentar os desafios tecnológicos do futuro.</p>
+          </div>
+
+          <!-- Author Bio -->
+          <div class="author-card">
+            <img src="foto1.webp" alt="Adriano Sena" class="author-image">
+            <div class="author-info">
+              <h4>Adriano Sena</h4>
+              <p>Desenvolvedor Full-Stack com 5+ anos de experiência, especializado em soluções modernas, aplicações multiplataforma e sistemas sob demanda.</p>
+              <div class="author-social">
+                <a href="https://github.com/AdrianoSenaS" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/adriano-sena-silva-a8605622a/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.instagram.com/adriano.sena.silva/" target="_blank"><i class="fab fa-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ad Space Bottom -->
+          <div class="ad-container">
+            <div class="ad-label">PUBLICIDADE</div>
+            <div class="ad-placeholder">
+              Espaço para Anúncio (728x90)
+            </div>
+          </div>
+
+          <!-- Related Posts -->
+          <div class="mt-16">
+            <h3 class="text-2xl font-bold mb-8 text-custom-primary border-b border-custom pb-4">Artigos Relacionados</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div class="card p-5">
+                <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                     alt="Apps Multiplataforma" class="w-full h-40 object-cover rounded-lg mb-4">
+                <h4 class="font-semibold text-custom-primary mb-2">Criando Apps Multiplataforma com React Native</h4>
+                <p class="text-custom-secondary text-sm mb-4">Como desenvolver aplicações eficientes para Android e iOS usando React Native.</p>
+                <a href="post.html?id=2" class="text-primary hover:text-secondary text-sm font-medium">Ler mais →</a>
+              </div>
+              <div class="card p-5">
+                <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                     alt="Unity para Iniciantes" class="w-full h-40 object-cover rounded-lg mb-4">
+                <h4 class="font-semibold text-custom-primary mb-2">Unity para Iniciantes: Primeiros Passos</h4>
+                <p class="text-custom-secondary text-sm mb-4">Guia completo para começar a criar jogos com a poderosa engine Unity.</p>
+                <a href="post.html?id=3" class="text-primary hover:text-secondary text-sm font-medium">Ler mais →</a>
+              </div>
+              <div class="card p-5">
+                <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                     alt="Futuro do Desenvolvimento Web" class="w-full h-40 object-cover rounded-lg mb-4">
+                <h4 class="font-semibold text-custom-primary mb-2">O Futuro do Desenvolvimento Web</h4>
+                <p class="text-custom-secondary text-sm mb-4">Analisando as tendências que estão moldando o futuro do desenvolvimento web.</p>
+                <a href="post.html?id=4" class="text-primary hover:text-secondary text-sm font-medium">Ler mais →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="lg:col-span-1">
+          <div class="post-sidebar">
+            <!-- About Card -->
+            <div class="sidebar-card">
+              <h3 class="sidebar-title">Sobre o Blog</h3>
+              <p class="text-custom-secondary mb-4">Compartilhando conhecimentos, experiências e insights sobre desenvolvimento e tecnologia.</p>
+              <a href="index.html#contato" class="btn-primary w-full py-3 rounded-lg font-semibold text-center block">
+                ENTRE EM CONTATO
+              </a>
+            </div>
+
+            <!-- Categories -->
+            <div class="sidebar-card">
+              <h3 class="sidebar-title">Categorias</h3>
+              <ul class="category-list">
+                <li><a href="#">Desenvolvimento <span class="category-count">12</span></a></li>
+                <li><a href="#">Tecnologia <span class="category-count">8</span></a></li>
+                <li><a href="#">Mobile <span class="category-count">5</span></a></li>
+                <li><a href="#">Web <span class="category-count">10</span></a></li>
+                <li><a href="#">Jogos <span class="category-count">3</span></a></li>
+              </ul>
+            </div>
+
+            <!-- Popular Posts -->
+            <div class="sidebar-card">
+              <h3 class="sidebar-title">Posts Populares</h3>
+              <div class="popular-post">
+                <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Post popular">
+                <div class="popular-post-content">
+                  <h4>Criando Apps Multiplataforma</h4>
+                  <div class="date">10 Nov, 2023</div>
+                </div>
+              </div>
+              <div class="popular-post">
+                <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Post popular">
+                <div class="popular-post-content">
+                  <h4>Unity para Iniciantes</h4>
+                  <div class="date">5 Nov, 2023</div>
+                </div>
+              </div>
+              <div class="popular-post">
+                <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Post popular">
+                <div class="popular-post-content">
+                  <h4>Futuro do Desenvolvimento Web</h4>
+                  <div class="date">1 Nov, 2023</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tags -->
+            <div class="sidebar-card">
+              <h3 class="sidebar-title">Tags</h3>
+              <div class="flex flex-wrap gap-2">
+                <span class="tag">JavaScript</span>
+                <span class="tag">React</span>
+                <span class="tag">Node.js</span>
+                <span class="tag">PHP</span>
+                <span class="tag">Unity</span>
+                <span class="tag">Mobile</span>
+                <span class="tag">Web</span>
+                <span class="tag">Full-Stack</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="relative bg-custom-card border-t border-custom py-12 px-6 transition-colors duration-300">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="flex items-center space-x-3 mb-6 md:mb-0">
+          <div class="logo-as"></div>
+          <div>
+            <div class="logo-text text-xl">Adriano Sena</div>
+            <div class="logo-subtext text-sm">dev.br</div>
+          </div>
+        </div>
+
+        <div class="flex space-x-6">
+          <a href="https://wa.me/+5564933004882" target="_blank" class="text-custom-secondary hover:text-primary transition">
+            <i class="fab fa-whatsapp text-xl"></i>
+          </a>
+          <a href="https://github.com/AdrianoSenaS" target="_blank" class="text-custom-secondary hover:text-primary transition">
+            <i class="fab fa-github text-xl"></i>
+          </a>
+          <a href="https://www.instagram.com/adriano.sena.silva/" target="_blank" class="text-custom-secondary hover:text-primary transition">
+            <i class="fab fa-instagram text-xl"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/adriano-sena-silva-a8605622a/" target="_blank" class="text-custom-secondary hover:text-primary transition">
+            <i class="fab fa-linkedin-in text-xl"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="mt-12 pt-8 border-t border-custom flex flex-col md:flex-row justify-between items-center">
+        <p class="text-custom-secondary text-sm mb-4 md:mb-0">&copy; <span id="year"></span> Adriano Sena. Todos os direitos reservados.</p>
+        <p class="text-custom-secondary text-sm">Transformando ideias em soluções digitais inovadoras.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Botão "Voltar ao topo" -->
+  <div class="scroll-top" id="scrollTop">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+
+  <script>
+    // Toggle menu mobile
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Scroll animation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Atualizar o ano no footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+    
+    // Botão "Voltar ao topo"
+    const scrollTop = document.getElementById('scrollTop');
+    
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 500) {
+        scrollTop.classList.add('show');
+      } else {
+        scrollTop.classList.remove('show');
+      }
+    });
+    
+    scrollTop.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // Tema claro/escuro
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIconSun = document.getElementById('theme-icon-sun');
+    const themeIconMoon = document.getElementById('theme-icon-moon');
+    
+    // Verificar tema salvo no localStorage ou preferência do sistema
+    const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    if (savedTheme === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      themeIconSun.classList.add('hidden');
+      themeIconMoon.classList.remove('hidden');
+    }
+    
+    themeToggle.addEventListener('click', () => {
+      if (document.documentElement.getAttribute('data-theme') === 'dark') {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'light');
+        themeIconSun.classList.remove('hidden');
+        themeIconMoon.classList.add('hidden');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+        themeIconSun.classList.add('hidden');
+        themeIconMoon.classList.remove('hidden');
+      }
+    });
+
+    // Carregar post específico baseado no ID da URL
+    document.addEventListener('DOMContentLoaded', function() {
+      // Em um cenário real, você buscaria o post baseado no ID da URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const postId = urlParams.get('id');
+      
+      // Aqui você carregaria o post específico da sua base de dados
+      // Por enquanto, estamos apenas usando o conteúdo estático
+    });
+  </script>
+</body>
+
+</html>

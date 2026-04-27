@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página Inicial CMS | Admin</title>
+  <link rel="shortcut icon" href="logo.jpg" type="image/x-icon">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+   <!-- TinyMCE Editor -->
+  <script src="https://cdn.tiny.cloud/1/nno75607bhbm838zhdggjtt9yz0vozbqe1y4n433qvnzun9k/tinymce/8/tinymce.min.js"
+    referrerpolicy="origin"></script>
+  <style>
+    :root {
+      --primary: #2563eb; --secondary: #10B981; --dark: #1F2937; --light: #F8FAFC;
+      --text-primary: #1F2937; --text-secondary: #6B7280; --bg-light: #F8FAFC;
+      --bg-card: #FFFFFF; --border-color: rgba(37,99,235,0.1);
+      --gradient: linear-gradient(135deg,#2563eb 0%,#10B981 100%);
+      --neon-glow: 0 0 10px rgba(37,99,235,0.4),0 0 20px rgba(16,185,129,0.3);
+    }
+    [data-theme="dark"] {
+      --primary: #3b82f6; --secondary: #10B981; --text-primary: #F8FAFC;
+      --text-secondary: #D1D5DB; --bg-light: #1e293b; --bg-card: #334155;
+      --border-color: rgba(59,130,246,0.2);
+    }
+    body { font-family:'Inter',sans-serif; background:var(--bg-light); color:var(--text-primary); visibility:hidden; transition:background .3s,color .3s; }
+    h1,h2,h3,h4,h5,h6 { font-family:'Poppins',sans-serif; font-weight:700; color:var(--text-primary); }
+    .btn-primary { background:var(--gradient); border:none; color:white; box-shadow:var(--neon-glow); transition:all .3s; font-weight:600; }
+    .btn-primary:hover { transform:translateY(-2px); }
+    .btn-secondary { background:transparent; border:2px solid var(--primary); color:var(--primary); transition:all .3s; font-weight:600; }
+    .btn-secondary:hover { background:rgba(37,99,235,.1); transform:translateY(-2px); }
+    .card { background:var(--bg-card); border:1px solid var(--border-color); border-radius:12px; transition:all .3s; box-shadow:0 4px 6px rgba(0,0,0,.05); color:var(--text-primary); }
+    .form-input { width:100%; padding:10px 14px; border-radius:8px; border:1px solid var(--border-color); background:var(--bg-card); color:var(--text-primary); font-size:.9rem; transition:all .3s; }
+    .form-input:focus { outline:none; border-color:var(--primary); box-shadow:0 0 0 3px rgba(37,99,235,.1); }
+    textarea.form-input { resize:vertical; min-height:80px; }
+    .admin-nav a { display:block; padding:10px 14px; color:var(--text-secondary); text-decoration:none; border-radius:8px; transition:all .3s; }
+    .admin-nav a:hover,.admin-nav a.active { background:rgba(96,165,250,.1); color:var(--primary); }
+    .admin-nav a i { margin-right:10px; width:20px; text-align:center; }
+    .logo-as { width:40px; height:40px; position:relative; display:flex; align-items:center; justify-content:center; }
+    .logo-as::before { content:''; position:absolute; width:100%; height:100%; border:3px solid var(--primary); border-radius:8px; transform:rotate(45deg); }
+    .logo-as::after { content:''; position:absolute; width:60%; height:60%; border:2px solid var(--secondary); border-radius:4px; transform:rotate(45deg); }
+    /* Tabs */
+    .tab-btn { padding:10px 18px; border-radius:8px 8px 0 0; font-weight:600; font-size:.9rem; cursor:pointer; border:1px solid transparent; border-bottom:none; transition:all .2s; color:var(--text-secondary); background:transparent; }
+    .tab-btn.active { background:var(--bg-card); border-color:var(--border-color); color:var(--primary); }
+    .tab-panel { display:none; }
+    .tab-panel.active { display:block; }
+    /* Array row */
+    .array-row { display:flex; gap:8px; align-items:center; margin-bottom:8px; }
+    .array-row input { flex:1; }
+    .remove-row { background:rgba(239,68,68,.1); color:#ef4444; border:none; border-radius:6px; padding:6px 10px; cursor:pointer; font-size:.85rem; transition:all .2s; }
+    .remove-row:hover { background:rgba(239,68,68,.2); }
+    .add-row-btn { background:rgba(37,99,235,.1); color:var(--primary); border:1px dashed var(--primary); border-radius:8px; padding:8px 14px; cursor:pointer; font-size:.85rem; width:100%; margin-top:4px; transition:all .2s; }
+    .add-row-btn:hover { background:rgba(37,99,235,.15); }
+    /* Toast */
+    #toast { position:fixed; bottom:24px; right:24px; z-index:9999; transform:translateY(100px); opacity:0; transition:all .3s; pointer-events:none; }
+    #toast.show { transform:translateY(0); opacity:1; }
+    /* badge icon row */
+    .badge-row { display:grid; grid-template-columns:1fr 2fr auto; gap:8px; align-items:center; margin-bottom:8px; }
+    .badge-row input { width:100%; }
+    label.section-label { display:block; font-weight:600; font-size:.85rem; color:var(--text-secondary); margin-bottom:4px; text-transform:uppercase; letter-spacing:.05em; }
+    .field-group { margin-bottom:18px; }
+    .divider { border:none; border-top:1px solid var(--border-color); margin:24px 0; }
+    .theme-toggle { background:var(--bg-card); border:1px solid var(--border-color); border-radius:50%; width:44px; height:44px; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:all .3s; }
+    .theme-toggle:hover { border-color:var(--primary); }
+    [data-theme="dark"] .form-input { background:var(--bg-card); border-color:var(--border-color); color:var(--text-primary); }
+  </style>
+</head>
+<body class="bg-custom-light text-custom-primary">
+
+<!-- Header -->
+<header class="w-full bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b" style="background:var(--bg-card);border-color:var(--border-color);">
+  <div class="max-w-7xl mx-auto flex justify-between items-center py-4 px-6">
+    <div class="flex items-center space-x-3">
+      <div class="logo-as"></div>
+      <div>
+        <div style="font-family:Poppins;font-weight:700;color:var(--text-primary);">Adriano Sena</div>
+        <div style="font-size:.75rem;color:var(--text-secondary);">dev.br</div>
+      </div>
+    </div>
+    <div class="flex items-center gap-4">
+      <a href="/" target="_blank" class="text-sm" style="color:var(--primary)"><i class="fas fa-external-link-alt mr-1"></i>Ver Site</a>
+      <button id="theme-toggle" class="theme-toggle"><i id="theme-icon" class="fas fa-moon" style="color:var(--text-primary)"></i></button>
+    </div>
+  </div>
+</header>
+
+<!-- Layout -->
+<section class="py-10 px-6" style="background:var(--bg-light)">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+
+      <!-- Sidebar -->
+      <div class="lg:col-span-1">
+        <div class="card p-6 mb-6" style="position:sticky;top:90px">
+          <h3 class="text-lg font-bold mb-4">Painel Admin</h3>
+          <ul class="admin-nav" style="list-style:none;padding:0">
+            <li><a href="/admin/dashboard"><i class="fas fa-tachometer-alt"></i>Dashboard</a></li>
+            <li><a href="/admin/posts"><i class="fas fa-file-alt"></i>Posts</a></li>
+            <li><a href="/admin/cadastrar"><i class="fas fa-plus-circle"></i>Novo Post</a></li>
+            <li><a href="/admin/contatos"><i class="fas fa-envelope"></i>Contatos</a></li>
+            <li><a href="/admin/usuarios"><i class="fas fa-users"></i>Usuários</a></li>
+            <li><a href="/admin/dispositivos"><i class="fas fa-mobile-alt"></i>Dispositivos</a></li>
+            <li><a href="/admin/comentarios"><i class="fas fa-comments"></i>Comentários</a></li>
+            <li><a href="/admin/homepage" class="active"><i class="fas fa-home"></i>Página Inicial</a></li>
+          </ul>
+          <hr style="border-color:var(--border-color);margin:16px 0">
+          <div class="space-y-2">
+            <a href="/" target="_blank" class="btn-secondary block text-center py-2 rounded-lg text-sm"><i class="fas fa-eye mr-1"></i>Ver Página</a>
+            <button id="logout-btn" class="btn-secondary w-full py-2 rounded-lg text-sm"><i class="fas fa-sign-out-alt mr-1"></i>Sair</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="lg:col-span-3 space-y-6">
+        <div class="flex justify-between items-center">
+          <div>
+            <h2 class="text-2xl font-bold">Editor da Página Inicial</h2>
+            <p style="color:var(--text-secondary)">Edite o conteúdo exibido no site em tempo real.</p>
+          </div>
+          <a href="/" target="_blank" class="btn-primary px-4 py-2 rounded-lg text-sm"><i class="fas fa-external-link-alt mr-2"></i>Visualizar</a>
+        </div>
+
+        <!-- Tabs -->
+        <div>
+          <div class="flex flex-wrap gap-1 mb-0 border-b" style="border-color:var(--border-color)">
+            <button class="tab-btn active" data-tab="seo"><i class="fas fa-search mr-1"></i>SEO</button>
+            <button class="tab-btn" data-tab="hero"><i class="fas fa-star mr-1"></i>Hero</button>
+            <button class="tab-btn" data-tab="stats"><i class="fas fa-chart-bar mr-1"></i>Stats</button>
+            <button class="tab-btn" data-tab="contact"><i class="fas fa-envelope mr-1"></i>Contato</button>
+            <button class="tab-btn" data-tab="process"><i class="fas fa-cogs mr-1"></i>Processo</button>
+            <button class="tab-btn" data-tab="services"><i class="fas fa-briefcase mr-1"></i>Serviços</button>
+            <button class="tab-btn" data-tab="projects"><i class="fas fa-folder-open mr-1"></i>Cases</button>
+          </div>
+
+          <!-- ===================== SEO ===================== -->
+          <div class="tab-panel active card p-6 rounded-tl-none" id="tab-seo">
+            <h3 class="text-lg font-bold mb-4"><i class="fas fa-search mr-2" style="color:var(--primary)"></i>SEO & Meta Tags</h3>
+            <div class="field-group">
+              <label class="section-label">Título da Aba (title)</label>
+              <input type="text" id="seo-title" class="form-input" placeholder="Título da página">
+            </div>
+            <div class="field-group">
+              <label class="section-label">Meta Description</label>
+              <textarea id="seo-description" class="form-input" rows="2" placeholder="Descrição para mecanismos de busca"></textarea>
+            </div>
+            <hr class="divider">
+            <h4 class="font-semibold mb-3">Open Graph (Facebook / LinkedIn)</h4>
+            <div class="field-group">
+              <label class="section-label">OG Title</label>
+              <input type="text" id="seo-ogTitle" class="form-input">
+            </div>
+            <div class="field-group">
+              <label class="section-label">OG Description</label>
+              <textarea id="seo-ogDescription" class="form-input" rows="2"></textarea>
+            </div>
+            <hr class="divider">
+            <h4 class="font-semibold mb-3">Twitter Card</h4>
+            <div class="field-group">
+              <label class="section-label">Twitter Title</label>
+              <input type="text" id="seo-twitterTitle" class="form-input">
+            </div>
+            <div class="field-group">
+              <label class="section-label">Twitter Description</label>
+              <textarea id="seo-twitterDescription" class="form-input" rows="2"></textarea>
+            </div>
+            <div class="field-group">
+              <label class="section-label">URL Canônica</label>
+              <input type="text" id="seo-canonical" class="form-input" placeholder="https://adrianosena.dev.br/">
+            </div>
+            <div class="flex justify-end mt-4">
+              <button class="btn-primary px-6 py-2 rounded-lg save-btn" data-section="seo"><i class="fas fa-save mr-2"></i>Salvar SEO</button>
+            </div>
+          </div>
+
+          <!-- ===================== HERO ===================== -->
+          <div class="tab-panel card p-6 rounded-tl-none" id="tab-hero">
+            <h3 class="text-lg font-bold mb-4"><i class="fas fa-star mr-2" style="color:var(--primary)"></i>Seção Hero</h3>
+            <div class="field-group">
+              <label class="section-label">Badge de Status</label>
+              <input type="text" id="hero-badge" class="form-input" placeholder="Texto do badge animado no topo">
+            </div>
+            <div class="grid md:grid-cols-2 gap-4">
+              <div class="field-group">
+                <label class="section-label">H1 — Parte 1 (destaque azul)</label>
+                <input type="text" id="hero-h1Part1" class="form-input" placeholder="Sites, apps e sistemas profissionais">
+              </div>
+              <div class="field-group">
+                <label class="section-label">H1 — Parte 2 (destaque roxo)</label>
+                <input type="text" id="hero-h1Part2" class="form-input" placeholder="segurança e escala">
+              </div>
+            </div>
+            <div class="field-group">
+              <label class="section-label">Subtítulo (suporta HTML)</label>
+              <textarea id="hero-subtitle" class="form-input" rows="3"></textarea>
+            </div>
+            <div class="field-group">
+              <label class="section-label">Parágrafo de Apoio (suporta HTML)</label>
+              <textarea id="hero-description" class="form-input" rows="2"></textarea>
+            </div>
+            <div class="grid md:grid-cols-2 gap-4">
+              <div class="field-group">
+                <label class="section-label">Botão CTA 1 — Texto</label>
+                <input type="text" id="hero-cta1Text" class="form-input">
+              </div>
+              <div class="field-group">
+                <label class="section-label">Botão CTA 1 — Link</label>
+                <input type="text" id="hero-cta1Link" class="form-input" placeholder="#contact">
+              </div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-4">
+              <div class="field-group">
+                <label class="section-label">Botão CTA 2 — Texto</label>
+                <input type="text" id="hero-cta2Text" class="form-input">
+              </div>
+              <div class="field-group">
+                <label class="section-label">Botão CTA 2 — Link</label>
+                <input type="text" id="hero-cta2Link" class="form-input" placeholder="#services">
+              </div>
+            </div>
+            <hr class="divider">
+            <h4 class="font-semibold mb-2">Tags de Público</h4>
+            <div id="hero-tags-list"></div>
+            <button class="add-row-btn" id="add-tag"><i class="fas fa-plus mr-1"></i>Adicionar tag</button>
+            <hr class="divider">
+            <h4 class="font-semibold mb-2">Trust Badges</h4>
+            <p style="color:var(--text-secondary);font-size:.82rem;margin-bottom:10px">Ícone: use classe FontAwesome, ex: <code>fa-shield-alt</code></p>
+            <div id="hero-badges-list"></div>
+            <button class="add-row-btn" id="add-badge"><i class="fas fa-plus mr-1"></i>Adicionar badge</button>
+            <div class="flex justify-end mt-6">
+              <button class="btn-primary px-6 py-2 rounded-lg save-btn" data-section="hero"><i class="fas fa-save mr-2"></i>Salvar Hero</button>
+            </div>
+          </div>
+
+          <!-- ===================== STATS ===================== -->
+          <div class="tab-panel card p-6 rounded-tl-none" id="tab-stats">
+            <h3 class="text-lg font-bold mb-4"><i class="fas fa-chart-bar mr-2" style="color:var(--primary)"></i>Cards de Estatísticas</h3>
+            <p style="color:var(--text-secondary);font-size:.85rem;margin-bottom:16px">4 cards exibidos ao lado da imagem no hero.</p>
+            <div id="stats-list"></div>
+            <div class="flex justify-end mt-4">
+              <button class="btn-primary px-6 py-2 rounded-lg save-btn" data-section="stats"><i class="fas fa-save mr-2"></i>Salvar Stats</button>
+            </div>
+          </div>
+
+          <!-- ===================== CONTACT ===================== -->
+          <div class="tab-panel card p-6 rounded-tl-none" id="tab-contact">
+            <h3 class="text-lg font-bold mb-4"><i class="fas fa-envelope mr-2" style="color:var(--primary)"></i>Seção de Contato</h3>
+            <div class="field-group">
+              <label class="section-label">Título da Seção</label>
+              <textarea id="contact-title" class="form-input" rows="2"></textarea>
+            </div>
+            <div class="field-group">
+              <label class="section-label">Subtítulo / Chamada (suporta HTML)</label>
+              <textarea id="contact-subtitle" class="form-input" rows="2"></textarea>
+            </div>
+            <hr class="divider">
+            <div class="grid md:grid-cols-2 gap-4">
+              <div class="field-group">
+                <label class="section-label"><i class="fas fa-envelope mr-1"></i>E-mail</label>
+                <input type="email" id="contact-email" class="form-input" placeholder="contato@empresa.com">
+              </div>
+              <div class="field-group">
+                <label class="section-label"><i class="fas fa-phone mr-1"></i>Telefone / WhatsApp (exibição)</label>
+                <input type="text" id="contact-phone" class="form-input" placeholder="+55 (64) 93300-4882">
+              </div>
+              <div class="field-group">
+                <label class="section-label"><i class="fab fa-whatsapp mr-1"></i>WhatsApp (número, ex: 5564933004882)</label>
+                <input type="text" id="contact-whatsapp" class="form-input" placeholder="5564933004882">
+              </div>
+              <div class="field-group">
+                <label class="section-label"><i class="fab fa-instagram mr-1"></i>Link Instagram</label>
+                <input type="text" id="contact-instagram" class="form-input" placeholder="https://instagram.com/...">
+              </div>
+              <div class="field-group">
+                <label class="section-label"><i class="fas fa-map-marker-alt mr-1"></i>Localização</label>
+                <input type="text" id="contact-location" class="form-input" placeholder="Goiás, Brasil">
+              </div>
+              <div class="field-group">
+                <label class="section-label"><i class="fas fa-building mr-1"></i>CNPJ</label>
+                <input type="text" id="contact-cnpj" class="form-input" placeholder="00.000.000/0001-00">
+              </div>
+            </div>
+            <div class="flex justify-end mt-4">
+              <button class="btn-primary px-6 py-2 rounded-lg save-btn" data-section="contact"><i class="fas fa-save mr-2"></i>Salvar Contato</button>
+            </div>
+          </div>
+
+          <!-- ===================== PROCESSO ===================== -->
+          <div class="tab-panel card p-6 rounded-tl-none" id="tab-process">
+            <h3 class="text-lg font-bold mb-2"><i class="fas fa-cogs mr-2" style="color:var(--primary)"></i>Seção Processo / Estrutura</h3>
+            <p style="color:var(--text-secondary);font-size:.85rem;margin-bottom:16px">
+              Editor HTML completo. Edite o conteúdo interno da seção "Estrutura Corporativa de Entrega". 
+              As alterações substituem <strong>todo o bloco interno</strong> da seção.
+            </p>
+            <div class="mb-3" style="border:1px solid var(--border-color);border-radius:8px;overflow:hidden">
+              <textarea id="editor-process"></textarea>
+            </div>
+            <div class="flex justify-between items-center mt-4">
+              <button class="btn-secondary px-4 py-2 rounded-lg text-sm" id="reset-process"><i class="fas fa-undo mr-1"></i>Restaurar padrão</button>
+              <button class="btn-primary px-6 py-2 rounded-lg save-btn" data-section="process_html"><i class="fas fa-save mr-2"></i>Salvar Processo</button>
+            </div>
+          </div>
+
+          <!-- ===================== SERVIÇOS ===================== -->
+          <div class="tab-panel card p-6 rounded-tl-none" id="tab-services">
+            <h3 class="text-lg font-bold mb-2"><i class="fas fa-briefcase mr-2" style="color:var(--primary)"></i>Seção Serviços</h3>
+            <p style="color:var(--text-secondary);font-size:.85rem;margin-bottom:16px">
+              Editor HTML completo. Edite o conteúdo interno da seção de serviços.
+              As alterações substituem <strong>todo o bloco interno</strong> da seção.
+            </p>
+            <div class="mb-3" style="border:1px solid var(--border-color);border-radius:8px;overflow:hidden">
+              <textarea id="editor-services"></textarea>
+            </div>
+            <div class="flex justify-between items-center mt-4">
+              <button class="btn-secondary px-4 py-2 rounded-lg text-sm" id="reset-services"><i class="fas fa-undo mr-1"></i>Restaurar padrão</button>
+              <button class="btn-primary px-6 py-2 rounded-lg save-btn" data-section="services_html"><i class="fas fa-save mr-2"></i>Salvar Serviços</button>
+            </div>
+          </div>
+
+          <!-- ===================== CASES ===================== -->
+          <div class="tab-panel card p-6 rounded-tl-none" id="tab-projects">
+            <h3 class="text-lg font-bold mb-2"><i class="fas fa-folder-open mr-2" style="color:var(--primary)"></i>Seção Cases / Projetos</h3>
+            <p style="color:var(--text-secondary);font-size:.85rem;margin-bottom:16px">
+              Editor HTML completo. Edite o conteúdo interno da seção de cases.
+              As alterações substituem <strong>todo o bloco interno</strong> da seção.
+            </p>
+            <div class="mb-3" style="border:1px solid var(--border-color);border-radius:8px;overflow:hidden">
+              <textarea id="editor-projects"></textarea>
+            </div>
+            <div class="flex justify-between items-center mt-4">
+              <button class="btn-secondary px-4 py-2 rounded-lg text-sm" id="reset-projects"><i class="fas fa-undo mr-1"></i>Restaurar padrão</button>
+              <button class="btn-primary px-6 py-2 rounded-lg save-btn" data-section="projects_html"><i class="fas fa-save mr-2"></i>Salvar Cases</button>
+            </div>
+          </div>
+
+        </div><!-- /tabs -->
+      </div><!-- /main -->
+    </div>
+  </div>
+</section>
+
+<!-- Toast -->
+<div id="toast">
+  <div class="card px-5 py-3 flex items-center gap-3 shadow-lg">
+    <i id="toast-icon" class="fas fa-check-circle text-green-500 text-lg"></i>
+    <span id="toast-msg" class="font-semibold text-sm">Salvo com sucesso!</span>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// AUTH
+// ============================================================
+const TOKEN = localStorage.getItem('adminToken');
+
+async function validateToken() {
+  if (!TOKEN) return location.href = '/login';
+  const r = await fetch('/token', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${TOKEN}` }
+  });
+  if (!r.ok) return location.href = '/login';
+  document.body.style.visibility = 'visible';
+  loadAll();
+}
+
+document.getElementById('logout-btn').addEventListener('click', async () => {
+  await fetch('/logout', { method: 'POST', headers: { 'Authorization': `Bearer ${TOKEN}` } });
+  localStorage.removeItem('adminToken');
+  location.href = '/login';
+});
+
+// ============================================================
+// THEME
+// ============================================================
+const themeToggle = document.getElementById('theme-toggle');
+const themeIcon   = document.getElementById('theme-icon');
+const savedTheme  = localStorage.getItem('theme');
+if (savedTheme === 'dark') {
+  document.documentElement.setAttribute('data-theme','dark');
+  themeIcon.className = 'fas fa-sun';
+}
+themeToggle.addEventListener('click', () => {
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  themeIcon.className = isDark ? 'fas fa-moon' : 'fas fa-sun';
+  localStorage.setItem('theme', isDark ? 'light' : 'dark');
+});
+
+// ============================================================
+// TABS
+// ============================================================
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+  });
+});
+
+// ============================================================
+// TOAST
+// ============================================================
+function showToast(msg, ok = true) {
+  const t = document.getElementById('toast');
+  document.getElementById('toast-msg').textContent = msg;
+  document.getElementById('toast-icon').className = ok
+    ? 'fas fa-check-circle text-green-500 text-lg'
+    : 'fas fa-times-circle text-red-500 text-lg';
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ============================================================
+// API helpers
+// ============================================================
+async function apiGet(section) {
+  const r = await fetch(`/api/homepage/${section}`, { headers: { 'Authorization': `Bearer ${TOKEN}` } });
+  if (!r.ok) return null;
+  return r.json();
+}
+
+async function apiSave(section, data) {
+  const r = await fetch(`/api/homepage/${section}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${TOKEN}`
+    },
+    body: JSON.stringify(data)
+  });
+  return r.json();
+}
+
+// ============================================================
+// FILL & COLLECT helpers
+// ============================================================
+function fillField(id, val) {
+  const el = document.getElementById(id);
+  if (el && val !== undefined && val !== null) el.value = val;
+}
+
+// ============================================================
+// TAGS ARRAY
+// ============================================================
+function renderTagsList(tags) {
+  const list = document.getElementById('hero-tags-list');
+  list.innerHTML = '';
+  (tags || []).forEach((t, i) => {
+    const row = document.createElement('div');
+    row.className = 'array-row';
+    row.innerHTML = `<input type="text" class="form-input tag-input" value="${escHtml(t)}" placeholder="Tag de público">
+                     <button class="remove-row" data-i="${i}"><i class="fas fa-trash"></i></button>`;
+    list.appendChild(row);
+  });
+}
+document.getElementById('add-tag').addEventListener('click', () => {
+  const tags = collectTags();
+  tags.push('');
+  renderTagsList(tags);
+});
+document.getElementById('hero-tags-list').addEventListener('click', e => {
+  if (e.target.closest('.remove-row')) {
+    const i = parseInt(e.target.closest('.remove-row').dataset.i);
+    const tags = collectTags();
+    tags.splice(i, 1);
+    renderTagsList(tags);
+  }
+});
+function collectTags() {
+  return [...document.querySelectorAll('#hero-tags-list .tag-input')].map(el => el.value.trim()).filter(Boolean);
+}
+
+// ============================================================
+// TRUST BADGES ARRAY
+// ============================================================
+function renderBadgesList(badges) {
+  const list = document.getElementById('hero-badges-list');
+  list.innerHTML = '';
+  (badges || []).forEach((b, i) => {
+    const row = document.createElement('div');
+    row.className = 'badge-row';
+    row.innerHTML = `
+      <input type="text" class="form-input badge-icon" value="${escHtml(b.icon || '')}" placeholder="fa-shield-alt">
+      <input type="text" class="form-input badge-text" value="${escHtml(b.text || '')}" placeholder="Texto do badge">
+      <button class="remove-row" data-i="${i}"><i class="fas fa-trash"></i></button>`;
+    list.appendChild(row);
+  });
+}
+document.getElementById('add-badge').addEventListener('click', () => {
+  const badges = collectBadges();
+  badges.push({ icon: 'fa-check', text: '' });
+  renderBadgesList(badges);
+});
+document.getElementById('hero-badges-list').addEventListener('click', e => {
+  if (e.target.closest('.remove-row')) {
+    const i = parseInt(e.target.closest('.remove-row').dataset.i);
+    const badges = collectBadges();
+    badges.splice(i, 1);
+    renderBadgesList(badges);
+  }
+});
+function collectBadges() {
+  const icons = [...document.querySelectorAll('#hero-badges-list .badge-icon')];
+  const texts = [...document.querySelectorAll('#hero-badges-list .badge-text')];
+  return icons.map((el, i) => ({ icon: el.value.trim(), text: texts[i].value.trim() })).filter(b => b.text);
+}
+
+// ============================================================
+// STATS
+// ============================================================
+function renderStats(stats) {
+  const list = document.getElementById('stats-list');
+  list.innerHTML = '';
+  (stats || []).forEach((s, i) => {
+    const row = document.createElement('div');
+    row.className = 'grid grid-cols-2 gap-4 mb-3';
+    row.innerHTML = `
+      <div>
+        <label class="section-label">Card ${i+1} — Número</label>
+        <input type="text" id="stat-${i}-number" class="form-input" value="${escHtml(s.number || '')}">
+      </div>
+      <div>
+        <label class="section-label">Card ${i+1} — Legenda</label>
+        <input type="text" id="stat-${i}-label" class="form-input" value="${escHtml(s.label || '')}">
+      </div>`;
+    list.appendChild(row);
+  });
+}
+function collectStats() {
+  const result = [];
+  let i = 0;
+  while (document.getElementById(`stat-${i}-number`)) {
+    result.push({
+      number: document.getElementById(`stat-${i}-number`).value.trim(),
+      label:  document.getElementById(`stat-${i}-label`).value.trim()
+    });
+    i++;
+  }
+  return result;
+}
+
+// ============================================================
+// TINYMCE INSTANCES
+// ============================================================
+const tinyConfig = (selector) => ({
+  selector,
+  plugins: 'lists link image code table',
+  toolbar: 'undo redo | formatselect | bold italic underline | forecolor backcolor | alignleft aligncenter alignright | bullist numlist | link image | table | code',
+  height: 480,
+  menubar: false,
+  promotion: false,
+  skin: document.documentElement.getAttribute('data-theme') === 'dark' ? 'oxide-dark' : 'oxide',
+  content_css: document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default',
+});
+
+tinymce.init({ ...tinyConfig('#editor-process') });
+tinymce.init({ ...tinyConfig('#editor-services') });
+tinymce.init({ ...tinyConfig('#editor-projects') });
+
+// ============================================================
+// LOAD ALL
+// ============================================================
+async function loadAll() {
+  const all = await fetch('/api/homepage').then(r => r.json()).catch(() => ({}));
+
+  // SEO
+  if (all.seo) {
+    fillField('seo-title', all.seo.title);
+    fillField('seo-description', all.seo.description);
+    fillField('seo-ogTitle', all.seo.ogTitle);
+    fillField('seo-ogDescription', all.seo.ogDescription);
+    fillField('seo-twitterTitle', all.seo.twitterTitle);
+    fillField('seo-twitterDescription', all.seo.twitterDescription);
+    fillField('seo-canonical', all.seo.canonical);
+  }
+
+  // Hero
+  if (all.hero) {
+    const h = all.hero;
+    fillField('hero-badge', h.badge);
+    fillField('hero-h1Part1', h.h1Part1);
+    fillField('hero-h1Part2', h.h1Part2);
+    fillField('hero-subtitle', h.subtitle);
+    fillField('hero-description', h.description);
+    fillField('hero-cta1Text', h.cta1Text);
+    fillField('hero-cta1Link', h.cta1Link);
+    fillField('hero-cta2Text', h.cta2Text);
+    fillField('hero-cta2Link', h.cta2Link);
+    renderTagsList(h.tags || []);
+    renderBadgesList(h.trustBadges || []);
+  }
+
+  // Stats
+  renderStats(all.stats || []);
+
+  // Contact
+  if (all.contact) {
+    const c = all.contact;
+    fillField('contact-title', c.title);
+    fillField('contact-subtitle', c.subtitle);
+    fillField('contact-email', c.email);
+    fillField('contact-phone', c.phone);
+    fillField('contact-whatsapp', c.whatsapp);
+    fillField('contact-location', c.location);
+    fillField('contact-cnpj', c.cnpj);
+    fillField('contact-instagram', c.instagram);
+  }
+
+  // HTML editors — load after TinyMCE is ready
+  const setEditor = (id, html) => {
+    const editor = tinymce.get(id);
+    if (editor) editor.setContent(html || '');
+    else document.getElementById(id).value = html || '';
+  };
+  // Delay para garantir que TinyMCE inicializou
+  setTimeout(() => {
+    setEditor('editor-process',  all.process_html  || '');
+    setEditor('editor-services', all.services_html || '');
+    setEditor('editor-projects', all.projects_html || '');
+  }, 800);
+}
+
+// ============================================================
+// SAVE HANDLERS
+// ============================================================
+function collectSectionData(section) {
+  switch (section) {
+    case 'seo':
+      return {
+        title: v('seo-title'), description: v('seo-description'),
+        ogTitle: v('seo-ogTitle'), ogDescription: v('seo-ogDescription'),
+        twitterTitle: v('seo-twitterTitle'), twitterDescription: v('seo-twitterDescription'),
+        canonical: v('seo-canonical')
+      };
+    case 'hero':
+      return {
+        badge: v('hero-badge'), h1Part1: v('hero-h1Part1'), h1Part2: v('hero-h1Part2'),
+        subtitle: v('hero-subtitle'), description: v('hero-description'),
+        cta1Text: v('hero-cta1Text'), cta1Link: v('hero-cta1Link'),
+        cta2Text: v('hero-cta2Text'), cta2Link: v('hero-cta2Link'),
+        tags: collectTags(), trustBadges: collectBadges()
+      };
+    case 'stats':
+      return collectStats();
+    case 'contact':
+      return {
+        title: v('contact-title'), subtitle: v('contact-subtitle'),
+        email: v('contact-email'), phone: v('contact-phone'),
+        whatsapp: v('contact-whatsapp'), location: v('contact-location'),
+        cnpj: v('contact-cnpj'), instagram: v('contact-instagram')
+      };
+    case 'process_html':
+      return tinymce.get('editor-process')?.getContent() || document.getElementById('editor-process').value;
+    case 'services_html':
+      return tinymce.get('editor-services')?.getContent() || document.getElementById('editor-services').value;
+    case 'projects_html':
+      return tinymce.get('editor-projects')?.getContent() || document.getElementById('editor-projects').value;
+    default:
+      return null;
+  }
+}
+
+document.querySelectorAll('.save-btn').forEach(btn => {
+  btn.addEventListener('click', async () => {
+    const section = btn.dataset.section;
+    const data = collectSectionData(section);
+    if (data === null) return showToast('Seção inválida', false);
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Salvando...';
+    try {
+      const result = await apiSave(section, data);
+      if (result.success) showToast('Seção salva com sucesso!');
+      else showToast(result.error || 'Erro ao salvar', false);
+    } catch(e) {
+      showToast('Erro de conexão', false);
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fas fa-save mr-2"></i>Salvar ' + sectionLabel(section);
+    }
+  });
+});
+
+// Reset HTML sections (clear field)
+['process','services','projects'].forEach(s => {
+  document.getElementById(`reset-${s}`)?.addEventListener('click', () => {
+    const id = `editor-${s}`;
+    const editor = tinymce.get(id);
+    if (editor) editor.setContent('');
+    else document.getElementById(id).value = '';
+    showToast('Campo limpo. Salve para aplicar.', true);
+  });
+});
+
+// ============================================================
+// Helpers
+// ============================================================
+function v(id) { return (document.getElementById(id)?.value || '').trim(); }
+function escHtml(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function sectionLabel(s) {
+  const labels = { seo:'SEO', hero:'Hero', stats:'Stats', contact:'Contato', process_html:'Processo', services_html:'Serviços', projects_html:'Cases' };
+  return labels[s] || s;
+}
+
+validateToken();
+</script>
+</body>
+</html>

@@ -30,10 +30,27 @@ module.exports = {
 
     getPostView(postId) {
         return new Promise((resolve, reject) => {
-            db.get(`select count(pv.postId) from post_views pv where pv.postId  = ?`, [postId], (err, row) => {
+            db.get(`SELECT COUNT(pv.postId) AS totalViews FROM post_views pv WHERE pv.postId = ?`, [postId], (err, row) => {
                 if (err) return reject(err);
                 resolve(row);
             });
+        });
+    },
+
+    listTopViewedPosts(limit = 5) {
+        return new Promise((resolve, reject) => {
+            db.all(
+                `SELECT postId, COUNT(*) AS totalViews
+                 FROM post_views
+                 GROUP BY postId
+                 ORDER BY totalViews DESC
+                 LIMIT ?`,
+                [Number(limit) || 5],
+                (err, rows) => {
+                    if (err) return reject(err);
+                    resolve(rows || []);
+                }
+            );
         });
     }
 }

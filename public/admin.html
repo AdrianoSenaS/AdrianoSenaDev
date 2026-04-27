@@ -506,7 +506,7 @@
         <nav class="space-x-8 hidden md:flex">
           <a href="index.html" class="nav-link hover:text-primary transition">Início</a>
           <a href="blog.html" class="nav-link hover:text-primary transition">Blog</a>
-          <a href="admin-dashboard.html" class="nav-link text-primary transition">Dashboard</a>
+          <a href="/admin/dashboard" class="nav-link text-primary transition">Dashboard</a>
         </nav>
         
         <button id="theme-toggle" class="theme-toggle">
@@ -545,14 +545,16 @@
             <div class="card p-6 mb-6">
               <h3 class="text-xl font-bold mb-4 text-custom-primary">Painel Admin</h3>
               <ul class="admin-nav">
-                <li><a href="/admin"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
-                <li><a href="/blog"><i class="fas fa-file-alt"></i> Posts</a></li>
+                <li><a href="/admin/dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="/admin/posts"><i class="fas fa-file-alt"></i> Posts</a></li>
                 <li><a href="/admin/cadastrar"><i class="fas fa-plus-circle"></i> Novo Post</a></li>
-                <li><a href="admin/contatos" class="active"><i class="fas fa-envelope"></i> Contatos</a></li>
-                <li><a href="#"><i class="fas fa-folder"></i> Categorias</a></li>
-                <li><a href="#"><i class="fas fa-tags"></i> Tags</a></li>
-                <li><a href="#"><i class="fas fa-users"></i> Usuários</a></li>
-                <li><a href="#"><i class="fas fa-cog"></i> Configurações</a></li>
+                <li><a href="/admin/contatos" class="active"><i class="fas fa-envelope"></i> Contatos</a></li>
+                <li><a href="/admin/posts#categorias"><i class="fas fa-folder"></i> Categorias</a></li>
+                <li><a href="/admin/posts#tags"><i class="fas fa-tags"></i> Tags</a></li>
+                <li><a href="/admin/usuarios"><i class="fas fa-users"></i> Usuários</a></li>
+                <li><a href="/admin/dispositivos"><i class="fas fa-mobile-alt"></i> Dispositivos</a></li>
+                <li><a href="/admin/comentarios"><i class="fas fa-comments"></i> Comentários</a></li>
+                <li><a href="/admin/homepage"><i class="fas fa-home"></i> Página Inicial</a></li>
               </ul>
             </div>
             
@@ -735,7 +737,7 @@
           <a href="https://github.com/AdrianoSenaS" target="_blank" class="text-custom-secondary hover:text-primary transition">
             <i class="fab fa-github text-xl"></i>
           </a>
-          <a href="https://www.instagram.com/adriano.sena.silva/" target="_blank" class="text-custom-secondary hover:text-primary transition">
+          <a href="https://www.instagram.com/adrianosena.dev.br/" target="_blank" class="text-custom-secondary hover:text-primary transition">
             <i class="fab fa-instagram text-xl"></i>
           </a>
           <a href="https://www.linkedin.com/in/adriano-sena-silva-a8605622a/" target="_blank" class="text-custom-secondary hover:text-primary transition">
@@ -752,50 +754,64 @@
   </footer>
 
   <script>
+    let contacts = [];
 
-  // Verificar login 
-   const token = localStorage.getItem('adminToken');
-    if (token) {
-      fetch('/token', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${token}`
-        },
-      }).then(response => {
-        if (response.ok) {
-          console.log('Login bem-sucedido!');
-          document.body.style.visibility = 'visible'; 
-        }else{
-          window.location.href = '/login';
-        }
-      }).catch(error => console.error('Erro ao verificar token:', error));
-    }else{
+    const token = localStorage.getItem('adminToken');
+    if (!token) {
       window.location.href = '/login';
     }
 
-    // Atualizar o ano no footer
+    async function authFetch(url, options = {}) {
+      const headers = {
+        ...(options.headers || {}),
+        Authorization: `Bearer ${token}`
+      };
+
+      const response = await fetch(url, { ...options, headers });
+
+      if (response.status === 401) {
+        localStorage.removeItem('adminToken');
+        window.location.href = '/login';
+        throw new Error('Sessão expirada');
+      }
+
+      return response;
+    }
+
+    async function validateToken() {
+      const response = await authFetch('/token', {
+        method: 'POST',
+        headers: {}
+      });
+
+      if (!response.ok) {
+        localStorage.removeItem('adminToken');
+        window.location.href = '/login';
+        return;
+      }
+
+      document.body.style.visibility = 'visible';
+    }
+
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Toggle menu mobile
     const menuBtn = document.getElementById('menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
     menuBtn.addEventListener('click', () => {
       mobileMenu.classList.toggle('hidden');
     });
 
-    // Tema claro/escuro
     const themeToggle = document.getElementById('theme-toggle');
     const themeIconSun = document.getElementById('theme-icon-sun');
     const themeIconMoon = document.getElementById('theme-icon-moon');
-    
-    // Verificar tema salvo no localStorage ou preferência do sistema
+
     const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
     if (savedTheme === 'dark') {
       document.documentElement.setAttribute('data-theme', 'dark');
       themeIconSun.classList.add('hidden');
       themeIconMoon.classList.remove('hidden');
     }
-    
+
     themeToggle.addEventListener('click', () => {
       if (document.documentElement.getAttribute('data-theme') === 'dark') {
         document.documentElement.removeAttribute('data-theme');
@@ -810,37 +826,19 @@
       }
     });
 
-    // Dados de exemplo (em um cenário real, isso viria de uma API)
-     // const contacts = await fetch('/api/contact').then(res => res.json());
+    document.addEventListener('DOMContentLoaded', async function() {
+      await validateToken();
+      await refreshData();
 
-      fetch('/api/contact').then(res => {
-        res.json().then(data => {
-          contacts = data;
-          localStorage.setItem('contactSubmissions', JSON.stringify(contacts));
-        });
-      })
-
-    let contacts = JSON.parse(localStorage.getItem('contactSubmissions')) 
-
-    console.log(contacts)
-
-    // Carregar contatos
-    document.addEventListener('DOMContentLoaded', function() {
-      loadContacts();
-      updateStats();
-      
-      // Configurar filtros
       document.getElementById('search-contacts').addEventListener('input', filterContacts);
       document.getElementById('filter-project').addEventListener('change', filterContacts);
       document.getElementById('filter-status').addEventListener('change', filterContacts);
       document.getElementById('filter-date').addEventListener('change', filterContacts);
-      
-      // Configurar botões
+
       document.getElementById('refresh-data').addEventListener('click', refreshData);
       document.getElementById('export-csv').addEventListener('click', exportCSV);
       document.getElementById('export-json').addEventListener('click', exportJSON);
-      
-      // Configurar modal
+
       document.getElementById('close-modal').addEventListener('click', closeModal);
       document.getElementById('respond-btn').addEventListener('click', respondToContact);
       document.getElementById('archive-btn').addEventListener('click', archiveContact);
@@ -853,7 +851,7 @@
       
       container.innerHTML = '';
       
-      if (contactsToShow.length === 0) {
+      if (!contactsToShow.length) {
         emptyState.classList.remove('hidden');
         return;
       }
@@ -880,7 +878,7 @@
           <div class="contact-project">${contact.project}</div>
           
           <div class="contact-message">
-            ${contact.message.length > 150 ? contact.message.substring(0, 150) + '...' : contact.message}
+            ${(contact.message || '').length > 150 ? contact.message.substring(0, 150) + '...' : (contact.message || '')}
           </div>
           
           <div class="contact-actions">
@@ -930,9 +928,9 @@
       const filteredContacts = contacts.filter(contact => {
         // Filtro de busca
         if (searchTerm && 
-            !contact.name.toLowerCase().includes(searchTerm) && 
-            !contact.email.toLowerCase().includes(searchTerm) &&
-            !contact.message.toLowerCase().includes(searchTerm)) {
+            !(contact.name || '').toLowerCase().includes(searchTerm) && 
+            !(contact.email || '').toLowerCase().includes(searchTerm) &&
+            !(contact.message || '').toLowerCase().includes(searchTerm)) {
           return false;
         }
         
@@ -1027,76 +1025,77 @@
       document.getElementById('contact-modal').classList.add('hidden');
     }
 
-    function respondToContact(contactId) {
+    async function changeContactStatus(contactId, status) {
+      const response = await authFetch(`/api/contact/${contactId}/status`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status })
+      });
+
+      if (!response.ok) {
+        throw new Error('Falha ao atualizar status');
+      }
+    }
+
+    async function respondToContact(contactId) {
       if (!contactId) {
         contactId = parseInt(document.getElementById('respond-btn').getAttribute('data-id'));
       }
       
       const contact = contacts.find(c => c.id === contactId);
       if (!contact) return;
-      
-      // Simular envio de resposta
-      contact.status = 'responded';
-      localStorage.setItem('contactSubmissions', JSON.stringify(contacts));
-      
-      // Atualizar UI
-      loadContacts();
-      updateStats();
+
+      await changeContactStatus(contactId, 'responded');
+      await refreshData();
       closeModal();
-      
-      alert(`Resposta enviada para ${contact.email}`);
+      alert(`Status atualizado para respondido: ${contact.email}.`);
     }
 
-    function archiveContact() {
+    async function archiveContact() {
       const contactId = parseInt(document.getElementById('archive-btn').getAttribute('data-id'));
       const contact = contacts.find(c => c.id === contactId);
       if (!contact) return;
-      
-      contact.status = 'archived';
-      localStorage.setItem('contactSubmissions', JSON.stringify(contacts));
-      
-      // Atualizar UI
-      loadContacts();
-      updateStats();
+
+      await changeContactStatus(contactId, 'archived');
+      await refreshData();
       closeModal();
-      
-      alert(`Contato de ${contact.name} arquivado`);
+      alert(`Contato de ${contact.name} arquivado com sucesso.`);
     }
 
-    function deleteContact(contactId) {
-      if (!confirm('Tem certeza que deseja excluir este contato?')) {
+    async function deleteContact(contactId) {
+      if (!confirm('Confirma a exclusão deste contato? Esta ação não poderá ser desfeita.')) {
         return;
       }
-      
-      contacts = contacts.filter(contact => contact.id !== contactId);
-      localStorage.setItem('contactSubmissions', JSON.stringify(contacts));
-      
-      // Atualizar UI
-      loadContacts();
-      updateStats();
+
+      const response = await authFetch(`/api/contact/${contactId}`, { method: 'DELETE' });
+      if (!response.ok) {
+        alert('Não foi possível excluir o contato.');
+        return;
+      }
+
+      await refreshData();
     }
 
-    function refreshData() {
-      // Em um cenário real, isso buscaria novos dados da API
-      loadContacts();
-      updateStats();
-      
-      // Simular carregamento
+    async function refreshData() {
       const refreshBtn = document.getElementById('refresh-data');
       const originalText = refreshBtn.innerHTML;
       refreshBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Atualizando...';
       refreshBtn.disabled = true;
-      
-      setTimeout(() => {
+
+      try {
+        const response = await authFetch('/api/contact');
+        contacts = await response.json();
+        loadContacts();
+        updateStats();
+      } finally {
         refreshBtn.innerHTML = originalText;
         refreshBtn.disabled = false;
-        alert('Dados atualizados com sucesso!');
-      }, 1000);
+      }
     }
 
     function exportCSV() {
       if (contacts.length === 0) {
-        alert('Não há dados para exportar');
+        alert('Não há dados disponíveis para exportação.');
         return;
       }
       
@@ -1126,7 +1125,7 @@
 
     function exportJSON() {
       if (contacts.length === 0) {
-        alert('Não há dados para exportar');
+        alert('Não há dados disponíveis para exportação.');
         return;
       }
       

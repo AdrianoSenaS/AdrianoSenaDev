@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comentários | Admin CMS</title>
+  <link rel="shortcut icon" href="logo.jpg" type="image/x-icon">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2563eb;
+      --secondary: #10B981;
+      --text-primary: #1F2937;
+      --text-secondary: #6B7280;
+      --bg-light: #F8FAFC;
+      --bg-card: #FFFFFF;
+      --border-color: rgba(37,99,235,0.1);
+      --gradient: linear-gradient(135deg,#2563eb 0%,#10B981 100%);
+    }
+    [data-theme="dark"] {
+      --primary: #3b82f6;
+      --secondary: #10B981;
+      --text-primary: #F8FAFC;
+      --text-secondary: #D1D5DB;
+      --bg-light: #1e293b;
+      --bg-card: #334155;
+      --border-color: rgba(59,130,246,0.2);
+      --gradient: linear-gradient(135deg,#3b82f6 0%,#10B981 100%);
+    }
+    body { font-family: Inter, sans-serif; background: var(--bg-light); color: var(--text-primary); visibility: hidden; }
+    h1,h2,h3,h4 { font-family: Poppins, sans-serif; }
+    .card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; }
+    .btn-primary { background: var(--gradient); color:#fff; border:0; }
+    .btn-secondary { border:1px solid var(--primary); color: var(--primary); background: transparent; }
+    .admin-nav { list-style:none; padding:0; }
+    .admin-nav li { margin-bottom: 8px; }
+    .admin-nav a { display:block; padding:10px 14px; border-radius:8px; color: var(--text-secondary); }
+    .admin-nav a:hover,.admin-nav a.active { background: rgba(96,165,250,.1); color: var(--primary); }
+    .chip { display:inline-block; padding:3px 10px; border-radius:999px; font-size:.74rem; font-weight:700; }
+    .chip-approved { background: rgba(16,185,129,.16); color:#10b981; }
+    .chip-pending { background: rgba(245,158,11,.18); color:#f59e0b; }
+    .chip-rejected { background: rgba(239,68,68,.16); color:#ef4444; }
+    .comment-row { border: 1px solid var(--border-color); border-radius: 10px; padding: 12px; margin-bottom: 10px; background: rgba(37,99,235,.03); }
+    .meta { color: var(--text-secondary); font-size: .82rem; }
+    .comment-text { margin-top: 6px; white-space: pre-wrap; }
+    .text-primary-color { color: var(--primary); }
+  </style>
+</head>
+<body>
+  <header class="sticky top-0 z-50 border-b" style="background: var(--bg-card); border-color: var(--border-color);">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <div>
+        <h1 class="text-xl font-bold">Moderação de Comentários</h1>
+        <p class="meta">Aprove, rejeite ou exclua comentários dos posts</p>
+      </div>
+      <div class="flex items-center gap-2">
+        <button id="theme-toggle" class="btn-secondary px-3 py-2 rounded-lg text-sm"><i class="fas fa-adjust"></i></button>
+        <a href="/admin/dashboard" class="btn-secondary px-4 py-2 rounded-lg text-sm"><i class="fas fa-arrow-left mr-2"></i>Dashboard</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="py-8 px-6">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-6">
+      <aside class="lg:col-span-1">
+        <div class="card p-5 sticky top-24">
+          <h3 class="font-bold mb-3">Painel Admin</h3>
+          <ul class="admin-nav">
+            <li><a href="/admin/dashboard"><i class="fas fa-tachometer-alt mr-2"></i>Dashboard</a></li>
+            <li><a href="/admin/posts"><i class="fas fa-file-alt mr-2"></i>Posts</a></li>
+            <li><a href="/admin/cadastrar"><i class="fas fa-plus-circle mr-2"></i>Novo Post</a></li>
+            <li><a href="/admin/comentarios" class="active"><i class="fas fa-comments mr-2"></i>Comentários</a></li>
+            <li><a href="/admin/contatos"><i class="fas fa-envelope mr-2"></i>Contatos</a></li>
+            <li><a href="/admin/usuarios"><i class="fas fa-users mr-2"></i>Usuários</a></li>
+            <li><a href="/admin/dispositivos"><i class="fas fa-mobile-alt mr-2"></i>Dispositivos</a></li>
+            <li><a href="/admin/homepage"><i class="fas fa-home mr-2"></i>Página Inicial</a></li>
+          </ul>
+          <button id="logout-btn" class="btn-secondary w-full py-2 rounded-lg mt-3"><i class="fas fa-sign-out-alt mr-2"></i>Sair</button>
+        </div>
+      </aside>
+
+      <main class="lg:col-span-3 space-y-5">
+        <div class="card p-5">
+          <div class="grid grid-cols-1 md:grid-cols-6 gap-3">
+            <select id="status-filter" class="px-4 py-2 rounded-lg" style="border:1px solid var(--border-color); background: var(--bg-card); color: var(--text-primary);">
+              <option value="">Todos os status</option>
+              <option value="approved">Aprovados</option>
+              <option value="pending">Pendentes</option>
+              <option value="rejected">Rejeitados</option>
+            </select>
+            <select id="post-filter" class="px-4 py-2 rounded-lg" style="border:1px solid var(--border-color); background: var(--bg-card); color: var(--text-primary);">
+              <option value="">Todos os posts</option>
+            </select>
+            <select id="sort-filter" class="px-4 py-2 rounded-lg" style="border:1px solid var(--border-color); background: var(--bg-card); color: var(--text-primary);">
+              <option value="createdAt:desc">Mais novos</option>
+              <option value="createdAt:asc">Mais antigos</option>
+              <option value="name:asc">Nome A-Z</option>
+              <option value="name:desc">Nome Z-A</option>
+            </select>
+            <input id="search-input" type="text" placeholder="Buscar por nome, post ou texto" class="md:col-span-2 px-4 py-2 rounded-lg" style="border:1px solid var(--border-color); background: var(--bg-card); color: var(--text-primary);">
+            <button id="refresh-btn" class="btn-primary rounded-lg px-4 py-2"><i class="fas fa-sync-alt mr-2"></i>Atualizar</button>
+          </div>
+        </div>
+
+        <div class="card p-5">
+          <div class="flex flex-wrap justify-between items-center gap-3 mb-3">
+            <h3 class="font-bold">Comentários</h3>
+            <div class="flex items-center gap-2 text-sm">
+              <label class="inline-flex items-center gap-2">
+                <input type="checkbox" id="select-all" />
+                Selecionar página
+              </label>
+              <button id="bulk-approve" class="btn-secondary rounded-lg px-3 py-1 text-sm"><i class="fas fa-check mr-1"></i>Aprovar</button>
+              <button id="bulk-pending" class="btn-secondary rounded-lg px-3 py-1 text-sm"><i class="fas fa-clock mr-1"></i>Pendente</button>
+              <button id="bulk-reject" class="btn-secondary rounded-lg px-3 py-1 text-sm"><i class="fas fa-ban mr-1"></i>Rejeitar</button>
+              <button id="bulk-delete" class="btn-secondary rounded-lg px-3 py-1 text-sm"><i class="fas fa-trash mr-1"></i>Excluir</button>
+            </div>
+          </div>
+
+          <div id="comments-list"></div>
+          <div id="empty-state" class="meta hidden">Nenhum comentário encontrado para os filtros atuais.</div>
+
+          <div class="mt-4 flex justify-between items-center gap-3">
+            <div id="pagination-info" class="meta"></div>
+            <div class="flex items-center gap-2">
+              <button id="prev-page" class="btn-secondary rounded-lg px-3 py-1 text-sm"><i class="fas fa-chevron-left"></i></button>
+              <button id="next-page" class="btn-secondary rounded-lg px-3 py-1 text-sm"><i class="fas fa-chevron-right"></i></button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </section>
+
+  <script>
+    const token = localStorage.getItem('adminToken');
+    let allComments = [];
+    let allPostsFilter = [];
+    let currentPage = 1;
+    const pageSize = 20;
+    let totalComments = 0;
+
+    if (!token) window.location.href = '/login';
+
+    function esc(v) {
+      return String(v || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/\"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function fmtDate(v) {
+      return new Date(v).toLocaleString('pt-BR');
+    }
+
+    async function authFetch(url, options = {}) {
+      const headers = { ...(options.headers || {}), Authorization: `Bearer ${token}` };
+      const response = await fetch(url, { ...options, headers });
+      if (response.status === 401) {
+        localStorage.removeItem('adminToken');
+        window.location.href = '/login';
+        throw new Error('Sessão expirada');
+      }
+      return response;
+    }
+
+    async function validateToken() {
+      const res = await authFetch('/token', { method: 'POST', headers: {} });
+      if (!res.ok) {
+        localStorage.removeItem('adminToken');
+        window.location.href = '/login';
+        return;
+      }
+      document.body.style.visibility = 'visible';
+    }
+
+    function getChip(status) {
+      if (status === 'approved') return '<span class="chip chip-approved">Aprovado</span>';
+      if (status === 'rejected') return '<span class="chip chip-rejected">Rejeitado</span>';
+      return '<span class="chip chip-pending">Pendente</span>';
+    }
+
+    function renderComments() {
+      const list = document.getElementById('comments-list');
+      const empty = document.getElementById('empty-state');
+
+      if (!allComments.length) {
+        list.innerHTML = '';
+        empty.classList.remove('hidden');
+        document.getElementById('pagination-info').textContent = '0 resultados';
+        return;
+      }
+
+      empty.classList.add('hidden');
+      list.innerHTML = allComments.map((c) => `
+        <div class="comment-row">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div>
+              <label class="inline-flex items-center gap-2 mr-3">
+                <input type="checkbox" class="comment-check" value="${c.id}">
+                <span class="meta">#${c.id}</span>
+              </label>
+              <strong>${esc(c.name)}</strong>
+              <span class="meta"> • ${esc(c.provider || 'local')} • ${fmtDate(c.createdAt)}</span>
+            </div>
+            <div>${getChip(c.status)}</div>
+          </div>
+          <div class="meta mt-1">Post: <a class="text-primary-color" href="/post?slug=${encodeURIComponent(c.postSlug || '')}" target="_blank">${esc(c.postTitle || `#${c.postId}`)}</a></div>
+          <div class="comment-text">${esc(c.message)}</div>
+          <div class="flex flex-wrap gap-2 mt-3">
+            <button class="btn-secondary rounded-lg px-3 py-1 text-sm" onclick="updateStatus(${c.id}, 'approved')"><i class="fas fa-check mr-1"></i>Aprovar</button>
+            <button class="btn-secondary rounded-lg px-3 py-1 text-sm" onclick="updateStatus(${c.id}, 'pending')"><i class="fas fa-clock mr-1"></i>Pendente</button>
+            <button class="btn-secondary rounded-lg px-3 py-1 text-sm" onclick="updateStatus(${c.id}, 'rejected')"><i class="fas fa-ban mr-1"></i>Rejeitar</button>
+            <button class="btn-secondary rounded-lg px-3 py-1 text-sm" onclick="deleteComment(${c.id})"><i class="fas fa-trash mr-1"></i>Excluir</button>
+          </div>
+        </div>
+      `).join('');
+
+      const start = totalComments === 0 ? 0 : ((currentPage - 1) * pageSize) + 1;
+      const end = Math.min(currentPage * pageSize, totalComments);
+      document.getElementById('pagination-info').textContent = `${start}-${end} de ${totalComments} comentários`;
+
+      const hasPrev = currentPage > 1;
+      const hasNext = end < totalComments;
+      document.getElementById('prev-page').disabled = !hasPrev;
+      document.getElementById('next-page').disabled = !hasNext;
+      document.getElementById('select-all').checked = false;
+    }
+
+    async function loadComments() {
+      const status = document.getElementById('status-filter').value;
+      const postId = document.getElementById('post-filter').value;
+      const search = document.getElementById('search-input').value.trim();
+      const [sort, order] = (document.getElementById('sort-filter').value || 'createdAt:desc').split(':');
+      const offset = (currentPage - 1) * pageSize;
+
+      const params = new URLSearchParams({
+        limit: String(pageSize),
+        offset: String(offset),
+        sort,
+        order
+      });
+
+      if (status) params.set('status', status);
+      if (postId) params.set('postId', postId);
+      if (search) params.set('search', search);
+
+      const res = await authFetch('/api/admin/comments?' + params.toString());
+      const data = await res.json();
+      allComments = data.comments || [];
+      totalComments = Number(data.total || 0);
+      renderComments();
+    }
+
+    async function loadPostFilter() {
+      const res = await authFetch('/api/admin/comments/posts');
+      const data = await res.json();
+      allPostsFilter = data.posts || [];
+
+      const select = document.getElementById('post-filter');
+      const current = select.value;
+      select.innerHTML = '<option value="">Todos os posts</option>';
+      allPostsFilter.forEach((p) => {
+        const opt = document.createElement('option');
+        opt.value = String(p.id);
+        opt.textContent = `${p.title}`;
+        select.appendChild(opt);
+      });
+      if (current) select.value = current;
+    }
+
+    async function updateStatus(id, status) {
+      const res = await authFetch(`/api/admin/comments/${id}/status`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status })
+      });
+      if (res.ok) await loadComments();
+    }
+
+    async function deleteComment(id) {
+      if (!confirm('Excluir este comentário?')) return;
+      const res = await authFetch(`/api/admin/comments/${id}`, { method: 'DELETE' });
+      if (res.ok) await loadComments();
+    }
+
+    function selectedCommentIds() {
+      return Array.from(document.querySelectorAll('.comment-check:checked')).map((el) => Number(el.value));
+    }
+
+    async function bulkStatus(status) {
+      const commentIds = selectedCommentIds();
+      if (!commentIds.length) return;
+      const res = await authFetch('/api/admin/comments/bulk/status', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ commentIds, status })
+      });
+      if (res.ok) await loadComments();
+    }
+
+    async function bulkDelete() {
+      const commentIds = selectedCommentIds();
+      if (!commentIds.length) return;
+      if (!confirm(`Excluir ${commentIds.length} comentário(s)?`)) return;
+
+      const res = await authFetch('/api/admin/comments/bulk/delete', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ commentIds })
+      });
+      if (res.ok) await loadComments();
+    }
+
+    async function logout() {
+      await authFetch('/logout', { method: 'POST' });
+      localStorage.removeItem('adminToken');
+      window.location.href = '/login';
+    }
+
+    document.getElementById('refresh-btn').addEventListener('click', () => {
+      currentPage = 1;
+      loadComments();
+    });
+    document.getElementById('status-filter').addEventListener('change', () => {
+      currentPage = 1;
+      loadComments();
+    });
+    document.getElementById('post-filter').addEventListener('change', () => {
+      currentPage = 1;
+      loadComments();
+    });
+    document.getElementById('sort-filter').addEventListener('change', () => {
+      currentPage = 1;
+      loadComments();
+    });
+    document.getElementById('search-input').addEventListener('input', () => {
+      currentPage = 1;
+      loadComments();
+    });
+    document.getElementById('logout-btn').addEventListener('click', logout);
+
+    document.getElementById('prev-page').addEventListener('click', async () => {
+      if (currentPage <= 1) return;
+      currentPage -= 1;
+      await loadComments();
+    });
+
+    document.getElementById('next-page').addEventListener('click', async () => {
+      const maxPage = Math.ceil(totalComments / pageSize);
+      if (currentPage >= maxPage) return;
+      currentPage += 1;
+      await loadComments();
+    });
+
+    document.getElementById('select-all').addEventListener('change', (e) => {
+      document.querySelectorAll('.comment-check').forEach((cb) => {
+        cb.checked = e.target.checked;
+      });
+    });
+
+    document.getElementById('bulk-approve').addEventListener('click', () => bulkStatus('approved'));
+    document.getElementById('bulk-pending').addEventListener('click', () => bulkStatus('pending'));
+    document.getElementById('bulk-reject').addEventListener('click', () => bulkStatus('rejected'));
+    document.getElementById('bulk-delete').addEventListener('click', bulkDelete);
+
+    document.getElementById('theme-toggle').addEventListener('click', () => {
+      const dark = document.documentElement.getAttribute('data-theme') === 'dark';
+      if (dark) {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'light');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    });
+
+    (async function init() {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+      await validateToken();
+      await loadPostFilter();
+      await loadComments();
+    })();
+  </script>
+</body>
+</html>

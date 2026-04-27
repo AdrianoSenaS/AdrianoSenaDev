@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Adriano Sena | Desenvolvedor Full-Stack</title>
+  <meta property="og:title" content="Adriano Sena | Desenvolvedor Full-Stack & Especialista em Soluções Digitais" />
+  <meta property="og:description"
+    content="Sistemas sólidos, código preciso e soluções que passam confiança. Desenvolvedor full-stack especializado em soluções modernas e inovadoras." />
+  <meta property="og:image" content="logo.png" />
+  <meta property="og:url" content="https://adrianosena.dev.br/" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@adrianosenas" />
+  <meta name="twitter:title" content="Adriano Sena | Desenvolvedor Full-Stack" />
+  <meta name="twitter:description" content="Sistemas sólidos, código preciso e soluções que passam confiança." />
+  <meta name="twitter:image" content="https://adrianosena.dev.br/imagens/logo.png" />
+
+  <link rel="shortcut icon" href="logo.png" type="image/x-icon">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=Fira+Code:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+  <style>
+    :root {
+      --primary: #2563eb;
+      --secondary: #10B981;
+      --dark: #1F2937;
+      --light: #F8FAFC;
+      --black: #111827;
+      --text-primary: #1F2937;
+      --text-secondary: #6B7280;
+      --text-light: #F8FAFC;
+      --bg-light: #F8FAFC;
+      --bg-card: #FFFFFF;
+      --border-color: rgba(37, 99, 235, 0.1);
+      --gradient: linear-gradient(135deg, #2563eb 0%, #10B981 100%);
+      --neon-glow: 0 0 10px rgba(37, 99, 235, 0.4), 0 0 20px rgba(16, 185, 129, 0.3);
+    }
+
+    [data-theme="dark"] {
+      --primary: #3b82f6;
+      --secondary: #10B981;
+      --dark: #0f172a;
+      --light: #0057e4;
+      --black: #f8fafc;
+      --text-primary: #F8FAFC;
+      --text-secondary: #D1D5DB;
+      --text-light: #F8FAFC;
+      --bg-light: #1e293b;
+      --bg-card: #334155;
+      --border-color: rgba(59, 130, 246, 0.2);
+      --gradient: linear-gradient(135deg, #3b82f6 0%, #10B981 100%);
+      --neon-glow: 0 0 10px rgba(59, 130, 246, 0.5), 0 0 20px rgba(16, 185, 129, 0.4);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .code-font {
+      font-family: 'Fira Code', monospace;
+    }
+
+    .btn-primary {
+      background: var(--gradient);
+      border: none;
+      color: white;
+      box-shadow: var(--neon-glow);
+      transition: all 0.3s ease;
+      font-weight: 600;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 15px rgba(37, 99, 235, 0.6), 0 0 30px rgba(16, 185, 129, 0.4);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      transition: all 0.3s ease;
+      font-weight: 600;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(37, 99, 235, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .card {
+      background: var(--bg-card);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      color: var(--text-primary);
+    }
+
+    .card:hover {
+      border-color: var(--primary);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .section-divider {
+      height: 100px;
+      background: linear-gradient(180deg, rgba(248, 250, 252, 0) 0%, rgba(37, 99, 235, 0.1) 100%);
+    }
+
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7);
+      }
+
+      70% {
+        box-shadow: 0 0 0 15px rgba(37, 99, 235, 0);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
+      }
+    }
+
+    .glow-text {
+      text-shadow: 0 0 8px rgba(96, 165, 250, 0.4);
+    }
+
+    .feature-icon {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 2rem;
+    }
+
+    .nav-link {
+      position: relative;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .floating {
+      animation: floating 6s ease-in-out infinite;
+    }
+
+    @keyframes floating {
+      0% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-15px);
+      }
+
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    .blog-content {
+      line-height: 1.8;
+      font-size: 1.1rem;
+    }
+
+    .blog-content p {
+      margin-bottom: 1.5rem;
+      color: var(--text-primary);
+    }
+
+    .blog-content h2 {
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+
+    .blog-content blockquote {
+      border-left: 4px solid var(--primary);
+      padding-left: 1.5rem;
+      margin: 2rem 0;
+      font-style: italic;
+      color: var(--text-secondary);
+    }
+
+    .service-card {
+      transition: all 0.3s ease;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .service-icon {
+      background: var(--gradient);
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-gradient {
+      background: linear-gradient(135deg, var(--bg-light), #e0f2fe);
+    }
+
+    [data-theme="dark"] .hero-gradient {
+      background: linear-gradient(135deg, var(--bg-light), #1e3a8a);
+    }
+
+    .social-icon {
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .social-icon:hover {
+      transform: translateY(-5px);
+    }
+
+    .scroll-top {
+      position: fixed;
+      bottom: 80px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: 100;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .scroll-top.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .scroll-top:hover {
+      background: var(--primary);
+      transform: translateY(-3px);
+    }
+
+    /* Logo AS Geometric */
+    .logo-as {
+      width: 40px;
+      height: 40px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-as::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border: 3px solid var(--primary);
+      border-radius: 8px;
+      transform: rotate(45deg);
+    }
+
+    .logo-as::after {
+      content: '';
+      position: absolute;
+      width: 60%;
+      height: 60%;
+      border: 2px solid var(--secondary);
+      border-radius: 4px;
+      transform: rotate(45deg);
+    }
+
+    .logo-text {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .logo-subtext {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      color: var(--text-secondary);
+    }
+
+    /* Theme Toggle */
+    .theme-toggle {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--primary);
+      transform: rotate(15deg);
+    }
+
+    .theme-icon {
+      color: var(--text-primary);
+      transition: all 0.3s ease;
+    }
+
+    /* Text colors */
+    .text-custom-primary {
+      color: var(--text-primary);
+    }
+
+    .text-custom-secondary {
+      color: var(--text-secondary);
+    }
+
+    /* Background colors */
+    .bg-custom-light {
+      background-color: var(--bg-light);
+    }
+
+    .bg-custom-card {
+      background-color: var(--bg-card);
+    }
+
+    /* Border colors */
+    .border-custom {
+      border-color: var(--border-color);
+    }
+  </style>
+</head>
+
+<body class="bg-custom-light text-custom-primary">
+  <!-- Header -->
+  <header
+    class="w-full bg-custom-light/80 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-custom transition-colors duration-300">
+    <div class="max-w-7xl mx-auto flex justify-between items-center py-4 px-6">
+      <div class="flex items-center space-x-3">
+        <div class="logo-as"></div>
+        <div>
+          <div class="logo-text text-xl">Adriano Sena</div>
+          <div class="logo-subtext text-sm">dev.br</div>
+        </div>
+      </div>
+
+      <div class="flex items-center space-x-4">
+        <nav class="space-x-8 hidden md:flex">
+          <a href="#inicio" class="nav-link hover:text-primary transition">Início</a>
+          <a href="#sobre" class="nav-link hover:text-primary transition">Sobre</a>
+          <a href="#servicos" class="nav-link hover:text-primary transition">Serviços</a>
+          <a href="blog" class="nav-link hover:text-primary transition">Blog</a>
+          <a href="#contato" class="nav-link hover:text-primary transition">Contato</a>
+          <a href="privacidade" class="nav-link hover:text-primary transition">Privacidade</a>
+        </nav>
+
+        <button id="theme-toggle" class="theme-toggle">
+          <svg id="theme-icon-sun" class="theme-icon w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+          <svg id="theme-icon-moon" class="theme-icon w-5 h-5 hidden" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          </svg>
+        </button>
+
+        <button id="menu-btn" class="md:hidden focus:outline-none">
+          <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" viewBox="0 0 24 24">
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <nav id="mobile-menu"
+      class="hidden md:hidden bg-custom-light/95 backdrop-blur-sm border-t border-custom transition-colors duration-300">
+      <a href="#inicio" class="block px-6 py-3 border-b border-custom hover:bg-gray-100 text-custom-primary">Início</a>
+      <a href="#sobre" class="block px-6 py-3 border-b border-custom hover:bg-gray-100 text-custom-primary">Sobre</a>
+      <a href="#servicos"
+        class="block px-6 py-3 border-b border-custom hover:bg-gray-100 text-custom-primary">Serviços</a>
+      <a href="blog" class="block px-6 py-3 border-b border-custom hover:bg-gray-100 text-custom-primary">Blog</a>
+      <a href="#contato" class="block px-6 py-3 hover:bg-gray-100 text-custom-primary">Contato</a>
+      <a href="privacidade" class="block px-6 py-3 hover:bg-gray-100 text-custom-primary">Privacidade</a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section id="inicio"
+    class="relative overflow-hidden min-h-screen flex items-center justify-center hero-gradient transition-colors duration-300">
+    <div class="absolute inset-0 z-0">
+      <div
+        class="absolute inset-0 bg-gradient-to-b from-custom-light/90 to-custom-light transition-colors duration-300">
+      </div>
+      <div class="absolute inset-0 opacity-20"
+        style="background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjZjhmYWZjIj48L3JlY3Q+CjxwYXRoIGQ9Ik0wIDVMNSAwWk02IDRMNCA2Wk0tMSAxTDEgLTFaIiBzdHJva2U9IiNmOGZhZmMiIHN0cm9rZS13aWR0aD0iMSI+PC9wYXRoPgo8L3N2Zz4=');">
+      </div>
+      <div class="absolute inset-0 opacity-10">
+        <div
+          class="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-blue-400 filter blur-3xl opacity-20 animate-pulse">
+        </div>
+        <div
+          class="absolute top-3/4 right-1/4 w-64 h-64 rounded-full bg-green-400 filter blur-3xl opacity-20 animate-pulse delay-300">
+        </div>
+      </div>
+    </div>
+
+    <div class="relative z-10 text-center px-6 py-20 max-w-4xl mx-auto">
+      <div class="inline-block rounded-full p-2 mb-8 bg-white/80 backdrop-blur-sm shadow-lg">
+        <img src="foto1.webp" alt="Adriano Sena" class="w-40 h-40 rounded-full border-4 border-white/20" id="logoAs" />
+      </div>
+      <h2 class="text-5xl md:text-6xl font-extrabold leading-tight mb-6">
+        <span class=" bg-clip-text from-primary to-secondary">Adriano Sena</span><br />
+        <span class="text-lg md:text-xl font-light mt-4 block text-custom-secondary">Desenvolvedor Full-Stack &
+          Especialista em Soluções Digitais</span>
+      </h2>
+      <p class="mt-8 text-xl md:text-2xl font-medium text-custom-secondary max-w-2xl mx-auto">
+        <span class="font-bold text-custom-primary">Sistemas sólidos, código preciso e soluções que passam
+          confiança.</span>
+      </p>
+
+      <div class="mt-12 flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#servicos"
+          class="btn-primary px-8 py-4 rounded-lg font-bold text-lg shadow-lg transform transition hover:scale-105">
+          <span class="relative z-10">MEUS SERVIÇOS</span>
+        </a>
+        <a href="#contato"
+          class="btn-secondary px-8 py-4 rounded-lg font-bold text-lg shadow-lg transform transition hover:scale-105">
+          <span class="relative z-10">ENTRAR EM CONTATO</span>
+        </a>
+      </div>
+
+      <div class="mt-16 animate__animated animate__fadeIn animate__delay-1s">
+        <div class="inline-block p-4 rounded-xl bg-custom-card border border-blue-200 shadow-lg">
+          <div class="flex items-center justify-center space-x-2">
+            <div class="w-3 h-3 rounded-full bg-primary pulse"></div>
+            <div class="code-font text-sm text-primary font-medium">DESENVOLVEDOR FULL-STACK</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sobre -->
+  <section id="sobre" class="relative py-20 px-6 transition-colors duration-300">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <h3 class="text-4xl font-bold mb-6 bg-clip-text from-primary to-secondary">
+          Sobre Mim</h3>
+        <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mb-8"></div>
+        <p class="text-lg text-custom-secondary max-w-3xl mx-auto leading-relaxed">
+          Desenvolvedor moderno, especialista em soluções digitais com foco em qualidade, performance e inovação.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+        <div class="animate__animated animate__fadeInLeft">
+          <div class="card p-8 h-full">
+            <h4 class="text-2xl font-bold mb-6 text-primary">Minha Jornada</h4>
+            <p class="text-custom-secondary mb-6 leading-relaxed">
+              Sou um desenvolvedor full-stack com 5+ anos de experiência, especializado na criação de soluções
+              completas,
+              desde sistemas administrativos até apps de mídia e jogos.
+            </p>
+            <p class="text-custom-secondary mb-6 leading-relaxed">
+              Cada projeto é uma oportunidade de transformar ideias em experiências futuristas com sofisticação,
+              performance e design de ponta. Trabalho com tecnologias modernas como React, TypeScript,Tailwind, Unity
+              CSharp, Banco de dados MySQL, Sqlite, SqlServer entre outros.
+            </p>
+            <div class="flex items-center space-x-3 mt-6">
+              <div class="w-3 h-3 rounded-full bg-primary animate-pulse"></div>
+              <span class="code-font text-sm text-primary font-medium">DESENVOLVEDOR FULL-STACK</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="animate__animated animate__fadeInRight">
+          <div class="space-y-6">
+            <div class="flex items-start space-x-4">
+              <div class="feature-icon">
+                <i class="fas fa-code text-3xl"></i>
+              </div>
+              <div>
+                <h5 class="text-xl font-semibold text-custom-primary mb-2">Desenvolvimento Full-Stack</h5>
+                <p class="text-custom-secondary">Soluções completas do front-end ao back-end.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start space-x-4">
+              <div class="feature-icon">
+                <i class="fas fa-mobile-alt text-3xl"></i>
+              </div>
+              <div>
+                <h5 class="text-xl font-semibold text-custom-primary mb-2">Apps Multiplataforma</h5>
+                <p class="text-custom-secondary">Aplicações para Android, iOS e Web.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start space-x-4">
+              <div class="feature-icon">
+                <i class="fas fa-cogs text-3xl"></i>
+              </div>
+              <div>
+                <h5 class="text-xl font-semibold text-custom-primary mb-2">Sistemas Sob Demanda</h5>
+                <p class="text-custom-secondary">Soluções personalizadas para necessidades específicas.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start space-x-4">
+              <div class="feature-icon">
+                <i class="fas fa-gamepad text-3xl"></i>
+              </div>
+              <div>
+                <h5 class="text-xl font-semibold text-custom-primary mb-2">Jogos com Unity</h5>
+                <p class="text-custom-secondary">Desenvolvimento de jogos e scripts para Unity.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Serviços -->
+  <section id="servicos" class="relative py-20 px-6 bg-gradient-to-b to-custom-black transition-colors duration-300">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <h3 class="text-4xl font-bold mb-6 bg-clip-text from-primary to-secondary">
+          Meus Serviços</h3>
+        <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mb-8"></div>
+        <p class="text-lg text-custom-secondary max-w-3xl mx-auto leading-relaxed">
+          Soluções completas e personalizadas para atender às necessidades específicas de cada projeto
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="card p-8 animate__animated animate__fadeInUp">
+          <div class="service-icon mx-auto">
+            <i class="fas fa-chart-line text-white text-2xl"></i>
+          </div>
+          <h4 class="font-semibold text-xl mb-4 text-custom-primary text-center">Dashboards</h4>
+          <p class="text-custom-secondary text-center">Dashboards modernos, responsivos e integrados com banco de dados.
+          </p>
+        </div>
+
+        <div class="card p-8 animate__animated animate__fadeInUp animate__delay-1s">
+          <div class="service-icon mx-auto">
+            <i class="fas fa-globe text-white text-2xl"></i>
+          </div>
+          <h4 class="font-semibold text-xl mb-4 text-custom-primary text-center">Sites Completos</h4>
+          <p class="text-custom-secondary text-center">Desenvolvimento de sites institucionais otimizados e elegantes.
+          </p>
+        </div>
+
+        <div class="card p-8 animate__animated animate__fadeInUp animate__delay-2s">
+          <div class="service-icon mx-auto">
+            <i class="fas fa-church text-white text-2xl"></i>
+          </div>
+          <h4 class="font-semibold text-xl mb-4 text-custom-primary text-center">Apps para Igrejas</h4>
+          <p class="text-custom-secondary text-center">Aplicativos personalizados para comunicação e conteúdo cristão.
+          </p>
+        </div>
+
+        <div class="card p-8 animate__animated animate__fadeInUp">
+          <div class="service-icon mx-auto">
+            <i class="fas fa-photo-video text-white text-2xl"></i>
+          </div>
+          <h4 class="font-semibold text-xl mb-4 text-custom-primary text-center">Apps de Mídia</h4>
+          <p class="text-custom-secondary text-center">Streaming, podcasts, vdeos e gerenciamento de conteúdo.</p>
+        </div>
+
+        <div class="card p-8 animate__animated animate__fadeInUp animate__delay-1s">
+          <div class="service-icon mx-auto">
+            <i class="fas fa-tv text-white text-2xl"></i>
+          </div>
+          <h4 class="font-semibold text-xl mb-4 text-custom-primary text-center">IPTV Android & iOS</h4>
+          <p class="text-custom-secondary text-center">Soluções para canais e gerenciamento de conteúdo IPTV.</p>
+        </div>
+
+        <div class="card p-8 animate__animated animate__fadeInUp animate__delay-2s">
+          <div class="service-icon mx-auto">
+            <i class="fas fa-gamepad text-white text-2xl"></i>
+          </div>
+          <h4 class="font-semibold text-xl mb-4 text-custom-primary text-center">Unity e Scripts</h4>
+          <p class="text-custom-secondary text-center">Scripts personalizados e integração em jogos com Unity.</p>
+        </div>
+      </div>
+
+      <div class="text-center mt-12">
+        <a href="#contato" class="btn-primary px-8 py-4 rounded-lg font-bold text-lg">
+          SOLICITAR ORÇAMENTO
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog -->
+  <section id="posts" class="relative py-20 px-6 transition-colors duration-300">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <h3 class="text-4xl font-bold mb-6 bg-clip-text bg-gradient-to-r from-primary to-secondary">
+          Blog & Artigos</h3>
+        <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mb-8"></div>
+        <p class="text-lg text-custom-secondary max-w-3xl mx-auto leading-relaxed">
+          Compartilhando conhecimentos, experiências e insights sobre desenvolvimento e tecnologia
+        </p>
+      </div>
+
+      <div id="posts-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Posts serão carregados via JavaScript -->
+      </div>
+
+      <div class="text-center mt-12">
+        <button id="load-more" class="btn-secondary px-6 py-3 rounded-lg font-semibold">
+          CARREGAR MAIS POSTS
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contato -->
+  <section id="contato"
+    class="relative py-20 px-6 bg-gradient-to-b from-custom-light to-blue-50 transition-colors duration-300">
+    <div class="max-w-4xl mx-auto">
+      <div class="card p-10 bg-gradient-to-br to-custom-card border border-blue-200">
+        <div class="text-center mb-10">
+          <h3 class="text-4xl font-bold mb-6 bg-clip-text from-primary to-secondary">
+            Entre em Contato
+          </h3>
+          <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mb-8"></div>
+          <p class="text-custom-secondary max-w-2xl mx-auto">
+            Estou pronto para transformar sua ideia em realidade. Entre em contato para discutirmos seu projeto!
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+          <div>
+            <h4 class="text-xl font-bold mb-6 text-primary">Informações de Contato</h4>
+
+            <div class="space-y-4 mb-8">
+              <div class="flex items-start gap-3">
+                <i class="fas fa-envelope mt-1 text-primary"></i>
+                <div class="text-custom-secondary">dry@adrianosena.dev.br</div>
+              </div>
+              <div class="flex items-start gap-3">
+                <i class="fas fa-phone-alt mt-1 text-primary"></i>
+                <div class="text-custom-secondary">+55 (64) 93300-4882</div>
+              </div>
+            </div>
+
+            <div class="mt-8">
+              <h5 class="font-bold mb-3 text-primary">Minhas Redes</h5>
+              <div class="flex gap-3">
+                <a href="https://wa.me/+5564933004882" target="_blank"
+                  class="social-icon bg-green-500 text-white p-3 rounded-full">
+                  <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="https://github.com/AdrianoSenaS" target="_blank"
+                  class="social-icon bg-gray-800 text-white p-3 rounded-full">
+                  <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.instagram.com/adriano.sena.silva/" target="_blank"
+                  class="social-icon bg-pink-600 text-white p-3 rounded-full">
+                  <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/adriano-sena-silva-a8605622a/" target="_blank"
+                  class="social-icon bg-blue-700 text-white p-3 rounded-full">
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <form id="contact-form" class="space-y-5" method="post" action="enviar.php">
+              <div>
+                <input type="text" placeholder="Seu nome" name="nome"
+                  class="w-full bg-custom-card border border-custom rounded-lg px-5 py-4 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-custom-primary placeholder-custom-secondary"
+                  required />
+              </div>
+              <div>
+                <input type="email" placeholder="Seu e-mail" name="email"
+                  class="w-full bg-custom-card border border-custom rounded-lg px-5 py-4 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-custom-primary placeholder-custom-secondary"
+                  required />
+              </div>
+              <div>
+                <select
+                  class="w-full bg-custom-card border border-custom rounded-lg px-5 py-4 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-custom-primary"
+                  name="projeto">
+                  <option class="text-custom-secondary">Selecione o tipo de projeto</option>
+                  <option value="Dashboard" class="text-custom-secondary">Dashboard</option>
+                  <option value="Site completo" class="text-custom-secondary">Site completo</option>
+                  <option value="App para igreja" class="text-custom-secondary">App para igreja</option>
+                  <option value="App de mídia" class="text-custom-secondary">App de mídia</option>
+                  <option value="App IPTV Android/IOS" class="text-custom-secondary">App IPTV Android & IOS</option>
+                  <option value="Landing page" class="text-custom-secondary">Landing page</option>
+                  <option value="Script" class="text-custom-secondary">Script</option>
+                  <option value="Script para Unity" class="text-custom-secondary">Script para Unity</option>
+                  <option value="Outros" class="text-custom-secondary">Outros</option>
+                </select>
+              </div>
+              <div>
+                <textarea placeholder="Descreva o seu projeto" name="projeto" rows="5"
+                  class="w-full bg-custom-card border border-custom rounded-lg px-5 py-4 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-custom-primary placeholder-custom-secondary"></textarea>
+              </div>
+              <button type="submit" class="btn-primary w-full py-4 rounded-lg font-bold text-lg">
+                ENVIAR MENSAGEM
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="relative bg-custom-card border-t border-custom py-12 px-6 transition-colors duration-300">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="flex items-center space-x-3 mb-6 md:mb-0">
+          <div class="logo-as"></div>
+          <div>
+            <div class="logo-text text-xl">Adriano Sena</div>
+            <div class="logo-subtext text-sm">dev.br</div>
+          </div>
+        </div>
+
+        <div class="flex space-x-6">
+          <a href="https://wa.me/+5564933004882" target="_blank"
+            class="text-custom-secondary hover:text-primary transition">
+            <i class="fab fa-whatsapp text-xl"></i>
+          </a>
+          <a href="https://github.com/AdrianoSenaS" target="_blank"
+            class="text-custom-secondary hover:text-primary transition">
+            <i class="fab fa-github text-xl"></i>
+          </a>
+          <a href="https://www.instagram.com/adriano.sena.silva/" target="_blank"
+            class="text-custom-secondary hover:text-primary transition">
+            <i class="fab fa-instagram text-xl"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/adriano-sena-silva-a8605622a/" target="_blank"
+            class="text-custom-secondary hover:text-primary transition">
+            <i class="fab fa-linkedin-in text-xl"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="mt-12 pt-8 border-t border-custom flex flex-col md:flex-row justify-between items-center">
+        <p class="text-custom-secondary text-sm mb-4 md:mb-0">&copy; <span id="year"></span> Adriano Sena. Todos os
+          direitos reservados.</p>
+        <p class="text-custom-secondary text-sm">Sistemas sólidos, código preciso e soluções que passam confiança.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Botão "Voltar ao topo" -->
+  <div class="scroll-top" id="scrollTop">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+  <!-- Modal de Configurações de Cookies -->
+  <div id="cookie-settings-modal"
+    class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 hidden transition-opacity duration-300">
+    <div class="card max-w-lg mx-4 p-6 animate__animated animate__fadeInUp">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-xl font-bold text-custom-primary">Configurações de Cookies</h3>
+        <button id="close-settings" class="text-custom-secondary hover:text-primary">
+          <i class="fas fa-times text-xl"></i>
+        </button>
+      </div>
+
+      <p class="text-custom-secondary mb-6">
+        Selecione quais tipos de cookies você permite que utilizemos:
+      </p>
+
+      <div class="space-y-4 mb-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <h4 class="font-semibold text-custom-primary">Cookies Essenciais</h4>
+            <p class="text-sm text-custom-secondary">Necessários para o funcionamento básico do site</p>
+          </div>
+          <div class="relative inline-block w-12 h-6">
+            <input type="checkbox" id="essential-cookies" class="sr-only" checked disabled>
+            <label for="essential-cookies" class="block w-12 h-6 bg-gray-300 rounded-full cursor-not-allowed"></label>
+            <span class="absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition transform translate-x-6"></span>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between">
+          <div>
+            <h4 class="font-semibold text-custom-primary">Cookies de Desempenho</h4>
+            <p class="text-sm text-custom-secondary">Nos ajudam a entender como os visitantes usam o site</p>
+          </div>
+          <div class="relative inline-block w-12 h-6">
+            <input type="checkbox" id="performance-cookies" class="sr-only">
+            <label for="performance-cookies"
+              class="block w-12 h-6 bg-gray-300 rounded-full cursor-pointer toggle-label"></label>
+            <span class="absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition toggle-switch"></span>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between">
+          <div>
+            <h4 class="font-semibold text-custom-primary">Cookies de Marketing</h4>
+            <p class="text-sm text-custom-secondary">Usados para rastrear visitantes entre sites</p>
+          </div>
+          <div class="relative inline-block w-12 h-6">
+            <input type="checkbox" id="marketing-cookies" class="sr-only">
+            <label for="marketing-cookies"
+              class="block w-12 h-6 bg-gray-300 rounded-full cursor-pointer toggle-label"></label>
+            <span class="absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition toggle-switch"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-end space-x-3">
+        <button id="Privacidade" class="btn-primary px-6 py-3 rounded-lg font-semibold">
+          Política de Privacidade e Cookies
+        </button>
+        <button id="save-settings" class="btn-primary px-6 py-3 rounded-lg font-semibold">
+          Salvar Preferências
+        </button>
+      </div>
+
+    </div>
+  </div>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-709377760">
+</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-709377760');
+</script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4KFFX809LT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4KFFX809LT');
+</script>
+  <script>
+    // Toggle menu mobile
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Scroll animation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Atualizar o ano no footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Botão "Voltar ao topo"
+    const scrollTop = document.getElementById('scrollTop');
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 500) {
+        scrollTop.classList.add('show');
+      } else {
+        scrollTop.classList.remove('show');
+      }
+    });
+
+    scrollTop.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // Tema claro/escuro
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIconSun = document.getElementById('theme-icon-sun');
+    const themeIconMoon = document.getElementById('theme-icon-moon');
+    const logoAs = document.getElementById('logoAs');
+
+    // Verificar tema salvo no localStorage ou preferência do sistema
+    const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    if (savedTheme === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      themeIconSun.classList.add('hidden');
+      themeIconMoon.classList.remove('hidden');
+      logoAs.src = "logo-black.png"
+    }
+
+    if (document.documentElement.getAttribute('data-theme') === 'dark') {
+      logoAs.src = "logo-black.png"
+    } else {
+      logoAs.src = "logo-white.png"
+
+    }
+
+    themeToggle.addEventListener('click', () => {
+      if (document.documentElement.getAttribute('data-theme') === 'dark') {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'light');
+        themeIconSun.classList.remove('hidden');
+        themeIconMoon.classList.add('hidden');
+        logoAs.src = "logo-white.png"
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+        themeIconSun.classList.add('hidden');
+        themeIconMoon.classList.remove('hidden');
+        logoAs.src = "logo-black.png"
+      }
+    });
+
+    // Carregar posts
+    document.addEventListener('DOMContentLoaded', function () {
+      loadPosts();
+
+      // Configurar formulário de contato
+      document.getElementById('contact-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        alert('Mensagem enviada! Obrigado pelo contato.');
+        this.reset();
+      });
+
+      // Configurar botão de carregar mais posts
+      document.getElementById('load-more').addEventListener('click',()=>{
+         window.location.href ="/blog"
+      });
+    });
+
+    let currentPage = 1;
+    const postsPerPage = 6;
+
+ function formatDate(dateString) {
+      const options = { year: 'numeric', month: 'short', day: 'numeric' };
+      return new Date(dateString).toLocaleDateString('pt-BR', options);
+    }
+
+    async function loadPosts() {
+      // Em um cenário real, isso viria de uma API
+      const res = await fetch("/api/posts");
+      const posts = await res.json();
+      const postsContainer = document.getElementById('posts-container');
+      const startIndex = (currentPage - 1) * postsPerPage;
+      const endIndex = startIndex + postsPerPage;
+      const postsToShow = posts.slice(startIndex, endIndex);
+      console.log(posts)
+      postsToShow.forEach(post => {
+        console.log(post.status)
+        const postElement = document.createElement('div');
+        postElement.className = 'card p-6 animate__animated animate__fadeInUp';
+        if (post.status == "published") {
+          postElement.innerHTML = `
+        <div class="mb-4 overflow-hidden rounded-lg">
+            <img src="${post.image}" alt="${post.title}" class="w-full h-48 object-cover transition-transform duration-300 hover:scale-110">
+          </div>
+          <div class="text-sm text-primary mb-2">${formatDate(post.createdAt)}</div>
+          <h3 class="text-xl font-bold mb-3 text-custom-primary">${post.title}</h3>
+          <p class="text-custom-secondary mb-4">${post.description}</p>
+          <a href="/post?id=${post.id}" class="text-primary hover:text-secondary font-medium inline-flex items-center">
+            Ler mais
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        `;
+        postsContainer.appendChild(postElement);
+        }
+        
+      });
+
+      
+    }
+
+    function loadMorePosts() {
+      currentPage++;
+      loadPosts();
+    }
+
+    // Animação de entrada dos elementos
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate__fadeInUp');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    document.querySelectorAll('.animate__animated').forEach(el => {
+      observer.observe(el);
+    });
+
+
+    // Configurar modal de cookies
+    const cookieSettingsModal = document.getElementById('cookie-settings-modal');
+    const openCookieSettings = document.getElementById('open-cookie-settings');
+    const closeSettings = document.getElementById('close-settings');
+    const saveSettings = document.getElementById('save-settings');
+    const Privacidade = document.getElementById('Privacidade')
+
+    if (localStorage.getItem('cookiePreferences') == undefined) {
+      cookieSettingsModal.classList.remove('hidden')
+    }
+
+    Privacidade.addEventListener('click', () => {
+      window.location.href = "/privacidade"
+    });
+    closeSettings.addEventListener('click', () => {
+      cookieSettingsModal.classList.add('hidden');
+    });
+    saveSettings.addEventListener('click', () => {
+      // Salvar preferências de cookies
+      const performanceCookies = document.getElementById('performance-cookies').checked;
+      const marketingCookies = document.getElementById('marketing-cookies').checked;
+
+      localStorage.setItem('cookiePreferences', JSON.stringify({
+        performance: performanceCookies,
+        marketing: marketingCookies,
+        essential: true // Sempre verdadeiro
+      }));
+
+      cookieSettingsModal.classList.add('hidden');
+      // alert('Preferências de cookies salvas com sucesso!');
+    });
+
+    // Configurar toggles de cookies
+    const toggles = document.querySelectorAll('input[type="checkbox"]:not(:disabled)');
+    toggles.forEach(toggle => {
+      const label = toggle.nextElementSibling;
+      const switchElement = label.nextElementSibling;
+
+      toggle.addEventListener('change', () => {
+        if (toggle.checked) {
+          switchElement.style.transform = 'translateX(24px)';
+          label.style.backgroundColor = 'var(--primary)';
+        } else {
+          switchElement.style.transform = 'translateX(0)';
+          label.style.backgroundColor = '#d1d5db';
+        }
+      });
+
+      // Inicializar estado dos toggles
+      if (toggle.checked) {
+        switchElement.style.transform = 'translateX(24px)';
+        label.style.backgroundColor = 'var(--primary)';
+      }
+    });
+
+  </script>
+</body>
+
+</html>

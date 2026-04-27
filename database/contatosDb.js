@@ -45,6 +45,28 @@ module.exports = {
                 resolve(rows);
             });
         });
+    },
+
+    updateContactStatus(id, status) {
+        return new Promise((resolve, reject) => {
+            db.run(
+                `UPDATE contatos SET status = ? WHERE id = ?`,
+                [status, id],
+                function (err) {
+                    if (err) return reject(err);
+                    resolve({ updated: this.changes > 0 });
+                }
+            );
+        });
+    },
+
+    deleteContact(id) {
+        return new Promise((resolve, reject) => {
+            db.run(`DELETE FROM contatos WHERE id = ?`, [id], function (err) {
+                if (err) return reject(err);
+                resolve({ deleted: this.changes > 0 });
+            });
+        });
     }
 
 }

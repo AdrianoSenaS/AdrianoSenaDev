@@ -1,5 +1,6 @@
 const {getDeviceInfo} = require('../services/deviceInfo')
 const {sendAccessEmail} = require('../services/email');
+const { saveVisitLog } = require('../database/deviceLogs');
 
 module.exports = {
 
@@ -50,7 +51,9 @@ module.exports = {
                 });
             }
 
-            // Salvar no banco de dados (se necessário)
+            saveVisitLog(deviceInfo).catch((err) => {
+                console.error('Erro ao salvar log de visita:', err.message);
+            });
 
         } else {
             // Para rotas não monitoradas, apenas log básico
