@@ -25,6 +25,22 @@ CREATE TABLE IF NOT EXISTS web_push_subscriptions (
 )
 `);
 
+db.run(`
+CREATE TABLE IF NOT EXISTS email_campaign_logs (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    created_by TEXT,
+    target_mode TEXT,
+    recipient_email TEXT,
+    category TEXT,
+    subject TEXT,
+    message_preview TEXT,
+    total_recipients INTEGER DEFAULT 0,
+    sent_count INTEGER DEFAULT 0,
+    failed_count INTEGER DEFAULT 0
+)
+`);
+
 module.exports = {
     creatPushTokens(data) {
         return new Promise((resolve, reject) => {
@@ -100,6 +116,57 @@ module.exports = {
                 function (err) {
                     if (err) return reject(err);
                     resolve({ deleted: this.changes > 0 });
+                }
+            );
+        });
+    },
+
+    createEmailCampaignLog(data) {
+        return new Promise((resolve, reject) => {
+            db.run(
+                `INSERT INTO email_campaign_logs (
+                    created_by,
+                    target_mode,
+                    recipient_email,
+                    category,
+                    subject,
+                    message_preview,
+                    total_recipients,
+                    sent_count,
+                    failed_count
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+                [
+                    data.createdBy || '',
+                    data.targetMode || 'all',
+                    data.recipientEmail || '',
+                    data.category || 'geral',
+                    data.subject || '',
+                    data.messagePreview || '',
+                    Number(data.totalRecipients || 0),
+                    Number(data.sentCount || 0),
+                    Number(data.failedCount || 0)
+                ],
+                function (err) {
+                    if (err) return reject(err);
+                    resolve({ id: this.lastID });
+                }
+            );
+        });
+    },
+
+    listEmailCampaignLogs(limit = 50) {
+        return new Promise((resolve, reject) => {
+            const safeLimit = Math.max(1, Math.min(Number(limit || 50), 200));
+            db.all(
+                `SELECT id, created_at, created_by, target_mode, recipient_email, category, subject,
+                        message_preview, total_recipients, sent_count, failed_count
+                 FROM email_campaign_logs
+                 ORDER BY id DESC
+                 LIMIT ?`,
+                [safeLimit],
+                (err, rows) => {
+                    if (err) return reject(err);
+                    resolve(rows || []);
                 }
             );
         });

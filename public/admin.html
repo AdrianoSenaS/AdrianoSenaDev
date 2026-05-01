@@ -463,6 +463,25 @@
       color: var(--text-secondary);
       line-height: 1.5;
     }
+
+    .reply-textarea {
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 0.75rem;
+      color: var(--text-primary);
+      font-size: 0.95rem;
+      line-height: 1.5;
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .reply-textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
     
     .status-badge {
       display: inline-block;
@@ -488,6 +507,7 @@
     }
    
   </style>
+  <link rel="stylesheet" href="/css/admin-shell.css" />
 </head>
 
 <body class="bg-custom-light text-custom-primary " >
@@ -503,11 +523,7 @@
       </div>
       
       <div class="flex items-center space-x-4">
-        <nav class="space-x-8 hidden md:flex">
-          <a href="index.html" class="nav-link hover:text-primary transition">Início</a>
-          <a href="blog.html" class="nav-link hover:text-primary transition">Blog</a>
-          <a href="/admin/dashboard" class="nav-link text-primary transition">Dashboard</a>
-        </nav>
+      
         
         <button id="theme-toggle" class="theme-toggle">
           <svg id="theme-icon-sun" class="theme-icon w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -518,21 +534,10 @@
           </svg>
         </button>
         
-        <button id="menu-btn" class="md:hidden focus:outline-none">
-          <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-            stroke-linejoin="round" viewBox="0 0 24 24">
-            <line x1="3" y1="6" x2="21" y2="6" />
-            <line x1="3" y1="12" x2="21" y2="12" />
-            <line x1="3" y1="18" x2="21" y2="18" />
-          </svg>
-        </button>
+       
       </div>
     </div>
-    <nav id="mobile-menu" class="hidden md:hidden bg-custom-light/95 backdrop-blur-sm border-t border-custom transition-colors duration-300">
-      <a href="/" class="block px-6 py-3 border-b border-custom hover:bg-gray-100 text-custom-primary">Início</a>
-      <a href="blog" class="block px-6 py-3 border-b border-custom hover:bg-gray-100 text-custom-primary">Blog</a>
-      <a href="/admin" class="block px-6 py-3 border-b border-custom hover:bg-gray-100 text-custom-primary">Dashboard</a>
-    </nav>
+   
   </header>
 
   <!-- Dashboard Content -->
@@ -552,6 +557,7 @@
                 <li><a href="/admin/posts#categorias"><i class="fas fa-folder"></i> Categorias</a></li>
                 <li><a href="/admin/posts#tags"><i class="fas fa-tags"></i> Tags</a></li>
                 <li><a href="/admin/usuarios"><i class="fas fa-users"></i> Usuários</a></li>
+                <li><a href="/admin/emails"><i class="fas fa-bullhorn"></i> Anúncios E-mail</a></li>
                 <li><a href="/admin/dispositivos"><i class="fas fa-mobile-alt"></i> Dispositivos</a></li>
                 <li><a href="/admin/comentarios"><i class="fas fa-comments"></i> Comentários</a></li>
                 <li><a href="/admin/homepage"><i class="fas fa-home"></i> Página Inicial</a></li>
@@ -705,10 +711,15 @@
           <span class="modal-label">Mensagem</span>
           <div class="modal-value" id="modal-message" style="white-space: pre-line;"></div>
         </div>
+
+        <div class="modal-field">
+          <label class="modal-label" for="reply-message">Resposta por e-mail</label>
+          <textarea id="reply-message" class="reply-textarea" placeholder="Digite a resposta para este contato..."></textarea>
+        </div>
         
         <div class="flex justify-end space-x-3 mt-6 pt-6 border-t border-custom">
           <button id="respond-btn" class="btn-primary px-4 py-2 rounded-lg font-semibold text-sm">
-            <i class="fas fa-reply mr-2"></i> Responder
+            <i class="fas fa-paper-plane mr-2"></i> Enviar resposta
           </button>
           <button id="archive-btn" class="btn-secondary px-4 py-2 rounded-lg font-semibold text-sm">
             <i class="fas fa-archive mr-2"></i> Arquivar
@@ -795,11 +806,7 @@
 
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    const menuBtn = document.getElementById('menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    menuBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-    });
+    
 
     const themeToggle = document.getElementById('theme-toggle');
     const themeIconSun = document.getElementById('theme-icon-sun');
@@ -840,7 +847,7 @@
       document.getElementById('export-json').addEventListener('click', exportJSON);
 
       document.getElementById('close-modal').addEventListener('click', closeModal);
-      document.getElementById('respond-btn').addEventListener('click', respondToContact);
+      document.getElementById('respond-btn').addEventListener('click', () => respondToContact());
       document.getElementById('archive-btn').addEventListener('click', archiveContact);
     });
 
@@ -907,7 +914,11 @@
       document.querySelectorAll('.action-respond').forEach(button => {
         button.addEventListener('click', (e) => {
           const contactId = parseInt(e.currentTarget.getAttribute('data-id'));
-          respondToContact(contactId);
+          showContactDetails(contactId);
+          setTimeout(() => {
+            const replyInput = document.getElementById('reply-message');
+            if (replyInput) replyInput.focus();
+          }, 0);
         });
       });
       
@@ -1007,6 +1018,7 @@
       document.getElementById('modal-project').textContent = contact.project;
       document.getElementById('modal-date').textContent = formatDate(contact.date);
       document.getElementById('modal-message').textContent = contact.message;
+      document.getElementById('reply-message').value = '';
       
       // Atualizar status
       const statusElement = document.getElementById('modal-status');
@@ -1023,6 +1035,7 @@
 
     function closeModal() {
       document.getElementById('contact-modal').classList.add('hidden');
+      document.getElementById('reply-message').value = '';
     }
 
     async function changeContactStatus(contactId, status) {
@@ -1038,17 +1051,58 @@
     }
 
     async function respondToContact(contactId) {
-      if (!contactId) {
-        contactId = parseInt(document.getElementById('respond-btn').getAttribute('data-id'));
+      const parsedId = Number(contactId);
+      if (!Number.isFinite(parsedId) || parsedId <= 0) {
+        contactId = Number(document.getElementById('respond-btn').getAttribute('data-id'));
+      } else {
+        contactId = parsedId;
       }
-      
-      const contact = contacts.find(c => c.id === contactId);
-      if (!contact) return;
 
-      await changeContactStatus(contactId, 'responded');
-      await refreshData();
-      closeModal();
-      alert(`Status atualizado para respondido: ${contact.email}.`);
+      const contact = contacts.find(c => Number(c.id) === Number(contactId));
+      if (!contact) {
+        alert('Não foi possível identificar o contato selecionado.');
+        return;
+      }
+
+      const replyMessage = document.getElementById('reply-message').value.trim();
+      if (!replyMessage) {
+        alert('Digite a mensagem de resposta antes de enviar.');
+        return;
+      }
+
+      const respondBtn = document.getElementById('respond-btn');
+      const originalBtnHtml = respondBtn.innerHTML;
+      respondBtn.disabled = true;
+      respondBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Enviando...';
+
+      try {
+        const response = await authFetch(`/api/contact/${contactId}/reply`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: replyMessage })
+        });
+
+        if (!response.ok) {
+          let errorMessage = 'Não foi possível enviar a resposta por e-mail.';
+          try {
+            const payload = await response.json();
+            if (payload && payload.error) {
+              errorMessage = payload.error;
+            }
+          } catch (_) {}
+          alert(errorMessage);
+          return;
+        }
+
+        await refreshData();
+        closeModal();
+        alert(`Resposta enviada para ${contact.email} com sucesso.`);
+      } catch (error) {
+        alert(`Falha ao enviar resposta: ${error.message || 'erro inesperado'}`);
+      } finally {
+        respondBtn.disabled = false;
+        respondBtn.innerHTML = originalBtnHtml;
+      }
     }
 
     async function archiveContact() {
@@ -1142,6 +1196,7 @@
     }
 
   </script>
+  <script src="/js/admin-shell.js"></script>
 </body>
 
 </html>

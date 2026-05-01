@@ -1,0 +1,1656 @@
+function escHtml(value) {
+return String(value || "")
+.replace(/&/g, "&amp;")
+.replace(/</g, "&lt;" ) .replace( />/g, "&gt;")
+.replace(/\"/g, "&quot;")
+.replace(/'/g, "&#39;");
+}
+
+function safeExcerpt(post) {
+const raw = post.description || post.excerpt || "";
+const plain = String(raw).replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+    return plain.slice(0, 180) || "Conteudo tecnico sobre sistemas, apps, servidores e boas praticas para empresas.";
+    }
+
+    function extractFirstImageFromHtml(html) {
+    const content = String(html || "");
+    const match = content.match(/<img[^>]+src=["']([^"']+)["']/i);
+        return match && match[1] ? String(match[1]).trim() : "";
+        }
+
+        function toAbsoluteImageUrl(urlPath, baseUrl) {
+        const value = String(urlPath || "").trim();
+        if (!value) return `${baseUrl}/logoWeb.png`;
+        if (/^https?:\/\//i.test(value)) return value;
+        return value.startsWith("/") ? `${baseUrl}${value}` : `${baseUrl}/${value}`;
+        }
+
+        function withCacheBust(url, seed) {
+        const rawUrl = String(url || "").trim();
+        if (!rawUrl) return rawUrl;
+        const token = encodeURIComponent(String(seed || Date.now()));
+        return rawUrl.includes("?") ? `${rawUrl}&v=${token}` : `${rawUrl}?v=${token}`;
+        }
+
+        module.exports = {
+        HtmlPost(post) {
+        const baseUrl = "https://www.adrianosena.dev.br";
+        const slug = post.slug || "";
+        const title = escHtml(post.title || "Post");
+        const excerpt = escHtml(safeExcerpt(post));
+        const imageCandidate = post.image || extractFirstImageFromHtml(post.content) || "/logoWeb.png";
+        const fullImage = toAbsoluteImageUrl(imageCandidate, baseUrl);
+        const fullImageShare = withCacheBust(fullImage, `${post.id || ""}-${post.createdAt || ""}`);
+        const imagePath = /^https?:\/\//i.test(String(imageCandidate || ""))
+        ? String(imageCandidate)
+        : (String(imageCandidate).startsWith("/") ? String(imageCandidate) : `/${String(imageCandidate)}`);
+        const canonicalUrl = `${baseUrl}/post?slug=${encodeURIComponent(slug)}`;
+        const facebookAppId = process.env.FACEBOOK_APP_ID || "";
+
+        const html = `
+        <!DOCTYPE html>
+        <html lang="pt-BR" class="scroll-smooth">
+
+        <head>
+            <meta charset="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <title>${title} | Adriano Sena Dev</title>
+
+            <link rel="canonical" href="${canonicalUrl}" />
+            <meta name="description" content="${excerpt}" />
+
+            <meta property="og:title" content="${title} | Adriano Sena Dev" />
+            <meta property="og:description" content="${excerpt}" />
+            <meta property="og:image" content="${fullImageShare}" />
+            <meta property="og:image:url" content="${fullImageShare}" />
+            <meta property="og:image:secure_url" content="${fullImageShare}" />
+            <meta property="og:image:alt" content="Imagem de capa do post ${title}" />
+            <meta property="og:url" content="${canonicalUrl}" />
+            <meta property="og:type" content="article" />
+
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta name="twitter:site" content="@adrianosenas" />
+            <meta name="twitter:title" content="${title} | Adriano Sena Dev" />
+            <meta name="twitter:description" content="${excerpt}" />
+            <meta name="twitter:image" content="${fullImageShare}" />
+            <meta name="twitter:image:alt" content="Imagem de capa do post ${title}" />
+            <link rel="alternate" type="application/rss+xml" title="RSS Adriano Sena Dev"
+                href="https://www.adrianosena.dev.br/rss.xml" />
+
+            <link rel="shortcut icon" href="https://adrianosena.dev.br/logo.png" type="image/x-icon" />
+            <script src="https://cdn.tailwindcss.com"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+            <link
+                href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=Fira+Code:wght@400;500&display=swap"
+                rel="stylesheet" />
+            <link rel="stylesheet"
+                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+            <script async
+                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1602165210298822"
+                crossorigin="anonymous"></script>
+
+            <style>
+                :root {
+                    --primary: #2563eb;
+                    --primary-dark: #1d4ed8;
+                    --secondary: #10b981;
+                    --secondary-dark: #059669;
+                    --dark: #0f172a;
+                    --light: #ffffff;
+                    --gray-50: #f8fafc;
+                    --gray-100: #f1f5f9;
+                    --gray-200: #e2e8f0;
+                    --gray-300: #cbd5e1;
+                    --gray-400: #94a3b8;
+                    --gray-500: #64748b;
+                    --gray-600: #475569;
+                    --gray-700: #334155;
+                    --gray-800: #1e293b;
+                    --gray-900: #0f172a;
+                    --text-primary: #1e293b;
+                    --text-secondary: #64748b;
+                    --gradient: linear-gradient(135deg, #2563eb 0%, #10b981 100%);
+                    --gradient-hover: linear-gradient(135deg, #1d4ed8 0%, #059669 100%);
+                    --card-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+                    --card-shadow-hover: 0 20px 40px rgba(37, 99, 235, 0.1);
+                    --neon-glow: 0 0 30px rgba(37, 99, 235, 0.12);
+                }
+
+                [data-theme="dark"] {
+                    --primary: #60a5fa;
+                    --primary-dark: #3b82f6;
+                    --secondary: #34d399;
+                    --secondary-dark: #10b981;
+                    --light: #0f172a;
+                    --gray-50: #1e293b;
+                    --gray-100: #334155;
+                    --gray-200: #475569;
+                    --gray-300: #64748b;
+                    --gray-400: #94a3b8;
+                    --gray-500: #cbd5e1;
+                    --gray-600: #e2e8f0;
+                    --gray-700: #f1f5f9;
+                    --gray-800: #f8fafc;
+                    --gray-900: #ffffff;
+                    --text-primary: #f1f5f9;
+                    --text-secondary: #94a3b8;
+                    --gradient: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
+                    --gradient-hover: linear-gradient(135deg, #2563eb 0%, #059669 100%);
+                    --card-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+                    --card-shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.4);
+                }
+
+                * {
+                    margin: 0;
+                    padding: 0;
+                    box-sizing: border-box;
+                }
+
+                body {
+                    font-family: "Inter", sans-serif;
+                    background-color: var(--light);
+                    color: var(--text-primary);
+                    overflow-x: hidden;
+                    transition: all 0.3s ease;
+                }
+
+                img,
+                iframe,
+                video,
+                table {
+                    max-width: 100%;
+                }
+
+                h1,
+                h2,
+                h3,
+                h4,
+                h5,
+                h6 {
+                    font-family: "Poppins", sans-serif;
+                    font-weight: 700;
+                    line-height: 1.2;
+                }
+
+                .gradient-text {
+                    background: var(--gradient);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                }
+
+                .glass-effect {
+                    background: rgba(255, 255, 255, 0.84);
+                    backdrop-filter: blur(10px);
+                    border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+                }
+
+                [data-theme="dark"] .glass-effect {
+                    background: rgba(15, 23, 42, 0.84);
+                }
+
+                .nav-link {
+                    position: relative;
+                    padding: 8px 0;
+                    color: var(--text-primary);
+                    font-weight: 500;
+                    transition: color 0.3s ease;
+                }
+
+                .nav-link::after {
+                    content: "";
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    width: 0;
+                    height: 2px;
+                    background: var(--gradient);
+                    transition: width 0.3s ease;
+                }
+
+                .nav-link:hover::after {
+                    width: 100%;
+                }
+
+                .nav-link:hover {
+                    color: var(--primary);
+                }
+
+                .btn-primary {
+                    background: var(--gradient);
+                    color: white;
+                    padding: 12px 24px;
+                    border-radius: 10px;
+                    font-weight: 600;
+                    border: none;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    box-shadow: var(--neon-glow);
+                }
+
+                .btn-primary:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0 15px 30px rgba(37, 99, 235, 0.2);
+                }
+
+                .btn-secondary {
+                    background: transparent;
+                    color: var(--primary);
+                    padding: 12px 24px;
+                    border-radius: 10px;
+                    font-weight: 600;
+                    border: 2px solid var(--primary);
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                }
+
+                .btn-secondary:hover {
+                    background: rgba(37, 99, 235, 0.1);
+                    transform: translateY(-2px);
+                }
+
+                .card {
+                    background: var(--light);
+                    border-radius: 16px;
+                    padding: 1.4rem;
+                    box-shadow: var(--card-shadow);
+                    transition: all 0.35s ease;
+                    border: 1px solid var(--gray-200);
+                }
+
+                .card:hover {
+                    transform: translateY(-6px);
+                    box-shadow: var(--card-shadow-hover);
+                    border-color: var(--primary);
+                }
+
+                .hero-post {
+                    padding-top: 120px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+                    position: relative;
+                    overflow: hidden;
+                }
+
+                [data-theme="dark"] .hero-post {
+                    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+                }
+
+                .hero-pattern {
+                    position: absolute;
+                    inset: 0;
+                    opacity: 0.03;
+                    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%232563eb' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+                }
+
+                .tag {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 6px;
+                    padding: 6px 14px;
+                    background: rgba(37, 99, 235, 0.08);
+                    color: var(--primary);
+                    border-radius: 999px;
+                    font-size: 0.85rem;
+                    border: 1px solid rgba(37, 99, 235, 0.16);
+                    margin: 0 8px 8px 0;
+                    font-weight: 500;
+                }
+
+                .meta-item {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 8px;
+                    padding: 0.35rem 0.6rem;
+                    border-radius: 999px;
+                    background: rgba(148, 163, 184, 0.12);
+                    border: 1px solid rgba(148, 163, 184, 0.22);
+                    color: var(--text-secondary);
+                    margin-right: 10px;
+                    margin-bottom: 8px;
+                    font-size: 0.86rem;
+                    font-weight: 500;
+                }
+
+                .post-main .card {
+                    border-radius: 18px;
+                }
+
+                .post-main .card:hover {
+                    transform: none;
+                    border-color: var(--gray-200);
+                    box-shadow: var(--card-shadow);
+                }
+
+                .section-card {
+                    border-top: 4px solid rgba(37, 99, 235, 0.28);
+                }
+
+                .section-title {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    gap: 10px;
+                    margin-bottom: 0.9rem;
+                    font-size: 1.1rem;
+                    font-weight: 700;
+                }
+
+                .section-title::after {
+                    content: "";
+                    flex: 1;
+                    height: 1px;
+                    background: linear-gradient(90deg, rgba(37, 99, 235, 0.35) 0%, rgba(37, 99, 235, 0.02) 100%);
+                }
+
+                .media-card {
+                    padding: 0.75rem;
+                }
+
+                .post-cover {
+                    width: 100%;
+                    max-height: 520px;
+                    min-height: 240px;
+                    object-fit: cover;
+                    border-radius: 14px;
+                }
+
+                .reading-card {
+                    padding: clamp(1rem, 2vw, 1.6rem);
+                }
+
+                .post-content {
+                    max-width: 72ch;
+                    margin: 0 auto;
+                    font-size: 1.06rem;
+                    line-height: 1.9;
+                    color: var(--text-primary);
+                    word-break: break-word;
+                }
+
+                .post-content>p:first-child {
+                    font-size: 1.14rem;
+                    line-height: 1.95;
+                    color: var(--gray-700);
+                }
+
+                .post-content h2,
+                .post-content h3,
+                .post-content h4 {
+                    margin-top: 2rem;
+                    margin-bottom: 1rem;
+                    color: var(--primary);
+                    letter-spacing: -0.01em;
+                }
+
+                .post-content p {
+                    margin-bottom: 1.24rem;
+                }
+
+                .post-content ul,
+                .post-content ol {
+                    padding-left: 1.2rem;
+                    margin-bottom: 1.2rem;
+                }
+
+                .post-content a {
+                    color: var(--primary);
+                    text-decoration: underline;
+                    text-underline-offset: 3px;
+                }
+
+                .post-content img {
+                    display: block;
+                    border-radius: 12px;
+                    max-width: 100%;
+                    height: auto;
+                    margin: 1.3rem auto;
+                }
+
+                .post-content table {
+                    display: block;
+                    width: 100%;
+                    overflow-x: auto;
+                    border-collapse: collapse;
+                    margin: 1.2rem 0;
+                }
+
+                .post-content iframe {
+                    width: 100%;
+                    border: 0;
+                    border-radius: 12px;
+                }
+
+                .post-content blockquote {
+                    margin: 1.4rem 0;
+                    padding: 0.9rem 1rem;
+                    border-left: 4px solid var(--primary);
+                    background: rgba(37, 99, 235, 0.08);
+                    border-radius: 0 10px 10px 0;
+                    color: var(--text-primary);
+                }
+
+                .post-content pre {
+                    overflow-x: auto;
+                    background: #0b1220;
+                    color: #dbeafe;
+                    border-radius: 12px;
+                    padding: 1rem;
+                    margin: 1.2rem 0;
+                }
+
+                .post-content code {
+                    background: rgba(37, 99, 235, 0.1);
+                    color: var(--primary);
+                    border-radius: 6px;
+                    padding: 2px 6px;
+                    font-family: "Fira Code", monospace;
+                    font-size: 0.9em;
+                }
+
+                .stats-mini {
+                    display: grid;
+                    grid-template-columns: repeat(3, minmax(0, 1fr));
+                    gap: 10px;
+                    margin-top: 14px;
+                }
+
+                .stats-mini .stat {
+                    background: rgba(37, 99, 235, 0.06);
+                    border: 1px solid rgba(37, 99, 235, 0.12);
+                    border-radius: 10px;
+                    padding: 10px;
+                    text-align: center;
+                }
+
+                .stats-mini .value {
+                    display: block;
+                    font-weight: 800;
+                    font-size: 1.2rem;
+                    color: var(--primary);
+                    line-height: 1;
+                    margin-bottom: 4px;
+                }
+
+                .stats-mini .label {
+                    color: var(--text-secondary);
+                    font-size: 0.76rem;
+                    font-weight: 600;
+                }
+
+                .related-grid {
+                    display: grid;
+                    grid-template-columns: repeat(2, minmax(0, 1fr));
+                    gap: 14px;
+                }
+
+                .related-item {
+                    background: rgba(37, 99, 235, 0.05);
+                    border: 1px solid rgba(37, 99, 235, 0.12);
+                    border-radius: 12px;
+                    overflow: hidden;
+                    transition: all 0.25s ease;
+                    box-shadow: 0 10px 24px rgba(2, 6, 23, 0.06);
+                }
+
+                .related-item:hover {
+                    transform: translateY(-4px);
+                    border-color: var(--primary);
+                    box-shadow: 0 16px 36px rgba(37, 99, 235, 0.18);
+                }
+
+                .related-item img {
+                    width: 100%;
+                    height: 168px;
+                    object-fit: cover;
+                }
+
+                .related-body {
+                    padding: 12px;
+                }
+
+                .related-meta {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    gap: 8px;
+                    margin-bottom: 6px;
+                    font-size: 0.76rem;
+                    color: var(--text-secondary);
+                }
+
+                .related-meta span:last-child {
+                    padding: 0.16rem 0.5rem;
+                    border-radius: 999px;
+                    border: 1px solid rgba(37, 99, 235, 0.22);
+                    background: rgba(37, 99, 235, 0.08);
+                    color: var(--primary);
+                    font-weight: 600;
+                }
+
+                .related-title {
+                    font-weight: 700;
+                    line-height: 1.35;
+                    margin-bottom: 6px;
+                }
+
+                .related-excerpt {
+                    font-size: 0.84rem;
+                    line-height: 1.45;
+                    color: var(--text-secondary);
+                }
+
+                .interaction-row {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 10px;
+                    align-items: center;
+                    padding: 10px;
+                    border: 1px solid var(--gray-200);
+                    border-radius: 12px;
+                    background: linear-gradient(135deg, rgba(37, 99, 235, 0.07) 0%, rgba(16, 185, 129, 0.04) 100%);
+                }
+
+                .share-actions {
+                    display: inline-flex;
+                    flex-wrap: wrap;
+                    gap: 8px;
+                    align-items: center;
+                }
+
+                .share-btn {
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 6px;
+                    min-height: 38px;
+                    padding: 0.45rem 0.72rem;
+                    border-radius: 999px;
+                    border: 1px solid var(--gray-300);
+                    background: var(--light);
+                    color: var(--text-primary);
+                    font-size: 0.82rem;
+                    font-weight: 600;
+                    transition: all 0.2s ease;
+                }
+
+                .share-btn:hover {
+                    border-color: var(--primary);
+                    color: var(--primary);
+                    transform: translateY(-1px);
+                }
+
+                .share-feedback {
+                    font-size: 0.82rem;
+                    color: var(--text-secondary);
+                }
+
+                .comment-form input,
+                .comment-form textarea,
+                #newsletter-form input {
+                    border: 1px solid var(--gray-300) !important;
+                    background: var(--light) !important;
+                    color: var(--text-primary) !important;
+                }
+
+                .comment-form input:focus,
+                .comment-form textarea:focus,
+                #newsletter-form input:focus {
+                    outline: 2px solid rgba(37, 99, 235, 0.25);
+                    border-color: var(--primary) !important;
+                }
+
+                #comments-list {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                }
+
+                .comment-item {
+                    border: 1px solid var(--gray-200);
+                    border-radius: 12px;
+                    padding: 12px;
+                    background: rgba(148, 163, 184, 0.07);
+                    box-shadow: 0 6px 14px rgba(2, 6, 23, 0.04);
+                }
+
+                .comment-meta {
+                    font-size: 0.8rem;
+                    color: var(--text-secondary);
+                    margin-bottom: 6px;
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                }
+
+                .comment-message {
+                    font-size: 0.96rem;
+                    line-height: 1.55;
+                }
+
+                [data-theme="dark"] .comment-item {
+                    background: rgba(15, 23, 42, 0.72);
+                    border-color: var(--gray-200);
+                }
+
+                [data-theme="dark"] .post-content>p:first-child {
+                    color: var(--gray-500);
+                }
+
+                .scroll-top {
+                    position: fixed;
+                    bottom: 24px;
+                    right: 24px;
+                    width: 46px;
+                    height: 46px;
+                    border-radius: 50%;
+                    background: var(--gradient);
+                    color: #fff;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                    opacity: 0;
+                    transform: translateY(20px);
+                    transition: all 0.3s ease;
+                    z-index: 1000;
+                    box-shadow: var(--neon-glow);
+                }
+
+                .scroll-top.show {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+
+                footer {
+                    background: var(--dark);
+                    color: #e2e8f0;
+                }
+
+                .footer-link-list a {
+                    color: #9ca3af;
+                    transition: color 0.2s ease;
+                }
+
+                .footer-link-list a:hover {
+                    color: #fff;
+                }
+
+                @media (max-width: 1024px) {
+                    .layout {
+                        grid-template-columns: 1fr;
+                    }
+
+                    .sidebar {
+                        position: static;
+                    }
+
+                    .post-cover {
+                        min-height: 210px;
+                    }
+                }
+
+                @media (max-width: 768px) {
+                    .hero-post {
+                        padding-top: 102px;
+                    }
+
+                    .stats-mini {
+                        grid-template-columns: repeat(2, minmax(0, 1fr));
+                    }
+
+                    .related-grid {
+                        grid-template-columns: 1fr;
+                    }
+
+                    .section-title {
+                        font-size: 1rem;
+                    }
+
+                    .meta-item {
+                        margin-right: 0;
+                    }
+
+                    .card {
+                        padding: 1rem;
+                    }
+
+                    .post-content {
+                        font-size: 1rem;
+                        line-height: 1.78;
+                    }
+
+                    .post-content>p:first-child {
+                        font-size: 1.03rem;
+                    }
+
+                    .post-content h2,
+                    .post-content h3,
+                    .post-content h4 {
+                        margin-top: 1.6rem;
+                    }
+
+                    #post-title {
+                        font-size: clamp(1.6rem, 7vw, 2.2rem);
+                        line-height: 1.2;
+                    }
+
+                    .post-cover {
+                        min-height: 190px;
+                        max-height: 280px;
+                    }
+                }
+
+                @media (max-width: 640px) {
+                    .hero-post {
+                        padding-top: 96px;
+                    }
+
+                    .stats-mini {
+                        grid-template-columns: 1fr;
+                    }
+
+                    .interaction-row {
+                        flex-direction: column;
+                        align-items: stretch;
+                    }
+
+                    .interaction-row .btn-secondary,
+                    .interaction-row .btn-primary {
+                        width: 100%;
+                        text-align: center;
+                        justify-content: center;
+                    }
+
+                    .related-item img {
+                        height: 160px;
+                    }
+
+                    .related-meta {
+                        font-size: 0.72rem;
+                    }
+                }
+            </style>
+        </head>
+
+        <body>
+            <header class="fixed w-full z-50 glass-effect transition-all duration-300">
+                <div class="container mx-auto px-4 sm:px-6 py-4">
+                    <div class="flex justify-between items-center">
+                        <a href="/" class="flex items-center space-x-3">
+                            <div
+                                class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+                                <img src="https://adrianosena.dev.br/logo.png" alt="Adriano Sena Dev"
+                                    class="w-10 h-10" />
+                            </div>
+                            <div>
+                                <div class="text-lg font-bold">Adriano Sena Dev</div>
+                                <div class="text-xs" style="color: var(--text-secondary)">Solucoes em Tecnologia para
+                                    Empresas</div>
+                            </div>
+                        </a>
+
+                        <nav class="hidden md:flex items-center space-x-8">
+                            <a href="/" class="nav-link">Inicio</a>
+                            <a href="/#services" class="nav-link">Servicos</a>
+                            <a href="/#projects" class="nav-link">Cases</a>
+                            <a href="/#skills" class="nav-link">Tecnologias</a>
+                            <a href="/blog" class="nav-link" style="color: var(--primary)">Blog</a>
+                            <a href="/#contact" class="nav-link">Contato</a>
+                            <a href="/privacidade" class="nav-link">Privacidade</a>
+                        </nav>
+
+                        <div class="flex items-center gap-4">
+                            <button id="theme-toggle" class="p-2 rounded-lg transition"
+                                style="border:1px solid var(--gray-200)">
+                                <i id="theme-icon" class="fas fa-moon" style="color:var(--text-secondary)"></i>
+                            </button>
+                            <button id="menu-toggle" class="md:hidden"><i class="fas fa-bars text-xl"></i></button>
+                        </div>
+                    </div>
+
+                    <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+                        <div class="flex flex-col space-y-4">
+                            <a href="/" class="nav-link">Inicio</a>
+                            <a href="/#services" class="nav-link">Servicos</a>
+                            <a href="/#projects" class="nav-link">Cases</a>
+                            <a href="/#skills" class="nav-link">Tecnologias</a>
+                            <a href="/blog" class="nav-link" style="color: var(--primary)">Blog</a>
+                            <a href="/#contact" class="nav-link">Contato</a>
+                            <a href="/privacidade" class="nav-link">Privacidade</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <section class="hero-post">
+                <div class="hero-pattern"></div>
+                <div class="container mx-auto px-4 sm:px-6 relative z-10 pb-10">
+                    <nav class="mb-6 text-sm" style="color: var(--text-secondary)">
+                        <ol class="flex items-center flex-wrap gap-2">
+                            <li><a href="/" class="hover:text-primary">Inicio</a></li>
+                            <li><i class="fas fa-chevron-right text-xs"></i></li>
+                            <li><a href="/blog" class="hover:text-primary">Blog</a></li>
+                            <li><i class="fas fa-chevron-right text-xs"></i></li>
+                            <li id="breadcrumb-current" style="color: var(--primary)">${title}</li>
+                        </ol>
+                    </nav>
+
+                    <div class="max-w-4xl">
+                        <div id="post-tags" class="mb-4"></div>
+                        <h1 id="post-title" class="text-3xl md:text-5xl font-bold leading-tight mb-5">${title}</h1>
+                        <div class="mb-2">
+                            <span class="meta-item"><i class="far fa-calendar"></i><span id="post-date"></span></span>
+                            <span class="meta-item"><i class="far fa-user"></i><span id="post-author">Equipe Adriano
+                                    Sena Dev</span></span>
+                            <span class="meta-item"><i class="far fa-clock"></i><span id="read-time">0</span> min de
+                                leitura</span>
+                            <span class="meta-item"><i class="far fa-eye"></i><span id="view-count">0</span>
+                                visualizacoes</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <main class="py-10">
+                <div class="container mx-auto px-4 sm:px-6">
+                    <div class="layout grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
+                        <article class="post-main lg:col-span-2 min-w-0">
+                            <div class="card media-card mb-8">
+                                <img id="post-image" src="${escHtml(fullImage)}" alt="${title}" class="post-cover" />
+                            </div>
+
+                            <div class="card reading-card">
+                                <div id="post-content" class="post-content"></div>
+                            </div>
+
+                            <div class="card section-card mt-8">
+                                <h3 class="section-title">Autor responsavel pelo post</h3>
+                                <div class="flex flex-col sm:flex-row items-start gap-4">
+                                    <img id="author-avatar" src="https://adrianosena.dev.br/logo-white.png" alt="Autor"
+                                        class="w-16 h-16 rounded-full border-2 object-cover"
+                                        style="border-color:var(--primary)" />
+                                    <div class="flex-1">
+                                        <div id="author-name" class="font-bold text-lg mb-1">Equipe Adriano Sena Dev
+                                        </div>
+                                        <p id="author-bio" style="color: var(--text-secondary)">Conteudo revisado para
+                                            decisao tecnica e operacional de empresas.</p>
+                                        <div class="stats-mini">
+                                            <div class="stat"><span id="author-post-count" class="value">0</span><span
+                                                    class="label">Posts deste autor</span></div>
+                                            <div class="stat"><span id="total-post-count" class="value">0</span><span
+                                                    class="label">Posts publicados</span></div>
+                                            <div class="stat"><span id="total-category-count"
+                                                    class="value">0</span><span class="label">Categorias ativas</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card section-card mt-8">
+                                <h3 class="section-title">Curtidas e compartilhamentos</h3>
+                                <div class="interaction-row mb-4">
+                                    <button id="like-btn" class="btn-secondary" type="button"><i
+                                            class="far fa-thumbs-up mr-2"></i>Curtir</button>
+                                    <span style="color: var(--text-secondary)"><strong id="like-count">0</strong>
+                                        curtidas</span>
+                                    <a class="btn-secondary" href="/rss.xml" target="_blank"
+                                        rel="noopener noreferrer"><i class="fas fa-rss mr-2"></i>Assinar RSS</a>
+                                    <div id="share-actions" class="share-actions"></div>
+                                    <span id="share-feedback" class="share-feedback"></span>
+
+                                </div>
+
+                                <h4 class="font-semibold mb-2">Comentarios</h4>
+                                <form id="comment-form" class="comment-form space-y-3 mb-3">
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                        <input id="comment-name" type="text" required placeholder="Seu nome"
+                                            class="w-full px-4 py-3 rounded-lg"
+                                            style="border:1px solid var(--gray-300); background: var(--light); color: var(--text-primary);" />
+                                        <input id="comment-email" type="email" placeholder="Seu email (opcional)"
+                                            class="w-full px-4 py-3 rounded-lg"
+                                            style="border:1px solid var(--gray-300); background: var(--light); color: var(--text-primary);" />
+                                    </div>
+                                    <textarea id="comment-message" required minlength="6"
+                                        placeholder="Escreva seu comentário" rows="4"
+                                        class="w-full px-4 py-3 rounded-lg"
+                                        style="border:1px solid var(--gray-300); background: var(--light); color: var(--text-primary);"></textarea>
+                                    <button type="submit" class="btn-primary w-full sm:w-auto"><i
+                                            class="fas fa-comment-dots mr-2"></i>Publicar comentario</button>
+                                </form>
+                                <div id="comment-feedback" class="text-sm mb-2" style="color: var(--text-secondary)">
+                                </div>
+                                <div id="comments-list"></div>
+                            </div>
+
+                            <div class="card section-card mt-8">
+                                <h3 class="section-title">Posts relacionados </h3>
+                                <div id="related-posts" class="related-grid"></div>
+                            </div>
+                        </article>
+
+                        <aside class="sidebar lg:col-span-1 min-w-0"
+                            style="position: sticky; top: 110px; align-self: start;">
+                            <div class="card mb-6">
+                                <h3 class="text-xl mb-2">Receba Conteudo Tecnico no Email</h3>
+                                <p class="mb-4" style="color: var(--text-secondary)">
+                                    Receba materiais sobre sistemas, apps, servidores, redes e boas praticas para manter
+                                    a operacao da sua empresa segura e escalavel.
+                                </p>
+                                <form id="newsletter-form" class="space-y-3">
+                                    <input id="newsletter-name" type="text" placeholder="Seu nome"
+                                        class="w-full px-4 py-3 rounded-lg"
+                                        style="border:1px solid var(--gray-300); background: var(--light); color: var(--text-primary);" />
+                                    <input id="newsletter-email" type="email" placeholder="Seu melhor email" required
+                                        class="w-full px-4 py-3 rounded-lg"
+                                        style="border:1px solid var(--gray-300); background: var(--light); color: var(--text-primary);" />
+                                    <label class="inline-flex items-center gap-2 text-sm"
+                                        style="color: var(--text-secondary)">
+                                        <input id="newsletter-push" type="checkbox" />
+                                        Quero receber notificacoes de novos posts
+                                    </label>
+                                    <button type="submit" class="btn-primary w-full"><i
+                                            class="fas fa-envelope mr-2"></i>Quero receber</button>
+                                </form>
+                                <p id="newsletter-feedback" class="text-sm mt-3" style="color: var(--text-secondary)">
+                                </p>
+                            </div>
+
+                            <div class="card mb-6">
+                                <h3 class="text-xl mb-2">RSS e Notificacoes no Chrome</h3>
+                                <p class="mb-4" style="color: var(--text-secondary)">
+                                    Assine o feed RSS para acompanhar novos posts e ative notificacoes no Chrome para
+                                    receber alertas diretamente no navegador.
+                                </p>
+                                <div class="flex flex-col sm:flex-row gap-3">
+                                    <a class="btn-secondary text-center" href="/rss.xml" target="_blank"
+                                        rel="noopener noreferrer"><i class="fas fa-rss mr-2"></i>Assinar RSS</a>
+                                    <button id="enable-chrome-notifications" type="button" class="btn-primary"><i
+                                            class="fab fa-chrome mr-2"></i>Ativar no Chrome</button>
+                                </div>
+                                <p id="chrome-notify-feedback" class="text-sm mt-3"
+                                    style="color: var(--text-secondary)"></p>
+                            </div>
+
+                            <div class="card mb-6">
+                                <h3 class="text-xl mb-3">Categorias</h3>
+                                <ul id="category-list" class="space-y-2"></ul>
+                            </div>
+
+                            <div class="card">
+                                <h3 class="text-xl mb-2">Precisa de ajuda com seu projeto?</h3>
+                                <p class="mb-4" style="color: var(--text-secondary)">Fale com a equipe para desenhar a
+                                    melhor estrategia de software e infraestrutura.</p>
+                                <a href="/#contact" class="btn-secondary w-full text-center block">Solicitar
+                                    diagnostico</a>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+            </main>
+
+            <footer class="bg-dark py-12 px-6 mt-10">
+                <div class="container mx-auto">
+                    <div class="grid md:grid-cols-4 gap-8">
+                        <div>
+                            <div class="flex items-center space-x-3 mb-6">
+                                <div
+                                    class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+                                    <img src="https://adrianosena.dev.br/logo.png" alt="Logo Adriano Sena Dev"
+                                        class="w-10 h-10" />
+                                </div>
+                                <div>
+                                    <div class="font-bold text-lg">Adriano Sena Dev</div>
+                                    <div class="text-gray-400 text-sm">Empresa de Desenvolvimento e Infraestrutura</div>
+                                </div>
+                            </div>
+                            <p class="text-gray-400">
+                                Solucoes empresariais em software, infraestrutura e suporte tecnico para crescimento
+                                sustentavel.
+                            </p>
+                        </div>
+
+                        <div>
+                            <h4 class="text-lg font-bold mb-6">Especialidades</h4>
+                            <ul class="space-y-3 footer-link-list">
+                                <li><a href="/#projects">Projetos Open Source</a></li>
+                                <li><a href="/#portfolio">Websites e Aplicacoes</a></li>
+                                <li><a href="/#skills">Tecnologias e Stack</a></li>
+                                <li><a href="/blog">Artigos e Conteudo</a></li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h4 class="text-lg font-bold mb-6">Navegacao</h4>
+                            <ul class="space-y-3 footer-link-list">
+                                <li><a href="/">Visao geral</a></li>
+                                <li><a href="/#services">Frentes de atuacao</a></li>
+                                <li><a href="/#projects">Projetos e cenarios</a></li>
+                                <li><a href="/#skills">Modelo de entrega</a></li>
+                                <li><a href="/blog">Conteudo</a></li>
+                                <li><a href="/#contact">Contato</a></li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h4 class="text-lg font-bold mb-6">Conecte-se</h4>
+                            <div class="flex space-x-4 mb-6 text-white">
+                                <a href="https://www.instagram.com/adrianosena.dev.br/" target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="w-10 h-10 rounded-lg bg-pink-600 flex items-center justify-center hover:bg-pink-700 transition">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="https://wa.me/5564933004882" target="_blank" rel="noopener noreferrer"
+                                    class="w-10 h-10 rounded-lg bg-green-600 flex items-center justify-center hover:bg-green-700 transition">
+                                    <i class="fab fa-whatsapp"></i>
+                                </a>
+                            </div>
+                            <p class="text-gray-400 text-sm">
+                                © <span id="current-year">2024</span> Adriano Sena Dev • CNPJ 63.005.629/0001-44. Todos
+                                os direitos reservados.
+                            </p>
+                            <a href="/privacidade" class="text-gray-400 hover:text-white text-sm">Politica de
+                                Privacidade</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+            <div class="scroll-top" id="scrollTop"><i class="fas fa-arrow-up"></i></div>
+
+            <script>
+                (function initTheme() {
+                    const toggle = document.getElementById("theme-toggle");
+                    const icon = document.getElementById("theme-icon");
+                    const saved = localStorage.getItem("theme");
+                    const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+                    function apply(theme) {
+                        if (theme === "dark") {
+                            document.documentElement.setAttribute("data-theme", "dark");
+                            icon.className = "fas fa-sun";
+                        } else {
+                            document.documentElement.removeAttribute("data-theme");
+                            icon.className = "fas fa-moon";
+                        }
+                    }
+
+                    apply(saved || (systemDark ? "dark" : "light"));
+                    toggle.addEventListener("click", () => {
+                        const dark = document.documentElement.getAttribute("data-theme") === "dark";
+                        const next = dark ? "light" : "dark";
+                        localStorage.setItem("theme", next);
+                        apply(next);
+                    });
+                })();
+
+                (function mobileMenu() {
+                    const btn = document.getElementById("menu-toggle");
+                    const menu = document.getElementById("mobile-menu");
+                    btn.addEventListener("click", () => {
+                        menu.classList.toggle("hidden");
+                    });
+                })();
+
+                const scrollTop = document.getElementById("scrollTop");
+                window.addEventListener("scroll", () => {
+                    if (window.pageYOffset > 320) scrollTop.classList.add("show");
+                    else scrollTop.classList.remove("show");
+                });
+                scrollTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+
+                function formatDate(d) {
+                    return new Date(d).toLocaleDateString("pt-BR", { day: "2-digit", month: "long", year: "numeric" });
+                }
+
+                function stripHtml(html) {
+                    return String(html || "").replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
+                }
+
+                function escHtmlClient(value) {
+                    return String(value || "")
+                        .replace(/&/g, "&amp;")
+                        .replace(/</g, "&lt;")
+                        .replace(/>/g, "&gt;")
+                        .replace(/\"/g, "&quot;")
+                        .replace(/'/g, "&#39;");
+                }
+
+                function normalizeCategory(c) {
+                    return String(c || "Sem categoria").trim();
+                }
+
+                function toAbsoluteUrl(urlPath) {
+                    const base = "https://www.adrianosena.dev.br";
+                    const value = String(urlPath || "").trim() || "/logoWeb.png";
+                    if (/^https?:\\/\\//i.test(value)) return value;
+                    return value.startsWith("/") ? base + value : base + "/" + value;
+                }
+
+                function extractFirstImageFromContent(html) {
+                    const content = String(html || "");
+                    const match = content.match(/<img[^>]+src=["']([^"']+)["']/i);
+                    return match && match[1] ? String(match[1]).trim() : "";
+                }
+
+                function renderShareActions(post) {
+                    const container = document.getElementById("share-actions");
+                    const feedback = document.getElementById("share-feedback");
+                    if (!container) return;
+
+                    const title = String(post?.title || "Confira este artigo");
+                    const slugValue = String(post?.slug || "");
+                    const postUrl = 'https://www.adrianosena.dev.br/post?slug=' + encodeURIComponent(slugValue);
+                    const text = title + ' - ' + postUrl;
+
+                    const links = [
+                        { label: "WhatsApp", icon: "fab fa-whatsapp", href: 'https://wa.me/?text=' + encodeURIComponent(text) },
+                        { label: "X", icon: "fab fa-twitter", href: 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(title) + '&url=' + encodeURIComponent(postUrl) },
+                        { label: "Facebook", icon: "fab fa-facebook-f", href: 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(postUrl) },
+                        { label: "LinkedIn", icon: "fab fa-linkedin-in", href: 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(postUrl) },
+                        { label: "Telegram", icon: "fab fa-telegram-plane", href: 'https://t.me/share/url?url=' + encodeURIComponent(postUrl) + '&text=' + encodeURIComponent(title) }
+                    ];
+
+                    container.innerHTML = links.map((item) =>
+                        '<a class="share-btn" href="' + item.href + '" target="_blank" rel="noopener noreferrer" aria-label="Compartilhar no ' + item.label + '"><i class="' + item.icon + '"></i><span>' + item.label + '</span></a>'
+                    ).join('') +
+                        '<button type="button" class="share-btn" id="share-instagram" aria-label="Copiar link para Instagram"><i class="fab fa-instagram"></i><span>Instagram</span></button>' +
+                        '<button type="button" class="share-btn" id="share-copy-link" aria-label="Copiar link"><i class="fas fa-link"></i><span>Copiar link</span></button>' +
+                        '<button type="button" class="share-btn" id="share-native" aria-label="Compartilhar"><i class="fas fa-share-nodes"></i><span>Compartilhar</span></button>';
+
+                    const nativeBtn = document.getElementById("share-native");
+                    if (!navigator.share && nativeBtn) nativeBtn.style.display = "none";
+
+                    function writeFeedback(message) {
+                        if (!feedback) return;
+                        feedback.textContent = message;
+                        window.setTimeout(() => {
+                            if (feedback.textContent === message) feedback.textContent = "";
+                        }, 2400);
+                    }
+
+                    function copyWithExecCommand(value) {
+                        const textarea = document.createElement("textarea");
+                        textarea.value = value;
+                        textarea.setAttribute("readonly", "");
+                        textarea.style.position = "fixed";
+                        textarea.style.top = "-1000px";
+                        textarea.style.left = "-1000px";
+                        document.body.appendChild(textarea);
+                        textarea.select();
+                        textarea.setSelectionRange(0, textarea.value.length);
+
+                        let ok = false;
+                        try {
+                            ok = document.execCommand("copy");
+                        } catch (_) {
+                            ok = false;
+                        }
+
+                        document.body.removeChild(textarea);
+                        return ok;
+                    }
+
+                    async function copyLink(message) {
+                        try {
+                            if (navigator.clipboard && window.isSecureContext) {
+                                await navigator.clipboard.writeText(postUrl);
+                                writeFeedback(message);
+                                return true;
+                            }
+
+                            if (copyWithExecCommand(postUrl)) {
+                                writeFeedback(message);
+                                return true;
+                            }
+
+                            window.prompt("Copie manualmente o link abaixo:", postUrl);
+                            writeFeedback("Copie o link manualmente na janela exibida.");
+                            return false;
+                        } catch (_) {
+                            if (copyWithExecCommand(postUrl)) {
+                                writeFeedback(message);
+                                return true;
+                            }
+
+                            window.prompt("Copie manualmente o link abaixo:", postUrl);
+                            writeFeedback("Copie o link manualmente na janela exibida.");
+                            return false;
+                        }
+                    }
+
+                    document.getElementById("share-copy-link")?.addEventListener("click", () => {
+                        copyLink("Link copiado com sucesso.");
+                    });
+
+                    document.getElementById("share-instagram")?.addEventListener("click", async () => {
+                        await copyLink("Link copiado. Agora cole no Instagram.");
+                        window.open("https://www.instagram.com/", "_blank", "noopener,noreferrer");
+                    });
+
+                    document.getElementById("share-native")?.addEventListener("click", async () => {
+                        if (!navigator.share) return;
+                        try {
+                            await navigator.share({ title, text: title, url: postUrl });
+                        } catch (_) { }
+                    });
+                }
+
+                function renderCategoriesWithCount(posts) {
+                    const list = document.getElementById("category-list");
+                    list.innerHTML = "";
+                    const published = (posts || []).filter(p => p.status === "published");
+                    const counts = published.reduce((acc, p) => {
+                        const c = normalizeCategory(p.category);
+                        acc[c] = (acc[c] || 0) + 1;
+                        return acc;
+                    }, {});
+
+                    Object.entries(counts)
+                        .sort((a, b) => b[1] - a[1])
+                        .forEach(([name, total]) => {
+                            const li = document.createElement("li");
+                            li.innerHTML = '<a href="/blog?category=' + encodeURIComponent(name) + '" class="flex items-center justify-between hover:opacity-80" style="color: var(--text-primary)"><span>' + name + '</span><span style="color: var(--text-secondary)">' + total + '</span></a>';
+                            list.appendChild(li);
+                        });
+
+                    document.getElementById("total-post-count").textContent = String(published.length);
+                    document.getElementById("total-category-count").textContent = String(Object.keys(counts).length);
+                }
+
+                async function submitNewsletter(email) {
+                    const name = document.getElementById("newsletter-name").value.trim();
+                    const wantsPush = document.getElementById("newsletter-push").checked;
+
+                    if (wantsPush && "Notification" in window && Notification.permission === "default") {
+                        try { await Notification.requestPermission(); } catch (_) { }
+                    }
+
+                    const payload = {
+                        name: name || "Inscricao Newsletter Blog",
+                        email,
+                        source: "post",
+                        wantsEmail: true,
+                        wantsPush,
+                        provider: (window.__fbUser && window.__fbUser.id) ? "facebook" : "local",
+                        providerId: window.__fbUser?.id || ""
+                    };
+
+                    const res = await fetch("/api/subscribers", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(payload)
+                    });
+
+                    // Mantem também registro no funil de contatos já existente
+                    await fetch("/api/contact", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            name: payload.name,
+                            email,
+                            status: "new",
+                            project: "newsletter",
+                            message: "Lead originado na newsletter da pagina de post"
+                        })
+                    }).catch(() => { });
+
+                    return res.ok;
+                }
+
+                function getVisitorKey() {
+                    const keyName = "visitorLikeKey";
+                    let key = localStorage.getItem(keyName);
+                    if (!key) {
+                        key = Math.random().toString(36).slice(2) + Date.now().toString(36);
+                        localStorage.setItem(keyName, key);
+                    }
+                    return key;
+                }
+
+                function isSupportedWebPushBrowser() {
+                    const ua = navigator.userAgent || "";
+                    const isChrome = /Chrome/.test(ua) && !/OPR|Brave|SamsungBrowser/.test(ua);
+                    const isEdge = /Edg/.test(ua);
+                    return isChrome || isEdge;
+                }
+
+                function urlBase64ToUint8Array(base64String) {
+                    const padding = '='.repeat((4 - (base64String.length % 4)) % 4);
+                    const base64 = (base64String + padding).replace(/-/g, '+').replace(/_/g, '/');
+                    const rawData = window.atob(base64);
+                    const outputArray = new Uint8Array(rawData.length);
+
+                    for (let i = 0; i < rawData.length; ++i) {
+                        outputArray[i] = rawData.charCodeAt(i);
+                    }
+
+                    return outputArray;
+                }
+
+                async function ensureChromeNotifications(emailForRegistration) {
+                    const feedback = document.getElementById("chrome-notify-feedback");
+
+                    if (!isSupportedWebPushBrowser()) {
+                        feedback.textContent = "Use Google Chrome ou Microsoft Edge para ativar notificacoes.";
+                        return false;
+                    }
+
+                    if (!("serviceWorker" in navigator) || !("PushManager" in window) || !("Notification" in window)) {
+                        feedback.textContent = "Seu navegador nao oferece suporte completo a Web Push.";
+                        return false;
+                    }
+
+                    let permission = Notification.permission;
+                    if (permission === "default") {
+                        try {
+                            permission = await Notification.requestPermission();
+                        } catch (_) {
+                            feedback.textContent = "Nao foi possivel solicitar permissao de notificacao.";
+                            return false;
+                        }
+                    }
+
+                    if (permission !== "granted") {
+                        feedback.textContent = "Permissao nao concedida. Voce pode liberar nas configuracoes do Chrome.";
+                        return false;
+                    }
+
+                    feedback.textContent = "Ativando notificacoes em background...";
+
+                    const keyRes = await fetch('/api/push/vapid-public-key');
+                    const keyData = await keyRes.json();
+                    if (!keyRes.ok || !keyData?.publicKey) {
+                        feedback.textContent = "Nao foi possivel obter a chave de notificacoes no servidor.";
+                        return false;
+                    }
+
+                    const registration = await navigator.serviceWorker.register('/sw.js');
+                    const existingSub = await registration.pushManager.getSubscription();
+
+                    const subscription = existingSub || await registration.pushManager.subscribe({
+                        userVisibleOnly: true,
+                        applicationServerKey: urlBase64ToUint8Array(keyData.publicKey)
+                    });
+
+                    try {
+                        const subscribeRes = await fetch('/api/push/subscribe', {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({
+                                subscription,
+                                email: emailForRegistration || "",
+                                source: "post",
+                                userAgent: navigator.userAgent || ""
+                            })
+                        });
+
+                        if (!subscribeRes.ok) {
+                            feedback.textContent = "Falha ao concluir assinatura no servidor.";
+                            return false;
+                        }
+                    } catch (_) { }
+
+                    feedback.textContent = "Notificacoes ativadas com sucesso para novos posts.";
+                    return true;
+                }
+
+                async function loadLikes(postId) {
+                    const res = await fetch('/api/posts/' + postId + '/likes');
+                    const data = await res.json();
+                    document.getElementById('like-count').textContent = data.total || 0;
+                }
+
+                async function submitLike(postId) {
+                    const btn = document.getElementById('like-btn');
+                    btn.disabled = true;
+                    const res = await fetch('/api/posts/' + postId + '/likes', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ visitorKey: getVisitorKey() })
+                    });
+                    const data = await res.json();
+                    if (data?.success) {
+                        document.getElementById('like-count').textContent = data.total || 0;
+                        btn.innerHTML = data.added
+                            ? '<i class="fas fa-thumbs-up mr-2"></i>Obrigado!'
+                            : '<i class="fas fa-check mr-2"></i>Ja curtido';
+                    }
+                    btn.disabled = false;
+                }
+
+                function renderComments(comments) {
+                    const container = document.getElementById('comments-list');
+                    container.innerHTML = '';
+                    if (!comments || !comments.length) {
+                        container.innerHTML = '<p style="color: var(--text-secondary)">Seja o primeiro a comentar.</p>';
+                        return;
+                    }
+
+                    comments.forEach((c) => {
+                        const div = document.createElement('div');
+                        div.className = 'comment-item';
+                        const providerBadge = c.provider === 'facebook' ? ' • Facebook' : '';
+                        div.innerHTML =
+                            '<div class="comment-meta"><strong>' +
+                            escHtmlClient(c.name) +
+                            '</strong>' +
+                            providerBadge +
+                            ' • ' +
+                            formatDate(c.createdAt) +
+                            '</div>' +
+                            '<div class="comment-message">' + escHtmlClient(c.message) + '</div>';
+                        container.appendChild(div);
+                    });
+                }
+
+                async function loadComments(postId) {
+                    const res = await fetch('/api/posts/' + postId + '/comments');
+                    const data = await res.json();
+                    renderComments(data.comments || []);
+                }
+
+                async function postComment(postId) {
+                    const nameInput = document.getElementById('comment-name');
+                    const emailInput = document.getElementById('comment-email');
+                    const messageInput = document.getElementById('comment-message');
+                    const feedback = document.getElementById('comment-feedback');
+
+                    const payload = {
+                        name: nameInput.value.trim(),
+                        email: emailInput.value.trim(),
+                        message: messageInput.value.trim(),
+                        provider: window.__fbUser?.id ? 'facebook' : 'local',
+                        providerId: window.__fbUser?.id || ''
+                    };
+
+                    feedback.textContent = 'Publicando...';
+                    const res = await fetch('/api/posts/' + postId + '/comments', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    const data = await res.json();
+
+                    if (res.ok && data.success) {
+                        feedback.textContent = 'Comentario publicado com sucesso.';
+                        messageInput.value = '';
+                        renderComments(data.comments || []);
+                    } else {
+                        feedback.textContent = data.error || 'Nao foi possivel publicar o comentario.';
+                    }
+                }
+
+                function renderRelatedPosts(allPosts, currentPost) {
+                    const container = document.getElementById('related-posts');
+                    const category = normalizeCategory(currentPost.category);
+                    const related = (allPosts || [])
+                        .filter(p => p.status === 'published' && p.id !== currentPost.id && normalizeCategory(p.category) === category)
+                        .slice(0, 4);
+
+                    if (!related.length) {
+                        container.innerHTML = '<p style="color: var(--text-secondary)">Ainda nao ha posts relacionados nesta categoria.</p>';
+                        return;
+                    }
+
+                    container.innerHTML = related.map((p) => {
+                        const image = p.image || '/logoWeb.png';
+                        const date = formatDate(p.createdAt || p.date || new Date());
+                        const link = '/post?slug=' + encodeURIComponent(p.slug || '');
+                        const excerpt = stripHtml(p.description || p.excerpt || '').slice(0, 90);
+                        const safeCategory = escHtmlClient(normalizeCategory(p.category));
+                        return '<a class="related-item" href="' + link + '">' +
+                            '<img src="' + image + '" alt="' + escHtmlClient(p.title || '') + '">' +
+                            '<div class="related-body">' +
+                            '<div class="related-meta"><span>' + date + '</span><span>' + safeCategory + '</span></div>' +
+                            '<div class="related-title">' + escHtmlClient((p.title || '').slice(0, 90)) + '</div>' +
+                            '<div class="related-excerpt">' + escHtmlClient(excerpt || 'Leia este conteudo relacionado para aprofundar o tema.') + '</div>' +
+                            '</div></a>';
+                    }).join('');
+                }
+
+                let __POST_ALREADY_LOADED__ = false;
+
+                async function loadPostData() {
+                    if (__POST_ALREADY_LOADED__) return;
+                    __POST_ALREADY_LOADED__ = true;
+
+                    try {
+                        const urlParams = new URLSearchParams(window.location.search);
+                        const pathParts = window.location.pathname.split('/').filter(Boolean);
+                        const slugFromPath = pathParts[0] === 'post' ? decodeURIComponent(pathParts[1] || '') : '';
+                        const slug = (urlParams.get("slug") || slugFromPath || "").trim();
+
+                        if (!slug) {
+                            console.warn("Slug vazio — mantendo conteúdo SSR");
+                            return;
+                        }
+
+                        // Timeout helper
+                        const fetchWithTimeout = (url, options = {}, timeout = 5000) => {
+                            return Promise.race([
+                                fetch(url, options),
+                                new Promise((_, reject) =>
+                                    setTimeout(() => reject(new Error("Timeout")), timeout)
+                                )
+                            ]);
+                        };
+
+                        const [postRes, allRes] = await Promise.all([
+                            fetchWithTimeout('/api/posts/slug/' + encodeURIComponent(slug)),
+                            fetchWithTimeout('/api/posts')
+                        ]);
+
+                        if (!postRes.ok) {
+                            console.warn("Post não encontrado via API — mantendo SSR");
+                            return;
+                        }
+
+                        const post = await postRes.json();
+
+                        if (!post || !post.id) {
+                            console.warn("Post inválido — mantendo SSR");
+                            return;
+                        }
+
+                        const allPostsRaw = allRes.ok ? await allRes.json() : [];
+                        const allPosts = Array.isArray(allPostsRaw)
+                            ? allPostsRaw
+                            : (Array.isArray(allPostsRaw?.posts) ? allPostsRaw.posts : []);
+
+                        // 🔒 Atualiza só o que é seguro
+                        document.getElementById("post-title").textContent = post.title || "Post";
+                        document.getElementById("post-content").innerHTML = post.content || "";
+
+                        // Data
+                        if (post.createdAt) {
+                            document.getElementById("post-date").textContent =
+                                new Date(post.createdAt).toLocaleDateString("pt-BR");
+                        }
+
+                        // Views (não crítico)
+                        try {
+                            const viewsRes = await fetchWithTimeout('/api/post/views/' + post.id, {}, 3000);
+                            if (viewsRes.ok) {
+                                const viewsData = await viewsRes.json();
+                                document.getElementById("view-count").textContent = viewsData.totalViews || 0;
+                            }
+                        } catch (e) {
+                            console.warn("Erro ao carregar views:", e.message);
+                        }
+
+                        // Tempo leitura
+                        const words = (post.content || "").replace(/<[^>]*>/g, "").split(/\s+/).filter(Boolean).length;
+                        document.getElementById("read-time").textContent = Math.max(1, Math.ceil(words / 220));
+
+                        // Imagem
+                        const img = document.getElementById("post-image");
+                        if (img && post.image) {
+                            img.src = post.image;
+                        }
+
+                        // Tags
+                        const tagWrap = document.getElementById("post-tags");
+                        if (tagWrap) {
+                            tagWrap.innerHTML = "";
+                            if (post.category) {
+                                tagWrap.innerHTML += `<span class="tag">${post.category}</span>`;
+                            }
+                            if (Array.isArray(post.tags)) {
+                                tagWrap.innerHTML += post.tags.map(t => `<span class="tag">${t}</span>`).join("");
+                            }
+                        }
+
+                        // Funções não críticas (não podem quebrar a página)
+                        try { renderCategoriesWithCount(allPosts); } catch { }
+                        try { renderRelatedPosts(allPosts, post); } catch { }
+                        try { renderShareActions(post); } catch { }
+                        try { await loadLikes(post.id); } catch { }
+                        try { await loadComments(post.id); } catch { }
+
+                        console.log("✅ Post atualizado via API com sucesso");
+
+                    } catch (err) {
+                        console.error("🔥 Erro geral no loadPostData:", err.message);
+
+                        // 🔒 NÃO APAGA NADA
+                        // Mantém o HTML que já veio do servidor
+                    }
+                }
+                document.getElementById("newsletter-form").addEventListener("submit", async (e) => {
+                    e.preventDefault();
+                    const email = document.getElementById("newsletter-email").value.trim();
+                    const feedback = document.getElementById("newsletter-feedback");
+                    if (!email) return;
+
+                    feedback.textContent = "Enviando...";
+                    const ok = await submitNewsletter(email);
+                    const wantsPush = document.getElementById("newsletter-push").checked;
+                    if (ok && wantsPush) {
+                        await ensureChromeNotifications(email);
+                    }
+                    if (ok) {
+                        feedback.textContent = "Inscricao confirmada! Voce recebera novos conteudos por email e notificacoes quando habilitadas.";
+                        e.target.reset();
+                    } else {
+                        feedback.textContent = "Nao foi possivel concluir agora. Tente novamente em instantes.";
+                    }
+                });
+
+                document.getElementById("enable-chrome-notifications").addEventListener("click", async () => {
+                    const email = document.getElementById("newsletter-email").value.trim();
+                    await ensureChromeNotifications(email);
+                });
+
+                document.getElementById("current-year").textContent = new Date().getFullYear();
+
+
+                loadPostData();
+            </script>
+        </body>
+
+        </html>`;
+
+        return html;
+        }
+        };

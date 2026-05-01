@@ -1,15 +1,21 @@
 const { HtmlPost } = require("../views/post");
+const { getPostBySlug } = require("../database/postsDB");
 
 
 module.exports = {
 
    async htmlInner(slug, port, res) {
         try {
-            const response = await fetch(`http://localhost:${port}/api/posts/slug/${encodeURIComponent(slug)}`);
-            if (!response.ok) {
+            const safeSlug = String(slug || '').trim();
+            if (!safeSlug) {
                 return res.status(404).sendFile(require('path').join(__dirname, '../public/error.html'));
             }
-            const post = await response.json();
+
+            const post = await getPostBySlug(safeSlug);
+            if (!post) {
+                return res.status(404).sendFile(require('path').join(__dirname, '../public/error.html'));
+            }
+
             const html = HtmlPost(post, post.slug);
             res.send(html);
         } catch (error) {

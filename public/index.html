@@ -817,6 +817,78 @@
                 font-size: 2rem;
             }
         }
+
+        .subscribe-modal-backdrop {
+            position: fixed;
+            inset: 0;
+            z-index: 60;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(2, 6, 23, 0.55);
+            backdrop-filter: blur(4px);
+            padding: 1rem;
+        }
+
+        .subscribe-modal {
+            width: 100%;
+            max-width: 640px;
+            border-radius: 20px;
+            border: 1px solid var(--gray-200);
+            background: var(--light);
+            box-shadow: var(--card-shadow-hover);
+            overflow: hidden;
+        }
+
+        .subscribe-modal-header {
+            padding: 1.2rem 1.4rem;
+            background: linear-gradient(120deg, rgba(37, 99, 235, 0.12), rgba(16, 185, 129, 0.12));
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .subscribe-modal-content {
+            padding: 1.25rem 1.4rem 1.4rem;
+        }
+
+        .subscribe-feature-list li {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            margin-bottom: 0.6rem;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .subscribe-email {
+            width: 100%;
+            padding: 0.72rem 0.9rem;
+            border-radius: 10px;
+            border: 1px solid var(--gray-300);
+            background: var(--light);
+            color: var(--text-primary);
+            margin-bottom: 0.7rem;
+        }
+
+        .subscribe-email:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+        }
+
+        [data-theme="dark"] .subscribe-modal {
+            border-color: var(--gray-200);
+            background: var(--gray-50);
+        }
+
+        [data-theme="dark"] .subscribe-modal-header {
+            border-color: var(--gray-200);
+            background: linear-gradient(120deg, rgba(59, 130, 246, 0.2), rgba(16, 185, 129, 0.2));
+        }
+
+        [data-theme="dark"] .subscribe-email {
+            background: var(--gray-100);
+            border-color: var(--gray-300);
+        }
     </style>
 </head>
 
@@ -2029,6 +2101,49 @@
         </div>
     </div>
 
+    <div id="push-subscribe-modal" class="subscribe-modal-backdrop hidden">
+        <div class="subscribe-modal animate__animated animate__fadeInUp">
+            <div class="subscribe-modal-header">
+                <div class="flex items-start justify-between gap-4">
+                    <div>
+                        <p class="text-xs uppercase tracking-wider text-primary font-semibold mb-2">Atualizações do Blog</p>
+                        <h3 class="text-xl md:text-2xl font-bold">Ative notificações e receba novos posts</h3>
+                    </div>
+                    <button id="push-subscribe-close" class="text-text-secondary hover:text-primary" aria-label="Fechar modal de notificações">
+                        <i class="fas fa-times text-lg"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="subscribe-modal-content">
+                <p class="text-text-secondary mb-4">
+                    Seja avisado assim que sair conteúdo novo sobre tecnologia, infraestrutura e desenvolvimento.
+                </p>
+
+                <ul class="subscribe-feature-list mb-5">
+                    <li><i class="fas fa-check-circle text-primary"></i>Notificação no navegador em tempo real</li>
+                    <li><i class="fas fa-check-circle text-primary"></i>Acesso rápido aos novos artigos</li>
+                    <li><i class="fas fa-check-circle text-primary"></i>Sem spam e com controle total</li>
+                </ul>
+
+                <label for="push-subscribe-email" class="block text-sm font-semibold mb-2">Seu e-mail (opcional)</label>
+                <input id="push-subscribe-email" type="email" class="subscribe-email" placeholder="voce@dominio.com">
+                <p id="push-subscribe-feedback" class="text-sm text-text-secondary mb-5"></p>
+
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <button id="push-subscribe-activate" class="btn-primary flex-1">
+                        <i class="fas fa-bell mr-2"></i>Ativar notificações
+                    </button>
+                    <button id="push-subscribe-later" class="btn-secondary flex-1">
+                        Agora não
+                    </button>
+                    <button id="push-subscribe-dismiss" class="btn-secondary flex-1">
+                        Não mostrar novamente
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Scroll to Top -->
     <div class="scroll-top" id="scrollTop">
         <i class="fas fa-arrow-up"></i>
@@ -2084,22 +2199,240 @@
 
 
 
-        if (!localStorage.getItem('cookiePreferences')) {
-            // Exibir modal de cookies na primeira visita
-            const cookieSettingsModal = document.getElementById('cookie-settings-modal');
-            cookieSettingsModal.classList.remove('hidden');
-        }
-
-
-        // Configurar modal de cookies
-        const cookieSettingsModal = document.getElementById('cookie-settings-modal');;
+        // Configurar modal de cookies e notificações
+        const cookieSettingsModal = document.getElementById('cookie-settings-modal');
         const closeSettings = document.getElementById('close-settings');
         const saveSettings = document.getElementById('save-settings');
+
+        const pushSubscribeModal = document.getElementById('push-subscribe-modal');
+        const pushSubscribeClose = document.getElementById('push-subscribe-close');
+        const pushSubscribeLater = document.getElementById('push-subscribe-later');
+        const pushSubscribeDismiss = document.getElementById('push-subscribe-dismiss');
+        const pushSubscribeActivate = document.getElementById('push-subscribe-activate');
+        const pushSubscribeFeedback = document.getElementById('push-subscribe-feedback');
+        const pushSubscribeEmail = document.getElementById('push-subscribe-email');
+
+        const PUSH_MODAL_STATE_KEY = 'pushSubscribeModalState';
+        const PUSH_MODAL_DISMISSED_KEY = 'pushModalDismissed';
+
+        function hasNotificationPermissionApi() {
+            return 'Notification' in window;
+        }
+
+        function supportsWebPushNotifications() {
+            return 'serviceWorker' in navigator && 'PushManager' in window;
+        }
+
+        function hasAcceptedPrivacyPolicy() {
+            return !!localStorage.getItem('cookiePreferences');
+        }
+
+        function hasActivatedPushSubscription() {
+            const state = localStorage.getItem(PUSH_MODAL_STATE_KEY);
+            return state === 'subscribed' || Notification.permission === 'granted';
+        }
+
+        function hasDismissedPushModal() {
+            return localStorage.getItem(PUSH_MODAL_DISMISSED_KEY) === '1';
+        }
+
+        function shouldShowPushModal() {
+            if (!hasAcceptedPrivacyPolicy()) return false;
+            if (hasActivatedPushSubscription()) return false;
+            if (hasDismissedPushModal()) return false;
+            return true;
+        }
+
+        async function subscribeEmailLead(email, source) {
+            if (!email) return false;
+
+            const payload = {
+                name: 'Inscricao Notificacoes Blog',
+                email,
+                source: source || 'home-modal',
+                wantsEmail: true,
+                wantsPush: false
+            };
+
+            try {
+                const response = await fetch('/api/subscribers', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        name: payload.name,
+                        email,
+                        status: 'new',
+                        project: 'newsletter',
+                        message: 'Lead originado no modal de notificacoes da home'
+                    })
+                }).catch(() => {});
+
+                return response.ok;
+            } catch (_) {
+                return false;
+            }
+        }
+
+        function showPushModal() {
+            pushSubscribeFeedback.textContent = '';
+            pushSubscribeModal.classList.remove('hidden');
+        }
+
+        function hidePushModal() {
+            pushSubscribeModal.classList.add('hidden');
+        }
+
+        function urlBase64ToUint8Array(base64String) {
+            const padding = '='.repeat((4 - (base64String.length % 4)) % 4);
+            const base64 = (base64String + padding).replace(/-/g, '+').replace(/_/g, '/');
+            const rawData = window.atob(base64);
+            const outputArray = new Uint8Array(rawData.length);
+
+            for (let i = 0; i < rawData.length; ++i) {
+                outputArray[i] = rawData.charCodeAt(i);
+            }
+
+            return outputArray;
+        }
+
+        async function activateBrowserNotifications() {
+            const originalText = pushSubscribeActivate.innerHTML;
+            pushSubscribeActivate.disabled = true;
+            pushSubscribeActivate.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Ativando...';
+
+            try {
+                if (!hasNotificationPermissionApi()) {
+                    const email = pushSubscribeEmail.value.trim();
+                    if (!email) {
+                        pushSubscribeFeedback.textContent = 'Seu navegador nao suporta notificacoes nativas. Informe e-mail para receber atualizacoes.';
+                        return;
+                    }
+
+                    const ok = await subscribeEmailLead(email, 'home-modal-no-notification-api');
+                    if (!ok) {
+                        pushSubscribeFeedback.textContent = 'Nao foi possivel concluir sua inscricao agora.';
+                        return;
+                    }
+
+                    localStorage.setItem(PUSH_MODAL_STATE_KEY, 'subscribed');
+                    localStorage.removeItem(PUSH_MODAL_DISMISSED_KEY);
+                    pushSubscribeFeedback.textContent = 'Inscricao por e-mail confirmada com sucesso.';
+                    setTimeout(() => hidePushModal(), 900);
+                    return;
+                }
+
+                let permission = Notification.permission;
+                if (permission === 'default') {
+                    permission = await Notification.requestPermission();
+                }
+
+                if (permission !== 'granted') {
+                    const email = pushSubscribeEmail.value.trim();
+                    if (!email) {
+                        pushSubscribeFeedback.textContent = 'Permissao nao concedida. Informe e-mail para receber atualizacoes.';
+                        return;
+                    }
+
+                    const ok = await subscribeEmailLead(email, 'home-modal-permission-not-granted');
+                    if (!ok) {
+                        pushSubscribeFeedback.textContent = 'Nao foi possivel concluir sua inscricao agora.';
+                        return;
+                    }
+
+                    localStorage.setItem(PUSH_MODAL_STATE_KEY, 'subscribed');
+                    localStorage.removeItem(PUSH_MODAL_DISMISSED_KEY);
+                    pushSubscribeFeedback.textContent = 'Inscricao por e-mail confirmada com sucesso.';
+                    setTimeout(() => hidePushModal(), 900);
+                    return;
+                }
+
+                if (!supportsWebPushNotifications()) {
+                    const email = pushSubscribeEmail.value.trim();
+                    if (!email) {
+                        pushSubscribeFeedback.textContent = 'Notificacao ativada, mas este navegador nao suporta assinatura web push completa. Informe e-mail para atualizacoes.';
+                        return;
+                    }
+
+                    const ok = await subscribeEmailLead(email, 'home-modal-no-web-push');
+                    if (!ok) {
+                        pushSubscribeFeedback.textContent = 'Nao foi possivel concluir sua inscricao por e-mail.';
+                        return;
+                    }
+
+                    localStorage.setItem(PUSH_MODAL_STATE_KEY, 'subscribed');
+                    localStorage.removeItem(PUSH_MODAL_DISMISSED_KEY);
+                    pushSubscribeFeedback.textContent = 'Inscricao por e-mail confirmada com sucesso.';
+                    setTimeout(() => hidePushModal(), 900);
+                    return;
+                }
+
+                const keyRes = await fetch('/api/push/vapid-public-key');
+                const keyData = await keyRes.json();
+
+                if (!keyRes.ok || !keyData?.publicKey) {
+                    pushSubscribeFeedback.textContent = 'Não foi possível obter a chave de notificação no servidor.';
+                    return;
+                }
+
+                const registration = await navigator.serviceWorker.register('/sw.js');
+                const existing = await registration.pushManager.getSubscription();
+                const subscription = existing || await registration.pushManager.subscribe({
+                    userVisibleOnly: true,
+                    applicationServerKey: urlBase64ToUint8Array(keyData.publicKey)
+                });
+
+                const subscribeRes = await fetch('/api/push/subscribe', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        subscription,
+                        email: pushSubscribeEmail.value.trim(),
+                        source: 'home-modal',
+                        userAgent: navigator.userAgent || ''
+                    })
+                });
+
+                if (!subscribeRes.ok) {
+                    pushSubscribeFeedback.textContent = 'Falha ao concluir assinatura de notificações.';
+                    return;
+                }
+
+                localStorage.setItem(PUSH_MODAL_STATE_KEY, 'subscribed');
+                localStorage.removeItem(PUSH_MODAL_DISMISSED_KEY);
+                pushSubscribeFeedback.textContent = 'Notificações ativadas com sucesso.';
+                setTimeout(() => hidePushModal(), 900);
+            } catch (error) {
+                pushSubscribeFeedback.textContent = 'Erro ao ativar notificações. Tente novamente em instantes.';
+            } finally {
+                pushSubscribeActivate.disabled = false;
+                pushSubscribeActivate.innerHTML = originalText;
+            }
+        }
+
+        function initConsentAndPushFlow() {
+            if (!hasAcceptedPrivacyPolicy()) {
+                setTimeout(() => {
+                    cookieSettingsModal.classList.remove('hidden');
+                }, 5000);
+                return;
+            }
+
+            if (shouldShowPushModal()) {
+                setTimeout(() => showPushModal(), 1200);
+            }
+        }
 
 
 
         closeSettings.addEventListener('click', () => {
             cookieSettingsModal.classList.add('hidden');
+            localStorage.setItem(PUSH_MODAL_STATE_KEY, localStorage.getItem(PUSH_MODAL_STATE_KEY) || 'not-now');
         });
 
         saveSettings.addEventListener('click', () => {
@@ -2114,8 +2447,28 @@
             }));
 
             cookieSettingsModal.classList.add('hidden');
-            // alert('Preferências de cookies salvas com sucesso!');
+            if (shouldShowPushModal()) {
+                setTimeout(() => showPushModal(), 600);
+            }
         });
+
+        pushSubscribeClose.addEventListener('click', () => {
+            localStorage.setItem(PUSH_MODAL_STATE_KEY, 'not-now');
+            hidePushModal();
+        });
+
+        pushSubscribeLater.addEventListener('click', () => {
+            localStorage.setItem(PUSH_MODAL_STATE_KEY, 'not-now');
+            hidePushModal();
+        });
+
+        pushSubscribeDismiss.addEventListener('click', () => {
+            localStorage.setItem(PUSH_MODAL_DISMISSED_KEY, '1');
+            localStorage.setItem(PUSH_MODAL_STATE_KEY, 'not-now');
+            hidePushModal();
+        });
+
+        pushSubscribeActivate.addEventListener('click', activateBrowserNotifications);
 
 
 
@@ -2130,6 +2483,7 @@
         document.addEventListener('DOMContentLoaded', function () {
             // Inicializar posts de exemplo
             initializeExamplePosts();
+            initConsentAndPushFlow();
         })
 
 

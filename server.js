@@ -6,10 +6,11 @@ const { uploadPostFile } = require('./services/upload');
 const { htmlInner } = require('./services/innerHtmlPost');
 const { loginAdmin, tokemAdmin, logoutAdmin } = require('./services/login');
 const { requireAdminAuth } = require('./services/adminAuth');
-const { sendContact, getContacts, updateStatus, deleteContactById } = require('./services/contato');
+const { sendContact, getContacts, updateStatus, replyToContact, deleteContactById } = require('./services/contato');
 const { testEmail } = require('./services/testeEmail');
 const { postView } = require('./services/postViews')
 const { registerPushToken, getPublicVapidKeyHandler } = require('./services/notificationServices');
+const { getCampaignAudience, getCampaignHistory, sendCampaign, testPostBroadcast } = require('./services/emailCampaign');
 const { getVisitStats, listRecentVisits, getVisitsByDay, getDetailedStats, listDeviceLogs } = require('./database/deviceLogs');
 const { getPostsStatusSummary, getPosts, getPostBySlug } = require('./database/postsDB');
 const { listTopViewedPosts } = require('./database/postViewsDb');
@@ -44,13 +45,45 @@ const {
 
 const app = express();
 const PORT = 3000;
+const SITE_BASE_URL = 'https://www.adrianosena.dev.br';
 
 upload = uploadPostFile();
+
+function extractFirstImageFromHtml(html) {
+  const content = String(html || '');
+  const match = content.match(/<img[^>]+src=["']([^"']+)["']/i);
+  return match && match[1] ? String(match[1]).trim() : '';
+}
+
+function resolveShareImagePath(post) {
+  const candidate = (post && (post.image || extractFirstImageFromHtml(post.content))) || '/logoWeb.png';
+  const value = String(candidate || '').trim();
+  if (!value) return '/logoWeb.png';
+  if (/^https?:\/\//i.test(value)) return value;
+  return value.startsWith('/') ? value : `/${value}`;
+}
+
+function toAbsoluteSiteUrl(pathOrUrl) {
+  const value = String(pathOrUrl || '').trim();
+  if (!value) return `${SITE_BASE_URL}/logoWeb.png`;
+  if (/^https?:\/\//i.test(value)) return value;
+  return `${SITE_BASE_URL}${value.startsWith('/') ? value : `/${value}`}`;
+}
+
+function getIncomingSlug(req) {
+  const raw = req.params?.slug || req.params?.[0] || req.query?.slug || '';
+  try {
+    return decodeURIComponent(String(raw).trim());
+  } catch (_) {
+    return String(raw || '').trim();
+  }
+}
 
 
 // --- Middlewares ---
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
 app.use(express.static('public'));
 
 // ================================================================
@@ -69,8 +102,14 @@ app.use((req, res, next) => {
 app.get('/', (req, res) => res.sendFile(__dirname + '/public/index.html'));
 app.get('/blog', (req, res) => res.sendFile(__dirname + '/public/blog.html'));
 app.get('/privacidade', (req, res) => res.sendFile(__dirname + '/public/privacidade.html'));
+app.get('/post/:slug', async (req, res) => {
+  const slug = String(req.params.slug || '').trim();
+  htmlInner(slug, PORT, res);
+});
 app.get("/post", async (req, res) => {
-  const slug = req.query.slug;
+  const querySlug = String(req.query.slug || '').trim();
+  const pathSlug = req.path.startsWith('/post/') ? String(req.path.slice('/post/'.length)).trim() : '';
+  const slug = querySlug || pathSlug;
   htmlInner(slug, PORT, res);
 });
 
@@ -115,6 +154,7 @@ app.get('/admin/usuarios', (req, res) => res.sendFile(__dirname + '/public/admin
 app.get('/admin/dispositivos', (req, res) => res.sendFile(__dirname + '/public/admin-devices.html'));
 app.get('/admin/homepage', (req, res) => res.sendFile(__dirname + '/public/admin-homepage.html'));
 app.get('/admin/comentarios', (req, res) => res.sendFile(__dirname + '/public/admin-comments.html'));
+app.get('/admin/emails', (req, res) => res.sendFile(__dirname + '/public/admin-emails.html'));
 
 // ----------------------------------------------------------------
 // LOGIN
@@ -156,6 +196,22 @@ app.get('/api/posts/slug/:slug', async (req, res) => {
     res.json(post);
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+app.get('/api/og/post/:slug', async (req, res) => {
+  try {
+    const post = await getPostBySlug(req.params.slug);
+    const imagePath = resolveShareImagePath(post);
+    const imageUrl = toAbsoluteSiteUrl(imagePath);
+
+    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
+
+    return res.redirect(302, imageUrl);
+  } catch (err) {
+    return res.redirect(302, `${SITE_BASE_URL}/logoWeb.png`);
   }
 });
 
@@ -206,6 +262,12 @@ app.get('/api/contact', async (req, res) => {
 app.patch('/api/contact/:id/status', async (req, res) => {
   await requireAdminAuth(req, res, async () => {
   updateStatus(req, res);
+  });
+});
+
+app.post('/api/contact/:id/reply', async (req, res) => {
+  await requireAdminAuth(req, res, async () => {
+  replyToContact(req, res);
   });
 });
 
@@ -449,6 +511,33 @@ app.delete('/api/admin/comments/:id', async (req, res) => {
 app.patch('/api/admin/comments/bulk/status', async (req, res) => {
   await requireAdminAuth(req, res, async () => {
     await bulkUpdateCommentsStatusAdmin(req, res);
+  });
+});
+
+// ----------------------------------------------------------------
+// CAMPANHAS DE E-MAIL (ADMIN)
+// ----------------------------------------------------------------
+app.get('/api/admin/email-campaign/audience', async (req, res) => {
+  await requireAdminAuth(req, res, async () => {
+    await getCampaignAudience(req, res);
+  });
+});
+
+app.get('/api/admin/email-campaign/history', async (req, res) => {
+  await requireAdminAuth(req, res, async () => {
+    await getCampaignHistory(req, res);
+  });
+});
+
+app.post('/api/admin/email-campaign/send', async (req, res) => {
+  await requireAdminAuth(req, res, async () => {
+    await sendCampaign(req, res);
+  });
+});
+
+app.post('/api/admin/posts/:id/broadcast-test', async (req, res) => {
+  await requireAdminAuth(req, res, async () => {
+    await testPostBroadcast(req, res);
   });
 });
 

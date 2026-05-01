@@ -1,5 +1,5 @@
 const { createPost, getPosts, getPostById, updatePost, deletePost } = require('../database/postsDB');
-const {fetchPushTokens} = require('../services/notificationServices');
+const { sendNewPostBroadcast } = require('../services/notificationServices');
 const { createCategoryIfNotExists, createTagsIfNotExists } = require('../database/taxonomiesDb');
 
 module.exports = {
@@ -45,12 +45,13 @@ module.exports = {
             await createTagsIfNotExists(post.tags);
 
             if (post.status === 'published') {
-                await fetchPushTokens({
-                    title: 'Novo post no blog',
-                    body: post.title,
-                    postId: result.id,
+                await sendNewPostBroadcast({
+                    id: result.id,
+                    title: post.title,
+                    excerpt: post.excerpt,
                     slug: post.slug,
-                    url: '/post?slug=' + encodeURIComponent(post.slug)
+                    image: post.image,
+                    author: post.author
                 });
             }
 
@@ -90,6 +91,7 @@ module.exports = {
     async updatePostId(req, res) {
         try {
             const data = req.body;
+            const currentPost = await getPostById(req.params.id);
             let imageUrl = data.oldImage;
             if (req.file) imageUrl = `/uploads/${req.file.filename}`;
 
@@ -112,6 +114,19 @@ module.exports = {
             await updatePost(req.params.id, post);
             await createCategoryIfNotExists(post.category);
             await createTagsIfNotExists(post.tags);
+
+            const wasPublished = currentPost?.status === 'published';
+            if (!wasPublished && post.status === 'published') {
+                await sendNewPostBroadcast({
+                    id: Number(req.params.id),
+                    title: post.title,
+                    excerpt: post.excerpt,
+                    slug: post.slug,
+                    image: post.image,
+                    author: post.author
+                });
+            }
+
             res.json({ success: true, post });
         } catch (err) {
             res.status(500).json({ success: false, error: err.message });

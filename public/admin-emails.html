@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin - Campanhas de E-mail | Adriano Sena</title>
+  <link rel="shortcut icon" href="logo.jpg" type="image/x-icon">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2563eb;
+      --secondary: #10B981;
+      --dark: #1F2937;
+      --light: #F8FAFC;
+      --text-primary: #1F2937;
+      --text-secondary: #6B7280;
+      --bg-light: #F8FAFC;
+      --bg-card: #FFFFFF;
+      --border-color: rgba(37, 99, 235, 0.1);
+      --gradient: linear-gradient(135deg, #2563eb 0%, #10B981 100%);
+    }
+
+    [data-theme="dark"] {
+      --primary: #3b82f6;
+      --secondary: #10B981;
+      --dark: #0f172a;
+      --light: #1e293b;
+      --text-primary: #F8FAFC;
+      --text-secondary: #D1D5DB;
+      --bg-light: #1e293b;
+      --bg-card: #334155;
+      --border-color: rgba(59, 130, 246, 0.2);
+      --gradient: linear-gradient(135deg, #3b82f6 0%, #10B981 100%);
+    }
+
+    body {
+      background: var(--bg-light);
+      color: var(--text-primary);
+      font-family: Inter, sans-serif;
+      visibility: hidden;
+    }
+
+    h1, h2, h3, h4 { font-family: Poppins, sans-serif; }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+    }
+
+    .btn-primary {
+      background: var(--gradient);
+      color: #fff;
+      border: none;
+      font-weight: 600;
+      transition: all .2s ease;
+    }
+
+    .btn-primary:hover { transform: translateY(-1px); }
+
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid var(--primary);
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: .65rem .75rem;
+      color: var(--text-primary);
+    }
+
+    .form-textarea { min-height: 150px; resize: vertical; }
+
+    .admin-nav { list-style: none; padding: 0; }
+    .admin-nav li { margin-bottom: .4rem; }
+    .admin-nav a {
+      display: block;
+      padding: .65rem .8rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      border-radius: 8px;
+    }
+    .admin-nav a:hover, .admin-nav a.active {
+      background: rgba(96, 165, 250, 0.12);
+      color: var(--primary);
+    }
+    .admin-nav a i { width: 18px; margin-right: .5rem; text-align: center; }
+
+    .history-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .history-table th,
+    .history-table td {
+      border-bottom: 1px solid var(--border-color);
+      padding: .7rem .5rem;
+      text-align: left;
+      vertical-align: top;
+      font-size: .9rem;
+    }
+
+    .history-table th { color: var(--text-secondary); font-weight: 600; }
+  </style>
+  <link rel="stylesheet" href="/css/admin-shell.css" />
+</head>
+
+<body>
+  <header class="w-full sticky top-0 z-30 border-b" style="border-color: var(--border-color); background: var(--bg-card);">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <h1 class="text-xl font-bold">Campanhas de E-mail</h1>
+      <div class="flex items-center gap-3">
+        <button id="theme-toggle" class="btn-secondary px-3 py-2 rounded-lg"><i class="fas fa-adjust"></i></button>
+       
+      </div>
+    </div>
+  </header>
+
+  <section class="py-8 px-6">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-6">
+      <aside class="lg:col-span-1">
+        <div class="admin-sidebar card p-5">
+          <h3 class="text-lg font-bold mb-3">Painel Admin</h3>
+          <ul class="admin-nav">
+            <li><a href="/admin/dashboard"><i class="fas fa-tachometer-alt"></i>Dashboard</a></li>
+            <li><a href="/admin/posts"><i class="fas fa-file-alt"></i>Posts</a></li>
+            <li><a href="/admin/contatos"><i class="fas fa-envelope"></i>Contatos</a></li>
+            <li><a href="/admin/usuarios"><i class="fas fa-users"></i>Usuários</a></li>
+            <li><a href="/admin/emails" class="active"><i class="fas fa-bullhorn"></i>Anúncios E-mail</a></li>
+          </ul>
+        </div>
+      </aside>
+
+      <main class="lg:col-span-3 space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4" id="audience-cards">
+          <div class="card p-4"><div class="text-sm" style="color:var(--text-secondary)">Total único</div><div id="aud-unique" class="text-2xl font-bold">0</div></div>
+          <div class="card p-4"><div class="text-sm" style="color:var(--text-secondary)">Inscritos</div><div id="aud-subs" class="text-2xl font-bold">0</div></div>
+          <div class="card p-4"><div class="text-sm" style="color:var(--text-secondary)">Usuários</div><div id="aud-users" class="text-2xl font-bold">0</div></div>
+          <div class="card p-4"><div class="text-sm" style="color:var(--text-secondary)">Contatos</div><div id="aud-contacts" class="text-2xl font-bold">0</div></div>
+        </div>
+
+        <div class="card p-6">
+          <h2 class="text-xl font-bold mb-4">Enviar anúncio</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div>
+              <label class="block text-sm mb-2">Destino</label>
+              <select id="target-mode" class="form-select">
+                <option value="all">Todos os e-mails cadastrados</option>
+                <option value="single">E-mail específico</option>
+              </select>
+            </div>
+            <div id="single-email-wrap" class="hidden">
+              <label class="block text-sm mb-2">E-mail específico</label>
+              <input id="single-email" type="email" class="form-input" placeholder="cliente@empresa.com" />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div>
+              <label class="block text-sm mb-2">Categoria</label>
+              <select id="campaign-category" class="form-select">
+                <option value="promocoes">Promoções</option>
+                <option value="servicos">Serviços</option>
+                <option value="novidades">Novidades</option>
+                <option value="conteudo">Conteúdo</option>
+                <option value="geral">Geral</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm mb-2">Assunto</label>
+              <input id="campaign-subject" class="form-input" placeholder="Ex: Promoção especial da semana" />
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <label class="block text-sm mb-2">Mensagem</label>
+            <textarea id="campaign-message" class="form-textarea" placeholder="Digite a mensagem do anúncio..."></textarea>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
+            <div>
+              <label class="block text-sm mb-2">Texto do botão (opcional)</label>
+              <input id="campaign-cta-text" class="form-input" placeholder="Ex: Saiba mais" />
+            </div>
+            <div>
+              <label class="block text-sm mb-2">Link do botão (opcional)</label>
+              <input id="campaign-cta-url" class="form-input" placeholder="https://adrianosena.dev.br/servicos" />
+            </div>
+          </div>
+
+          <div class="flex gap-3">
+            <button id="send-campaign" class="btn-primary px-5 py-3 rounded-lg">
+              <i class="fas fa-paper-plane mr-2"></i>Enviar anúncio
+            </button>
+            <button id="refresh-audience" class="btn-secondary px-5 py-3 rounded-lg">
+              <i class="fas fa-rotate mr-2"></i>Atualizar audiência
+            </button>
+          </div>
+
+          <p id="campaign-feedback" class="mt-4 text-sm" style="color: var(--text-secondary);"></p>
+        </div>
+
+        <div class="card p-6">
+          <h2 class="text-xl font-bold mb-3">Teste de disparo de novo post</h2>
+          <p class="text-sm mb-3" style="color: var(--text-secondary);">Use esse recurso para reenviar push + e-mail de um post específico por ID.</p>
+          <div class="flex flex-col md:flex-row gap-3">
+            <input id="broadcast-post-id" class="form-input md:max-w-xs" placeholder="ID do post" />
+            <button id="test-broadcast" class="btn-primary px-5 py-3 rounded-lg">
+              <i class="fas fa-bullhorn mr-2"></i>Testar disparo
+            </button>
+          </div>
+          <p id="broadcast-feedback" class="mt-4 text-sm" style="color: var(--text-secondary);"></p>
+        </div>
+
+        <div class="card p-6">
+          <div class="flex items-center justify-between mb-3">
+            <h2 class="text-xl font-bold">Histórico de campanhas</h2>
+            <button id="refresh-history" class="btn-secondary px-4 py-2 rounded-lg text-sm">
+              <i class="fas fa-rotate mr-2"></i>Atualizar histórico
+            </button>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="history-table">
+              <thead>
+                <tr>
+                  <th>Data</th>
+                  <th>Enviado por</th>
+                  <th>Destino</th>
+                  <th>Categoria</th>
+                  <th>Assunto</th>
+                  <th>Resultado</th>
+                </tr>
+              </thead>
+              <tbody id="history-body">
+                <tr><td colspan="6" style="color:var(--text-secondary)">Sem campanhas registradas.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+  </section>
+
+  <script>
+    const token = localStorage.getItem('adminToken');
+    if (!token) window.location.href = '/login';
+
+    async function authFetch(url, options = {}) {
+      const headers = { ...(options.headers || {}), Authorization: `Bearer ${token}` };
+      const response = await fetch(url, { ...options, headers });
+      if (response.status === 401) {
+        localStorage.removeItem('adminToken');
+        window.location.href = '/login';
+        throw new Error('Sessão expirada');
+      }
+      return response;
+    }
+
+    function applyTheme(theme) {
+      if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+      else document.documentElement.removeAttribute('data-theme');
+    }
+
+    async function loadAudience() {
+      const res = await authFetch('/api/admin/email-campaign/audience');
+      const data = await res.json();
+      if (!res.ok || !data.success) throw new Error(data.error || 'Erro ao carregar audiência');
+      document.getElementById('aud-unique').textContent = data.totals.unique || 0;
+      document.getElementById('aud-subs').textContent = data.totals.subscribers || 0;
+      document.getElementById('aud-users').textContent = data.totals.users || 0;
+      document.getElementById('aud-contacts').textContent = data.totals.contacts || 0;
+    }
+
+    function formatDateTime(dt) {
+      const date = new Date(dt);
+      if (Number.isNaN(date.getTime())) return '-';
+      return date.toLocaleString('pt-BR');
+    }
+
+    async function loadHistory() {
+      const body = document.getElementById('history-body');
+      const res = await authFetch('/api/admin/email-campaign/history?limit=40');
+      const data = await res.json();
+      if (!res.ok || !data.success) throw new Error(data.error || 'Erro ao carregar histórico');
+
+      const rows = Array.isArray(data.rows) ? data.rows : [];
+      if (!rows.length) {
+        body.innerHTML = '<tr><td colspan="6" style="color:var(--text-secondary)">Sem campanhas registradas.</td></tr>';
+        return;
+      }
+
+      body.innerHTML = rows.map((row) => {
+        const destination = row.target_mode === 'single'
+          ? `Específico: ${row.recipient_email || '-'}`
+          : 'Todos os cadastrados';
+        const result = `${row.sent_count || 0}/${row.total_recipients || 0} enviados (${row.failed_count || 0} falhas)`;
+        return `
+          <tr>
+            <td>${formatDateTime(row.created_at)}</td>
+            <td>${row.created_by || '-'}</td>
+            <td>${destination}</td>
+            <td>${row.category || '-'}</td>
+            <td>
+              <div style="font-weight:600">${row.subject || '-'}</div>
+              <div style="color:var(--text-secondary);font-size:.82rem;">${row.message_preview || ''}</div>
+            </td>
+            <td>${result}</td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    async function sendCampaign() {
+      const feedback = document.getElementById('campaign-feedback');
+      const btn = document.getElementById('send-campaign');
+      const targetMode = document.getElementById('target-mode').value;
+      const recipientEmail = document.getElementById('single-email').value.trim();
+      const subject = document.getElementById('campaign-subject').value.trim();
+      const message = document.getElementById('campaign-message').value.trim();
+      const category = document.getElementById('campaign-category').value;
+      const ctaText = document.getElementById('campaign-cta-text').value.trim();
+      const ctaUrl = document.getElementById('campaign-cta-url').value.trim();
+
+      if (!subject || !message) {
+        feedback.textContent = 'Assunto e mensagem são obrigatórios.';
+        return;
+      }
+
+      if (targetMode === 'single' && !recipientEmail) {
+        feedback.textContent = 'Informe o e-mail específico para envio.';
+        return;
+      }
+
+      const original = btn.innerHTML;
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Enviando...';
+      feedback.textContent = 'Enviando campanha...';
+
+      try {
+        const res = await authFetch('/api/admin/email-campaign/send', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ targetMode, recipientEmail, subject, message, category, ctaText, ctaUrl })
+        });
+
+        const data = await res.json();
+        if (!res.ok || !data.success) throw new Error(data.error || 'Falha no envio');
+
+        feedback.textContent = `Campanha enviada. Total: ${data.total}, Sucesso: ${data.sent}, Falhas: ${data.failed}.`;
+        await loadHistory();
+      } catch (err) {
+        feedback.textContent = err.message || 'Erro ao enviar campanha.';
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = original;
+      }
+    }
+
+    async function testBroadcast() {
+      const feedback = document.getElementById('broadcast-feedback');
+      const btn = document.getElementById('test-broadcast');
+      const postId = document.getElementById('broadcast-post-id').value.trim();
+      if (!postId) {
+        feedback.textContent = 'Informe o ID do post.';
+        return;
+      }
+
+      const original = btn.innerHTML;
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Disparando...';
+      feedback.textContent = 'Disparando notificações e e-mails...';
+
+      try {
+        const res = await authFetch(`/api/admin/posts/${encodeURIComponent(postId)}/broadcast-test`, { method: 'POST' });
+        const data = await res.json();
+        if (!res.ok || !data.success) throw new Error(data.error || 'Falha no disparo');
+
+        const sent = data.result?.emails?.sent || 0;
+        const failed = data.result?.emails?.failed || 0;
+        feedback.textContent = `Disparo do post "${data.postTitle}" concluído. E-mails enviados: ${sent}, falhas: ${failed}.`;
+      } catch (err) {
+        feedback.textContent = err.message || 'Erro ao disparar.';
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = original;
+      }
+    }
+
+    document.getElementById('target-mode').addEventListener('change', (e) => {
+      const wrap = document.getElementById('single-email-wrap');
+      if (e.target.value === 'single') wrap.classList.remove('hidden');
+      else wrap.classList.add('hidden');
+    });
+
+    document.getElementById('send-campaign').addEventListener('click', sendCampaign);
+    document.getElementById('test-broadcast').addEventListener('click', testBroadcast);
+    document.getElementById('refresh-audience').addEventListener('click', loadAudience);
+    document.getElementById('refresh-history').addEventListener('click', loadHistory);
+
+    document.getElementById('theme-toggle').addEventListener('click', () => {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      const next = isDark ? 'light' : 'dark';
+      localStorage.setItem('theme', next);
+      applyTheme(next);
+    });
+
+    (async function init() {
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      applyTheme(savedTheme);
+      await loadAudience();
+      await loadHistory();
+      document.body.style.visibility = 'visible';
+    })();
+  </script>
+  <script src="/js/admin-shell.js"></script>
+</body>
+
+</html>

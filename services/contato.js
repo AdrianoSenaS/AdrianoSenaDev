@@ -1,4 +1,5 @@
-const { createContact, listContacts, updateContactStatus, deleteContact } = require("../database/contatosDb");
+const { createContact, listContacts, getContactById, updateContactStatus, deleteContact } = require("../database/contatosDb");
+const { sendContactReplyEmail } = require("./email");
 
 
 module.exports = {
@@ -46,6 +47,37 @@ module.exports = {
             if (!result.updated) {
                 return res.status(404).json({ error: "Contato não encontrado" });
             }
+
+            return res.json({ success: true });
+        } catch (err) {
+            return res.status(500).json({ success: false, error: err.message });
+        }
+    },
+
+    async replyToContact(req, res) {
+        try {
+            const id = Number(req.params.id);
+            const replyMessage = String(req.body?.message || '').trim();
+
+            if (!id) {
+                return res.status(400).json({ error: "ID do contato inválido" });
+            }
+
+            if (!replyMessage) {
+                return res.status(400).json({ error: "A mensagem de resposta é obrigatória" });
+            }
+
+            const contact = await getContactById(id);
+            if (!contact) {
+                return res.status(404).json({ error: "Contato não encontrado" });
+            }
+
+            const emailSent = await sendContactReplyEmail(contact, replyMessage);
+            if (!emailSent) {
+                return res.status(500).json({ error: "Falha ao enviar e-mail de resposta" });
+            }
+
+            await updateContactStatus(id, 'responded');
 
             return res.json({ success: true });
         } catch (err) {

@@ -46,7 +46,35 @@
     .meta { color: var(--text-secondary); font-size: .82rem; }
     .comment-text { margin-top: 6px; white-space: pre-wrap; }
     .text-primary-color { color: var(--primary); }
+
+    @media (max-width: 767px) {
+      .comments-toolbar,
+      .bulk-actions,
+      .comment-actions,
+      .comments-pagination {
+        width: 100%;
+      }
+
+      .bulk-actions,
+      .comment-actions,
+      .comments-pagination {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      .bulk-actions button,
+      .comment-actions button,
+      .comments-pagination button {
+        width: 100%;
+      }
+
+      .comments-pagination-info {
+        width: 100%;
+        text-align: center;
+      }
+    }
   </style>
+  <link rel="stylesheet" href="/css/admin-shell.css" />
 </head>
 <body>
   <header class="sticky top-0 z-50 border-b" style="background: var(--bg-card); border-color: var(--border-color);">
@@ -57,7 +85,7 @@
       </div>
       <div class="flex items-center gap-2">
         <button id="theme-toggle" class="btn-secondary px-3 py-2 rounded-lg text-sm"><i class="fas fa-adjust"></i></button>
-        <a href="/admin/dashboard" class="btn-secondary px-4 py-2 rounded-lg text-sm"><i class="fas fa-arrow-left mr-2"></i>Dashboard</a>
+      
       </div>
     </div>
   </header>
@@ -65,7 +93,7 @@
   <section class="py-8 px-6">
     <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-6">
       <aside class="lg:col-span-1">
-        <div class="card p-5 sticky top-24">
+        <div class="admin-sidebar card p-5 sticky top-24">
           <h3 class="font-bold mb-3">Painel Admin</h3>
           <ul class="admin-nav">
             <li><a href="/admin/dashboard"><i class="fas fa-tachometer-alt mr-2"></i>Dashboard</a></li>
@@ -105,9 +133,9 @@
         </div>
 
         <div class="card p-5">
-          <div class="flex flex-wrap justify-between items-center gap-3 mb-3">
+          <div class="comments-toolbar flex flex-wrap justify-between items-center gap-3 mb-3">
             <h3 class="font-bold">Comentários</h3>
-            <div class="flex items-center gap-2 text-sm">
+            <div class="bulk-actions flex flex-wrap items-center gap-2 text-sm">
               <label class="inline-flex items-center gap-2">
                 <input type="checkbox" id="select-all" />
                 Selecionar página
@@ -122,8 +150,8 @@
           <div id="comments-list"></div>
           <div id="empty-state" class="meta hidden">Nenhum comentário encontrado para os filtros atuais.</div>
 
-          <div class="mt-4 flex justify-between items-center gap-3">
-            <div id="pagination-info" class="meta"></div>
+          <div class="comments-pagination mt-4 flex flex-wrap justify-between items-center gap-3">
+            <div id="pagination-info" class="comments-pagination-info meta"></div>
             <div class="flex items-center gap-2">
               <button id="prev-page" class="btn-secondary rounded-lg px-3 py-1 text-sm"><i class="fas fa-chevron-left"></i></button>
               <button id="next-page" class="btn-secondary rounded-lg px-3 py-1 text-sm"><i class="fas fa-chevron-right"></i></button>
@@ -211,7 +239,7 @@
           </div>
           <div class="meta mt-1">Post: <a class="text-primary-color" href="/post?slug=${encodeURIComponent(c.postSlug || '')}" target="_blank">${esc(c.postTitle || `#${c.postId}`)}</a></div>
           <div class="comment-text">${esc(c.message)}</div>
-          <div class="flex flex-wrap gap-2 mt-3">
+          <div class="comment-actions flex flex-wrap gap-2 mt-3">
             <button class="btn-secondary rounded-lg px-3 py-1 text-sm" onclick="updateStatus(${c.id}, 'approved')"><i class="fas fa-check mr-1"></i>Aprovar</button>
             <button class="btn-secondary rounded-lg px-3 py-1 text-sm" onclick="updateStatus(${c.id}, 'pending')"><i class="fas fa-clock mr-1"></i>Pendente</button>
             <button class="btn-secondary rounded-lg px-3 py-1 text-sm" onclick="updateStatus(${c.id}, 'rejected')"><i class="fas fa-ban mr-1"></i>Rejeitar</button>
@@ -387,5 +415,6 @@
       await loadComments();
     })();
   </script>
+  <script src="/js/admin-shell.js"></script>
 </body>
 </html>

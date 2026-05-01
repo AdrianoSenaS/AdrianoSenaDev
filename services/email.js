@@ -132,5 +132,204 @@ User Agent: ${deviceInfo.user_agent}`
             console.error('❌ Erro ao enviar e-mail:', error.message);
             return false;
         }
+    },
+
+    async sendContactReplyEmail(contact, replyMessage) {
+        try {
+            const transporter = createTransporter();
+
+            const cleanName = String(contact.name || 'Cliente').trim();
+            const cleanProject = String(contact.project || 'Não informado').trim();
+            const cleanOriginalMessage = String(contact.message || '').trim();
+            const cleanReplyMessage = String(replyMessage || '').trim();
+
+            const mailOptions = {
+                from: `"Adriano Sena" <${process.env.SMTP_USER}>`,
+                to: contact.email,
+                subject: 'Resposta ao seu contato',
+                html: `
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <meta charset="utf-8">
+                    <style>
+                        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+                        .container { max-width: 640px; margin: 0 auto; padding: 20px; }
+                        .header { background: #2563eb; color: #fff; padding: 20px; border-radius: 8px 8px 0 0; }
+                        .content { background: #f8fafc; padding: 20px; border-radius: 0 0 8px 8px; }
+                        .box { background: #fff; border-left: 4px solid #10b981; padding: 14px; border-radius: 6px; margin-bottom: 12px; }
+                    </style>
+                </head>
+                <body>
+                    <div class="container">
+                        <div class="header">
+                            <h2 style="margin:0;">Olá, ${cleanName}!</h2>
+                        </div>
+                        <div class="content">
+                            <p>Recebemos sua mensagem e segue abaixo a resposta:</p>
+                            <div class="box">
+                                <strong>Resposta:</strong>
+                                <p style="white-space: pre-line; margin-bottom: 0;">${cleanReplyMessage}</p>
+                            </div>
+                            <div class="box">
+                                <strong>Sua mensagem original:</strong>
+                                <p style="white-space: pre-line; margin-bottom: 0;">${cleanOriginalMessage}</p>
+                            </div>
+                            <p><strong>Projeto:</strong> ${cleanProject}</p>
+                            <p>Atenciosamente,<br>Adriano Sena</p>
+                        </div>
+                    </div>
+                </body>
+                </html>
+            `,
+                text: `Olá, ${cleanName}!
+
+Recebemos sua mensagem e segue abaixo a resposta:
+
+${cleanReplyMessage}
+
+--- Sua mensagem original ---
+${cleanOriginalMessage}
+
+Projeto: ${cleanProject}
+
+Atenciosamente,
+Adriano Sena`
+            };
+
+            const info = await transporter.sendMail(mailOptions);
+            console.log('📧 Resposta ao contato enviada com sucesso:', info.messageId);
+            return true;
+        } catch (error) {
+            console.error('❌ Erro ao enviar resposta ao contato:', error.message);
+            return false;
+        }
+    },
+
+    async sendNewPostEmail(recipientEmail, post) {
+        try {
+            const transporter = createTransporter();
+
+            const postTitle = String(post?.title || 'Novo post publicado').trim();
+            const postExcerpt = String(post?.excerpt || '').trim();
+            const postSlug = String(post?.slug || '').trim();
+            const postUrl = postSlug
+                ? `https://adrianosena.dev.br/post?slug=${encodeURIComponent(postSlug)}`
+                : 'https://adrianosena.dev.br/blog';
+
+            const mailOptions = {
+                from: `"Adriano Sena Blog" <${process.env.SMTP_USER}>`,
+                to: recipientEmail,
+                subject: `Novo post: ${postTitle}`,
+                html: `
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <meta charset="utf-8">
+                    <style>
+                        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+                        .container { max-width: 640px; margin: 0 auto; padding: 20px; }
+                        .header { background: #2563eb; color: #fff; padding: 20px; border-radius: 8px 8px 0 0; }
+                        .content { background: #f8fafc; padding: 20px; border-radius: 0 0 8px 8px; }
+                        .btn { display: inline-block; padding: 12px 18px; border-radius: 8px; background: #2563eb; color: #fff !important; text-decoration: none; font-weight: bold; }
+                    </style>
+                </head>
+                <body>
+                    <div class="container">
+                        <div class="header">
+                            <h2 style="margin:0;">Novo artigo no blog</h2>
+                        </div>
+                        <div class="content">
+                            <h3 style="margin-top:0;">${postTitle}</h3>
+                            ${postExcerpt ? `<p>${postExcerpt}</p>` : '<p>Acabamos de publicar um novo conteúdo no blog.</p>'}
+                            <p>
+                                <a href="${postUrl}" class="btn">Ler artigo agora</a>
+                            </p>
+                            <p style="font-size:12px;color:#666;">Se o botão não abrir, acesse: ${postUrl}</p>
+                        </div>
+                    </div>
+                </body>
+                </html>
+            `,
+                text: `Novo artigo no blog\n\n${postTitle}\n\n${postExcerpt || 'Acabamos de publicar um novo conteúdo no blog.'}\n\nLeia em: ${postUrl}`
+            };
+
+            const info = await transporter.sendMail(mailOptions);
+            console.log('📧 E-mail de novo post enviado:', info.messageId, '->', recipientEmail);
+            return true;
+        } catch (error) {
+            console.error('❌ Erro ao enviar e-mail de novo post para', recipientEmail, '-', error.message);
+            return false;
+        }
+    },
+
+    async sendAnnouncementEmail(recipientEmail, campaign) {
+        try {
+            const transporter = createTransporter();
+
+            const subject = String(campaign?.subject || 'Comunicado').trim();
+            const category = String(campaign?.category || 'geral').trim();
+            const message = String(campaign?.message || '').trim();
+            const ctaText = String(campaign?.ctaText || '').trim();
+            const ctaUrl = String(campaign?.ctaUrl || '').trim();
+
+            const categoryLabelMap = {
+                promocoes: 'Promocoes',
+                servicos: 'Servicos',
+                novidades: 'Novidades',
+                conteudo: 'Conteudo',
+                geral: 'Geral'
+            };
+
+            const categoryLabel = categoryLabelMap[category] || 'Geral';
+
+            const htmlMessage = message
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/\n/g, '<br>');
+
+            const mailOptions = {
+                from: `"Adriano Sena" <${process.env.SMTP_USER}>`,
+                to: recipientEmail,
+                subject,
+                html: `
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <meta charset="utf-8">
+                    <style>
+                        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+                        .container { max-width: 640px; margin: 0 auto; padding: 20px; }
+                        .header { background: #2563eb; color: #fff; padding: 20px; border-radius: 8px 8px 0 0; }
+                        .content { background: #f8fafc; padding: 20px; border-radius: 0 0 8px 8px; }
+                        .badge { display: inline-block; padding: 4px 10px; border-radius: 999px; background: #dbeafe; color: #1d4ed8; font-size: 12px; font-weight: bold; margin-bottom: 10px; }
+                        .btn { display: inline-block; padding: 12px 18px; border-radius: 8px; background: #2563eb; color: #fff !important; text-decoration: none; font-weight: bold; }
+                    </style>
+                </head>
+                <body>
+                    <div class="container">
+                        <div class="header">
+                            <h2 style="margin:0;">${subject}</h2>
+                        </div>
+                        <div class="content">
+                            <div class="badge">${categoryLabel}</div>
+                            <p style="white-space: pre-line;">${htmlMessage}</p>
+                            ${ctaText && ctaUrl ? `<p><a class="btn" href="${ctaUrl}">${ctaText}</a></p>` : ''}
+                        </div>
+                    </div>
+                </body>
+                </html>
+            `,
+                text: `${subject}\n\nCategoria: ${categoryLabel}\n\n${message}${ctaText && ctaUrl ? `\n\n${ctaText}: ${ctaUrl}` : ''}`
+            };
+
+            const info = await transporter.sendMail(mailOptions);
+            console.log('📧 Anuncio enviado:', info.messageId, '->', recipientEmail);
+            return true;
+        } catch (error) {
+            console.error('❌ Erro ao enviar anuncio para', recipientEmail, '-', error.message);
+            return false;
+        }
     }
 }

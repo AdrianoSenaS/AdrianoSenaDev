@@ -13,13 +13,39 @@ function safeExcerpt(post) {
   return plain.slice(0, 180) || "Conteudo tecnico sobre sistemas, apps, servidores e boas praticas para empresas.";
 }
 
+function extractFirstImageFromHtml(html) {
+  const content = String(html || "");
+  const match = content.match(/<img[^>]+src=["']([^"']+)["']/i);
+  return match && match[1] ? String(match[1]).trim() : "";
+}
+
+function toAbsoluteImageUrl(urlPath, baseUrl) {
+  const value = String(urlPath || "").trim();
+  if (!value) return `${baseUrl}/logoWeb.png`;
+  if (/^https?:\/\//i.test(value)) return value;
+  return value.startsWith("/") ? `${baseUrl}${value}` : `${baseUrl}/${value}`;
+}
+
+function withCacheBust(url, seed) {
+  const rawUrl = String(url || "").trim();
+  if (!rawUrl) return rawUrl;
+  const token = encodeURIComponent(String(seed || Date.now()));
+  return rawUrl.includes("?") ? `${rawUrl}&v=${token}` : `${rawUrl}?v=${token}`;
+}
+
 module.exports = {
   HtmlPost(post) {
+    const baseUrl = "https://www.adrianosena.dev.br";
     const slug = post.slug || "";
     const title = escHtml(post.title || "Post");
     const excerpt = escHtml(safeExcerpt(post));
-    const imagePath = post.image || "/logoWeb.png";
-    const fullImage = imagePath.startsWith("http") ? imagePath : `https://adrianosena.dev.br${imagePath}`;
+    const imageCandidate = post.image || extractFirstImageFromHtml(post.content) || "/logoWeb.png";
+    const fullImage = toAbsoluteImageUrl(imageCandidate, baseUrl);
+    const fullImageShare = withCacheBust(fullImage, `${post.id || ""}-${post.createdAt || ""}`);
+    const imagePath = /^https?:\/\//i.test(String(imageCandidate || ""))
+      ? String(imageCandidate)
+      : (String(imageCandidate).startsWith("/") ? String(imageCandidate) : `/${String(imageCandidate)}`);
+    const canonicalUrl = `${baseUrl}/post?slug=${encodeURIComponent(slug)}`;
     const facebookAppId = process.env.FACEBOOK_APP_ID || "";
 
     const html = `<!DOCTYPE html>
@@ -29,20 +55,24 @@ module.exports = {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>${title} | Adriano Sena Dev</title>
 
-  <link rel="canonical" href="https://adrianosena.dev.br/post?slug=${encodeURIComponent(slug)}" />
+  <link rel="canonical" href="${canonicalUrl}" />
   <meta name="description" content="${excerpt}" />
 
   <meta property="og:title" content="${title} | Adriano Sena Dev" />
   <meta property="og:description" content="${excerpt}" />
-  <meta property="og:image" content="${fullImage}" />
-  <meta property="og:url" content="https://adrianosena.dev.br/post?slug=${encodeURIComponent(slug)}" />
+  <meta property="og:image" content="${fullImageShare}" />
+  <meta property="og:image:url" content="${fullImageShare}" />
+  <meta property="og:image:secure_url" content="${fullImageShare}" />
+  <meta property="og:image:alt" content="Imagem de capa do post ${title}" />
+  <meta property="og:url" content="${canonicalUrl}" />
   <meta property="og:type" content="article" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@adrianosenas" />
   <meta name="twitter:title" content="${title} | Adriano Sena Dev" />
   <meta name="twitter:description" content="${excerpt}" />
-  <meta name="twitter:image" content="${fullImage}" />
+  <meta name="twitter:image" content="${fullImageShare}" />
+  <meta name="twitter:image:alt" content="Imagem de capa do post ${title}" />
   <link rel="alternate" type="application/rss+xml" title="RSS Adriano Sena Dev" href="https://www.adrianosena.dev.br/rss.xml" />
 
   <link rel="shortcut icon" href="https://adrianosena.dev.br/logo.png" type="image/x-icon" />
@@ -249,16 +279,77 @@ module.exports = {
       display: inline-flex;
       align-items: center;
       gap: 8px;
+      padding: 0.35rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(148, 163, 184, 0.12);
+      border: 1px solid rgba(148, 163, 184, 0.22);
       color: var(--text-secondary);
-      margin-right: 18px;
+      margin-right: 10px;
       margin-bottom: 8px;
-      font-size: 0.94rem;
+      font-size: 0.86rem;
+      font-weight: 500;
+    }
+
+    .post-main .card {
+      border-radius: 18px;
+    }
+
+    .post-main .card:hover {
+      transform: none;
+      border-color: var(--gray-200);
+      box-shadow: var(--card-shadow);
+    }
+
+    .section-card {
+      border-top: 4px solid rgba(37, 99, 235, 0.28);
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 0.9rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .section-title::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(37, 99, 235, 0.35) 0%, rgba(37, 99, 235, 0.02) 100%);
+    }
+
+    .media-card {
+      padding: 0.75rem;
+    }
+
+    .post-cover {
+      width: 100%;
+      max-height: 520px;
+      min-height: 240px;
+      object-fit: cover;
+      border-radius: 14px;
+    }
+
+    .reading-card {
+      padding: clamp(1rem, 2vw, 1.6rem);
     }
 
     .post-content {
-      line-height: 1.84;
+      max-width: 72ch;
+      margin: 0 auto;
+      font-size: 1.06rem;
+      line-height: 1.9;
       color: var(--text-primary);
       word-break: break-word;
+    }
+
+    .post-content > p:first-child {
+      font-size: 1.14rem;
+      line-height: 1.95;
+      color: var(--gray-700);
     }
 
     .post-content h2,
@@ -267,9 +358,10 @@ module.exports = {
       margin-top: 2rem;
       margin-bottom: 1rem;
       color: var(--primary);
+      letter-spacing: -0.01em;
     }
 
-    .post-content p { margin-bottom: 1.2rem; }
+    .post-content p { margin-bottom: 1.24rem; }
     .post-content ul,
     .post-content ol {
       padding-left: 1.2rem;
@@ -302,6 +394,15 @@ module.exports = {
       width: 100%;
       border: 0;
       border-radius: 12px;
+    }
+
+    .post-content blockquote {
+      margin: 1.4rem 0;
+      padding: 0.9rem 1rem;
+      border-left: 4px solid var(--primary);
+      background: rgba(37, 99, 235, 0.08);
+      border-radius: 0 10px 10px 0;
+      color: var(--text-primary);
     }
 
     .post-content pre {
@@ -364,21 +465,54 @@ module.exports = {
       border-radius: 12px;
       overflow: hidden;
       transition: all 0.25s ease;
+      box-shadow: 0 10px 24px rgba(2, 6, 23, 0.06);
     }
 
     .related-item:hover {
       transform: translateY(-4px);
       border-color: var(--primary);
+      box-shadow: 0 16px 36px rgba(37, 99, 235, 0.18);
     }
 
     .related-item img {
       width: 100%;
-      height: 120px;
+      height: 168px;
       object-fit: cover;
     }
 
     .related-body {
-      padding: 10px;
+      padding: 12px;
+    }
+
+    .related-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 6px;
+      font-size: 0.76rem;
+      color: var(--text-secondary);
+    }
+
+    .related-meta span:last-child {
+      padding: 0.16rem 0.5rem;
+      border-radius: 999px;
+      border: 1px solid rgba(37, 99, 235, 0.22);
+      background: rgba(37, 99, 235, 0.08);
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .related-title {
+      font-weight: 700;
+      line-height: 1.35;
+      margin-bottom: 6px;
+    }
+
+    .related-excerpt {
+      font-size: 0.84rem;
+      line-height: 1.45;
+      color: var(--text-secondary);
     }
 
     .interaction-row {
@@ -386,17 +520,96 @@ module.exports = {
       flex-wrap: wrap;
       gap: 10px;
       align-items: center;
+      padding: 10px;
+      border: 1px solid var(--gray-200);
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.07) 0%, rgba(16, 185, 129, 0.04) 100%);
+    }
+
+    .share-actions {
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .share-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      min-height: 38px;
+      padding: 0.45rem 0.72rem;
+      border-radius: 999px;
+      border: 1px solid var(--gray-300);
+      background: var(--light);
+      color: var(--text-primary);
+      font-size: 0.82rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .share-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      transform: translateY(-1px);
+    }
+
+    .share-feedback {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+    }
+
+    .comment-form input,
+    .comment-form textarea,
+    #newsletter-form input {
+      border: 1px solid var(--gray-300) !important;
+      background: var(--light) !important;
+      color: var(--text-primary) !important;
+    }
+
+    .comment-form input:focus,
+    .comment-form textarea:focus,
+    #newsletter-form input:focus {
+      outline: 2px solid rgba(37, 99, 235, 0.25);
+      border-color: var(--primary) !important;
+    }
+
+    #comments-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
 
     .comment-item {
-      border-top: 1px solid var(--gray-200);
-      padding: 12px 0;
+      border: 1px solid var(--gray-200);
+      border-radius: 12px;
+      padding: 12px;
+      background: rgba(148, 163, 184, 0.07);
+      box-shadow: 0 6px 14px rgba(2, 6, 23, 0.04);
     }
 
     .comment-meta {
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       color: var(--text-secondary);
       margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .comment-message {
+      font-size: 0.96rem;
+      line-height: 1.55;
+    }
+
+    [data-theme="dark"] .comment-item {
+      background: rgba(15, 23, 42, 0.72);
+      border-color: var(--gray-200);
+    }
+
+    [data-theme="dark"] .post-content > p:first-child {
+      color: var(--gray-500);
     }
 
     .scroll-top {
@@ -441,26 +654,43 @@ module.exports = {
     @media (max-width: 1024px) {
       .layout { grid-template-columns: 1fr; }
       .sidebar { position: static; }
+      .post-cover {
+        min-height: 210px;
+      }
     }
 
     @media (max-width: 768px) {
       .hero-post { padding-top: 102px; }
       .stats-mini { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .related-grid { grid-template-columns: 1fr; }
+      .section-title {
+        font-size: 1rem;
+      }
       .meta-item {
         margin-right: 0;
       }
       .card {
-        padding: 1.1rem;
+        padding: 1rem;
       }
       .post-content {
-        font-size: 0.98rem;
-        line-height: 1.72;
+        font-size: 1rem;
+        line-height: 1.78;
+      }
+      .post-content > p:first-child {
+        font-size: 1.03rem;
       }
       .post-content h2,
       .post-content h3,
       .post-content h4 {
         margin-top: 1.6rem;
+      }
+      #post-title {
+        font-size: clamp(1.6rem, 7vw, 2.2rem);
+        line-height: 1.2;
+      }
+      .post-cover {
+        min-height: 190px;
+        max-height: 280px;
       }
     }
 
@@ -480,6 +710,12 @@ module.exports = {
         width: 100%;
         text-align: center;
         justify-content: center;
+      }
+      .related-item img {
+        height: 160px;
+      }
+      .related-meta {
+        font-size: 0.72rem;
       }
     }
   </style>
@@ -559,17 +795,17 @@ module.exports = {
   <main class="py-10">
     <div class="container mx-auto px-4 sm:px-6">
       <div class="layout grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
-        <article class="lg:col-span-2 min-w-0">
-          <div class="card mb-8">
-            <img id="post-image" src="${escHtml(imagePath)}" alt="${title}" class="w-full max-h-[460px] object-cover rounded-xl" />
+        <article class="post-main lg:col-span-2 min-w-0">
+          <div class="card media-card mb-8">
+            <img id="post-image" src="${escHtml(fullImage)}" alt="${title}" class="post-cover" />
           </div>
 
-          <div class="card">
+          <div class="card reading-card">
             <div id="post-content" class="post-content"></div>
           </div>
 
-          <div class="card mt-8">
-            <h3 class="text-xl mb-3">Autor responsavel pelo post</h3>
+          <div class="card section-card mt-8">
+            <h3 class="section-title">Autor responsavel pelo post</h3>
             <div class="flex flex-col sm:flex-row items-start gap-4">
               <img id="author-avatar" src="https://adrianosena.dev.br/logo-white.png" alt="Autor" class="w-16 h-16 rounded-full border-2 object-cover" style="border-color:var(--primary)" />
               <div class="flex-1">
@@ -584,23 +820,19 @@ module.exports = {
             </div>
           </div>
 
-          <div class="card mt-8">
-            <h3 class="text-xl mb-3">Interacao do artigo</h3>
+          <div class="card section-card mt-8">
+            <h3 class="section-title">Curtidas e compartilhamentos</h3>
             <div class="interaction-row mb-4">
               <button id="like-btn" class="btn-secondary" type="button"><i class="far fa-thumbs-up mr-2"></i>Curtir</button>
               <span style="color: var(--text-secondary)"><strong id="like-count">0</strong> curtidas</span>
               <a class="btn-secondary" href="/rss.xml" target="_blank" rel="noopener noreferrer"><i class="fas fa-rss mr-2"></i>Assinar RSS</a>
-            </div>
-
-            <div class="mb-5 p-3 rounded-lg" style="background: rgba(37, 99, 235, 0.04); border: 1px solid rgba(37, 99, 235, 0.12)">
-              <h4 class="font-semibold mb-2">Login com Facebook (para comentar)</h4>
-              <p class="text-sm mb-3" style="color: var(--text-secondary)">Conecte-se para comentar com seu nome social.</p>
-              <button id="fb-login-btn" type="button" class="btn-secondary"><i class="fab fa-facebook mr-2"></i>Entrar com Facebook</button>
-              <div id="fb-user" class="text-sm mt-3" style="color: var(--text-secondary)"></div>
+              <div id="share-actions" class="share-actions"></div>
+              <span id="share-feedback" class="share-feedback"></span>
+              
             </div>
 
             <h4 class="font-semibold mb-2">Comentarios</h4>
-            <form id="comment-form" class="space-y-3 mb-3">
+            <form id="comment-form" class="comment-form space-y-3 mb-3">
               <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <input id="comment-name" type="text" required placeholder="Seu nome" class="w-full px-4 py-3 rounded-lg" style="border:1px solid var(--gray-300); background: var(--light); color: var(--text-primary);" />
                 <input id="comment-email" type="email" placeholder="Seu email (opcional)" class="w-full px-4 py-3 rounded-lg" style="border:1px solid var(--gray-300); background: var(--light); color: var(--text-primary);" />
@@ -612,8 +844,8 @@ module.exports = {
             <div id="comments-list"></div>
           </div>
 
-          <div class="card mt-8">
-            <h3 class="text-xl mb-3">Posts relacionados </h3>
+          <div class="card section-card mt-8">
+            <h3 class="section-title">Posts relacionados </h3>
             <div id="related-posts" class="related-grid"></div>
           </div>
         </article>
@@ -784,6 +1016,122 @@ module.exports = {
 
     function normalizeCategory(c) {
       return String(c || "Sem categoria").trim();
+    }
+
+    function toAbsoluteUrl(urlPath) {
+      const base = "https://www.adrianosena.dev.br";
+      const value = String(urlPath || "").trim() || "/logoWeb.png";
+      if (/^https?:\\/\\//i.test(value)) return value;
+      return value.startsWith("/") ? base + value : base + "/" + value;
+    }
+
+    function extractFirstImageFromContent(html) {
+      const content = String(html || "");
+      const match = content.match(/<img[^>]+src=["']([^"']+)["']/i);
+      return match && match[1] ? String(match[1]).trim() : "";
+    }
+
+    function renderShareActions(post) {
+      const container = document.getElementById("share-actions");
+      const feedback = document.getElementById("share-feedback");
+      if (!container) return;
+
+      const title = String(post?.title || "Confira este artigo");
+      const slugValue = String(post?.slug || "");
+      const postUrl = 'https://www.adrianosena.dev.br/post?slug=' + encodeURIComponent(slugValue);
+      const text = title + ' - ' + postUrl;
+
+      const links = [
+        { label: "WhatsApp", icon: "fab fa-whatsapp", href: 'https://wa.me/?text=' + encodeURIComponent(text) },
+        { label: "X", icon: "fab fa-twitter", href: 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(title) + '&url=' + encodeURIComponent(postUrl) },
+        { label: "Facebook", icon: "fab fa-facebook-f", href: 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(postUrl) },
+        { label: "LinkedIn", icon: "fab fa-linkedin-in", href: 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(postUrl) },
+        { label: "Telegram", icon: "fab fa-telegram-plane", href: 'https://t.me/share/url?url=' + encodeURIComponent(postUrl) + '&text=' + encodeURIComponent(title) }
+      ];
+
+      container.innerHTML = links.map((item) =>
+        '<a class="share-btn" href="' + item.href + '" target="_blank" rel="noopener noreferrer" aria-label="Compartilhar no ' + item.label + '"><i class="' + item.icon + '"></i><span>' + item.label + '</span></a>'
+      ).join('') +
+      '<button type="button" class="share-btn" id="share-instagram" aria-label="Copiar link para Instagram"><i class="fab fa-instagram"></i><span>Instagram</span></button>' +
+      '<button type="button" class="share-btn" id="share-copy-link" aria-label="Copiar link"><i class="fas fa-link"></i><span>Copiar link</span></button>' +
+      '<button type="button" class="share-btn" id="share-native" aria-label="Compartilhar"><i class="fas fa-share-nodes"></i><span>Compartilhar</span></button>';
+
+      const nativeBtn = document.getElementById("share-native");
+      if (!navigator.share && nativeBtn) nativeBtn.style.display = "none";
+
+      function writeFeedback(message) {
+        if (!feedback) return;
+        feedback.textContent = message;
+        window.setTimeout(() => {
+          if (feedback.textContent === message) feedback.textContent = "";
+        }, 2400);
+      }
+
+      function copyWithExecCommand(value) {
+        const textarea = document.createElement("textarea");
+        textarea.value = value;
+        textarea.setAttribute("readonly", "");
+        textarea.style.position = "fixed";
+        textarea.style.top = "-1000px";
+        textarea.style.left = "-1000px";
+        document.body.appendChild(textarea);
+        textarea.select();
+        textarea.setSelectionRange(0, textarea.value.length);
+
+        let ok = false;
+        try {
+          ok = document.execCommand("copy");
+        } catch (_) {
+          ok = false;
+        }
+
+        document.body.removeChild(textarea);
+        return ok;
+      }
+
+      async function copyLink(message) {
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(postUrl);
+            writeFeedback(message);
+            return true;
+          }
+
+          if (copyWithExecCommand(postUrl)) {
+            writeFeedback(message);
+            return true;
+          }
+
+          window.prompt("Copie manualmente o link abaixo:", postUrl);
+          writeFeedback("Copie o link manualmente na janela exibida.");
+          return false;
+        } catch (_) {
+          if (copyWithExecCommand(postUrl)) {
+            writeFeedback(message);
+            return true;
+          }
+
+          window.prompt("Copie manualmente o link abaixo:", postUrl);
+          writeFeedback("Copie o link manualmente na janela exibida.");
+          return false;
+        }
+      }
+
+      document.getElementById("share-copy-link")?.addEventListener("click", () => {
+        copyLink("Link copiado com sucesso.");
+      });
+
+      document.getElementById("share-instagram")?.addEventListener("click", async () => {
+        await copyLink("Link copiado. Agora cole no Instagram.");
+        window.open("https://www.instagram.com/", "_blank", "noopener,noreferrer");
+      });
+
+      document.getElementById("share-native")?.addEventListener("click", async () => {
+        if (!navigator.share) return;
+        try {
+          await navigator.share({ title, text: title, url: postUrl });
+        } catch (_) {}
+      });
     }
 
     function renderCategoriesWithCount(posts) {
@@ -989,7 +1337,7 @@ module.exports = {
           ' • ' +
           formatDate(c.createdAt) +
           '</div>' +
-          '<div>' + escHtmlClient(c.message) + '</div>';
+          '<div class="comment-message">' + escHtmlClient(c.message) + '</div>';
         container.appendChild(div);
       });
     }
@@ -1047,148 +1395,24 @@ module.exports = {
         const image = p.image || '/logoWeb.png';
         const date = formatDate(p.createdAt || p.date || new Date());
         const link = '/post?slug=' + encodeURIComponent(p.slug || '');
+        const excerpt = stripHtml(p.description || p.excerpt || '').slice(0, 90);
+        const safeCategory = escHtmlClient(normalizeCategory(p.category));
         return '<a class="related-item" href="' + link + '">' +
           '<img src="' + image + '" alt="' + escHtmlClient(p.title || '') + '">' +
           '<div class="related-body">' +
-          '<div class="text-xs mb-1" style="color: var(--text-secondary)">' + date + '</div>' +
-          '<div class="font-semibold">' + escHtmlClient((p.title || '').slice(0, 90)) + '</div>' +
+          '<div class="related-meta"><span>' + date + '</span><span>' + safeCategory + '</span></div>' +
+          '<div class="related-title">' + escHtmlClient((p.title || '').slice(0, 90)) + '</div>' +
+          '<div class="related-excerpt">' + escHtmlClient(excerpt || 'Leia este conteudo relacionado para aprofundar o tema.') + '</div>' +
           '</div></a>';
       }).join('');
-    }
-
-    async function loginWithFacebook() {
-      const info = document.getElementById('fb-user');
-      const loginBtn = document.getElementById('fb-login-btn');
-
-      function applyFbUser(user) {
-        window.__fbUser = user;
-        document.getElementById('comment-name').value = user.name || '';
-        if (user.email) document.getElementById('comment-email').value = user.email;
-
-        const safeName = escHtmlClient(user.name || 'Usuario Facebook');
-        const safeAvatar = escHtmlClient(user.avatar || '');
-        if (safeAvatar) {
-          info.innerHTML =
-            '<div class="flex items-center gap-3 p-2 rounded-lg" style="background: rgba(37, 99, 235, 0.08); border: 1px solid rgba(37, 99, 235, 0.16)">' +
-            '<img src="' + safeAvatar + '" alt="Avatar Facebook" class="w-10 h-10 rounded-full" referrerpolicy="no-referrer">' +
-            '<div><div class="font-semibold" style="color: var(--text-primary)">' + safeName + '</div><div class="text-xs">Conectado com Facebook</div></div>' +
-            '</div>';
-        } else {
-          info.textContent = 'Conectado como ' + (user.name || 'Usuario Facebook');
-        }
-      }
-
-      const sdkReady = await bootstrapFacebookSdk();
-      if (!sdkReady || !window.FB) {
-        info.textContent = '${facebookAppId}'
-          ? 'Nao foi possivel carregar o login do Facebook agora. Tente novamente em instantes.'
-          : 'Login com Facebook indisponivel no momento.';
-        return;
-      }
-
-      loginBtn.disabled = true;
-
-      window.FB.login(async function(response) {
-        if (!response || !response.authResponse || !response.authResponse.accessToken) {
-          info.textContent = 'Login cancelado.';
-          loginBtn.disabled = false;
-          return;
-        }
-
-        info.textContent = 'Validando login...';
-        const apiRes = await fetch('/api/auth/facebook', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ accessToken: response.authResponse.accessToken })
-        });
-        const data = await apiRes.json();
-
-        if (apiRes.ok && data.success) {
-          applyFbUser(data.user || {});
-          loginBtn.disabled = false;
-          return;
-        }
-
-        // Fallback client-side quando o backend não está com APP_ID/SECRET configurados.
-        window.FB.api('/me', { fields: 'id,name,email,picture.width(128).height(128)' }, function(me) {
-          if (!me || me.error || !me.id) {
-            info.textContent = data.error || 'Falha ao conectar com Facebook.';
-            loginBtn.disabled = false;
-            return;
-          }
-
-          applyFbUser({
-            id: me.id,
-            name: me.name || 'Usuario Facebook',
-            email: me.email || '',
-            avatar: me.picture && me.picture.data ? me.picture.data.url : ''
-          });
-          loginBtn.disabled = false;
-        });
-      }, { scope: 'public_profile,email' });
-    }
-
-    let fbSdkReadyPromise = null;
-    function bootstrapFacebookSdk() {
-      if (window.FB) return Promise.resolve(true);
-      if (fbSdkReadyPromise) return fbSdkReadyPromise;
-
-      const info = document.getElementById('fb-user');
-      const loginBtn = document.getElementById('fb-login-btn');
-      const appId = '${facebookAppId}';
-
-      if (!appId) {
-        info.textContent = 'Login com Facebook indisponivel no momento.';
-        loginBtn.disabled = true;
-        return Promise.resolve(false);
-      }
-
-      loginBtn.disabled = true;
-      info.textContent = 'Carregando login do Facebook...';
-
-      fbSdkReadyPromise = new Promise((resolve) => {
-        window.fbAsyncInit = function() {
-          try {
-            window.FB.init({
-              appId,
-              cookie: true,
-              xfbml: false,
-              version: 'v19.0'
-            });
-            loginBtn.disabled = false;
-            info.textContent = '';
-            resolve(true);
-          } catch (_) {
-            info.textContent = 'Falha ao inicializar login do Facebook.';
-            loginBtn.disabled = true;
-            resolve(false);
-          }
-        };
-
-        const id = 'facebook-jssdk';
-        const existing = document.getElementById(id);
-        if (existing) return;
-
-        const js = document.createElement('script');
-        js.id = id;
-        js.src = 'https://connect.facebook.net/pt_BR/sdk.js';
-        js.async = true;
-        js.defer = true;
-        js.onerror = function() {
-          info.textContent = 'Nao foi possivel carregar a SDK do Facebook.';
-          loginBtn.disabled = true;
-          resolve(false);
-        };
-        document.body.appendChild(js);
-      });
-
-      return fbSdkReadyPromise;
     }
 
     async function loadPostData() {
       try {
         const urlParams = new URLSearchParams(window.location.search);
-        const slug = urlParams.get("slug") || "${slug}";
+        const pathParts = window.location.pathname.split('/').filter(Boolean);
+        const slugFromPath = pathParts[0] === 'post' ? decodeURIComponent(pathParts[1] || '') : '';
+        const slug = (urlParams.get("slug") || slugFromPath || "${slug}").trim();
         if (!slug) throw new Error("Slug ausente");
 
         const [postRes, allRes] = await Promise.all([
@@ -1236,9 +1460,14 @@ module.exports = {
           }
         } catch (_) {}
 
+        
+
         // SEO dinamico real
         const seoTitle = (post.title || "Post") + ' | Adriano Sena Dev';
         const seoDesc = stripHtml(post.description || post.excerpt || post.content || "").slice(0, 170);
+        const seoImageRaw = post.image || "/logoWeb.png";
+        const seoImage = seoImageRaw
+        const seoUrl = 'https://www.adrianosena.dev.br/post?slug=' + encodeURIComponent(post.slug || slug);
         document.title = seoTitle;
 
         const mDesc = document.querySelector("meta[name='description']");
@@ -1251,10 +1480,22 @@ module.exports = {
         if (twTitle) twTitle.setAttribute("content", seoTitle);
         const twDesc = document.querySelector("meta[name='twitter:description']");
         if (twDesc) twDesc.setAttribute("content", seoDesc);
+        const ogImage = document.querySelector("meta[property='og:image']");
+        if (ogImage) ogImage.setAttribute("content", seoImage);
+        const ogImageUrl = document.querySelector("meta[property='og:image:url']");
+        if (ogImageUrl) ogImageUrl.setAttribute("content", seoImage);
+        const ogImageSecure = document.querySelector("meta[property='og:image:secure_url']");
+        if (ogImageSecure) ogImageSecure.setAttribute("content", seoImage);
+        const twImage = document.querySelector("meta[name='twitter:image']");
+        if (twImage) twImage.setAttribute("content", seoImage);
+        const ogUrl = document.querySelector("meta[property='og:url']");
+        if (ogUrl) ogUrl.setAttribute("content", seoUrl);
+        const canonical = document.querySelector("link[rel='canonical']");
+        if (canonical) canonical.setAttribute("href", seoUrl);
 
         // Imagem e conteudo
         const img = document.getElementById("post-image");
-        img.src = post.image || "/logoWeb.png";
+        img.src = seoImage;
         img.alt = post.title || "Imagem do post";
         document.getElementById("post-content").innerHTML = post.content || "";
 
@@ -1287,6 +1528,7 @@ module.exports = {
 
         renderCategoriesWithCount(allPosts);
         renderRelatedPosts(allPosts, post);
+        renderShareActions(post);
         await loadLikes(post.id);
         await loadComments(post.id);
 
@@ -1295,7 +1537,10 @@ module.exports = {
           e.preventDefault();
           await postComment(post.id);
         });
-        document.getElementById('fb-login-btn').addEventListener('click', loginWithFacebook);
+        const fbLoginBtn = document.getElementById('fb-login-btn');
+        if (fbLoginBtn && typeof loginWithFacebook === 'function') {
+          fbLoginBtn.addEventListener('click', loginWithFacebook);
+        }
 
         // JSON-LD Article
         const jsonLd = {
@@ -1303,7 +1548,7 @@ module.exports = {
           "@type": "Article",
           "headline": post.title,
           "description": seoDesc,
-          "image": [post.image || "/logoWeb.png"],
+          "image": [seoImage],
           "datePublished": post.createdAt || post.date,
           "author": {
             "@type": "Person",
@@ -1314,16 +1559,17 @@ module.exports = {
             "name": "Adriano Sena Dev",
             "logo": {
               "@type": "ImageObject",
-              "url": "https://adrianosena.dev.br/logo.png"
+              "url": "https://www.adrianosena.dev.br/logo.png"
             }
           },
-          "mainEntityOfPage": 'https://adrianosena.dev.br/post?slug=' + encodeURIComponent(post.slug || slug)
+          "mainEntityOfPage": 'https://www.adrianosena.dev.br/post?slug=' + encodeURIComponent(post.slug || slug)
         };
         const script = document.createElement("script");
         script.type = "application/ld+json";
         script.textContent = JSON.stringify(jsonLd);
         document.head.appendChild(script);
       } catch (err) {
+       console.error(err);
         document.getElementById("post-title").textContent = "Post nao encontrado";
         document.getElementById("post-content").innerHTML = "<p>O conteudo nao foi encontrado ou esta indisponivel no momento.</p>";
       }
@@ -1356,7 +1602,7 @@ module.exports = {
 
     document.getElementById("current-year").textContent = new Date().getFullYear();
 
-    bootstrapFacebookSdk();
+
     loadPostData();
   </script>
 </body>

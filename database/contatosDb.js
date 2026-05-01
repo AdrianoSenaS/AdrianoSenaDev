@@ -47,6 +47,27 @@ module.exports = {
         });
     },
 
+    getContactById(id) {
+        return new Promise((resolve, reject) => {
+            db.get(`SELECT * FROM contatos WHERE id = ?`, [id], (err, row) => {
+                if (err) return reject(err);
+                resolve(row || null);
+            });
+        });
+    },
+
+    listContactEmails() {
+        return new Promise((resolve, reject) => {
+            db.all(
+                `SELECT DISTINCT email FROM contatos WHERE TRIM(IFNULL(email, '')) <> ''`,
+                (err, rows) => {
+                    if (err) return reject(err);
+                    resolve(rows || []);
+                }
+            );
+        });
+    },
+
     updateContactStatus(id, status) {
         return new Promise((resolve, reject) => {
             db.run(

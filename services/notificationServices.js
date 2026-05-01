@@ -5,8 +5,11 @@ const {
     getWebPushSubscriptions,
     deleteWebPushSubscription
 } = require('../database/notificationDb');
+const { listSubscribersForEmail } = require('../database/postEngagementDb');
+const { listUsers } = require('../database/usersDb');
 const { sendPush } = require('../services/sendPush');
 const { sendWebPushNotification, getPublicVapidKey } = require('../services/webPushService');
+const { sendNewPostEmail } = require('../services/email');
 
 function normalizeWebSubscription(data) {
     const subscription = data?.subscription || data;
@@ -25,6 +28,56 @@ function normalizeWebSubscription(data) {
         userEmail: data?.email || data?.userEmail || '',
         source: data?.source || 'blog',
         userAgent: data?.userAgent || ''
+    };
+}
+
+function normalizeEmail(email) {
+    return String(email || '').trim().toLowerCase();
+}
+
+async function fetchPushTokensInternal(data) {
+    const tokens = await getPushTokens();
+    const webSubs = await getWebPushSubscriptions();
+
+    for (const row of tokens) {
+        if (!row.token) continue;
+
+        await sendPush(
+            row.token,
+            'Notificação',
+            data.body || 'Tem conteúdo novo no app',
+            data.postId
+        );
+    }
+
+    for (const row of webSubs) {
+        const subscription = {
+            endpoint: row.endpoint,
+            keys: {
+                p256dh: row.p256dh,
+                auth: row.auth
+            }
+        };
+
+        try {
+            await sendWebPushNotification(subscription, {
+                title: data.title || 'Adriano Sena Dev',
+                body: data.body || 'Novo conteúdo publicado no blog.',
+                url: data.url || (data.slug ? '/post?slug=' + encodeURIComponent(data.slug) : '/blog'),
+                icon: '/logo.png',
+                badge: '/logo.png'
+            });
+        } catch (err) {
+            const statusCode = Number(err?.statusCode || 0);
+            if (statusCode === 404 || statusCode === 410) {
+                await deleteWebPushSubscription(row.endpoint);
+            }
+        }
+    }
+
+    return {
+        success: true,
+        message: 'Notificações enviadas',
     };
 }
 
@@ -64,48 +117,51 @@ module.exports = {
     },
 
     fetchPushTokens: async (data) => {
-        const tokens = await getPushTokens();
-        const webSubs = await getWebPushSubscriptions();
+        return fetchPushTokensInternal(data);
+    },
 
-        for (const row of tokens) {
-            if (!row.token) continue;
+    sendNewPostBroadcast: async (post) => {
+        const pushResult = await fetchPushTokensInternal({
+            title: 'Novo post no blog',
+            body: post?.title || 'Novo conteúdo publicado no blog.',
+            postId: post?.id,
+            slug: post?.slug,
+            url: post?.slug ? '/post?slug=' + encodeURIComponent(post.slug) : '/blog'
+        });
 
-            await sendPush(
-                row.token,
-                'Notificação',
-                data.body || 'Tem conteúdo novo no app',
-                data.postId
-            );
+        const [subscribers, users] = await Promise.all([
+            listSubscribersForEmail(),
+            listUsers()
+        ]);
+
+        const recipientsSet = new Set();
+
+        for (const row of subscribers || []) {
+            const email = normalizeEmail(row?.email);
+            if (email) recipientsSet.add(email);
         }
 
-        for (const row of webSubs) {
-            const subscription = {
-                endpoint: row.endpoint,
-                keys: {
-                    p256dh: row.p256dh,
-                    auth: row.auth
-                }
-            };
+        for (const user of users || []) {
+            const email = normalizeEmail(user?.email);
+            if (email) recipientsSet.add(email);
+        }
 
-            try {
-                await sendWebPushNotification(subscription, {
-                    title: data.title || 'Adriano Sena Dev',
-                    body: data.body || 'Novo conteúdo publicado no blog.',
-                    url: data.url || (data.slug ? '/post?slug=' + encodeURIComponent(data.slug) : '/blog'),
-                    icon: '/logo.png',
-                    badge: '/logo.png'
-                });
-            } catch (err) {
-                const statusCode = Number(err?.statusCode || 0);
-                if (statusCode === 404 || statusCode === 410) {
-                    await deleteWebPushSubscription(row.endpoint);
-                }
-            }
+        let sent = 0;
+        let failed = 0;
+        for (const email of recipientsSet) {
+            const ok = await sendNewPostEmail(email, post || {});
+            if (ok) sent += 1;
+            else failed += 1;
         }
 
         return {
             success: true,
-            message: 'Notificações enviadas',
+            push: pushResult,
+            emails: {
+                totalRecipients: recipientsSet.size,
+                sent,
+                failed
+            }
         };
     }
 

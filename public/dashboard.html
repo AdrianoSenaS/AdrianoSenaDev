@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR" class="scroll-smooth">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +9,9 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=Fira+Code:wght@400;500&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <style>
     :root {
@@ -52,7 +55,12 @@
       visibility: hidden;
     }
 
-    h1, h2, h3, h4, h5, h6 {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
       font-family: 'Poppins', sans-serif;
       font-weight: 700;
       color: var(--text-primary);
@@ -186,11 +194,25 @@
       transition: all 0.3s ease;
     }
 
-    .text-custom-primary { color: var(--text-primary); }
-    .text-custom-secondary { color: var(--text-secondary); }
-    .bg-custom-light { background-color: var(--bg-light); }
-    .bg-custom-card { background-color: var(--bg-card); }
-    .border-custom { border-color: var(--border-color); }
+    .text-custom-primary {
+      color: var(--text-primary);
+    }
+
+    .text-custom-secondary {
+      color: var(--text-secondary);
+    }
+
+    .bg-custom-light {
+      background-color: var(--bg-light);
+    }
+
+    .bg-custom-card {
+      background-color: var(--bg-card);
+    }
+
+    .border-custom {
+      border-color: var(--border-color);
+    }
 
     .admin-sidebar {
       position: sticky;
@@ -215,7 +237,8 @@
       transition: all 0.3s ease;
     }
 
-    .admin-nav a:hover, .admin-nav a.active {
+    .admin-nav a:hover,
+    .admin-nav a.active {
       background: rgba(96, 165, 250, 0.1);
       color: var(--primary);
     }
@@ -270,11 +293,13 @@
       color: var(--primary);
     }
   </style>
+  <link rel="stylesheet" href="/css/admin-shell.css" />
 </head>
 
 <body class="bg-custom-light text-custom-primary">
   <!-- Header -->
-  <header class="w-full bg-custom-light/80 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-custom transition-colors duration-300">
+  <header
+    class="w-full bg-custom-light/80 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-custom transition-colors duration-300">
     <div class="max-w-7xl mx-auto flex justify-between items-center py-4 px-6">
       <div class="flex items-center space-x-3">
         <div class="logo-as"></div>
@@ -285,35 +310,24 @@
       </div>
 
       <div class="flex items-center space-x-4">
-        <nav class="space-x-8 hidden md:flex">
-          <a href="index.html" class="nav-link hover:text-primary transition">Início</a>
-          <a href="blog.html" class="nav-link hover:text-primary transition">Blog</a>
-          <a href="/admin/dashboard" class="nav-link text-primary transition">Dashboard</a>
-        </nav>
+
 
         <button id="theme-toggle" class="theme-toggle">
           <svg id="theme-icon-sun" class="theme-icon w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
           </svg>
-          <svg id="theme-icon-moon" class="theme-icon w-5 h-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          <svg id="theme-icon-moon" class="theme-icon w-5 h-5 hidden" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
           </svg>
         </button>
 
-        <button id="menu-btn" class="md:hidden focus:outline-none">
-          <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-            <line x1="3" y1="6" x2="21" y2="6" />
-            <line x1="3" y1="12" x2="21" y2="12" />
-            <line x1="3" y1="18" x2="21" y2="18" />
-          </svg>
-        </button>
+
       </div>
     </div>
-    <nav id="mobile-menu" class="hidden md:hidden bg-custom-light/95 backdrop-blur-sm border-t border-custom transition-colors duration-300">
-      <a href="/" class="block px-6 py-3 border-b border-custom hover:bg-gray-100 text-custom-primary">Início</a>
-      <a href="blog" class="block px-6 py-3 border-b border-custom hover:bg-gray-100 text-custom-primary">Blog</a>
-      <a href="/admin/dashboard" class="block px-6 py-3 border-b border-custom hover:bg-gray-100 text-custom-primary">Dashboard</a>
-    </nav>
+
   </header>
 
   <!-- Dashboard Content -->
@@ -334,6 +348,7 @@
                 <li><a href="/admin/posts#categorias"><i class="fas fa-folder"></i> Categorias</a></li>
                 <li><a href="/admin/posts#tags"><i class="fas fa-tags"></i> Tags</a></li>
                 <li><a href="/admin/usuarios"><i class="fas fa-users"></i> Usuários</a></li>
+                <li><a href="/admin/emails"><i class="fas fa-bullhorn"></i> Anúncios E-mail</a></li>
                 <li><a href="/admin/dispositivos"><i class="fas fa-mobile-alt"></i> Dispositivos</a></li>
                 <li><a href="/admin/comentarios"><i class="fas fa-comments"></i> Comentários</a></li>
                 <li><a href="/admin/homepage"><i class="fas fa-home"></i> Página Inicial</a></li>
@@ -343,7 +358,8 @@
             <div class="card p-6">
               <h4 class="font-bold mb-4 text-custom-primary">Ações rápidas</h4>
               <div class="space-y-3">
-                <a href="/admin/cadastrar" class="btn-primary block text-center w-full py-2 rounded-lg font-semibold text-sm">
+                <a href="/admin/cadastrar"
+                  class="btn-primary block text-center w-full py-2 rounded-lg font-semibold text-sm">
                   <i class="fas fa-plus mr-2"></i> Novo Post
                 </a>
                 <button id="logout-btn" class="btn-secondary w-full py-2 rounded-lg font-semibold text-sm">
@@ -464,14 +480,19 @@
           </div>
         </div>
         <div class="flex space-x-6">
-          <a href="https://wa.me/+5564933004882" target="_blank" class="text-custom-secondary hover:text-primary transition"><i class="fab fa-whatsapp text-xl"></i></a>
-          <a href="https://github.com/AdrianoSenaS" target="_blank" class="text-custom-secondary hover:text-primary transition"><i class="fab fa-github text-xl"></i></a>
-          <a href="https://www.instagram.com/adrianosena.dev.br/" target="_blank" class="text-custom-secondary hover:text-primary transition"><i class="fab fa-instagram text-xl"></i></a>
-          <a href="https://www.linkedin.com/in/adriano-sena-silva-a8605622a/" target="_blank" class="text-custom-secondary hover:text-primary transition"><i class="fab fa-linkedin-in text-xl"></i></a>
+          <a href="https://wa.me/+5564933004882" target="_blank"
+            class="text-custom-secondary hover:text-primary transition"><i class="fab fa-whatsapp text-xl"></i></a>
+          <a href="https://github.com/AdrianoSenaS" target="_blank"
+            class="text-custom-secondary hover:text-primary transition"><i class="fab fa-github text-xl"></i></a>
+          <a href="https://www.instagram.com/adrianosena.dev.br/" target="_blank"
+            class="text-custom-secondary hover:text-primary transition"><i class="fab fa-instagram text-xl"></i></a>
+          <a href="https://www.linkedin.com/in/adriano-sena-silva-a8605622a/" target="_blank"
+            class="text-custom-secondary hover:text-primary transition"><i class="fab fa-linkedin-in text-xl"></i></a>
         </div>
       </div>
       <div class="mt-12 pt-8 border-t border-custom flex flex-col md:flex-row justify-between items-center">
-        <p class="text-custom-secondary text-sm mb-4 md:mb-0">&copy; <span id="year"></span> Adriano Sena. Todos os direitos reservados.</p>
+        <p class="text-custom-secondary text-sm mb-4 md:mb-0">&copy; <span id="year"></span> Adriano Sena. Todos os
+          direitos reservados.</p>
         <p class="text-custom-secondary text-sm">Transformando ideias em soluções digitais inovadoras.</p>
       </div>
     </div>
@@ -512,10 +533,7 @@
       }
     });
 
-    // Mobile menu
-    document.getElementById('menu-btn').addEventListener('click', () => {
-      document.getElementById('mobile-menu').classList.toggle('hidden');
-    });
+
 
     document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -775,5 +793,7 @@
     loadAll();
     setInterval(loadAll, 30000);
   </script>
+  <script src="/js/admin-shell.js"></script>
 </body>
+
 </html>

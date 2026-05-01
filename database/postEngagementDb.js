@@ -123,6 +123,22 @@ module.exports = {
     });
   },
 
+  listSubscribersForEmail() {
+    return new Promise((resolve, reject) => {
+      db.all(
+        `SELECT email
+         FROM subscribers
+         WHERE wantsEmail = 1
+           AND TRIM(IFNULL(email, '')) <> ''`,
+        [],
+        (err, rows) => {
+          if (err) return reject(err);
+          resolve(rows || []);
+        }
+      );
+    });
+  },
+
   listAllComments({ status, postId, search, limit, offset, sort, order }) {
     return new Promise((resolve, reject) => {
       const useStatus = String(status || '').trim();

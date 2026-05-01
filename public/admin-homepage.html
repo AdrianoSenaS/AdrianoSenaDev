@@ -65,6 +65,7 @@
     .theme-toggle:hover { border-color:var(--primary); }
     [data-theme="dark"] .form-input { background:var(--bg-card); border-color:var(--border-color); color:var(--text-primary); }
   </style>
+  <link rel="stylesheet" href="/css/admin-shell.css" />
 </head>
 <body class="bg-custom-light text-custom-primary">
 
@@ -92,7 +93,7 @@
 
       <!-- Sidebar -->
       <div class="lg:col-span-1">
-        <div class="card p-6 mb-6" style="position:sticky;top:90px">
+        <div class="admin-sidebar card p-6 mb-6" style="position:sticky;top:90px">
           <h3 class="text-lg font-bold mb-4">Painel Admin</h3>
           <ul class="admin-nav" style="list-style:none;padding:0">
             <li><a href="/admin/dashboard"><i class="fas fa-tachometer-alt"></i>Dashboard</a></li>
@@ -706,5 +707,6 @@ function sectionLabel(s) {
 
 validateToken();
 </script>
+  <script src="/js/admin-shell.js"></script>
 </body>
 </html>

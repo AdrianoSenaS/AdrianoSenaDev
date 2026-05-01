@@ -526,6 +526,7 @@
       color: var(--text-secondary);
     }
   </style>
+  <link rel="stylesheet" href="/css/admin-shell.css" />
 </head>
 
 <body class="bg-custom-light text-custom-primary">
@@ -542,11 +543,7 @@
       </div>
 
       <div class="flex items-center space-x-4">
-        <nav class="space-x-8 hidden md:flex">
-          <a href="/" class="nav-link hover:text-primary transition">Início</a>
-          <a href="/blog" class="nav-link hover:text-primary transition">Blog</a>
-          <a href="/admin" class="nav-link text-primary transition">Admin</a>
-        </nav>
+       
 
         <button id="theme-toggle" class="theme-toggle">
           <svg id="theme-icon-sun" class="theme-icon w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -560,22 +557,10 @@
           </svg>
         </button>
 
-        <button id="menu-btn" class="md:hidden focus:outline-none">
-          <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-            stroke-linejoin="round" viewBox="0 0 24 24">
-            <line x1="3" y1="6" x2="21" y2="6" />
-            <line x1="3" y1="12" x2="21" y2="12" />
-            <line x1="3" y1="18" x2="21" y2="18" />
-          </svg>
-        </button>
+        
       </div>
     </div>
-    <nav id="mobile-menu"
-      class="hidden md:hidden bg-custom-light/95 backdrop-blur-sm border-t border-custom transition-colors duration-300">
-      <a href="/" class="block px-6 py-3 border-b border-custom hover:bg-gray-100 text-custom-primary">Início</a>
-      <a href="/blog" class="block px-6 py-3 border-b border-custom hover:bg-gray-100 text-custom-primary">Blog</a>
-      <a href="/admin" class="block px-6 py-3 border-b border-custom hover:bg-gray-100 text-custom-primary">Admin</a>
-    </nav>
+   
   </header>
 
   <!-- Admin Content -->
@@ -888,12 +873,7 @@
       });
     });
 
-    // Toggle menu mobile
-    const menuBtn = document.getElementById('menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    menuBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-    });
+  
 
     // Tema claro/escuro
     const themeToggle = document.getElementById('theme-toggle');
@@ -1068,7 +1048,7 @@
         authorSelect.innerHTML = '';
         users.forEach((u) => {
           const option = document.createElement('option');
-          option.value = u.email;
+          option.value = u.name;
           option.textContent = `${u.name} (${u.email})`;
           authorSelect.appendChild(option);
         });
@@ -1246,6 +1226,7 @@
       window.location.href = '/login';
     }
   </script>
+  <script src="/js/admin-shell.js"></script>
 </body>
 
 </html>
