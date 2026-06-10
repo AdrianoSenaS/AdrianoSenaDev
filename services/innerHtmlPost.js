@@ -1,16 +1,22 @@
 const { HtmlPost } = require("../views/post");
+const { getPostBySlug } = require("../database/postsDB");
 
 
 module.exports = {
 
-   async htmlInner(id, port, res) {
-        // Busca dados da API
+   async htmlInner(slug, port, res) {
         try {
-            const response = await fetch(`http://localhost:${port}/api/posts/${id}`);
-            const post = await response.json();
+            const safeSlug = String(slug || '').trim();
+            if (!safeSlug) {
+                return res.status(404).sendFile(require('path').join(__dirname, '../public/error.html'));
+            }
 
-            const html = HtmlPost(post, id);
+            const post = await getPostBySlug(safeSlug);
+            if (!post) {
+                return res.status(404).sendFile(require('path').join(__dirname, '../public/error.html'));
+            }
 
+            const html = HtmlPost(post, post.slug);
             res.send(html);
         } catch (error) {
             console.error('Erro ao carregar post:', error);

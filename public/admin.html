@@ -463,6 +463,25 @@
       color: var(--text-secondary);
       line-height: 1.5;
     }
+
+    .reply-textarea {
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 0.75rem;
+      color: var(--text-primary);
+      font-size: 0.95rem;
+      line-height: 1.5;
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .reply-textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
     
     .status-badge {
       display: inline-block;
@@ -488,6 +507,7 @@
     }
    
   </style>
+  <link rel="stylesheet" href="/css/admin-shell.css" />
 </head>
 
 <body class="bg-custom-light text-custom-primary " >
@@ -503,11 +523,7 @@
       </div>
       
       <div class="flex items-center space-x-4">
-        <nav class="space-x-8 hidden md:flex">
-          <a href="index.html" class="nav-link hover:text-primary transition">Início</a>
-          <a href="blog.html" class="nav-link hover:text-primary transition">Blog</a>
-          <a href="admin-dashboard.html" class="nav-link text-primary transition">Dashboard</a>
-        </nav>
+      
         
         <button id="theme-toggle" class="theme-toggle">
           <svg id="theme-icon-sun" class="theme-icon w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -518,21 +534,10 @@
           </svg>
         </button>
         
-        <button id="menu-btn" class="md:hidden focus:outline-none">
-          <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-            stroke-linejoin="round" viewBox="0 0 24 24">
-            <line x1="3" y1="6" x2="21" y2="6" />
-            <line x1="3" y1="12" x2="21" y2="12" />
-            <line x1="3" y1="18" x2="21" y2="18" />
-          </svg>
-        </button>
+       
       </div>
     </div>
-    <nav id="mobile-menu" class="hidden md:hidden bg-custom-light/95 backdrop-blur-sm border-t border-custom transition-colors duration-300">
-      <a href="/" class="block px-6 py-3 border-b border-custom hover:bg-gray-100 text-custom-primary">Início</a>
-      <a href="blog" class="block px-6 py-3 border-b border-custom hover:bg-gray-100 text-custom-primary">Blog</a>
-      <a href="/admin" class="block px-6 py-3 border-b border-custom hover:bg-gray-100 text-custom-primary">Dashboard</a>
-    </nav>
+   
   </header>
 
   <!-- Dashboard Content -->
@@ -545,14 +550,17 @@
             <div class="card p-6 mb-6">
               <h3 class="text-xl font-bold mb-4 text-custom-primary">Painel Admin</h3>
               <ul class="admin-nav">
-                <li><a href="/admin"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
-                <li><a href="/blog"><i class="fas fa-file-alt"></i> Posts</a></li>
+                <li><a href="/admin/dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="/admin/posts"><i class="fas fa-file-alt"></i> Posts</a></li>
                 <li><a href="/admin/cadastrar"><i class="fas fa-plus-circle"></i> Novo Post</a></li>
-                <li><a href="admin/contatos" class="active"><i class="fas fa-envelope"></i> Contatos</a></li>
-                <li><a href="#"><i class="fas fa-folder"></i> Categorias</a></li>
-                <li><a href="#"><i class="fas fa-tags"></i> Tags</a></li>
-                <li><a href="#"><i class="fas fa-users"></i> Usuários</a></li>
-                <li><a href="#"><i class="fas fa-cog"></i> Configurações</a></li>
+                <li><a href="/admin/contatos" class="active"><i class="fas fa-envelope"></i> Contatos</a></li>
+                <li><a href="/admin/posts#categorias"><i class="fas fa-folder"></i> Categorias</a></li>
+                <li><a href="/admin/posts#tags"><i class="fas fa-tags"></i> Tags</a></li>
+                <li><a href="/admin/usuarios"><i class="fas fa-users"></i> Usuários</a></li>
+                <li><a href="/admin/emails"><i class="fas fa-bullhorn"></i> Anúncios E-mail</a></li>
+                <li><a href="/admin/dispositivos"><i class="fas fa-mobile-alt"></i> Dispositivos</a></li>
+                <li><a href="/admin/comentarios"><i class="fas fa-comments"></i> Comentários</a></li>
+                <li><a href="/admin/homepage"><i class="fas fa-home"></i> Página Inicial</a></li>
               </ul>
             </div>
             
@@ -703,10 +711,15 @@
           <span class="modal-label">Mensagem</span>
           <div class="modal-value" id="modal-message" style="white-space: pre-line;"></div>
         </div>
+
+        <div class="modal-field">
+          <label class="modal-label" for="reply-message">Resposta por e-mail</label>
+          <textarea id="reply-message" class="reply-textarea" placeholder="Digite a resposta para este contato..."></textarea>
+        </div>
         
         <div class="flex justify-end space-x-3 mt-6 pt-6 border-t border-custom">
           <button id="respond-btn" class="btn-primary px-4 py-2 rounded-lg font-semibold text-sm">
-            <i class="fas fa-reply mr-2"></i> Responder
+            <i class="fas fa-paper-plane mr-2"></i> Enviar resposta
           </button>
           <button id="archive-btn" class="btn-secondary px-4 py-2 rounded-lg font-semibold text-sm">
             <i class="fas fa-archive mr-2"></i> Arquivar
@@ -735,7 +748,7 @@
           <a href="https://github.com/AdrianoSenaS" target="_blank" class="text-custom-secondary hover:text-primary transition">
             <i class="fab fa-github text-xl"></i>
           </a>
-          <a href="https://www.instagram.com/adriano.sena.silva/" target="_blank" class="text-custom-secondary hover:text-primary transition">
+          <a href="https://www.instagram.com/adrianosena.dev.br/" target="_blank" class="text-custom-secondary hover:text-primary transition">
             <i class="fab fa-instagram text-xl"></i>
           </a>
           <a href="https://www.linkedin.com/in/adriano-sena-silva-a8605622a/" target="_blank" class="text-custom-secondary hover:text-primary transition">
@@ -752,50 +765,60 @@
   </footer>
 
   <script>
+    let contacts = [];
 
-  // Verificar login 
-   const token = localStorage.getItem('adminToken');
-    if (token) {
-      fetch('/token', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${token}`
-        },
-      }).then(response => {
-        if (response.ok) {
-          console.log('Login bem-sucedido!');
-          document.body.style.visibility = 'visible'; 
-        }else{
-          window.location.href = '/login';
-        }
-      }).catch(error => console.error('Erro ao verificar token:', error));
-    }else{
+    const token = localStorage.getItem('adminToken');
+    if (!token) {
       window.location.href = '/login';
     }
 
-    // Atualizar o ano no footer
+    async function authFetch(url, options = {}) {
+      const headers = {
+        ...(options.headers || {}),
+        Authorization: `Bearer ${token}`
+      };
+
+      const response = await fetch(url, { ...options, headers });
+
+      if (response.status === 401) {
+        localStorage.removeItem('adminToken');
+        window.location.href = '/login';
+        throw new Error('Sessão expirada');
+      }
+
+      return response;
+    }
+
+    async function validateToken() {
+      const response = await authFetch('/token', {
+        method: 'POST',
+        headers: {}
+      });
+
+      if (!response.ok) {
+        localStorage.removeItem('adminToken');
+        window.location.href = '/login';
+        return;
+      }
+
+      document.body.style.visibility = 'visible';
+    }
+
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Toggle menu mobile
-    const menuBtn = document.getElementById('menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    menuBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-    });
+    
 
-    // Tema claro/escuro
     const themeToggle = document.getElementById('theme-toggle');
     const themeIconSun = document.getElementById('theme-icon-sun');
     const themeIconMoon = document.getElementById('theme-icon-moon');
-    
-    // Verificar tema salvo no localStorage ou preferência do sistema
+
     const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
     if (savedTheme === 'dark') {
       document.documentElement.setAttribute('data-theme', 'dark');
       themeIconSun.classList.add('hidden');
       themeIconMoon.classList.remove('hidden');
     }
-    
+
     themeToggle.addEventListener('click', () => {
       if (document.documentElement.getAttribute('data-theme') === 'dark') {
         document.documentElement.removeAttribute('data-theme');
@@ -810,39 +833,21 @@
       }
     });
 
-    // Dados de exemplo (em um cenário real, isso viria de uma API)
-     // const contacts = await fetch('/api/contact').then(res => res.json());
+    document.addEventListener('DOMContentLoaded', async function() {
+      await validateToken();
+      await refreshData();
 
-      fetch('/api/contact').then(res => {
-        res.json().then(data => {
-          contacts = data;
-          localStorage.setItem('contactSubmissions', JSON.stringify(contacts));
-        });
-      })
-
-    let contacts = JSON.parse(localStorage.getItem('contactSubmissions')) 
-
-    console.log(contacts)
-
-    // Carregar contatos
-    document.addEventListener('DOMContentLoaded', function() {
-      loadContacts();
-      updateStats();
-      
-      // Configurar filtros
       document.getElementById('search-contacts').addEventListener('input', filterContacts);
       document.getElementById('filter-project').addEventListener('change', filterContacts);
       document.getElementById('filter-status').addEventListener('change', filterContacts);
       document.getElementById('filter-date').addEventListener('change', filterContacts);
-      
-      // Configurar botões
+
       document.getElementById('refresh-data').addEventListener('click', refreshData);
       document.getElementById('export-csv').addEventListener('click', exportCSV);
       document.getElementById('export-json').addEventListener('click', exportJSON);
-      
-      // Configurar modal
+
       document.getElementById('close-modal').addEventListener('click', closeModal);
-      document.getElementById('respond-btn').addEventListener('click', respondToContact);
+      document.getElementById('respond-btn').addEventListener('click', () => respondToContact());
       document.getElementById('archive-btn').addEventListener('click', archiveContact);
     });
 
@@ -853,7 +858,7 @@
       
       container.innerHTML = '';
       
-      if (contactsToShow.length === 0) {
+      if (!contactsToShow.length) {
         emptyState.classList.remove('hidden');
         return;
       }
@@ -880,7 +885,7 @@
           <div class="contact-project">${contact.project}</div>
           
           <div class="contact-message">
-            ${contact.message.length > 150 ? contact.message.substring(0, 150) + '...' : contact.message}
+            ${(contact.message || '').length > 150 ? contact.message.substring(0, 150) + '...' : (contact.message || '')}
           </div>
           
           <div class="contact-actions">
@@ -909,7 +914,11 @@
       document.querySelectorAll('.action-respond').forEach(button => {
         button.addEventListener('click', (e) => {
           const contactId = parseInt(e.currentTarget.getAttribute('data-id'));
-          respondToContact(contactId);
+          showContactDetails(contactId);
+          setTimeout(() => {
+            const replyInput = document.getElementById('reply-message');
+            if (replyInput) replyInput.focus();
+          }, 0);
         });
       });
       
@@ -930,9 +939,9 @@
       const filteredContacts = contacts.filter(contact => {
         // Filtro de busca
         if (searchTerm && 
-            !contact.name.toLowerCase().includes(searchTerm) && 
-            !contact.email.toLowerCase().includes(searchTerm) &&
-            !contact.message.toLowerCase().includes(searchTerm)) {
+            !(contact.name || '').toLowerCase().includes(searchTerm) && 
+            !(contact.email || '').toLowerCase().includes(searchTerm) &&
+            !(contact.message || '').toLowerCase().includes(searchTerm)) {
           return false;
         }
         
@@ -1009,6 +1018,7 @@
       document.getElementById('modal-project').textContent = contact.project;
       document.getElementById('modal-date').textContent = formatDate(contact.date);
       document.getElementById('modal-message').textContent = contact.message;
+      document.getElementById('reply-message').value = '';
       
       // Atualizar status
       const statusElement = document.getElementById('modal-status');
@@ -1025,78 +1035,121 @@
 
     function closeModal() {
       document.getElementById('contact-modal').classList.add('hidden');
+      document.getElementById('reply-message').value = '';
     }
 
-    function respondToContact(contactId) {
-      if (!contactId) {
-        contactId = parseInt(document.getElementById('respond-btn').getAttribute('data-id'));
+    async function changeContactStatus(contactId, status) {
+      const response = await authFetch(`/api/contact/${contactId}/status`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status })
+      });
+
+      if (!response.ok) {
+        throw new Error('Falha ao atualizar status');
       }
-      
-      const contact = contacts.find(c => c.id === contactId);
-      if (!contact) return;
-      
-      // Simular envio de resposta
-      contact.status = 'responded';
-      localStorage.setItem('contactSubmissions', JSON.stringify(contacts));
-      
-      // Atualizar UI
-      loadContacts();
-      updateStats();
-      closeModal();
-      
-      alert(`Resposta enviada para ${contact.email}`);
     }
 
-    function archiveContact() {
+    async function respondToContact(contactId) {
+      const parsedId = Number(contactId);
+      if (!Number.isFinite(parsedId) || parsedId <= 0) {
+        contactId = Number(document.getElementById('respond-btn').getAttribute('data-id'));
+      } else {
+        contactId = parsedId;
+      }
+
+      const contact = contacts.find(c => Number(c.id) === Number(contactId));
+      if (!contact) {
+        alert('Não foi possível identificar o contato selecionado.');
+        return;
+      }
+
+      const replyMessage = document.getElementById('reply-message').value.trim();
+      if (!replyMessage) {
+        alert('Digite a mensagem de resposta antes de enviar.');
+        return;
+      }
+
+      const respondBtn = document.getElementById('respond-btn');
+      const originalBtnHtml = respondBtn.innerHTML;
+      respondBtn.disabled = true;
+      respondBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Enviando...';
+
+      try {
+        const response = await authFetch(`/api/contact/${contactId}/reply`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: replyMessage })
+        });
+
+        if (!response.ok) {
+          let errorMessage = 'Não foi possível enviar a resposta por e-mail.';
+          try {
+            const payload = await response.json();
+            if (payload && payload.error) {
+              errorMessage = payload.error;
+            }
+          } catch (_) {}
+          alert(errorMessage);
+          return;
+        }
+
+        await refreshData();
+        closeModal();
+        alert(`Resposta enviada para ${contact.email} com sucesso.`);
+      } catch (error) {
+        alert(`Falha ao enviar resposta: ${error.message || 'erro inesperado'}`);
+      } finally {
+        respondBtn.disabled = false;
+        respondBtn.innerHTML = originalBtnHtml;
+      }
+    }
+
+    async function archiveContact() {
       const contactId = parseInt(document.getElementById('archive-btn').getAttribute('data-id'));
       const contact = contacts.find(c => c.id === contactId);
       if (!contact) return;
-      
-      contact.status = 'archived';
-      localStorage.setItem('contactSubmissions', JSON.stringify(contacts));
-      
-      // Atualizar UI
-      loadContacts();
-      updateStats();
+
+      await changeContactStatus(contactId, 'archived');
+      await refreshData();
       closeModal();
-      
-      alert(`Contato de ${contact.name} arquivado`);
+      alert(`Contato de ${contact.name} arquivado com sucesso.`);
     }
 
-    function deleteContact(contactId) {
-      if (!confirm('Tem certeza que deseja excluir este contato?')) {
+    async function deleteContact(contactId) {
+      if (!confirm('Confirma a exclusão deste contato? Esta ação não poderá ser desfeita.')) {
         return;
       }
-      
-      contacts = contacts.filter(contact => contact.id !== contactId);
-      localStorage.setItem('contactSubmissions', JSON.stringify(contacts));
-      
-      // Atualizar UI
-      loadContacts();
-      updateStats();
+
+      const response = await authFetch(`/api/contact/${contactId}`, { method: 'DELETE' });
+      if (!response.ok) {
+        alert('Não foi possível excluir o contato.');
+        return;
+      }
+
+      await refreshData();
     }
 
-    function refreshData() {
-      // Em um cenário real, isso buscaria novos dados da API
-      loadContacts();
-      updateStats();
-      
-      // Simular carregamento
+    async function refreshData() {
       const refreshBtn = document.getElementById('refresh-data');
       const originalText = refreshBtn.innerHTML;
       refreshBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Atualizando...';
       refreshBtn.disabled = true;
-      
-      setTimeout(() => {
+
+      try {
+        const response = await authFetch('/api/contact');
+        contacts = await response.json();
+        loadContacts();
+        updateStats();
+      } finally {
         refreshBtn.innerHTML = originalText;
         refreshBtn.disabled = false;
-        alert('Dados atualizados com sucesso!');
-      }, 1000);
+      }
     }
 
     function exportCSV() {
       if (contacts.length === 0) {
-        alert('Não há dados para exportar');
+        alert('Não há dados disponíveis para exportação.');
         return;
       }
       
@@ -1126,7 +1179,7 @@
 
     function exportJSON() {
       if (contacts.length === 0) {
-        alert('Não há dados para exportar');
+        alert('Não há dados disponíveis para exportação.');
         return;
       }
       
@@ -1143,6 +1196,7 @@
     }
 
   </script>
+  <script src="/js/admin-shell.js"></script>
 </body>
 
 </html>

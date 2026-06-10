@@ -11,9 +11,9 @@ module.exports = {
                 postId: id,
                 view: ''
             };
-            creatPostView(data)
+            await creatPostView(data)
             res.json(await getPostView(id));
-        } catch (e) {
+        } catch (err) {
             console.error("Erro ao criar postView:", err);
             res.status(500).json({ success: false, error: err.message });
         }

@@ -1,8 +1,8 @@
-Blog API — Node.js RESTful
+📘 Blog API — Node.js RESTful
 
 API RESTful desenvolvida em Node.js para gerenciamento completo de blogs, com autenticação JWT, CRUD de posts, sistema de contatos e analytics em tempo real.
 
-Visão Geral
+🚀 Visão Geral
 
 Esta API fornece uma solução completa para blogs modernos, incluindo:
 
@@ -16,8 +16,8 @@ Coleta automática de dados de acesso (analytics)
 
 Ideal para blogs pessoais, institucionais ou projetos profissionais.
 
-Funcionalidades Principais
-Autenticação
+✨ Funcionalidades Principais
+🔐 Autenticação
 
 Autenticação via JWT
 
@@ -25,7 +25,7 @@ Login administrativo protegido
 
 Validação automática de token
 
-Posts
+📝 Posts
 
 CRUD completo de posts
 
@@ -37,7 +37,7 @@ Status de publicação (publicado / rascunho)
 
 Conteúdo em HTML formatado
 
-Contatos
+📧 Contatos
 
 Envio de mensagens via formulário
 
@@ -47,7 +47,7 @@ Notificação automática por e-mail
 
 Gerenciamento administrativo
 
-Analytics
+📊 Analytics
 
 Monitoramento automático de acessos
 
@@ -57,7 +57,7 @@ Rastreamento de IP e referência
 
 Relatórios enviados por e-mail
 
-Tecnologias Utilizadas
+🛠 Tecnologias Utilizadas
 Backend
 
 Node.js (>= 16.0.0)
@@ -94,7 +94,7 @@ cors — Compartilhamento de recursos
 
 dotenv — Variáveis de ambiente
 
-Estrutura do Projeto
+📁 Estrutura do Projeto
 blog-api/
 ├── database/
 │   ├── contatos.db
@@ -125,8 +125,8 @@ blog-api/
 ├── .env.example
 └── README.md
 
-Instalação
-Pré-requisitos
+⚙️ Instalação
+📌 Pré-requisitos
 
 Node.js >= 16.0.0
 
@@ -138,25 +138,25 @@ SQLite3 >= 3.0.0
 
 100MB de espaço em disco
 
-Passos
+📥 Passos
 
-Clone o repositório:
+1️⃣ Clone o repositório:
 
 git clone https://github.com/AdrianoSenaS/blog-api.git
 cd blog-api
 
 
-Instale as dependências:
+2️⃣ Instale as dependências:
 
 npm install
 
 
-Configure o ambiente:
+3️⃣ Configure o ambiente:
 
 cp .env.example .env
 
 
-Inicie o servidor:
+4️⃣ Inicie o servidor:
 
 # Produção
 npm start
@@ -164,8 +164,8 @@ npm start
 # Desenvolvimento
 npm run dev
 
-Configuração do Ambiente
-.env
+🔧 Configuração do Ambiente
+📄 .env
 # Servidor
 PORT=3000
 NODE_ENV=development
@@ -189,38 +189,38 @@ DB_PATH=./database
 UPLOAD_PATH=./public/uploads
 MAX_FILE_SIZE=5242880
 
-Endpoints da API
-Autenticação
+📡 Endpoints da API
+🔐 Autenticação
 
 POST /login — Obter token JWT
 
 POST /token — Validar token
 
-Posts
+📝 Posts
 
 GET /api/posts
 
 GET /api/posts/:id
 
-POST /api/posts 
+POST /api/posts 🔒
 
-PUT /api/posts/:id 
+PUT /api/posts/:id 🔒
 
-DELETE /api/posts/:id 
+DELETE /api/posts/:id 🔒
 
-Contatos
+📧 Contatos
 
 POST /api/contact
 
-GET /api/contact 
+GET /api/contact 🔒
 
-Analytics
+📊 Analytics
 
 Monitoramento automático das rotas
 
 Envio de relatórios por e-mail
 
-Deploy em Produção
+🚀 Deploy em Produção
 Usando PM2 (Recomendado)
 npm install -g pm2
 pm2 start server.js --name "blog-api"
@@ -233,7 +233,7 @@ Monitoramento:
 pm2 monit
 pm2 logs blog-api
 
-Segurança
+🔒 Segurança
 
 Autenticação JWT
 
@@ -247,7 +247,7 @@ Upload seguro (tipo e tamanho)
 
 CORS configurado
 
-Dados Coletados (Analytics)
+📊 Dados Coletados (Analytics)
 
 Dispositivo
 
@@ -261,7 +261,7 @@ Referência de acesso
 
 Data e hora exata
 
-Contribuindo
+🤝 Contribuindo
 
 Fork o projeto
 
@@ -282,11 +282,11 @@ git push origin feature/NovaFeature
 
 Abra um Pull Request
 
-Licença
+📄 Licença
 
 Este projeto é open source sob a licença MIT.
 
-Contato
+📞 Contato
 
 GitHub: AdrianoSenaS
 
@@ -296,7 +296,7 @@ WhatsApp: +55 64 93300-4882
 
 Instagram: @adriano.sena.silva
 
-Troubleshooting
+⚠️ Troubleshooting
 Porta em uso
 sudo lsof -i :3000
 kill -9 PID
@@ -307,7 +307,7 @@ sudo chmod -R 755 public/uploads
 Token JWT inválido
 node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 
-Changelog
+🔄 Changelog
 v1.0.0
 
 API RESTful completa
