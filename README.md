@@ -1,323 +1,348 @@
-📘 Blog API — Node.js RESTful
+# 📘 CMS Blog Platform — Node.js + JavaScript
 
-API RESTful desenvolvida em Node.js para gerenciamento completo de blogs, com autenticação JWT, CRUD de posts, sistema de contatos e analytics em tempo real.
+Sistema completo de gerenciamento de conteúdo (CMS) desenvolvido com **Node.js**, **Express.js**, **HTML**, **CSS** e **JavaScript Vanilla**, oferecendo painel administrativo, gerenciamento de posts, analytics, comentários, RSS Feed, compartilhamento social e autenticação segura.
 
-🚀 Visão Geral
+Ideal para blogs, portais de conteúdo, sites institucionais e projetos profissionais.
 
-Esta API fornece uma solução completa para blogs modernos, incluindo:
+---
 
-Área administrativa protegida por JWT
+# 🚀 Principais Recursos
 
-Gerenciamento de posts com upload de imagens
+## 🔐 Autenticação
 
-Sistema de contatos com notificação por e-mail
+* Login administrativo protegido
+* Autenticação JWT
+* Validação automática de token
+* Proteção de rotas administrativas
 
-Coleta automática de dados de acesso (analytics)
+---
 
-Ideal para blogs pessoais, institucionais ou projetos profissionais.
+## 📝 Gerenciamento de Posts
 
-✨ Funcionalidades Principais
-🔐 Autenticação
+* CRUD completo de publicações
+* Editor HTML
+* Upload de imagens
+* Status de publicação
+* Rascunhos
+* URLs amigáveis (Slug)
+* SEO otimizado
+* Sistema de categorias
+* Sistema de tags
 
-Autenticação via JWT
+### Exemplo de URL
 
-Login administrativo protegido
+Antes:
 
-Validação automática de token
+```url
+/post/15
+```
 
-📝 Posts
+Agora:
 
-CRUD completo de posts
+```url
+/post/como-criar-uma-loja-virtual
+```
 
-Upload de imagens (até 5MB)
+---
 
-Suporte a categorias e tags
+## 📡 RSS Feed
 
-Status de publicação (publicado / rascunho)
+* Geração automática de RSS
+* Compatível com agregadores de notícias
+* Atualização automática conforme novos conteúdos
 
-Conteúdo em HTML formatado
+---
 
-📧 Contatos
+## ❤️ Engajamento
 
-Envio de mensagens via formulário
+* Sistema de curtidas
+* Compartilhamento em redes sociais
+* Sistema de comentários
+* Integração com plataformas sociais
 
-Armazenamento em banco de dados
+---
 
-Notificação automática por e-mail
+## 📧 Sistema de Contato
 
-Gerenciamento administrativo
+* Formulário de contato
+* Armazenamento de mensagens
+* Notificações por e-mail
+* Gerenciamento pelo painel administrativo
 
-📊 Analytics
+---
 
-Monitoramento automático de acessos
+## 📊 Analytics Integrado
 
-Detecção de dispositivo (tipo, navegador e SO)
+Monitoramento completo de acessos:
 
-Rastreamento de IP e referência
+* Visitantes
+* Visualizações de páginas
+* Sistema operacional
+* Navegador
+* Dispositivo utilizado
+* Endereço IP
+* Origem do acesso
+* Data e horário
 
-Relatórios enviados por e-mail
+Tudo acessível através do painel administrativo.
 
-🛠 Tecnologias Utilizadas
-Backend
+---
 
-Node.js (>= 16.0.0)
+# 🎨 Painel Administrativo
 
-Express.js
+O CMS possui uma área administrativa completa para gerenciamento do sistema.
 
-SQLite3
+### Recursos disponíveis
 
-JWT (JSON Web Token)
+* Dashboard
+* Gestão de Posts
+* Categorias
+* Tags
+* Comentários
+* Contatos
+* Usuários
+* Analytics
+* Configurações
+* Dispositivos monitorados
 
-Nodemailer
+---
 
-Multer
+# ⚡ Performance
 
-Frontend (Documentação)
+* Otimização de carregamento
+* Cache de recursos estáticos
+* Estrutura otimizada para SEO
+* Melhor gerenciamento de rotas
+* Redução de consultas desnecessárias
 
-Tailwind CSS
+---
 
-AOS
+# 🛠 Tecnologias Utilizadas
 
-Highlight.js
+## Backend
 
-Font Awesome
+* Node.js
+* Express.js
+* SQLite3
+* JWT
+* Multer
+* Nodemailer
+* Helmet
+* CORS
+* Dotenv
+* Express Rate Limit
 
-Google Fonts
+## Frontend
 
-Outras Dependências
+* HTML5
+* CSS3
+* JavaScript Vanilla
+* Font Awesome
+* Highlight.js
+* AOS Animation
 
-express-rate-limit — Limitação de requisições
+---
 
-helmet — Segurança HTTP
+# 📁 Estrutura do Projeto
 
-cors — Compartilhamento de recursos
-
-dotenv — Variáveis de ambiente
-
-📁 Estrutura do Projeto
+```bash
 blog-api/
+│
 ├── database/
-│   ├── contatos.db
-│   ├── posts.db
-│   ├── contatosDb.js
-│   └── postsDb.js
 ├── public/
 │   ├── uploads/
-│   ├── index.html
+│   ├── admin.html
 │   ├── blog.html
 │   ├── login.html
-│   ├── admin.html
-│   └── error.html
+│   └── index.html
+│
 ├── services/
-│   ├── contato.js
-│   ├── deviceInfo.js
-│   ├── email.js
-│   ├── filtroRotas.js
-│   ├── innerHtmlPost.js
-│   ├── login.js
-│   ├── posts.js
-│   ├── testeEmail.js
-│   └── upload.js
 ├── views/
-│   └── post.js
 ├── server.js
 ├── package.json
-├── .env.example
 └── README.md
+```
 
-⚙️ Instalação
-📌 Pré-requisitos
+---
 
-Node.js >= 16.0.0
+# ⚙️ Instalação
 
-npm >= 8.0.0
+## Requisitos
 
-SQLite3 >= 3.0.0
+* Node.js 16+
+* NPM 8+
+* SQLite3
 
-512MB de RAM
+## Clonar Projeto
 
-100MB de espaço em disco
-
-📥 Passos
-
-1️⃣ Clone o repositório:
-
+```bash
 git clone https://github.com/AdrianoSenaS/blog-api.git
 cd blog-api
+```
 
+## Instalar Dependências
 
-2️⃣ Instale as dependências:
-
+```bash
 npm install
+```
 
+## Configurar Ambiente
 
-3️⃣ Configure o ambiente:
-
+```bash
 cp .env.example .env
+```
 
+## Executar
 
-4️⃣ Inicie o servidor:
+Produção:
 
-# Produção
+```bash
 npm start
+```
 
-# Desenvolvimento
+Desenvolvimento:
+
+```bash
 npm run dev
+```
 
-🔧 Configuração do Ambiente
-📄 .env
-# Servidor
+---
+
+# 🔧 Variáveis de Ambiente
+
+```env
 PORT=3000
-NODE_ENV=development
 
-# Autenticação
 ADMIN_USERNAME=admin@example.com
-ADMIN_PASSWORD=senha_segura_123
-ADMIN_TOKEN=seu_token_jwt_super_secreto_aqui
+ADMIN_PASSWORD=password
 
-# E-mail (SMTP)
-SMTP_HOST=smtp.seuprovedor.com
+ADMIN_TOKEN=token_super_secreto
+
+SMTP_HOST=smtp.exemplo.com
 SMTP_PORT=587
-SMTP_USER=seu_email@dominio.com
-SMTP_PASS=sua_senha_segura
-REPORT_EMAIL=destino@dominio.com
+SMTP_USER=email@exemplo.com
+SMTP_PASS=senha
 
-# Banco de Dados
+REPORT_EMAIL=admin@exemplo.com
+
 DB_PATH=./database
 
-# Upload
 UPLOAD_PATH=./public/uploads
 MAX_FILE_SIZE=5242880
+```
 
-📡 Endpoints da API
-🔐 Autenticação
+---
 
-POST /login — Obter token JWT
+# 📡 Principais Endpoints
 
-POST /token — Validar token
+## Autenticação
 
-📝 Posts
+```http
+POST /login
+POST /token
+```
 
+## Posts
+
+```http
 GET /api/posts
+GET /api/posts/:slug
 
-GET /api/posts/:id
+POST /api/posts
+PUT /api/posts/:slug
+DELETE /api/posts/:slug
+```
 
-POST /api/posts 🔒
+## Contatos
 
-PUT /api/posts/:id 🔒
-
-DELETE /api/posts/:id 🔒
-
-📧 Contatos
-
+```http
 POST /api/contact
+GET /api/contact
+```
 
-GET /api/contact 🔒
+---
 
-📊 Analytics
+# 🚀 Deploy com PM2
 
-Monitoramento automático das rotas
+Instalação:
 
-Envio de relatórios por e-mail
-
-🚀 Deploy em Produção
-Usando PM2 (Recomendado)
+```bash
 npm install -g pm2
-pm2 start server.js --name "blog-api"
+```
+
+Executar:
+
+```bash
+pm2 start server.js --name cms-blog
 pm2 startup
 pm2 save
-
+```
 
 Monitoramento:
 
+```bash
 pm2 monit
-pm2 logs blog-api
+pm2 logs cms-blog
+```
 
-🔒 Segurança
+---
 
-Autenticação JWT
+# 🔒 Segurança
 
-Rate Limiting
+* JWT Authentication
+* Helmet
+* Rate Limiting
+* Upload Seguro
+* Validação de Dados
+* Proteção de Rotas
+* Controle de Acesso
 
-Helmet.js
+---
 
-Validação de dados
+# 🗺 Roadmap
 
-Upload seguro (tipo e tamanho)
+## Próximas versões
 
-CORS configurado
+* [ ] MySQL
+* [ ] PostgreSQL
+* [ ] Editor Rich Text
+* [ ] Multiusuários
+* [ ] Permissões avançadas
+* [ ] Dashboard avançado
+* [ ] API pública
+* [ ] Dark Mode
 
-📊 Dados Coletados (Analytics)
+---
 
-Dispositivo
+# 📄 Licença
 
-Sistema operacional
+MIT License
 
-Navegador
+---
 
-Localização via IP
+# 👨‍💻 Autor
 
-Referência de acesso
+**Adriano Sena**
 
-Data e hora exata
+Desenvolvedor Full Stack
 
-🤝 Contribuindo
+* Node.js
+* JavaScript
+* TypeScript
+* C#
+* Linux
+* VPS
+* Infraestrutura
 
-Fork o projeto
+Website:
+https://www.adrianosena.dev.br
 
-Crie sua branch:
+GitHub:
+https://github.com/AdrianoSenaS
 
-git checkout -b feature/NovaFeature
+LinkedIn:
+https://www.linkedin.com
 
+---
 
-Commit:
-
-git commit -m "Add: NovaFeature"
-
-
-Push:
-
-git push origin feature/NovaFeature
-
-
-Abra um Pull Request
-
-📄 Licença
-
-Este projeto é open source sob a licença MIT.
-
-📞 Contato
-
-GitHub: AdrianoSenaS
-
-LinkedIn: Adriano Sena Silva
-
-WhatsApp: +55 64 93300-4882
-
-Instagram: @adriano.sena.silva
-
-⚠️ Troubleshooting
-Porta em uso
-sudo lsof -i :3000
-kill -9 PID
-
-Erro de permissão no upload
-sudo chmod -R 755 public/uploads
-
-Token JWT inválido
-node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
-
-🔄 Changelog
-v1.0.0
-
-API RESTful completa
-
-Autenticação JWT
-
-CRUD de posts
-
-Sistema de contatos
-
-Analytics em tempo real
-
-Documentação completa
+⭐ Se este projeto foi útil para você, deixe uma estrela no repositório.
