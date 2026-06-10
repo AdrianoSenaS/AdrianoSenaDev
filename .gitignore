@@ -46,6 +46,7 @@ logs/
 # =========================
 .DS_Store
 Thumbs.db
+*.db
 
 .vscode/
 !.vscode/extensions.json
