@@ -341,7 +341,7 @@ GitHub:
 https://github.com/AdrianoSenaS
 
 LinkedIn:
-https://www.linkedin.com
+https://www.linkedin.com/in/adriano-sena-silva-a8605622a/
 
 ---
 
