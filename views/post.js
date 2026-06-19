@@ -41,41 +41,102 @@ module.exports = {
     const excerpt = escHtml(safeExcerpt(post));
     const imageCandidate = post.image || extractFirstImageFromHtml(post.content) || "/logoWeb.png";
     const fullImage = toAbsoluteImageUrl(imageCandidate, baseUrl);
-    const fullImageShare = withCacheBust(fullImage, `${post.id || ""}-${post.createdAt || ""}`);
-    const imagePath = /^https?:\/\//i.test(String(imageCandidate || ""))
-      ? String(imageCandidate)
-      : (String(imageCandidate).startsWith("/") ? String(imageCandidate) : `/${String(imageCandidate)}`);
+    // ⚠️ Evite cache-busting em imagens sociais: o Facebook pode tratar ?v= como URL nova e perder cache.
+    // Use versão fixa ou arquivo com hash no nome. Mantenha somente se o CDN exigir.
+    const fullImageSocial = fullImage; // sem cache buster para redes sociais
     const canonicalUrl = `${baseUrl}/post?slug=${encodeURIComponent(slug)}`;
     const facebookAppId = process.env.FACEBOOK_APP_ID || "";
+
+    // Datas ISO para schema e meta tags
+    const publishedISO = post.createdAt ? new Date(post.createdAt).toISOString() : "";
+    const modifiedISO = post.updatedAt ? new Date(post.updatedAt).toISOString() : publishedISO;
+
+    // Dados estruturados Article
+    const articleSchema = {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": title,
+      "description": excerpt,
+      "image": fullImageSocial,
+      "author": {
+        "@type": "Person",
+        "name": "Adriano Sena",
+        "url": "https://adrianosena.dev.br",
+        "sameAs": [
+          "https://twitter.com/adrianosenas",
+          "https://github.com/adrianosena",
+          "https://linkedin.com/in/adrianosena"
+        ]
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Adriano Sena Dev",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://adrianosena.dev.br/logoWeb.png"
+        }
+      },
+      "datePublished": publishedISO,
+      "dateModified": modifiedISO,
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": canonicalUrl
+      }
+    };
 
     const html = `<!DOCTYPE html>
 <html lang="pt-BR" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>${title} | Adriano Sena Dev</title>
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Adriano Sena" />
+  <meta name="theme-color" content="#0f172a" />
 
+  <title>${title} | Adriano Sena Dev</title>
   <link rel="canonical" href="${canonicalUrl}" />
   <meta name="description" content="${excerpt}" />
 
-  <meta property="og:title" content="${title} | Adriano Sena Dev" />
-  <meta property="og:description" content="${excerpt}" />
-  <meta property="og:image" content="${fullImageShare}" />
-  <meta property="og:image:url" content="${fullImageShare}" />
-  <meta property="og:image:secure_url" content="${fullImageShare}" />
-  <meta property="og:image:alt" content="Imagem de capa do post ${title}" />
-  <meta property="og:url" content="${canonicalUrl}" />
+  <!-- Open Graph / Facebook -->
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:site_name" content="Adriano Sena Dev" />
   <meta property="og:type" content="article" />
+  <meta property="og:title" content="${title}" />
+  <meta property="og:description" content="${excerpt}" />
+  <meta property="og:url" content="${canonicalUrl}" />
+  <meta property="og:image" content="${fullImageSocial}" />
+  <meta property="og:image:secure_url" content="${fullImageSocial}" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Imagem de capa do post: ${title}" />
+  ${facebookAppId ? `<meta property="fb:app_id" content="${facebookAppId}" />` : ""}
+  <meta property="article:published_time" content="${publishedISO}" />
+  <meta property="article:modified_time" content="${modifiedISO}" />
+  <meta property="article:author" content="https://adrianosena.dev.br" />
 
+  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@adrianosenas" />
-  <meta name="twitter:title" content="${title} | Adriano Sena Dev" />
+  <meta name="twitter:creator" content="@adrianosenas" />
+  <meta name="twitter:title" content="${title}" />
   <meta name="twitter:description" content="${excerpt}" />
-  <meta name="twitter:image" content="${fullImageShare}" />
-  <meta name="twitter:image:alt" content="Imagem de capa do post ${title}" />
+  <meta name="twitter:image" content="${fullImageSocial}" />
+  <meta name="twitter:image:alt" content="Imagem de capa do post: ${title}" />
+
+  <!-- Dados Estruturados -->
+  <script type="application/ld+json">
+    ${JSON.stringify(articleSchema, null, 2)}
+  </script>
+
+  <!-- Conexões sociais e feeds -->
+  <link rel="me" href="https://twitter.com/adrianosenas" />
   <link rel="alternate" type="application/rss+xml" title="RSS Adriano Sena Dev" href="https://www.adrianosena.dev.br/rss.xml" />
 
-  <link rel="shortcut icon" href="https://adrianosena.dev.br/logo.png" type="image/x-icon" />
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="https://adrianosena.dev.br/logo.png" />
+  <link rel="apple-touch-icon" href="https://adrianosena.dev.br/logo.png" />
+
+  <!-- CSS e Fontes -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />

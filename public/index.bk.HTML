@@ -1,0 +1,2259 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Adriano Sena | Desenvolvedor Full-Stack & Especialista em Soluções Digitais</title>
+    <meta property="og:title" content="Adriano Sena | Desenvolvedor Full-Stack & Especialista em Soluções Digitais" />
+    <meta property="og:description"
+        content="Transformo ideias em sistemas robustos com código de alta performance. 5+ anos criando soluções digitais que geram resultados." />
+    <meta property="og:image" content="logo.png" />
+    <meta property="og:url" content="https://adrianosena.dev.br/" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@adrianosenas" />
+    <meta name="twitter:title" content="Adriano Sena | Desenvolvedor Full-Stack" />
+    <meta name="twitter:description" content="Sistemas sólidos, código preciso e soluções que passam confiança." />
+    <meta name="twitter:image" content="https://adrianosena.dev.br/imagens/logo.png" />
+
+    <link rel="shortcut icon" href="logo.png" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=Fira+Code:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #10B981;
+            --secondary-dark: #059669;
+            --accent: #8b5cf6;
+            --dark: #0F172A;
+            --light: #FFFFFF;
+            --gray-50: #F8FAFC;
+            --gray-100: #F1F5F9;
+            --gray-200: #E2E8F0;
+            --gray-300: #CBD5E1;
+            --gray-400: #94A3B8;
+            --gray-500: #64748B;
+            --gray-600: #475569;
+            --gray-700: #334155;
+            --gray-800: #1E293B;
+            --gray-900: #0F172A;
+            --text-primary: #1E293B;
+            --text-secondary: #64748B;
+            --gradient: linear-gradient(135deg, #2563eb 0%, #10B981 100%);
+            --gradient-hover: linear-gradient(135deg, #1d4ed8 0%, #059669 100%);
+            --gradient-accent: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+            --card-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            --card-shadow-hover: 0 20px 40px rgba(37, 99, 235, 0.1);
+            --neon-glow: 0 0 30px rgba(37, 99, 235, 0.1);
+            --neon-glow-accent: 0 0 30px rgba(139, 92, 246, 0.1);
+        }
+
+        [data-theme="dark"] {
+            --primary: #60a5fa;
+            --primary-dark: #3b82f6;
+            --secondary: #34d399;
+            --secondary-dark: #10b981;
+            --accent: #a78bfa;
+            --light: #0F172A;
+            --gray-50: #1E293B;
+            --gray-100: #334155;
+            --gray-200: #475569;
+            --gray-300: #64748b;
+            --gray-400: #94A3B8;
+            --gray-500: #cbd5e1;
+            --gray-600: #e2e8f0;
+            --gray-700: #f1f5f9;
+            --gray-800: #f8fafc;
+            --gray-900: #ffffff;
+            --text-primary: #F1F5F9;
+            --text-secondary: #94A3B8;
+            --gradient: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
+            --gradient-hover: linear-gradient(135deg, #2563eb 0%, #059669 100%);
+            --gradient-accent: linear-gradient(135deg, #a78bfa 0%, #ec4899 100%);
+            --card-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            --card-shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            transition: all 0.3s ease;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .gradient-text {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gradient-text-accent {
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+            padding: 14px 36px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            box-shadow: var(--neon-glow);
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-hover);
+            transition: left 0.5s ease;
+            z-index: -1;
+        }
+
+        .btn-primary:hover::before {
+            left: 0;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(37, 99, 235, 0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            padding: 14px 36px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1rem;
+            border: 2px solid var(--primary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(37, 99, 235, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .btn-accent {
+            background: var(--gradient-accent);
+            color: white;
+            padding: 14px 36px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            box-shadow: var(--neon-glow-accent);
+        }
+
+        .btn-accent::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #7c3aed 0%, #db2777 100%);
+            transition: left 0.5s ease;
+            z-index: -1;
+        }
+
+        .btn-accent:hover::before {
+            left: 0;
+        }
+
+        .btn-accent:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(139, 92, 246, 0.2);
+        }
+
+        .card {
+            background: var(--light);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+            transition: all 0.4s ease;
+            border: 1px solid var(--gray-200);
+            height: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--card-shadow-hover);
+            border-color: var(--primary);
+        }
+
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 3rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        .skill-bar {
+            height: 8px;
+            background: var(--gray-200);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: var(--gradient);
+            border-radius: 4px;
+            transition: width 1.5s ease-in-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tech-tag {
+            display: inline-block;
+            padding: 6px 14px;
+            background: rgba(37, 99, 235, 0.08);
+            color: var(--primary);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin: 2px;
+            border: 1px solid rgba(37, 99, 235, 0.15);
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .tech-tag:hover {
+            transform: translateY(-2px);
+            background: rgba(37, 99, 235, 0.15);
+        }
+
+        .nav-link {
+            position: relative;
+            padding: 8px 0;
+            color: var(--text-primary);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+        }
+
+        [data-theme="dark"] .glass-effect {
+            background: rgba(15, 23, 42, 0.8);
+        }
+
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: var(--neon-glow);
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        [data-theme="dark"] .hero-section {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
+
+        .hero-bg-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%232563eb' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .trust-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 20px;
+            background: white;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--gray-200);
+        }
+
+        [data-theme="dark"] .trust-badge {
+            background: var(--gray-100);
+            border-color: var(--gray-200);
+        }
+
+        .client-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 3px solid white;
+            margin-left: -10px;
+        }
+
+        .client-avatar:first-child {
+            margin-left: 0;
+        }
+
+        /* Ajuste específico para fundos de seções */
+        .bg-section-light {
+            background-color: var(--gray-50);
+        }
+
+        [data-theme="dark"] .bg-section-light {
+            background-color: var(--gray-100);
+        }
+
+        .bg-section-dark {
+            background-color: var(--dark);
+            color: white;
+        }
+
+        /* Garantir que todas as cores de texto sigam o tema */
+        .text-theme-primary {
+            color: var(--text-primary);
+        }
+
+        .text-theme-secondary {
+            color: var(--text-secondary);
+        }
+
+
+        .blog-hero-pattern {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%232563eb' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .blog-card {
+      background: var(--light);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      border: 1px solid var(--gray-200);
+      box-shadow: var(--card-shadow);
+      height: 100%;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--card-shadow-hover);
+      border-color: var(--primary);
+    }
+
+    .blog-image {
+      height: 200px;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .blog-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .blog-card:hover .blog-image img {
+      transform: scale(1.1);
+    }
+
+    .post-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .post-meta i {
+      margin-right: 4px;
+    }
+
+    .category-tag {
+      display: inline-block;
+      padding: 4px 12px;
+      background: rgba(37, 99, 235, 0.1);
+      color: var(--primary);
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      border: 1px solid rgba(37, 99, 235, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .category-tag:hover {
+      background: rgba(37, 99, 235, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .filter-btn {
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      background: var(--gray-100);
+      color: var(--text-secondary);
+      border: 1px solid var(--gray-200);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: 10px;
+      border: 1px solid var(--gray-300);
+      background: var(--light);
+      color: var(--text-primary);
+      transition: all 0.3s ease;
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+
+    [data-theme="dark"] .search-input {
+      background: var(--gray-100);
+      border-color: var(--gray-600);
+    }
+
+    .bg-section-light {
+      background-color: var(--gray-50);
+    }
+
+    [data-theme="dark"] .bg-section-light {
+      background-color: var(--gray-100);
+    }
+
+    .bg-section-dark {
+      background-color: var(--dark);
+      color: white;
+    }
+
+        /* Garantir que todos os backgrounds sigam o tema */
+        .bg-theme-light {
+            background-color: var(--light);
+        }
+
+        .bg-theme-gray {
+            background-color: var(--gray-50);
+        }
+
+        /* Ajuste do badge de experiência */
+        .experience-badge {
+            position: absolute;
+            bottom: -20px;
+            left: 20px;
+            z-index: 10;
+        }
+
+        /* Melhor espaçamento para seções */
+        .section-spacing {
+            padding: 80px 0;
+        }
+
+        /* Animações personalizadas */
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes pulse-glow {
+
+            0%,
+            100% {
+                box-shadow: var(--neon-glow);
+            }
+
+            50% {
+                box-shadow: 0 0 40px rgba(37, 99, 235, 0.2);
+            }
+        }
+
+        .float-animation {
+            animation: float 5s ease-in-out infinite;
+        }
+
+        .pulse-glow {
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+
+        /* Project Cards */
+        .project-image {
+            height: 200px;
+            overflow: hidden;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover .project-image img {
+            transform: scale(1.1);
+        }
+
+        /* Skill Items */
+        .skill-item {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Service Cards */
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        /* Blog Cards */
+        .post-meta {
+            display: flex;
+            gap: 1rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Form Styles */
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 8px;
+            border: 1px solid var(--gray-300);
+            background: var(--light);
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        [data-theme="dark"] .form-input {
+            background: var(--gray-100);
+            border-color: var(--gray-600);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding-top: 100px;
+                text-align: center;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-light text-text-primary">
+    <!-- Header -->
+    <header class="fixed w-full z-50 glass-effect transition-all duration-300">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <a href="#home" class="flex items-center space-x-3">
+                    <div
+                        class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+                        <img src="./logo.png" alt="">
+                    </div>
+                    <div>
+                        <h1 class="text-lg font-bold">Adriano Sena</h1>
+                        <p class="text-xs text-text-secondary">Full-Stack Developer</p>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="nav-link">Início</a>
+                    <a href="#skills" class="nav-link">Skills</a>
+                    <a href="#projects" class="nav-link">Projetos</a>
+                    <a href="#services" class="nav-link">Serviços</a>
+                    <a href="/blog" class="nav-link">Blog</a>
+                    <a href="#contact" class="nav-link">Contato</a>
+                    <a href="privacidade" class="nav-link">Privacidade</a>
+                </nav>
+
+                <!-- Theme Toggle & CTA -->
+                <div class="flex items-center space-x-4">
+                    <button id="theme-toggle"
+                        class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+                        <i id="theme-icon" class="fas fa-moon text-gray-600"></i>
+                    </button>
+                    <a href="#contact" class="btn-primary hidden md:block">
+                        Iniciar Projeto
+                    </a>
+                    <button id="menu-toggle" class="md:hidden">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+                <div class="flex flex-col space-y-4">
+                    <a href="#home" class="nav-link">Início</a>
+                    <a href="#skills" class="nav-link">Skills</a>
+                    <a href="#projects" class="nav-link">Projetos</a>
+                    <a href="#services" class="nav-link">Serviços</a>
+                    <a href="/blog" class="nav-link">Blog</a>
+                    <a href="#contact" class="nav-link">Contato</a>
+                    <a href="privacidade" class="nav-link">Privacidade</a>
+                    <a href="#contact" class="btn-primary w-full text-center">
+                        Iniciar Projeto
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="hero-bg-pattern"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right" data-aos-delay="100" class="text-center lg:text-left">
+                    <!-- Gatilho de Status -->
+                    <div
+                        class="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-primary/10 to-secondary/10 mb-8">
+                        <div class="w-2 h-2 rounded-full bg-primary mr-2 animate-pulse"></div>
+                        <span class="text-sm font-medium text-primary">Disponível para novos projetos</span>
+                    </div>
+
+                    <!-- Título Principal -->
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+                        Transformo <span class="gradient-text">ideias</span> em sistemas que geram <span
+                            class="gradient-text-accent">resultados</span>
+                    </h1>
+
+                    <!-- Subtitle -->
+                    <p class="text-lg md:text-xl text-text-secondary mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                        Desenvolvedor Full-Stack especializado em criar soluções completas que
+                        <span class="font-semibold text-primary">aumentam eficiência, reduzem custos</span> e
+                        <span class="font-semibold text-primary">impulsionam negócios digitais</span> com tecnologia de
+                        ponta.
+                    </p>
+
+                    <!-- Social Proof -->
+                    <div
+                        class="flex flex-col sm:flex-row items-center justify-center lg:justify-start mb-10 space-y-4 sm:space-y-0 sm:space-x-6">
+                        <div class="flex -space-x-2">
+                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=client1" alt="Cliente"
+                                class="client-avatar">
+                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=client2" alt="Cliente"
+                                class="client-avatar">
+                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=client3" alt="Cliente"
+                                class="client-avatar">
+                            <div
+                                class="w-10 h-10 rounded-full border-2 border-white bg-gradient-to-r from-primary to-secondary flex items-center justify-center text-xs font-bold text-white client-avatar">
+                                +500
+                            </div>
+                        </div>
+                        <div class="text-center sm:text-left">
+                            <div class="font-bold text-lg">+500 projetos entregues</div>
+                            <div class="text-sm text-text-secondary">Clientes satisfeitos em 5+ anos</div>
+                        </div>
+                    </div>
+
+                    <!-- CTAs -->
+                    <div class="flex flex-col sm:flex-row gap-4 mb-12 justify-center lg:justify-start">
+                        <a href="#contact" class="btn-primary text-center">
+                            <i class="fas fa-rocket mr-2"></i>Solicitar Orçamento
+                        </a>
+                        <a href="#projects" class="btn-secondary text-center">
+                            <i class="fas fa-eye mr-2"></i>Ver Portfólio
+                        </a>
+                    </div>
+
+                    <!-- Trust Badges -->
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <div class="trust-badge">
+                            <i class="fas fa-shield-alt text-primary mr-3"></i>
+                            <span class="text-sm font-medium">Garantia de 3 Meses</span>
+                        </div>
+                        <div class="trust-badge">
+                            <i class="fas fa-clock text-primary mr-3"></i>
+                            <span class="text-sm font-medium">Entrega no prazo</span>
+                        </div>
+                        <div class="trust-badge">
+                            <i class="fas fa-headset text-primary mr-3"></i>
+                            <span class="text-sm font-medium">Suporte 24/7</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Imagem e Stats -->
+                <div data-aos="fade-left" data-aos-delay="200" class="relative mt-12 lg:mt-0">
+                    <div class="relative mb-16">
+                        <div
+                            class="absolute -top-6 -right-6 w-64 h-64 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-full blur-3xl float-animation">
+                        </div>
+                        <div
+                            class="relative rounded-3xl shadow-2xl overflow-hidden border-8 border-white dark:border-gray-800">
+                            <img src="./logoWeb.png" alt="Adriano Sena - Desenvolvedor Full-Stack"
+                                class="w-full h-auto object-cover">
+                        </div>
+
+                        <!-- Badge de Experiência -->
+                        <div class="absolute -bottom-6 left-1/2 transform -translate-x-1/2 z-10">
+                            <div class="card w-64 shadow-lg mx-auto">
+                                <div class="flex items-center">
+                                    <div
+                                        class="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center mr-4">
+                                        <i class="fas fa-code text-white"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-2xl font-bold">5+</div>
+                                        <div class="text-text-secondary text-sm">Anos de Experiência</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stats Grid -->
+                    <div class="grid grid-cols-2 gap-4 md:gap-6">
+                        <div class="stat-item card">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Projetos Entregues</div>
+                        </div>
+                        <div class="stat-item card">
+                            <div class="stat-number">600+</div>
+                            <div class="stat-label">Clientes Atendidos</div>
+                        </div>
+                        <div class="stat-item card">
+                            <div class="stat-number">24h</div>
+                            <div class="stat-label">Suporte Rápido</div>
+                        </div>
+                        <div class="stat-item card">
+                            <div class="stat-number">3M</div>
+                            <div class="stat-label">Garantia</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section-spacing bg-section-light">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Stack <span class="gradient-text">Tecnológico</span>
+                    Completo</h2>
+                <p class="text-lg md:text-xl text-text-secondary max-w-2xl mx-auto">
+                    Domínio completo do desenvolvimento full-stack, do frontend à infraestrutura
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <!-- Frontend Skills -->
+                <div class="card" data-aos="fade-up">
+                    <div
+                        class="w-14 h-14 rounded-xl bg-gradient-to-br from-orange-400 to-cyan-400 flex items-center justify-center mb-6">
+                        <i class="fas fa-code text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Frontend & UI/UX</h3>
+                    <div class="space-y-4">
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-1">
+                                <span class="text-theme-primary">HTML5/CSS3/Tailwind</span>
+                                <span class="font-bold text-primary">95%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="95%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-1">
+                                <span class="text-theme-primary">JavaScript/TypeScript</span>
+                                <span class="font-bold text-primary">90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-1">
+                                <span class="text-theme-primary">React/Vue.js</span>
+                                <span class="font-bold text-primary">88%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="88%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Backend Skills -->
+                <div class="card" data-aos="fade-up" data-aos-delay="100">
+                    <div
+                        class="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-400 to-green-400 flex items-center justify-center mb-6">
+                        <i class="fas fa-server text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Backend & APIs</h3>
+                    <div class="space-y-4">
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-1">
+                                <span class="text-theme-primary">Node.js/C#/.NET</span>
+                                <span class="font-bold text-primary">92%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="92%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-1">
+                                <span class="text-theme-primary">SQL Server/MySQL/SQLite</span>
+                                <span class="font-bold text-primary">94%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="94%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-1">
+                                <span class="text-theme-primary">APIs REST/GraphQL</span>
+                                <span class="font-bold text-primary">91%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="91%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DevOps & Cloud -->
+                <div class="card" data-aos="fade-up" data-aos-delay="200">
+                    <div
+                        class="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-500 to-pink-400 flex items-center justify-center mb-6">
+                        <i class="fas fa-cloud text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">DevOps & Infra</h3>
+                    <div class="space-y-4">
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-1">
+                                <span class="text-theme-primary">Docker/Proxmox</span>
+                                <span class="font-bold text-primary">87%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="87%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-1">
+                                <span class="text-theme-primary">cPanel/CyberPanel</span>
+                                <span class="font-bold text-primary">89%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="89%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-1">
+                                <span class="text-theme-primary">Linux Server</span>
+                                <span class="font-bold text-primary">90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="90%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Especialidades -->
+                <div class="card" data-aos="fade-up" data-aos-delay="300">
+                    <div
+                        class="w-14 h-14 rounded-xl bg-gradient-to-br from-orange-500 to-red-400 flex items-center justify-center mb-6">
+                        <i class="fas fa-star text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Especialidades</h3>
+                    <div class="space-y-4">
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-1">
+                                <span class="text-theme-primary">Unity3D & C# Scripts</span>
+                                <span class="font-bold text-primary">85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-1">
+                                <span class="text-theme-primary">Gateways de Pagamento</span>
+                                <span class="font-bold text-primary">93%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="93%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-1">
+                                <span class="text-theme-primary">APIs NFe/Fiscais</span>
+                                <span class="font-bold text-primary">88%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="88%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tech Stack Completo -->
+            <div class="mt-8">
+                <h3 class="text-2xl font-bold text-center mb-8">Tecnologias & Ferramentas</h3>
+                <div class="flex flex-wrap justify-center gap-3">
+                    <span class="tech-tag">HTML5</span>
+                    <span class="tech-tag">CSS3</span>
+                    <span class="tech-tag">Tailwind CSS</span>
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">TypeScript</span>
+                    <span class="tech-tag">C#</span>
+                    <span class="tech-tag">.NET</span>
+                    <span class="tech-tag">Unity3D</span>
+                    <span class="tech-tag">SQL Server</span>
+                    <span class="tech-tag">MySQL</span>
+                    <span class="tech-tag">SQLite</span>
+                    <span class="tech-tag">Node.js</span>
+                    <span class="tech-tag">React.js</span>
+                    <span class="tech-tag">Vue.js</span>
+                    <span class="tech-tag">Docker</span>
+                    <span class="tech-tag">Proxmox</span>
+                    <span class="tech-tag">cPanel</span>
+                    <span class="tech-tag">CyberPanel</span>
+                    <span class="tech-tag">Mercado Pago</span>
+                    <span class="tech-tag">Stripe</span>
+                    <span class="tech-tag">Stone API</span>
+                    <span class="tech-tag">API NFe</span>
+                    <span class="tech-tag">Android</span>
+                    <span class="tech-tag">iOS</span>
+                    <span class="tech-tag">Flutter</span>
+                    <span class="tech-tag">React Native</span>
+                    <span class="tech-tag">Firebase</span>
+                    <span class="tech-tag">AWS</span>
+                    <span class="tech-tag">Git</span>
+                    <span class="tech-tag">GitHub</span>
+                    <span class="tech-tag">CI/CD</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section-spacing">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Portfólio de <span class="gradient-text">Projetos</span>
+                </h2>
+                <p class="text-lg md:text-xl text-text-secondary max-w-2xl mx-auto">
+                    Soluções reais desenvolvidas para clientes em diversos segmentos
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Sistema de Gestão Financeira -->
+                <div class="card" data-aos="zoom-in">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                            alt="Sistema de Gestão" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="text-xl font-bold">Sistema ERP Completo</h3>
+                        <span
+                            class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">Completo</span>
+                    </div>
+                    <p class="text-text-secondary mb-4">
+                        Sistema de gestão empresarial com dashboard analítico, controle financeiro e módulos
+                        customizados.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="tech-tag">C#</span>
+                        <span class="tech-tag">SQL Server</span>
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">TypeScript</span>
+                    </div>
+                    <a href="#contact" class="text-primary font-semibold hover:underline inline-flex items-center">
+                        Solicitar projeto similar
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Gateway de Pagamentos -->
+                <div class="card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                            alt="Gateway de Pagamentos" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="text-xl font-bold">Gateway de Pagamentos</h3>
+                        <span
+                            class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Integração</span>
+                    </div>
+                    <p class="text-text-secondary mb-4">
+                        Plataforma de pagamentos com integração Mercado Pago, Stone e Stripe para e-commerce.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">TypeScript</span>
+                        <span class="tech-tag">API REST</span>
+                        <span class="tech-tag">Webhooks</span>
+                    </div>
+                    <a href="#contact" class="text-primary font-semibold hover:underline inline-flex items-center">
+                        Solicitar projeto similar
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- App IPTV -->
+                <div class="card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                            alt="App IPTV" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="text-xl font-bold">Servidor IPTV + App</h3>
+                        <span
+                            class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm font-medium">Multimídia</span>
+                    </div>
+                    <p class="text-text-secondary mb-4">
+                        Solução completa de streaming com servidor Proxmox e apps Android/iOS.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="tech-tag">Proxmox</span>
+                        <span class="tech-tag">Android</span>
+                        <span class="tech-tag">iOS</span>
+                        <span class="tech-tag">FFmpeg</span>
+                    </div>
+                    <a href="#contact" class="text-primary font-semibold hover:underline inline-flex items-center">
+                        Solicitar projeto similar
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Landing Page High-Conversion -->
+                <div class="card" data-aos="zoom-in">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                            alt="Landing Page" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="text-xl font-bold">Landing Page High-Conversion</h3>
+                        <span
+                            class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-medium">Marketing</span>
+                    </div>
+                    <p class="text-text-secondary mb-4">
+                        Landing page otimizada para conversão com design moderno e performance excelente.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">CSS3</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">GSAP</span>
+                    </div>
+                    <a href="#contact" class="text-primary font-semibold hover:underline inline-flex items-center">
+                        Solicitar projeto similar
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Jogo Unity3D -->
+                <div class="card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                            alt="Jogo Unity" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="text-xl font-bold">Jogo Mobile Unity3D</h3>
+                        <span class="px-3 py-1 bg-pink-100 text-pink-800 rounded-full text-sm font-medium">Games</span>
+                    </div>
+                    <p class="text-text-secondary mb-4">
+                        Jogo casual para mobile com mecânicas inovadoras e sistema de monetização integrado.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="tech-tag">Unity</span>
+                        <span class="tech-tag">C#</span>
+                        <span class="tech-tag">Firebase</span>
+                        <span class="tech-tag">AdMob</span>
+                    </div>
+                    <a href="#contact" class="text-primary font-semibold hover:underline inline-flex items-center">
+                        Solicitar projeto similar
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- App para Igreja -->
+                <div class="card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                            alt="App para Igreja" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="text-xl font-bold">App Comunidade Cristã</h3>
+                        <span
+                            class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">Social</span>
+                    </div>
+                    <p class="text-text-secondary mb-4">
+                        Aplicativo para igreja com streaming ao vivo, eventos, doações e comunidade.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="tech-tag">React Native</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">Firebase</span>
+                        <span class="tech-tag">Stripe</span>
+                    </div>
+                    <a href="#contact" class="text-primary font-semibold hover:underline inline-flex items-center">
+                        Solicitar projeto similar
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="#contact" class="btn-primary inline-flex items-center">
+                    <i class="fas fa-plus-circle mr-2"></i>Ver Mais Projetos
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section-spacing bg-section-light">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Serviços <span
+                        class="gradient-text">Especializados</span></h2>
+                <p class="text-lg md:text-xl text-text-secondary max-w-2xl mx-auto">
+                    Soluções completas para transformar sua ideia em realidade digital
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card text-center" data-aos="fade-up">
+                    <div class="service-icon mx-auto">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Sistemas de Gestão</h3>
+                    <p class="text-text-secondary mb-4">
+                        ERPs, CRMs, dashboards e sistemas administrativos completos
+                    </p>
+                    <ul class="text-left space-y-2 mb-6">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Dashboard analítico</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Relatórios em tempo real</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Multi-usuário</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-icon mx-auto">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Gateways de Pagamento</h3>
+                    <p class="text-text-secondary mb-4">
+                        Integração com Mercado Pago, Stone, Stripe e outras plataformas
+                    </p>
+                    <ul class="text-left space-y-2 mb-6">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Checkout transparente</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Múltiplas formas de pagamento</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Painel de controle</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-icon mx-auto">
+                        <i class="fas fa-tv"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Servidores IPTV</h3>
+                    <p class="text-text-secondary mb-4">
+                        Configuração e gerenciamento de servidores IPTV com apps personalizados
+                    </p>
+                    <ul class="text-left space-y-2 mb-6">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Apps personalizados</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Painel de administração</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Suporte técnico</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card text-center" data-aos="fade-up">
+                    <div class="service-icon mx-auto">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Unity3D & Jogos</h3>
+                    <p class="text-text-secondary mb-4">
+                        Desenvolvimento de scripts, mecânicas e sistemas para jogos Unity
+                    </p>
+                    <ul class="text-left space-y-2 mb-6">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Scripts personalizados</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Otimização de performance</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Integração com APIs</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-icon mx-auto">
+                        <i class="fas fa-church"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Apps para Igrejas</h3>
+                    <p class="text-text-secondary mb-4">
+                        Aplicativos personalizados para gestão, streaming e comunicação
+                    </p>
+                    <ul class="text-left space-y-2 mb-6">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Streaming ao vivo</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Gestão de membros</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Eventos e agendamentos</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-icon mx-auto">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">APIs Fiscais</h3>
+                    <p class="text-text-secondary mb-4">
+                        Integração com sistemas de emissão de notas fiscais eletrônicas
+                    </p>
+                    <ul class="text-left space-y-2 mb-6">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Emissão automática</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Consulta e cancelamento</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Relatórios fiscais</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="section-spacing">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Blog & <span class="gradient-text">Artigos</span></h2>
+                <p class="text-lg md:text-xl text-text-secondary max-w-2xl mx-auto">
+                    Compartilhando conhecimento, dicas e insights sobre desenvolvimento e tecnologia
+                </p>
+            </div>
+
+            <!-- Posts Grid -->
+            <div id="posts-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                <!-- Posts serão carregados via JavaScript -->
+            </div>
+
+             <div class="text-center" data-aos="fade-up">
+        <a href="blog"  class="btn-primary inline-flex items-center">
+          <i class="fas fa-plus-circle mr-2"></i>Carregar Mais Artigos
+        </a>
+      </div>
+
+        
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section-spacing bg-section-light">
+        <div class="container mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div data-aos="fade-right">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">Vamos conversar sobre seu projeto?</h2>
+                    <p class="text-lg md:text-xl text-text-secondary mb-8">
+                        Entre em contato e receba uma proposta personalizada em até 24 horas.
+                    </p>
+
+                    <div class="space-y-6 mb-8">
+                        <div class="flex items-center">
+                            <div
+                                class="w-12 h-12 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center mr-4">
+                                <i class="fas fa-envelope text-white"></i>
+                            </div>
+                            <div>
+                                <div class="font-semibold">Email</div>
+                                <a href="mailto:dry@adrianosena.dev.br"
+                                    class="text-primary hover:underline">dry@adrianosena.dev.br</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center">
+                            <div
+                                class="w-12 h-12 rounded-lg bg-gradient-to-br from-green-500 to-emerald-400 flex items-center justify-center mr-4">
+                                <i class="fas fa-phone text-white"></i>
+                            </div>
+                            <div>
+                                <div class="font-semibold">Telefone/WhatsApp</div>
+                                <a href="https://wa.me/5564933004882" class="text-primary hover:underline">+55 (64)
+                                    93300-4882</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center">
+                            <div
+                                class="w-12 h-12 rounded-lg bg-gradient-to-br from-purple-500 to-pink-400 flex items-center justify-center mr-4">
+                                <i class="fas fa-map-marker-alt text-white"></i>
+                            </div>
+                            <div>
+                                <div class="font-semibold">Localização</div>
+                                <div class="text-text-secondary">Goiás, Brasil - Trabalho Remoto Global</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex space-x-4 mb-8">
+                        <a href="https://wa.me/5564933004882" target="_blank"
+                            class="flex-1 bg-green-500 text-white py-3 rounded-lg font-semibold text-center hover:bg-green-600 transition">
+                            <i class="fab fa-whatsapp mr-2"></i>WhatsApp
+                        </a>
+                        <a href="https://www.instagram.com/adriano.sena.silva/" target="_blank"
+                            class="flex-1 bg-pink-600 text-white py-3 rounded-lg font-semibold text-center  hover:bg-pink-700 transition">
+                            <i class="fab fa-instagram mr-2"></i>Instagram
+                        </a>
+                    </div>
+
+                    <div class="flex space-x-4">
+                        <a href="https://github.com/AdrianoSenaS" target="_blank"
+                            class="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center hover:bg-gray-900 transition">
+                            <i class="fab fa-github text-white"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/adriano-sena-silva-a8605622a/" target="_blank"
+                            class="w-10 h-10 rounded-lg bg-blue-700 flex items-center justify-center hover:bg-blue-800 transition">
+                            <i class="fab fa-linkedin-in text-white"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div data-aos="fade-left">
+                    <div class="card">
+                        <h3 class="text-2xl font-bold mb-6">Solicitar Orçamento</h3>
+                        <form id="contact-form" class="space-y-4">
+                            <div>
+                                <input type="text" placeholder="Seu nome completo" class="form-input" required
+                                    id="name">
+                            </div>
+
+                            <div>
+                                <input type="email" placeholder="Seu melhor email" class="form-input" required
+                                    id="email">
+                            </div>
+
+                            <div>
+                                <select class="form-input" required id="project">
+                                    <option value="">Tipo de projeto</option>
+                                    <option value="sistema">Sistema Web</option>
+                                    <option value="app">Aplicativo Mobile</option>
+                                    <option value="jogo">Jogo/Unity</option>
+                                    <option value="landing">Landing Page</option>
+                                    <option value="servidor">Servidor/Infra</option>
+                                    <option value="pagamento">Gateway de Pagamento</option>
+                                    <option value="api">API & Integração</option>
+                                    <option value="dashboard">Dashboard</option>
+                                    <option value="iptv">Servidor IPTV</option>
+                                    <option value="igreja">App para Igreja</option>
+                                    <option value="outro">Outro</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <textarea placeholder="Descreva seu projeto, prazos e orçamento..." rows="4"
+                                    class="form-input" required id="message"></textarea>
+                            </div>
+
+                            <button type="submit" class="btn-primary w-full" id="btnContact">
+                                <i class="fas fa-paper-plane mr-2"></i>Enviar Proposta
+                            </button>
+
+                            <p class="text-sm text-theme-secondary text-center">
+                                Resposta garantida em até 24 horas úteis
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark  py-12 px-6">
+        <div class="container mx-auto">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div
+                            class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+                            <img src="./logo.png" alt="">
+                        </div>
+                        <div>
+                            <div class="font-bold text-lg">Adriano Sena</div>
+                            <div class="text-gray-400 text-sm">Full-Stack Developer</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-400">
+                        Transformando ideias em soluções digitais de alta performance desde 2019.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Serviços</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition">Sistemas Web</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition">Gateways de
+                                Pagamento</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition">Servidores IPTV</a>
+                        </li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition">Apps Mobile</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Links Rápidos</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition">Início</a></li>
+                        <li><a href="#skills" class="text-gray-400 hover:text-white transition">Skills</a></li>
+                        <li><a href="#projects" class="text-gray-400 hover:text-white transition">Projetos</a></li>
+                        <li><a href="/blog" class="text-gray-400 hover:text-white transition">Blog</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition">Contato</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Conecte-se</h4>
+                    <div class="flex space-x-4 mb-6 text-white">
+                        <a href="https://github.com/AdrianoSenaS" target="_blank"
+                            class="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center hover:bg-gray-900 transition">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/adriano-sena-silva-a8605622a/" target="_blank"
+                            class="w-10 h-10 rounded-lg bg-blue-700 flex items-center justify-center hover:bg-blue-800 transition">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://www.instagram.com/adriano.sena.silva/" target="_blank"
+                            class="w-10 h-10 rounded-lg bg-pink-600 flex items-center justify-center hover:bg-pink-700 transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://wa.me/5564933004882" target="_blank"
+                            class="w-10 h-10 rounded-lg bg-green-600 flex items-center justify-center hover:bg-green-700 transition">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                    <p class="text-gray-400 text-sm">
+                        © <span id="current-year">2024</span> Adriano Sena. Todos os direitos reservados.
+                    </p>
+                    <a href="privacidade" class="text-gray-400 hover:text-white text-sm">Política de Privacidade</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <!-- Modal de Configurações de Cookies -->
+    <div id="cookie-settings-modal"
+        class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 hidden transition-opacity duration-300">
+        <div class="card max-w-lg mx-4 p-6 animate__animated animate__fadeInUp h-auto">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold">Configurações de Cookies</h3>
+                <button id="close-settings" class="text-text-secondary hover:text-primary">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+
+            <p class="text-text-secondary mb-6">
+                Selecione quais tipos de cookies você permite que utilizemos:
+            </p>
+
+            <div class="space-y-4 mb-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h4 class="font-semibold">Cookies Essenciais</h4>
+                        <p class="text-sm text-text-secondary">Necessários para o funcionamento básico do site</p>
+                    </div>
+                    <div class="relative inline-block w-12 h-6">
+                        <input type="checkbox" id="essential-cookies" class="sr-only" checked disabled>
+                        <label for="essential-cookies"
+                            class="block w-12 h-6 bg-gray-300 rounded-full cursor-not-allowed"></label>
+                        <span
+                            class="absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition transform translate-x-6"></span>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h4 class="font-semibold">Cookies de Desempenho</h4>
+                        <p class="text-sm text-text-secondary">Nos ajudam a entender como os visitantes usam o site</p>
+                    </div>
+                    <div class="relative inline-block w-12 h-6">
+                        <input type="checkbox" id="performance-cookies" class="sr-only">
+                        <label for="performance-cookies"
+                            class="block w-12 h-6 bg-gray-300 rounded-full cursor-pointer toggle-label"></label>
+                        <span
+                            class="absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition toggle-switch"></span>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h4 class="font-semibold">Cookies de Marketing</h4>
+                        <p class="text-sm text-text-secondary">Usados para rastrear visitantes entre sites</p>
+                    </div>
+                    <div class="relative inline-block w-12 h-6">
+                        <input type="checkbox" id="marketing-cookies" class="sr-only">
+                        <label for="marketing-cookies"
+                            class="block w-12 h-6 bg-gray-300 rounded-full cursor-pointer toggle-label"></label>
+                        <span
+                            class="absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition toggle-switch"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex justify-end space-x-3">
+                <button id="save-settings" class="btn-primary px-6 py-3 rounded-lg font-semibold">
+                    Salvar Preferências
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll to Top -->
+    <div class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        let name = document.getElementById('name')
+        let email = document.getElementById('email')
+        let status = 'new'
+        let project = document.getElementById('project')
+        let message = document.getElementById('message')
+        // Enviar contato
+
+
+        document.getElementById('btnContact').addEventListener('click', function (e) {
+            e.preventDefault();
+
+            const btn = e.target;
+            btn.disabled = true;
+            btn.textContent = 'Enviando...';
+
+            fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: name.value,
+                    email: email.value,
+                    status: status,
+                    project: project.value,
+                    message: message.value
+                })
+            })
+                .then(response => {
+                    if (response.ok) {
+                        alert('Mensagem enviada com sucesso!');
+                        document.getElementById('contact-form').reset();
+                    } else {
+                        alert('Erro ao enviar.');
+                    }
+                })
+                .catch(error => {
+                    console.error(error);
+                    alert('Erro ao enviar.');
+                })
+                .finally(() => {
+                    btn.disabled = false;
+                    btn.textContent = 'Enviar';
+                });
+        });
+
+
+
+        if (!localStorage.getItem('cookiePreferences')) {
+            // Exibir modal de cookies na primeira visita
+            const cookieSettingsModal = document.getElementById('cookie-settings-modal');
+            cookieSettingsModal.classList.remove('hidden');
+        }
+
+
+        // Configurar modal de cookies
+        const cookieSettingsModal = document.getElementById('cookie-settings-modal');;
+        const closeSettings = document.getElementById('close-settings');
+        const saveSettings = document.getElementById('save-settings');
+
+
+
+        closeSettings.addEventListener('click', () => {
+            cookieSettingsModal.classList.add('hidden');
+        });
+
+        saveSettings.addEventListener('click', () => {
+            // Salvar preferências de cookies
+            const performanceCookies = document.getElementById('performance-cookies').checked;
+            const marketingCookies = document.getElementById('marketing-cookies').checked;
+
+            localStorage.setItem('cookiePreferences', JSON.stringify({
+                performance: performanceCookies,
+                marketing: marketingCookies,
+                essential: true // Sempre verdadeiro
+            }));
+
+            cookieSettingsModal.classList.add('hidden');
+            // alert('Preferências de cookies salvas com sucesso!');
+        });
+
+
+
+        let allPosts = [];
+        let filteredPosts = [];
+        let currentPage = 1;
+        const postsPerPage = 3;
+        let currentCategory = '';
+        let currentSearchTerm = '';
+
+        // Carregar posts
+        document.addEventListener('DOMContentLoaded', function () {
+            // Inicializar posts de exemplo
+            initializeExamplePosts();
+        })
+
+
+        // Inicializar posts do blog
+        async function initializeExamplePosts() {
+            // Posts de exemplo
+            // Em um cenário real, isso viria de uma API
+            const res = await fetch("/api/posts");
+            allPosts = await res.json();
+
+            // Extrair categorias únicas
+            const categories = [...new Set(allPosts.map(post => post.category).filter(Boolean))];
+
+            // Preencher o seletor de categorias
+            const categoryFilter = document.getElementById('category-filter');
+            categories.forEach(category => {
+                const option = document.createElement('option');
+                option.value = category;
+                option.textContent = category;
+
+            });
+
+            // Preencher os botões de filtro rápido
+            const categoryFilters = document.getElementById('category-filters');
+            categories.forEach(category => {
+                const button = document.createElement('button');
+                button.type = 'button';
+                button.className = 'filter-btn';
+                button.textContent = category;
+                button.dataset.category = category;
+
+                button.addEventListener('click', function () {
+                    // Ativar/desativar filtro
+                    if (currentCategory === category) {
+                        currentCategory = '';
+                        button.classList.remove('active');
+                    } else {
+                        currentCategory = category;
+                        // Remover classe ativa de todos os botões
+                        document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                        button.classList.add('active');
+                    }
+
+                    // Atualizar o seletor
+                    document.getElementById('category-filter').value = currentCategory;
+                    filterPosts();
+                });
+
+
+            });
+
+            // Adicionar botão "Todos"
+            const allButton = document.createElement('button');
+            allButton.type = 'button';
+            allButton.className = 'filter-btn active';
+            allButton.textContent = 'Todos';
+            allButton.dataset.category = '';
+            allButton.addEventListener('click', function () {
+                currentCategory = '';
+                document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                allButton.classList.add('active');
+                document.getElementById('category-filter').value = '';
+                filterPosts();
+            });
+
+
+            // Inicializar posts filtrados
+            filteredPosts = allPosts.filter(post => post.status === "published");
+
+            // Exibir posts iniciais
+            displayPosts();
+        }
+        function filterPosts() {
+            filteredPosts = allPosts.filter(post => {
+                // Filtrar por status
+                if (post.status !== "published") return false;
+
+                // Filtrar por categoria
+                if (currentCategory && post.category !== currentCategory) return false;
+
+                // Filtrar por termo de busca
+                if (currentSearchTerm) {
+                    const searchFields = [post.title, post.description, post.category].filter(Boolean);
+                    const matchesSearch = searchFields.some(field =>
+                        field.toLowerCase().includes(currentSearchTerm)
+                    );
+                    if (!matchesSearch) return false;
+                }
+
+                return true;
+            });
+
+            // Resetar para a primeira página
+            currentPage = 1;
+            displayPosts();
+        }
+
+        function displayPosts() {
+            const postsContainer = document.getElementById('posts-container');
+
+            // Se for a primeira página, limpar os posts de exemplo
+            if (currentPage === 1) {
+                postsContainer.innerHTML = '';
+            }
+
+            const startIndex = (currentPage - 1) * postsPerPage;
+            const endIndex = startIndex + postsPerPage;
+            const postsToShow = filteredPosts.slice(startIndex, endIndex);
+
+            if (postsToShow.length === 0 && currentPage === 1) {
+                postsContainer.innerHTML = `
+          <div class="col-span-full text-center py-12">
+            <i class="fas fa-search text-4xl text-text-secondary mb-4"></i>
+            <h3 class="text-xl font-bold text-text-primary mb-2">Nenhum artigo encontrado</h3>
+            <p class="text-text-secondary">Tente ajustar seus filtros ou termos de busca.</p>
+          </div>
+        `;
+                return;
+            }
+
+            postsToShow.forEach(post => {
+                const postElement = document.createElement('div');
+                postElement.className = 'blog-card animate__animated animate__fadeInUp';
+
+                postElement.innerHTML = `
+          <div class="blog-image">
+            <img src="${post.image}" alt="${post.title}">
+          </div>
+          <div class="p-6">
+            <div class="post-meta">
+              <span><i class="far fa-calendar mr-1"></i> ${formatDate(post.createdAt)}</span>
+              
+            </div>
+            <div class="flex justify-between items-start mb-3">
+              <h3 class="text-xl font-bold mb-3">${post.title}</h3>
+              <span class="category-tag">${post.category}</span>
+            </div>
+            <p class="text-text-secondary mb-4">${post.description}</p>
+
+             <div class="text-center mt-12">
+                <a href="/post?id=${post.id}" class="btn-secondary inline-flex items-center">
+                    <i class="fas fa-newspaper mr-2"></i>Ler artigo completo
+                </a>
+            </div>
+           
+          </div>
+        `;
+
+                postsContainer.appendChild(postElement);
+            });
+
+           
+        }
+        function loadMorePosts() {
+            currentPage++;
+            displayPosts();
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const options = { year: 'numeric', month: 'short', day: 'numeric' };
+            return date.toLocaleDateString('pt-BR', options);
+        }
+
+        // Configurar toggles de cookies
+        const toggles = document.querySelectorAll('input[type="checkbox"]:not(:disabled)');
+        toggles.forEach(toggle => {
+            const label = toggle.nextElementSibling;
+            const switchElement = label.nextElementSibling;
+
+            toggle.addEventListener('change', () => {
+                if (toggle.checked) {
+                    switchElement.style.transform = 'translateX(24px)';
+                    label.style.backgroundColor = 'var(--primary)';
+                } else {
+                    switchElement.style.transform = 'translateX(0)';
+                    label.style.backgroundColor = '#d1d5db';
+                }
+            });
+
+            // Inicializar estado dos toggles
+            if (toggle.checked) {
+                switchElement.style.transform = 'translateX(24px)';
+                label.style.backgroundColor = 'var(--primary)';
+            }
+        });
+
+
+
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Tema - Correção definitiva
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+
+        // Verificar tema salvo ou preferência do sistema
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        // Função para aplicar tema
+        function applyTheme(theme) {
+            if (theme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                themeIcon.classList.remove('fa-moon', 'text-gray-600');
+                themeIcon.classList.add('fa-sun', 'text-yellow-400');
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+                themeIcon.classList.remove('fa-sun', 'text-yellow-400');
+                themeIcon.classList.add('fa-moon', 'text-gray-600');
+            }
+        }
+
+        // Definir tema inicial
+        if (savedTheme) {
+            applyTheme(savedTheme);
+        } else if (systemPrefersDark) {
+            applyTheme('dark');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            applyTheme('light');
+            localStorage.setItem('theme', 'light');
+        }
+
+        // Alternar tema
+        themeToggle.addEventListener('click', () => {
+            if (document.documentElement.getAttribute('data-theme') === 'dark') {
+                applyTheme('light');
+                localStorage.setItem('theme', 'light');
+            } else {
+                applyTheme('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+
+        // CORREÇÃO DO MENU MOBILE - SIMPLIFICADO E FUNCIONAL
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuToggle.addEventListener('click', function (e) {
+            e.stopPropagation(); // Evita que o clique se propague
+            mobileMenu.classList.toggle('hidden');
+
+            // Mudar o ícone do botão
+            const icon = menuToggle.querySelector('i');
+            if (mobileMenu.classList.contains('hidden')) {
+                icon.className = 'fas fa-bars text-xl';
+            } else {
+                icon.className = 'fas fa-times text-xl';
+            }
+        });
+
+        // Fechar o menu quando clicar em um link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuToggle.querySelector('i').className = 'fas fa-bars text-xl';
+            });
+        });
+
+        // Fechar o menu quando clicar fora (somente se estiver aberto)
+        document.addEventListener('click', function (e) {
+            if (!mobileMenu.classList.contains('hidden') &&
+                !mobileMenu.contains(e.target) &&
+                !menuToggle.contains(e.target)) {
+                mobileMenu.classList.add('hidden');
+                menuToggle.querySelector('i').className = 'fas fa-bars text-xl';
+            }
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if (this.getAttribute('href') === '#') return;
+
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll to Top
+        const scrollTop = document.getElementById('scrollTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTop.classList.add('show');
+            } else {
+                scrollTop.classList.remove('show');
+            }
+        });
+
+        scrollTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Contact Form
+        document.getElementById('contact-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Simulate form submission
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Enviando...';
+            submitBtn.disabled = true;
+
+            setTimeout(() => {
+                alert('Mensagem enviada com sucesso! Entrarei em contato em até 24 horas.');
+                this.reset();
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }, 1500);
+        });
+
+        // Animar barras de skills quando visíveis
+        const skillBars = document.querySelectorAll('.skill-progress');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const width = entry.target.getAttribute('data-width');
+                    entry.target.style.width = '0%';
+                    setTimeout(() => {
+                        entry.target.style.width = width;
+                    }, 300);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        skillBars.forEach(bar => observer.observe(bar));
+
+        // Atualizar ano no footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Gatilho de curiosidade para tech tags
+        const techTags = document.querySelectorAll('.tech-tag');
+        techTags.forEach(tag => {
+            tag.addEventListener('mouseenter', () => {
+                tag.style.transform = 'translateY(-3px)';
+                tag.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
+            });
+
+            tag.addEventListener('mouseleave', () => {
+                tag.style.transform = 'translateY(0)';
+                tag.style.boxShadow = 'none';
+            });
+        });
+
+        // Efeito de digitação no hero (opcional)
+        const heroTitle = document.querySelector('.hero-section h1');
+        if (heroTitle) {
+            const text = heroTitle.textContent;
+            heroTitle.textContent = '';
+
+            let i = 0;
+            const typeWriter = () => {
+                if (i < text.length) {
+                    heroTitle.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 50);
+                }
+            };
+
+            // Iniciar efeito quando a página carregar
+            window.addEventListener('load', () => {
+                setTimeout(typeWriter, 1000);
+            });
+        }
+
+        // Animar elementos de confiança
+        const trustBadges = document.querySelectorAll('.trust-badge');
+        trustBadges.forEach((badge, index) => {
+            badge.style.animationDelay = `${index * 0.2}s`;
+        });
+
+        // Adicionar classe active aos links de navegação baseado no scroll
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+
+                if (scrollY >= sectionTop - 150) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-709377760"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'AW-709377760');
+    </script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4KFFX809LT"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-4KFFX809LT');
+    </script>
+</body>
+
+</html>

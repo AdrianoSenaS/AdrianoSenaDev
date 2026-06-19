@@ -4,38 +4,87 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="Adriano Sena" />
+    <meta name="theme-color" content="#0f172a" />
 
+    <!-- SEO Primário -->
+    <title>Adriano Sena | Desenvolvedor Full Stack & Infraestrutura em Nuvem</title>
+    <link rel="canonical" href="https://adrianosena.dev.br/" />
+    <meta name="description"
+        content="Desenvolvedor Full Stack com 12+ anos de experiência. Especialista em infraestrutura em nuvem, servidores, criação de sites e aplicativos mobile. Soluções escaláveis e performance para o seu projeto." />
 
-    <title>Adriano Sena | Desenvolvedor Full Stack | Infraestrutura em Nuvem</title>
-    <link rel="canonical" href="https://adrianosena.dev.br/"/>
-    <meta name="description" content="Adriano Sena é desenvolvedor Full Stack com 12 anos de experiência em programação desde os 15 anos. Especialista em infraestrutura em nuvem, servidores, desenvolvimento web e aplicativos mobile. Trabalho com programação profissional desde 2015.">
-    <!-- Open Graph -->
-    <meta property="og:title"
-        content="Adriano Sena | Desenvolvedor Full Stack & Infraestrutura" />
-    <meta property="og:description" content="Desenvolvedor desde os 15 anos com vasta experiência em estrutura em nuvem, configuração de servidores, desenvolvimento de sites e aplicações em produção. Especialista em infraestrutura crítica e aplicações escaláveis." />
-    <meta property="og:image" content="https://adrianosena.dev.br/logoWeb.png" />
-    <meta property="og:url" content="https://adrianosena.dev.br/" />
+    <!-- Open Graph (Facebook, WhatsApp, LinkedIn) -->
+    <meta property="og:locale" content="pt_BR" />
     <meta property="og:type" content="website" />
+    <meta property="og:title" content="Adriano Sena | Desenvolvedor Full Stack & Infraestrutura" />
+    <meta property="og:description"
+        content="Desenvolvedor desde os 15 anos com vasta experiência em estrutura em nuvem, configuração de servidores, desenvolvimento de sites e aplicações em produção. Especialista em infraestrutura crítica e aplicações escaláveis." />
+    <meta property="og:url" content="https://adrianosena.dev.br/" />
+    <meta property="og:image" content="https://adrianosena.dev.br/imagem-redes-sociais.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Adriano Sena - Desenvolvedor Full Stack" />
 
-    <!-- Twitter -->
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@adrianosenas" />
-    <meta name="twitter:title"
-        content="Adriano Sena | Desenvolvedor Full Stack & DevOps" />
-    <meta name="twitter:description" content="Desenvolvimento web, mobile e infraestrutura em nuvem. Experiência desde 2015 com foco em soluções escaláveis, server configuration e aplicações em produção." />
-    <meta name="twitter:image" content="https://adrianosena.dev.br/logoWeb.png" />
-    <link rel="alternate" type="application/rss+xml" title="RSS Adriano Sena Dev" href="https://www.adrianosena.dev.br/rss.xml" />
+    <meta name="twitter:creator" content="@adrianosenas" />
+    <meta name="twitter:title" content="Adriano Sena | Desenvolvedor Full Stack & DevOps" />
+    <meta name="twitter:description"
+        content="Desenvolvimento web, mobile e infraestrutura em nuvem. Experiência desde 2015 com foco em soluções escaláveis, server configuration e aplicações em produção." />
+    <meta name="twitter:image" content="https://adrianosena.dev.br/imagem-redes-sociais.jpg" />
+    <meta name="twitter:image:alt" content="Adriano Sena - Desenvolvedor Full Stack" />
 
-    <link rel="shortcut icon" href="logo.png" type="image/x-icon">
+    <!-- Dados Estruturados (JSON-LD) para Rich Snippets -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Adriano Sena",
+        "jobTitle": "Desenvolvedor Full Stack",
+        "url": "https://adrianosena.dev.br",
+        "sameAs": [
+            "https://twitter.com/adrianosenas",
+            "https://github.com/adrianosena",
+            "https://linkedin.com/in/adrianosena"
+        ],
+        "description": "Desenvolvedor Full Stack com mais de 12 anos de experiência em programação, especializado em infraestrutura em nuvem, servidores e aplicações escaláveis.",
+        "image": "https://adrianosena.dev.br/logoWeb.png",
+        "knowsAbout": ["Desenvolvimento Web", "Aplicações Mobile", "Infraestrutura em Nuvem", "DevOps", "Servidores"]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Adriano Sena Dev",
+        "url": "https://adrianosena.dev.br",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://adrianosena.dev.br/?s={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+
+    <!-- Conexões sociais e feeds -->
+    <link rel="me" href="https://twitter.com/adrianosenas" />
+    <link rel="alternate" type="application/rss+xml" title="RSS Adriano Sena Dev"
+        href="https://adrianosena.dev.br/rss.xml" />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="logo.png" />
+    <link rel="apple-touch-icon" href="logo.png" />
+
+    <!-- CSS e Fontes -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=Fira+Code:wght@400;500&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-
-    <!-- AOS Animation Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
     <style>
         :root {
@@ -115,13 +164,33 @@
             flex-direction: column;
         }
 
-        #home { order: 1; }
-        #services { order: 2; }
-        #projects { order: 3; }
-        #skills { order: 4; }
-        #blog { order: 5; }
-        #contact { order: 6; }
-        footer { order: 7; }
+        #home {
+            order: 1;
+        }
+
+        #services {
+            order: 2;
+        }
+
+        #projects {
+            order: 3;
+        }
+
+        #skills {
+            order: 4;
+        }
+
+        #blog {
+            order: 5;
+        }
+
+        #contact {
+            order: 6;
+        }
+
+        footer {
+            order: 7;
+        }
 
         h1,
         h2,
@@ -928,7 +997,7 @@
                         <i id="theme-icon" class="fas fa-moon text-gray-600"></i>
                     </button>
                     <a href="#contact" class="btn-primary hidden md:block">
-                        Entre em Contato
+                        Solicitar orçamento gratuito
                     </a>
                     <button id="menu-toggle" class="md:hidden">
                         <i class="fas fa-bars text-xl"></i>
@@ -948,7 +1017,7 @@
                     <a href="#contact" class="nav-link">Contato</a>
                     <a href="privacidade" class="nav-link">Privacidade</a>
                     <a href="#contact" class="btn-primary w-full text-center">
-                        Entre em Contato
+                        Solicitar orçamento gratuito
                     </a>
                 </div>
             </div>
@@ -961,9 +1030,12 @@
             <div class="grid lg:grid-cols-2 gap-12 items-center">
                 <div data-aos="fade-right">
                     <div class="relative mb-8">
-                        <div class="absolute -top-6 -left-6 w-64 h-64 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-full blur-3xl float-animation"></div>
+                        <div
+                            class="absolute -top-6 -left-6 w-64 h-64 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-full blur-3xl float-animation">
+                        </div>
                         <div class="relative rounded-[2rem] overflow-hidden executive-panel p-6 lg:p-8">
-                            <img src="./images/adrianosena.jfif" alt="Adriano Sena" class="w-full h-auto object-cover rounded-xl">
+                            <img src="./images/adrianosena.jfif" alt="Adriano Sena"
+                                class="w-full h-auto object-cover rounded-xl">
                         </div>
                     </div>
                 </div>
@@ -973,44 +1045,58 @@
                         <i class="fas fa-user-tie"></i>
                         Sobre Mim
                     </div>
-                    <h2 class="text-3xl md:text-4xl font-bold mb-6">Adriano Sena<br/><span class="gradient-text">Desenvolvedor desde os 15</span></h2>
-                    
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">Adriano Sena<br /><span
+                            class="gradient-text">Desenvolvedor desde os 15</span></h2>
+
                     <p class="text-lg text-text-secondary mb-6 leading-relaxed">
-                        Meu nome é <strong>Adriano Sena</strong>, tenho <strong>27 anos</strong> e trabalho com programação desde 2015. Tenho uma vasta experiência em estrutura em nuvem, configuração de servidores, desenvolvimento de sites e aplicações em produção.
+                        Meu nome é <strong>Adriano Sena</strong>, tenho <strong>27 anos</strong> e trabalho com
+                        programação desde 2015. Tenho uma vasta experiência em estrutura em nuvem, configuração de
+                        servidores, desenvolvimento de sites e aplicações em produção.
                     </p>
 
                     <p class="text-lg text-text-secondary mb-6 leading-relaxed">
-                        Ao longo dos anos, aprendi que o código é apenas uma parte da equação. A verdadeira excelência vem de entender infraestrutura, performance, segurança e como manter as coisas funcionando quando o fogo começar. É por isso que também me especializei em DevOps e cloud.
+                        Ao longo dos anos, aprendi que o código é apenas uma parte da equação. A verdadeira excelência
+                        vem de entender infraestrutura, performance, segurança e como manter as coisas funcionando
+                        quando o fogo começar. É por isso que também me especializei em DevOps e cloud.
                     </p>
 
                     <div class="grid sm:grid-cols-2 gap-4 mb-8">
-                        <div class="rounded-xl bg-white dark:bg-gray-800 p-4 border border-gray-200 dark:border-gray-700">
+                        <div
+                            class="rounded-xl bg-white dark:bg-gray-800 p-4 border border-gray-200 dark:border-gray-700">
                             <div class="flex items-center mb-2">
-                                <i class="fas fa-code text-primary mr-3 text-xl"></i>
-                                <div class="font-semibold">Desenvolvimento</div>
+                                <i class="fas fa-code text-primary text-white mr-3 text-xl"></i>
+                                <div class="font-semibold text-white">Desenvolvimento</div>
                             </div>
-                            <p class="text-sm text-text-secondary">Web, mobile, sistemas e APIs com tecnologias modernas</p>
+                            <p class="text-sm text-text-secondary text-white">Web, mobile, sistemas e APIs com
+                                tecnologias modernas
+                            </p>
                         </div>
-                        <div class="rounded-xl bg-white dark:bg-gray-800 p-4 border border-gray-200 dark:border-gray-700">
+                        <div
+                            class="rounded-xl bg-white dark:bg-gray-800 p-4 border border-gray-200 dark:border-gray-700">
                             <div class="flex items-center mb-2">
-                                <i class="fas fa-server text-primary mr-3 text-xl"></i>
-                                <div class="font-semibold">Infraestrutura</div>
+                                <i class="fas fa-server text-primary mr-3 text-xl text-white"></i>
+                                <div class="font-semibold text-white">Infraestrutura</div>
                             </div>
-                            <p class="text-sm text-text-secondary">Servidores, nuvem, redes, backup e segurança</p>
+                            <p class="text-sm text-text-secondary text-white">Servidores, nuvem, redes, backup e
+                                segurança</p>
                         </div>
-                        <div class="rounded-xl bg-white dark:bg-gray-800 p-4 border border-gray-200 dark:border-gray-700">
+                        <div
+                            class="rounded-xl bg-white dark:bg-gray-800 p-4 border border-gray-200 dark:border-gray-700">
                             <div class="flex items-center mb-2">
-                                <i class="fas fa-rocket text-primary mr-3 text-xl"></i>
-                                <div class="font-semibold">DevOps</div>
+                                <i class="fas fa-rocket text-primary mr-3 text-xl text-white"></i>
+                                <div class="font-semibold text-white">DevOps</div>
                             </div>
-                            <p class="text-sm text-text-secondary">Automação, CI/CD, containers e orquestração</p>
+                            <p class="text-sm text-text-secondary text-white">Automação, CI/CD, containers e
+                                orquestração</p>
                         </div>
-                        <div class="rounded-xl bg-white dark:bg-gray-800 p-4 border border-gray-200 dark:border-gray-700">
+                        <div
+                            class="rounded-xl bg-white dark:bg-gray-800 p-4 border border-gray-200 dark:border-gray-700">
                             <div class="flex items-center mb-2">
-                                <i class="fas fa-graduation-cap text-primary mr-3 text-xl"></i>
-                                <div class="font-semibold">Sempre Aprendendo</div>
+                                <i class="fas fa-graduation-cap text-primary mr-3 text-xl text-white"></i>
+                                <div class="font-semibold text-white">Sempre Aprendendo</div>
                             </div>
-                            <p class="text-sm text-text-secondary">Mantendo-me atualizado com novas tecnologias</p>
+                            <p class="text-sm text-text-secondary text-white">Mantendo-me atualizado com novas
+                                tecnologias</p>
                         </div>
                     </div>
 
@@ -1027,48 +1113,60 @@
         </div>
     </section>
 
-     <!-- About Section -->
+    <!-- About Section -->
     <section id="about" class="hero-section">
         <div class="hero-bg-pattern"></div>
         <div class="container mx-auto px-6 relative z-10 py-12">
             <div class="grid lg:grid-cols-2 gap-12 xl:gap-16 items-center">
                 <div data-aos="fade-right" data-aos-delay="100" class="text-center lg:text-left">
-                    <div class="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-primary/10 to-secondary/10 mb-8">
+                    <div
+                        class="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-primary/10 to-secondary/10 mb-8">
                         <div class="w-2 h-2 rounded-full bg-primary mr-2 animate-pulse"></div>
-                        <span class="text-sm font-medium text-primary">Desenvolvedor desde os 15 anos | 12+ anos de experiência</span>
+                        <span class="text-sm font-medium text-primary">Desenvolvedor desde os 15 anos | 12+ anos de
+                            experiência</span>
                     </div>
 
                     <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                        
+
                         Desenvolvedor <span class="gradient-text-accent">Full Stack & DevOps</span>
                     </h1>
 
-                    <p class="text-lg md:text-xl text-text-secondary mb-6 leading-relaxed max-w-2xl mx-auto lg:mx-0" data-cms-key="hero.subtitle" data-cms-mode="html">
-                        Trabalho com programação desde 2015 e tenho uma vasta experiência em infraestrutura em nuvem, configuração de servidores, desenvolvimento de sites e aplicações em produção. Especializado em soluções escaláveis e robustas que funcionam 24/7.
+                    <p class="text-lg md:text-xl text-text-secondary mb-6 leading-relaxed max-w-2xl mx-auto lg:mx-0"
+                        data-cms-key="hero.subtitle" data-cms-mode="html">
+                        Trabalho com programação desde 2015 e tenho uma vasta experiência em infraestrutura em nuvem,
+                        configuração de servidores, desenvolvimento de sites e aplicações em produção. Especializado em
+                        soluções escaláveis e robustas que funcionam 24/7.
                     </p>
 
-                    <p class="text-base text-text-secondary mb-8 max-w-2xl mx-auto lg:mx-0" data-cms-key="hero.description" data-cms-mode="html">
-                        Transformo ideias em aplicações web e mobile, estruturo ambientes em nuvem, e mantenho serviços críticos rodando sem problemas. Se você precisa de um desenvolvedor que entende tanto de código quanto de infraestrutura, vamos conversar.
+                    <p class="text-base text-text-secondary mb-8 max-w-2xl mx-auto lg:mx-0"
+                        data-cms-key="hero.description" data-cms-mode="html">
+                        Transformo ideias em aplicações web e mobile, estruturo ambientes em nuvem, e mantenho serviços
+                        críticos rodando sem problemas. Se você precisa de um desenvolvedor que entende tanto de código
+                        quanto de infraestrutura, vamos conversar.
                     </p>
 
                     <div class="grid sm:grid-cols-3 gap-4 mb-10 text-left">
                         <div class="executive-panel p-5">
                             <div class="case-label mb-2">Programação</div>
-                            <p class="text-sm text-text-secondary">Desenvolvimento web e mobile com tecnologias modernas desde 2015.</p>
+                            <p class="text-sm text-text-secondary">Desenvolvimento web e mobile com tecnologias modernas
+                                desde 2015.</p>
                         </div>
                         <div class="executive-panel p-5">
                             <div class="case-label mb-2">Infraestrutura</div>
-                            <p class="text-sm text-text-secondary">Servidores, nuvem, redes e backup. Ambientes estáveis e escaláveis.</p>
+                            <p class="text-sm text-text-secondary">Servidores, nuvem, redes e backup. Ambientes estáveis
+                                e escaláveis.</p>
                         </div>
                         <div class="executive-panel p-5">
                             <div class="case-label mb-2">Produção</div>
-                            <p class="text-sm text-text-secondary">Da criação até a manutenção. Aplicações que funcionam 24/7.</p>
+                            <p class="text-sm text-text-secondary">Da criação até a manutenção. Aplicações que funcionam
+                                24/7.</p>
                         </div>
                     </div>
 
                     <div class="flex flex-col sm:flex-row gap-4 mb-10 justify-center lg:justify-start">
                         <a id="cms-cta1" href="#contact" class="btn-primary text-center">
-                            <i class="fas fa-handshake mr-2"></i><span data-cms-key="hero.cta1text">Vamos conversar</span>
+                            <i class="fas fa-handshake mr-2"></i><span data-cms-key="hero.cta1text">Vamos
+                                conversar</span>
                         </a>
                         <a id="cms-cta2" href="#projects" class="btn-secondary text-center">
                             <i class="fas fa-code mr-2"></i><span data-cms-key="hero.cta2text">Ver meus projetos</span>
@@ -1098,12 +1196,7 @@
                 </div>
 
                 <div data-aos="fade-left" data-aos-delay="200" class="relative mt-12 lg:mt-0">
-                    <div class="relative mb-8">
-                        <div class="absolute -top-6 -right-6 w-64 h-64 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-full blur-3xl float-animation"></div>
-                        <div class="relative rounded-[2rem] overflow-hidden executive-panel p-6 lg:p-8">
-                            <img src="./logo-hero.png" alt="Adriano Sena - Desenvolvedor Full Stack" class="w-full h-auto object-cover">
-                        </div>
-                    </div>
+
 
                     <div class="executive-panel p-6 mb-6" data-aos="fade-up" data-aos-delay="250">
                         <div class="flex items-start justify-between gap-4 mb-5">
@@ -1113,7 +1206,8 @@
                                     Especialidades
                                 </div>
                                 <h3 class="text-2xl font-bold mb-2">O que eu faço</h3>
-                                <p class="text-text-secondary">Desenvolvimento completo, do conceito até a produção, com foco em qualidade e performance.</p>
+                                <p class="text-text-secondary">Desenvolvimento completo, do conceito até a produção, com
+                                    foco em qualidade e performance.</p>
                             </div>
                         </div>
                         <div class="grid sm:grid-cols-3 gap-4 text-sm">
@@ -1164,150 +1258,166 @@
                         <i class="fas fa-laptop-code"></i>
                         Meus Projetos
                     </div>
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Projetos <span class="gradient-text">open source e produção</span></h2>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Projetos <span class="gradient-text">open source e
+                            produção</span></h2>
                     <p class="text-lg md:text-xl text-text-secondary max-w-3xl mx-auto">
-                        Alguns dos meus projetos principais, do desenvolvimento IPTV até gerenciadores de mídia. Todos com código robusto e focados em performance.
+                        Alguns dos meus projetos principais, do desenvolvimento IPTV até gerenciadores de mídia. Todos
+                        com código robusto e focados em performance.
                     </p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="card" data-aos="zoom-in">
-                    <div class="project-image">
-                        <img src="./images/asmedia.png"
-                            alt="AS-XSTREAM-IPTV" class="w-full h-full object-contain">
+                    <div class="card" data-aos="zoom-in">
+                        <div class="project-image">
+                            <img src="./images/asmedia.png" alt="AS-XSTREAM-IPTV" class="w-full h-full object-contain">
+                        </div>
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-bold">AS-XSTREAM-IPTV</h3>
+                            <span
+                                class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">Ativo</span>
+                        </div>
+                        <p class="case-label mb-1">Descrição</p>
+                        <p class="text-text-secondary mb-3">Aplicativo poderoso e intuitivo projetado para reproduzir
+                            listas IPTV no formato XStream. Oferece experiência otimizada para assistir a filmes, séries
+                            e canais de TV ao vivo diretamente de listas personalizadas.</p>
+                        <p class="case-label mb-1">Recursos</p>
+                        <p class="text-text-secondary mb-3">Suporte XStream, interface intuitiva, reprodução HLS,
+                            categorias e filtros, player embutido, compatibilidade multiplataforma.</p>
+                        <p class="case-label mb-1">Stack</p>
+                        <p class="text-text-secondary mb-4">React Native, Expo, HttpClient, HLS</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tech-tag">React Native</span>
+                            <span class="tech-tag">Expo</span>
+                            <span class="tech-tag">HLS</span>
+                            <span class="tech-tag">Streaming</span>
+                        </div>
+                        <a href="https://github.com/adrianosenas/AS-XSTREAM-IPTV" target="_blank"
+                            class="text-primary font-semibold hover:underline inline-flex items-center">
+                            Ver no GitHub
+                            <i class="fas fa-external-link-alt ml-2"></i>
+                        </a>
                     </div>
-                    <div class="flex justify-between items-start mb-3">
-                        <h3 class="text-xl font-bold">AS-XSTREAM-IPTV</h3>
-                        <span
-                            class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">Ativo</span>
-                    </div>
-                    <p class="case-label mb-1">Descrição</p>
-                    <p class="text-text-secondary mb-3">Aplicativo poderoso e intuitivo projetado para reproduzir listas IPTV no formato XStream. Oferece experiência otimizada para assistir a filmes, séries e canais de TV ao vivo diretamente de listas personalizadas.</p>
-                    <p class="case-label mb-1">Recursos</p>
-                    <p class="text-text-secondary mb-3">Suporte XStream, interface intuitiva, reprodução HLS, categorias e filtros, player embutido, compatibilidade multiplataforma.</p>
-                    <p class="case-label mb-1">Stack</p>
-                    <p class="text-text-secondary mb-4">React Native, Expo, HttpClient, HLS</p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="tech-tag">React Native</span>
-                        <span class="tech-tag">Expo</span>
-                        <span class="tech-tag">HLS</span>
-                        <span class="tech-tag">Streaming</span>
-                    </div>
-                    <a href="https://github.com/adrianosenas/AS-XSTREAM-IPTV" target="_blank" class="text-primary font-semibold hover:underline inline-flex items-center">
-                        Ver no GitHub
-                        <i class="fas fa-external-link-alt ml-2"></i>
-                    </a>
-                </div>
 
-                <div class="card" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="project-image">
-                        <img src="./images/asmedia.png"
-                            alt="ASMedia-Master" class="w-full h-full object-contain">
+                    <div class="card" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="project-image">
+                            <img src="./images/asmedia.png" alt="ASMedia-Master" class="w-full h-full object-contain">
+                        </div>
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-bold">ASMedia</h3>
+                            <span
+                                class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Ativo</span>
+                        </div>
+                        <p class="case-label mb-1">Descrição</p>
+                        <p class="text-text-secondary mb-3">Media server robusto escrito em C# para gerenciamento de
+                            conteúdo como filmes, séries e TV ao vivo, com suporte a leitura de arquivos M3U e
+                            gerenciamento de usuários.</p>
+                        <p class="case-label mb-1">Recursos</p>
+                        <p class="text-text-secondary mb-3">Suporte a M3U e URLs, gerenciamento de usuários, compatível
+                            com Linux e Windows, controle de acesso e perfis.</p>
+                        <p class="case-label mb-1">Stack</p>
+                        <p class="text-text-secondary mb-4">.NET 8, C#, M3U Parser, Media Server</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tech-tag">C#</span>
+                            <span class="tech-tag">.NET 8</span>
+                            <span class="tech-tag">M3U</span>
+                            <span class="tech-tag">Media Server</span>
+                        </div>
+                        <a href="https://github.com/adrianosenas/ASMedia-Master" target="_blank"
+                            class="text-primary font-semibold hover:underline inline-flex items-center">
+                            Ver no GitHub
+                            <i class="fas fa-external-link-alt ml-2"></i>
+                        </a>
                     </div>
-                    <div class="flex justify-between items-start mb-3">
-                        <h3 class="text-xl font-bold">ASMedia</h3>
-                        <span
-                            class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Ativo</span>
-                    </div>
-                    <p class="case-label mb-1">Descrição</p>
-                    <p class="text-text-secondary mb-3">Media server robusto escrito em C# para gerenciamento de conteúdo como filmes, séries e TV ao vivo, com suporte a leitura de arquivos M3U e gerenciamento de usuários.</p>
-                    <p class="case-label mb-1">Recursos</p>
-                    <p class="text-text-secondary mb-3">Suporte a M3U e URLs, gerenciamento de usuários, compatível com Linux e Windows, controle de acesso e perfis.</p>
-                    <p class="case-label mb-1">Stack</p>
-                    <p class="text-text-secondary mb-4">.NET 8, C#, M3U Parser, Media Server</p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="tech-tag">C#</span>
-                        <span class="tech-tag">.NET 8</span>
-                        <span class="tech-tag">M3U</span>
-                        <span class="tech-tag">Media Server</span>
-                    </div>
-                    <a href="https://github.com/adrianosenas/ASMedia-Master" target="_blank" class="text-primary font-semibold hover:underline inline-flex items-center">
-                        Ver no GitHub
-                        <i class="fas fa-external-link-alt ml-2"></i>
-                    </a>
-                </div>
 
-                <div class="card" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="project-image">
-                        <img src="./images/asmedia.png"
-                            alt="ASIptvServer.M3U" class="w-full h-full object-contain">
+                    <div class="card" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="project-image">
+                            <img src="./images/asmedia.png" alt="ASIptvServer.M3U" class="w-full h-full object-contain">
+                        </div>
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-bold">ASIptvServer.M3U</h3>
+                            <span
+                                class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm font-medium">Beta</span>
+                        </div>
+                        <p class="case-label mb-1">Descrição</p>
+                        <p class="text-text-secondary mb-3">Biblioteca C# que fornece funcionalidades para ler listas
+                            M3U, fazer download de URLs e salvar em arquivo. Separa logo e URL, verifica se é série,
+                            filme ou programa de TV.</p>
+                        <p class="case-label mb-1">Funcionalidades</p>
+                        <p class="text-text-secondary mb-3">Lê vários formatos de listas, download e salva em arquivo
+                            M3U, separa logo e URL, classificação de conteúdo.</p>
+                        <p class="case-label mb-1">Stack</p>
+                        <p class="text-text-secondary mb-4">C#, M3U Parser, Regex, HTTP Client</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tech-tag">C#</span>
+                            <span class="tech-tag">M3U</span>
+                            <span class="tech-tag">Parser</span>
+                            <span class="tech-tag">Regex</span>
+                        </div>
+                        <a href="https://github.com/adrianosenas/ASIptvServer.M3U" target="_blank"
+                            class="text-primary font-semibold hover:underline inline-flex items-center">
+                            Ver no GitHub
+                            <i class="fas fa-external-link-alt ml-2"></i>
+                        </a>
                     </div>
-                    <div class="flex justify-between items-start mb-3">
-                        <h3 class="text-xl font-bold">ASIptvServer.M3U</h3>
-                        <span
-                            class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm font-medium">Beta</span>
-                    </div>
-                    <p class="case-label mb-1">Descrição</p>
-                    <p class="text-text-secondary mb-3">Biblioteca C# que fornece funcionalidades para ler listas M3U, fazer download de URLs e salvar em arquivo. Separa logo e URL, verifica se é série, filme ou programa de TV.</p>
-                    <p class="case-label mb-1">Funcionalidades</p>
-                    <p class="text-text-secondary mb-3">Lê vários formatos de listas, download e salva em arquivo M3U, separa logo e URL, classificação de conteúdo.</p>
-                    <p class="case-label mb-1">Stack</p>
-                    <p class="text-text-secondary mb-4">C#, M3U Parser, Regex, HTTP Client</p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="tech-tag">C#</span>
-                        <span class="tech-tag">M3U</span>
-                        <span class="tech-tag">Parser</span>
-                        <span class="tech-tag">Regex</span>
-                    </div>
-                    <a href="https://github.com/adrianosenas/ASIptvServer.M3U" target="_blank" class="text-primary font-semibold hover:underline inline-flex items-center">
-                        Ver no GitHub
-                        <i class="fas fa-external-link-alt ml-2"></i>
-                    </a>
-                </div>
 
-                <div class="card" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="project-image">
-                        <img src="./images/asmedia.png"
-                            alt="ASIptvServer.Naming" class="w-full h-full object-contain">
+                    <div class="card" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="project-image">
+                            <img src="./images/asmedia.png" alt="ASIptvServer.Naming"
+                                class="w-full h-full object-contain">
+                        </div>
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-bold">ASIptvServer.Naming</h3>
+                            <span
+                                class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">Beta</span>
+                        </div>
+                        <p class="case-label mb-1">Descrição</p>
+                        <p class="text-text-secondary mb-3">Biblioteca C# que fornece funcionalidades para renomear
+                            strings no formato IPTV. Captura o ano, remove parênteses e traços, e organiza o texto de
+                            maneira clara e legível.</p>
+                        <p class="case-label mb-1">Funcionalidades</p>
+                        <p class="text-text-secondary mb-3">Remove parênteses e traços, verifica se é série de TV,
+                            extrai e posiciona ano ao final, organiza texto de forma legível.</p>
+                        <p class="case-label mb-1">Stack</p>
+                        <p class="text-text-secondary mb-4">C#, Regex, String Parsing, IPTV</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tech-tag">C#</span>
+                            <span class="tech-tag">Regex</span>
+                            <span class="tech-tag">Parser</span>
+                            <span class="tech-tag">IPTV</span>
+                        </div>
+                        <a href="https://github.com/adrianosenas/ASIptvServer.Naming" target="_blank"
+                            class="text-primary font-semibold hover:underline inline-flex items-center">
+                            Ver no GitHub
+                            <i class="fas fa-external-link-alt ml-2"></i>
+                        </a>
                     </div>
-                    <div class="flex justify-between items-start mb-3">
-                        <h3 class="text-xl font-bold">ASIptvServer.Naming</h3>
-                        <span
-                            class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">Beta</span>
-                    </div>
-                    <p class="case-label mb-1">Descrição</p>
-                    <p class="text-text-secondary mb-3">Biblioteca C# que fornece funcionalidades para renomear strings no formato IPTV. Captura o ano, remove parênteses e traços, e organiza o texto de maneira clara e legível.</p>
-                    <p class="case-label mb-1">Funcionalidades</p>
-                    <p class="text-text-secondary mb-3">Remove parênteses e traços, verifica se é série de TV, extrai e posiciona ano ao final, organiza texto de forma legível.</p>
-                    <p class="case-label mb-1">Stack</p>
-                    <p class="text-text-secondary mb-4">C#, Regex, String Parsing, IPTV</p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="tech-tag">C#</span>
-                        <span class="tech-tag">Regex</span>
-                        <span class="tech-tag">Parser</span>
-                        <span class="tech-tag">IPTV</span>
-                    </div>
-                    <a href="https://github.com/adrianosenas/ASIptvServer.Naming" target="_blank" class="text-primary font-semibold hover:underline inline-flex items-center">
-                        Ver no GitHub
-                        <i class="fas fa-external-link-alt ml-2"></i>
-                    </a>
-                </div>
 
-                <div class="card" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="project-image">
-                        <img src="./images/adrianosena.PNG"
-                            alt="Site Pessoal" class="w-full h-full object-contain">
+                    <div class="card" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="project-image">
+                            <img src="./images/adrianosena.PNG" alt="Site Pessoal" class="w-full h-full object-contain">
+                        </div>
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-bold">Site Pessoal</h3>
+                            <span
+                                class="px-3 py-1 bg-amber-100 text-amber-800 rounded-full text-sm font-medium">Portfolio</span>
+                        </div>
+                        <p class="case-label mb-1">Descrição</p>
+                        <p class="text-text-secondary mb-3">Meu site profissional e portfólio completo. Showcase de
+                            projetos, skills e forma de contato para oportunidades.</p>
+                        <p class="case-label mb-1">Stack</p>
+                        <p class="text-text-secondary mb-4">HTML5, Node.js, Tailwind CSS, Responsive</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">Tailwind CSS</span>
+                            <span class="tech-tag">Responsive</span>
+                        </div>
+                        <a href="https://adrianosena.dev.br" target="_blank"
+                            class="text-primary font-semibold hover:underline inline-flex items-center">
+                            Visitar Site
+                            <i class="fas fa-external-link-alt ml-2"></i>
+                        </a>
                     </div>
-                    <div class="flex justify-between items-start mb-3">
-                        <h3 class="text-xl font-bold">Site Pessoal</h3>
-                        <span
-                            class="px-3 py-1 bg-amber-100 text-amber-800 rounded-full text-sm font-medium">Portfolio</span>
-                    </div>
-                    <p class="case-label mb-1">Descrição</p>
-                    <p class="text-text-secondary mb-3">Meu site profissional e portfólio completo. Showcase de projetos, skills e forma de contato para oportunidades.</p>
-                    <p class="case-label mb-1">Stack</p>
-                    <p class="text-text-secondary mb-4">HTML5, Node.js, Tailwind CSS, Responsive</p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="tech-tag">Node.js</span>
-                        <span class="tech-tag">HTML5</span>
-                        <span class="tech-tag">Tailwind CSS</span>
-                        <span class="tech-tag">Responsive</span>
-                    </div>
-                    <a href="https://adrianosena.dev.br" target="_blank" class="text-primary font-semibold hover:underline inline-flex items-center">
-                        Visitar Site
-                        <i class="fas fa-external-link-alt ml-2"></i>
-                    </a>
-                </div>
                 </div>
 
                 <div class="text-center mt-12">
@@ -1327,22 +1437,60 @@
                     <i class="fas fa-globe"></i>
                     Clientes e Projetos
                 </div>
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">Websites que <span class="gradient-text">desenvolvi e mantenho</span></h2>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Websites que <span class="gradient-text">desenvolvi e
+                        mantenho</span></h2>
                 <p class="text-lg md:text-xl text-text-secondary max-w-3xl mx-auto">
-                    Alguns dos principais websites que desenvolvi e mantenho. Desde infraestrutura até design responsivo, tudo pensado em performance e conversão.
+                    Alguns dos principais websites que desenvolvi e mantenho. Desde infraestrutura até design
+                    responsivo, tudo pensado em performance e conversão.
                 </p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Bistro Susi -->
+                <div class="card" data-aos="fade-up">
+                    <div class="project-image overflow-hidden rounded-xl border border-gray-700 bg-gray-800">
+                        <img src="./images/bistro.PNG" alt="Bistrô Sushi Delivery"
+                            class="w-full h-auto transition duration-300 hover:scale-105">
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Bistrô Sushi Delivery</h3>
+                    <p class="text-text-secondary mb-4">O Bistrô Sushi Delivery é uma plataforma desenvolvida para
+                        modernizar e automatizar todo o processo de vendas e atendimento do restaurante.
+
+                        O projeto foi criado com foco em experiência do cliente, agilidade nos pedidos e gestão
+                        eficiente dos atendimentos, permitindo que os clientes realizem seus pedidos diretamente pelo
+                        site, sem necessidade de aplicativos de terceiros. </p>
+                    <a href="https://www.bistrosushi.com.br/" target="_blank"
+                        class="btn-secondary w-full text-center inline-flex items-center justify-center">
+                        <i class="fas fa-external-link-alt mr-2"></i>Visitar Site
+                    </a>
+                </div>
+                <!-- Bistro Susi -->
+                <div class="card" data-aos="fade-up">
+                    <div class="project-image overflow-hidden rounded-xl border border-gray-700 bg-gray-800">
+                        <img src="./images/painel.PNG" alt="Bistrô Sushi Delivery"
+                            class="w-full h-auto transition duration-300 hover:scale-105">
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Sistema de Gestão Bistrô Sushi</h3>
+                    <p class="text-text-secondary mb-4">Sistema desktop desenvolvido para Windows, Linux e macOS, criado para centralizar e automatizar toda a operação do restaurante, desde o recebimento dos pedidos até o gerenciamento completo do cardápio digital.
+
+A plataforma permite que os pedidos realizados pelos clientes no site sejam recebidos em tempo real no sistema, proporcionando mais agilidade, organização e controle para a equipe de atendimento. </p>
+                    <a href="#" 
+                        class="btn-secondary w-full text-center inline-flex items-center justify-center">
+                        <i class="fas fa-external-link-alt mr-2"></i>Projeto sob Medida
+                    </a>
+                </div>
                 <!-- P3Driver -->
                 <div class="card" data-aos="fade-up">
                     <div class="project-image">
-                        <img src="./images/p3 drive site.PNG"
-                            alt="P3Driver" class="w-full h-full object-contain">
+                        <img src="./images/p3 drive site.PNG" alt="P3Driver" class="w-full h-full object-contain">
                     </div>
                     <h3 class="text-xl font-bold mb-2">P3Driver</h3>
-                    <p class="text-text-secondary mb-4">Plataforma de mobilidade e transportes. Design moderno com foco em user experience e conversão.</p>
-                    <a href="https://www.p3driver.com.br/" target="_blank" class="btn-secondary w-full text-center inline-flex items-center justify-center">
+                    <p class="text-text-secondary mb-4">A P3Driver é uma plataforma desenvolvida para conectar passageiros e motoristas de forma prática, segura e eficiente. O projeto foi criado com foco em experiência do usuário, alta performance e conversão, oferecendo uma solução moderna para o setor de mobilidade urbana.
+
+Além do site institucional, o projeto conta com um aplicativo móvel em desenvolvimento, inspirado nos principais aplicativos de transporte do mercado, permitindo a solicitação de corridas em tempo real, gerenciamento de viagens e acompanhamento da operação.</p>
+                    <a href="https://www.p3driver.com.br/" target="_blank"
+                        class="btn-secondary w-full text-center inline-flex items-center justify-center">
                         <i class="fas fa-external-link-alt mr-2"></i>Visitar Site
                     </a>
                 </div>
@@ -1350,12 +1498,13 @@
                 <!-- Hostsa -->
                 <div class="card" data-aos="fade-up" data-aos-delay="100">
                     <div class="project-image">
-                        <img src="./images/hostsa.PNG"
-                            alt="Hostsa" class="w-full h-full object-contain">
+                        <img src="./images/hostsa.PNG" alt="Hostsa" class="w-full h-full object-contain">
                     </div>
                     <h3 class="text-xl font-bold mb-2">Hostsa</h3>
-                    <p class="text-text-secondary mb-4">Provedor de hosting e soluções de infraestrutura. Desenvolvido com foco em segurança e performance.</p>
-                    <a href="https://www.hostsa.com.br/" target="_blank" class="btn-secondary w-full text-center inline-flex items-center justify-center">
+                    <p class="text-text-secondary mb-4">Provedor de hosting e soluções de infraestrutura. Desenvolvido
+                        com foco em segurança e performance.</p>
+                    <a href="https://www.hostsa.com.br/" target="_blank"
+                        class="btn-secondary w-full text-center inline-flex items-center justify-center">
                         <i class="fas fa-external-link-alt mr-2"></i>Visitar Site
                     </a>
                 </div>
@@ -1363,12 +1512,13 @@
                 <!-- CEEC -->
                 <div class="card" data-aos="fade-up" data-aos-delay="200">
                     <div class="project-image">
-                        <img src="./images/Site ceec.PNG"
-                            alt="CEEC" class="w-full h-full object-contain">
+                        <img src="./images/Site ceec.PNG" alt="CEEC" class="w-full h-full object-contain">
                     </div>
                     <h3 class="text-xl font-bold mb-2">CEEC</h3>
-                    <p class="text-text-secondary mb-4">Centro de Educação e Desenvolvimento. Site institucional com conteúdo dinâmico e sistema de inscrições.</p>
-                    <a href="https://ceec.org.br/" target="_blank" class="btn-secondary w-full text-center inline-flex items-center justify-center">
+                    <p class="text-text-secondary mb-4">Centro de Educação e Desenvolvimento. Site institucional com
+                        conteúdo dinâmico e sistema de inscrições.</p>
+                    <a href="https://ceec.org.br/" target="_blank"
+                        class="btn-secondary w-full text-center inline-flex items-center justify-center">
                         <i class="fas fa-external-link-alt mr-2"></i>Visitar Site
                     </a>
                 </div>
@@ -1376,12 +1526,13 @@
                 <!-- Escola CEEC -->
                 <div class="card" data-aos="fade-up" data-aos-delay="100">
                     <div class="project-image">
-                        <img src="./images/Site cursos ceec.PNG"
-                            alt="Escola CEEC" class="w-full h-full object-contain">
+                        <img src="./images/Site cursos ceec.PNG" alt="Escola CEEC" class="w-full h-full object-contain">
                     </div>
                     <h3 class="text-xl font-bold mb-2">Escola CEEC</h3>
-                    <p class="text-text-secondary mb-4">Plataforma educacional com portal de alunos, gestão de turmas e sistema de notas integrado.</p>
-                    <a href="https://escolaceec.org.br/" target="_blank" class="btn-secondary w-full text-center inline-flex items-center justify-center">
+                    <p class="text-text-secondary mb-4">Plataforma educacional com portal de alunos, gestão de turmas e
+                        sistema de notas integrado.</p>
+                    <a href="https://escolaceec.org.br/" target="_blank"
+                        class="btn-secondary w-full text-center inline-flex items-center justify-center">
                         <i class="fas fa-external-link-alt mr-2"></i>Visitar Site
                     </a>
                 </div>
@@ -1389,12 +1540,13 @@
                 <!-- ASIptvServer -->
                 <div class="card" data-aos="fade-up" data-aos-delay="200">
                     <div class="project-image">
-                        <img src="./images/iptv.PNG"
-                            alt="ASIptvServer" class="w-full h-full object-contain">
+                        <img src="./images/iptv.PNG" alt="ASIptvServer" class="w-full h-full object-contain">
                     </div>
                     <h3 class="text-xl font-bold mb-2">ASIptvServer</h3>
-                    <p class="text-text-secondary mb-4">Servidor IPTV com painel de controle, gestão de canais e distribuição de streaming em alta performance.</p>
-                    <a href="https://asiptv.com.br/" target="_blank" class="btn-secondary w-full text-center inline-flex items-center justify-center">
+                    <p class="text-text-secondary mb-4">Servidor IPTV com painel de controle, gestão de canais e
+                        distribuição de streaming em alta performance.</p>
+                    <a href="https://asiptv.com.br/" target="_blank"
+                        class="btn-secondary w-full text-center inline-flex items-center justify-center">
                         <i class="fas fa-external-link-alt mr-2"></i>Visitar Site
                     </a>
                 </div>
@@ -1402,12 +1554,13 @@
                 <!-- 4Server Tecnologia -->
                 <div class="card" data-aos="fade-up" data-aos-delay="300">
                     <div class="project-image">
-                        <img src="./images/4server.PNG"
-                            alt="4Server" class="w-full h-full object-contain">
+                        <img src="./images/4server.PNG" alt="4Server" class="w-full h-full object-contain">
                     </div>
                     <h3 class="text-xl font-bold mb-2">4Server Tecnologia</h3>
-                    <p class="text-text-secondary mb-4">Soluções em tecnologia, infraestrutura e suporte técnico. Site com gestão de chamados e documentação técnica.</p>
-                    <a href="https://4servertecnologia.com.br/" target="_blank" class="btn-secondary w-full text-center inline-flex items-center justify-center">
+                    <p class="text-text-secondary mb-4">Soluções em tecnologia, infraestrutura e suporte técnico. Site
+                        com gestão de chamados e documentação técnica.</p>
+                    <a href="https://4servertecnologia.com.br/" target="_blank"
+                        class="btn-secondary w-full text-center inline-flex items-center justify-center">
                         <i class="fas fa-external-link-alt mr-2"></i>Visitar Site
                     </a>
                 </div>
@@ -1427,56 +1580,62 @@
                         <i class="fas fa-tools"></i>
                         Stack de Tecnologias
                     </div>
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Tecnologias que <span class="gradient-text">domino e uso em produção</span></h2>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Tecnologias que <span class="gradient-text">domino e
+                            uso em produção</span></h2>
                     <p class="text-lg md:text-xl text-text-secondary max-w-3xl mx-auto">
-                        Meu foco é em tecnologias maduras, well-tested e que permitem entregar código de qualidade. Estou sempre aprendendo novas ferramentas e mantendo as habilidades atualizadas.
+                        Meu foco é em tecnologias maduras, well-tested e que permitem entregar código de qualidade.
+                        Estou sempre aprendendo novas ferramentas e mantendo as habilidades atualizadas.
                     </p>
                 </div>
 
                 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
                     <div class="card" data-aos="fade-up">
-                        <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-400 to-cyan-400 flex items-center justify-center mb-6">
+                        <div
+                            class="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-400 to-cyan-400 flex items-center justify-center mb-6">
                             <i class="fas fa-code text-white text-2xl"></i>
                         </div>
                         <h3 class="text-xl font-bold mb-4">Frontend</h3>
                         <ul class="space-y-2 text-text-secondary">
-                            <li>React, Vue.js, HTML5, CSS3</li>
+                            <li>React, HTML5, CSS3</li>
                             <li>JavaScript/TypeScript moderno</li>
                             <li>Responsive, acessível, performático</li>
                         </ul>
                     </div>
 
                     <div class="card" data-aos="fade-up" data-aos-delay="100">
-                        <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-500 to-pink-400 flex items-center justify-center mb-6">
+                        <div
+                            class="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-500 to-pink-400 flex items-center justify-center mb-6">
                             <i class="fas fa-server text-white text-2xl"></i>
                         </div>
                         <h3 class="text-xl font-bold mb-4">Backend</h3>
                         <ul class="space-y-2 text-text-secondary">
                             <li>Node.js, Express, .NET, C#</li>
-                            <li>REST APIs, GraphQL, WebSockets</li>
+                            <li>REST APIs, WebSockets</li>
                             <li>Segurança, autenticação, validação</li>
                         </ul>
                     </div>
 
                     <div class="card" data-aos="fade-up" data-aos-delay="200">
-                        <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-orange-500 to-red-400 flex items-center justify-center mb-6">
+                        <div
+                            class="w-14 h-14 rounded-xl bg-gradient-to-br from-orange-500 to-red-400 flex items-center justify-center mb-6">
                             <i class="fas fa-database text-white text-2xl"></i>
                         </div>
                         <h3 class="text-xl font-bold mb-4">Banco de Dados</h3>
                         <ul class="space-y-2 text-text-secondary">
                             <li>MySQL, PostgreSQL, SQL Server</li>
-                            <li>MongoDB, Firebase, Redis</li>
+                            <li>Firebase, Redis</li>
                             <li>Design, otimização, queries</li>
                         </ul>
                     </div>
 
                     <div class="card" data-aos="fade-up" data-aos-delay="300">
-                        <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-green-500 to-emerald-400 flex items-center justify-center mb-6">
+                        <div
+                            class="w-14 h-14 rounded-xl bg-gradient-to-br from-green-500 to-emerald-400 flex items-center justify-center mb-6">
                             <i class="fas fa-cloud text-white text-2xl"></i>
                         </div>
                         <h3 class="text-xl font-bold mb-4">DevOps & Cloud</h3>
                         <ul class="space-y-2 text-text-secondary">
-                            <li>Docker, Proxmox, AWS, VPS</li>
+                            <li>Docker, Proxmox, VPS</li>
                             <li>CI/CD, GitHub, automação</li>
                             <li>Linux, redes, segurança</li>
                         </ul>
@@ -1487,10 +1646,13 @@
                     <div class="card" data-aos="fade-up">
                         <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
                             <div>
-                                <h3 class="text-2xl font-bold mb-3">Capacidade homologada para ambientes empresariais</h3>
-                                <p class="text-text-secondary max-w-2xl">Seleção de tecnologias e plataformas usada conforme contexto do projeto, maturidade da operação e necessidade de escala.</p>
+                                <h3 class="text-2xl font-bold mb-3">Capacidade homologada para ambientes empresariais
+                                </h3>
+                                <p class="text-text-secondary max-w-2xl">Seleção de tecnologias e plataformas usada
+                                    conforme contexto do projeto, maturidade da operação e necessidade de escala.</p>
                             </div>
-                            <div class="text-sm text-text-secondary font-medium">Software, apps, integrações, infraestrutura e sustentação</div>
+                            <div class="text-sm text-text-secondary font-medium">Software, apps, integrações,
+                                infraestrutura e sustentação</div>
                         </div>
                         <div class="grid md:grid-cols-3 gap-6">
                             <div>
@@ -1502,7 +1664,6 @@
                                     <span class="tech-tag">TypeScript</span>
                                     <span class="tech-tag">Node.js</span>
                                     <span class="tech-tag">React.js</span>
-                                    <span class="tech-tag">Vue.js</span>
                                     <span class="tech-tag">.NET</span>
                                     <span class="tech-tag">C#</span>
                                 </div>
@@ -1512,7 +1673,6 @@
                                 <div class="flex flex-wrap gap-2">
                                     <span class="tech-tag">Android</span>
                                     <span class="tech-tag">iOS</span>
-                                    <span class="tech-tag">Flutter</span>
                                     <span class="tech-tag">React Native</span>
                                     <span class="tech-tag">Firebase</span>
                                     <span class="tech-tag">Stripe</span>
@@ -1526,7 +1686,6 @@
                                 <div class="flex flex-wrap gap-2">
                                     <span class="tech-tag">Docker</span>
                                     <span class="tech-tag">Proxmox</span>
-                                    <span class="tech-tag">AWS</span>
                                     <span class="tech-tag">cPanel</span>
                                     <span class="tech-tag">CyberPanel</span>
                                     <span class="tech-tag">MySQL</span>
@@ -1576,220 +1735,256 @@
                         <i class="fas fa-handshake"></i>
                         O que ofereço
                     </div>
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Serviços que <span class="gradient-text">entrego como desenvolvedor</span></h2>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Serviços que <span class="gradient-text">entrego
+                            como desenvolvedor</span></h2>
                     <p class="text-lg md:text-xl text-text-secondary max-w-3xl mx-auto">
-                        Ofereço uma gama completa de serviços de desenvolvimento, desde websites até infraestrutura robusta. Cada projeto é tratado com profissionalismo e foco em resultados.
+                        Ofereço uma gama completa de serviços de desenvolvimento, desde websites até infraestrutura
+                        robusta. Cada projeto é tratado com profissionalismo e foco em resultados.
                     </p>
                 </div>
 
                 <div class="service-hero-grid">
-                <div class="card service-hero-card" data-aos="fade-up">
-                    <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-xl md:text-2xl font-bold">Plataformas e presença digital</h3>
-                        <span class="tech-tag text-xs sm:text-sm">Sites • Apps • Sistemas</span>
+                    <div class="card service-hero-card" data-aos="fade-up">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-xl md:text-2xl font-bold">Plataformas e presença digital</h3>
+                            <span class="tech-tag text-xs sm:text-sm">Sites • Apps • Sistemas</span>
+                        </div>
+                        <p class="text-text-secondary mb-4">
+                            Estruturamos <span class="font-semibold text-primary">websites corporativos, landing pages,
+                                sistemas de gestão e aplicativos</span> com discurso mais maduro, arquitetura viável e
+                            foco em percepção de valor.
+                        </p>
+                        <p class="text-text-secondary mb-4">
+                            A solução é pensada para apoiar crescimento, rotina comercial e experiência do usuário sem
+                            improviso de escopo.
+                        </p>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-center"><i
+                                    class="fas fa-check text-green-500 mr-2"></i><span>Posicionamento institucional mais
+                                    sofisticado e confiável</span></li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i><span>Escopo,
+                                    cronograma e responsabilidades definidos antes de iniciar</span></li>
+                            <li class="flex items-center"><i
+                                    class="fas fa-check text-green-500 mr-2"></i><span>Integração com operação
+                                    comercial, atendimento ou backoffice</span></li>
+                        </ul>
+                        <div class="mb-6 text-sm text-text-secondary font-medium">Ideal para empresas que precisam
+                            elevar sua imagem, vender melhor e dar escala à operação.</div>
+                        <a href="#contact"
+                            class="btn-primary inline-flex items-center justify-center mt-auto self-stretch sm:self-start"><i
+                                class="fas fa-rocket mr-2"></i>Planejar frente digital</a>
                     </div>
-                    <p class="text-text-secondary mb-4">
-                        Estruturamos <span class="font-semibold text-primary">websites corporativos, landing pages,
-                            sistemas de gestão e aplicativos</span> com discurso mais maduro, arquitetura viável e foco em percepção de valor.
-                    </p>
-                    <p class="text-text-secondary mb-4">
-                        A solução é pensada para apoiar crescimento, rotina comercial e experiência do usuário sem improviso de escopo.
-                    </p>
-                    <ul class="space-y-2 mb-6">
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i><span>Posicionamento institucional mais sofisticado e confiável</span></li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i><span>Escopo, cronograma e responsabilidades definidos antes de iniciar</span></li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i><span>Integração com operação comercial, atendimento ou backoffice</span></li>
-                    </ul>
-                    <div class="mb-6 text-sm text-text-secondary font-medium">Ideal para empresas que precisam elevar sua imagem, vender melhor e dar escala à operação.</div>
-                    <a href="#contact" class="btn-primary inline-flex items-center justify-center mt-auto self-stretch sm:self-start"><i class="fas fa-rocket mr-2"></i>Planejar frente digital</a>
-                </div>
 
-                <div class="card service-hero-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-xl md:text-2xl font-bold">Sustentação técnica e continuidade</h3>
-                        <span class="tech-tag text-xs sm:text-sm">Notebooks • PCs • Servidores</span>
+                    <div class="card service-hero-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-xl md:text-2xl font-bold">Sustentação técnica e continuidade</h3>
+                            <span class="tech-tag text-xs sm:text-sm">Notebooks • PCs • Servidores</span>
+                        </div>
+                        <p class="text-text-secondary mb-4">
+                            Atuação técnica para <span class="font-semibold text-primary">equipamentos, estações e
+                                servidores</span> com foco em reduzir interrupção, aumentar vida útil e padronizar o
+                            ambiente.
+                        </p>
+                        <p class="text-text-secondary mb-4">
+                            A empresa recebe explicação objetiva, diagnóstico confiável e execução orientada à
+                            continuidade da rotina operacional.
+                        </p>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-center"><i
+                                    class="fas fa-check text-green-500 mr-2"></i><span>Diagnóstico, manutenção
+                                    preventiva e correção com rastreabilidade</span></li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i><span>Suporte
+                                    remoto e presencial conforme criticidade do cenário</span></li>
+                            <li class="flex items-center"><i
+                                    class="fas fa-check text-green-500 mr-2"></i><span>Organização de rotina para evitar
+                                    recorrência de falhas</span></li>
+                        </ul>
+                        <div class="mb-6 text-sm text-text-secondary font-medium">Ideal para empresas que não podem
+                            depender de soluções improvisadas para manter a operação funcionando.</div>
+                        <a href="#contact"
+                            class="btn-primary inline-flex items-center justify-center mt-auto self-stretch sm:self-start"><i
+                                class="fas fa-tools mr-2"></i>Solicitar sustentação</a>
                     </div>
-                    <p class="text-text-secondary mb-4">
-                        Atuação técnica para <span class="font-semibold text-primary">equipamentos, estações e servidores</span> com foco em reduzir interrupção, aumentar vida útil e padronizar o ambiente.
-                    </p>
-                    <p class="text-text-secondary mb-4">
-                        A empresa recebe explicação objetiva, diagnóstico confiável e execução orientada à continuidade da rotina operacional.
-                    </p>
-                    <ul class="space-y-2 mb-6">
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i><span>Diagnóstico, manutenção preventiva e correção com rastreabilidade</span></li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i><span>Suporte remoto e presencial conforme criticidade do cenário</span></li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i><span>Organização de rotina para evitar recorrência de falhas</span></li>
-                    </ul>
-                    <div class="mb-6 text-sm text-text-secondary font-medium">Ideal para empresas que não podem depender de soluções improvisadas para manter a operação funcionando.</div>
-                    <a href="#contact" class="btn-primary inline-flex items-center justify-center mt-auto self-stretch sm:self-start"><i class="fas fa-tools mr-2"></i>Solicitar sustentação</a>
-                </div>
 
-                <div class="card service-hero-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-xl md:text-2xl font-bold">Infraestrutura crítica e resiliência</h3>
-                        <span class="tech-tag text-xs sm:text-sm">Redes • VPS • Backup</span>
+                    <div class="card service-hero-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-xl md:text-2xl font-bold">Infraestrutura crítica e resiliência</h3>
+                            <span class="tech-tag text-xs sm:text-sm">Redes • VPS • Backup</span>
+                        </div>
+                        <p class="text-text-secondary mb-4">
+                            Estruturamos ambientes com <span class="font-semibold text-primary">VPS, Proxmox, cPanel,
+                                CyberPanel, redes corporativas e rotinas de backup</span> para proteger dados, reduzir
+                            indisponibilidade e organizar crescimento.
+                        </p>
+                        <p class="text-text-secondary mb-4">
+                            O foco é sair da dependência de configurações frágeis e entrar em um cenário monitorado,
+                            documentado e recuperável.
+                        </p>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-center"><i
+                                    class="fas fa-check text-green-500 mr-2"></i><span>Provisionamento, migração e
+                                    hardening de ambientes</span></li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i><span>Backups
+                                    locais e em nuvem com política de recuperação</span></li>
+                            <li class="flex items-center"><i
+                                    class="fas fa-check text-green-500 mr-2"></i><span>Documentação essencial para
+                                    continuidade operacional</span></li>
+                        </ul>
+                        <div class="mb-6 text-sm text-text-secondary font-medium">Ideal para operações que exigem
+                            estabilidade, segurança e capacidade de recuperação rápida.</div>
+                        <a href="#contact"
+                            class="btn-primary inline-flex items-center justify-center mt-auto self-stretch sm:self-start"><i
+                                class="fas fa-network-wired mr-2"></i>Estruturar ambiente crítico</a>
                     </div>
-                    <p class="text-text-secondary mb-4">
-                        Estruturamos ambientes com <span class="font-semibold text-primary">VPS, Proxmox, cPanel,
-                            CyberPanel, redes corporativas e rotinas de backup</span> para proteger dados, reduzir indisponibilidade e organizar crescimento.
-                    </p>
-                    <p class="text-text-secondary mb-4">
-                        O foco é sair da dependência de configurações frágeis e entrar em um cenário monitorado, documentado e recuperável.
-                    </p>
-                    <ul class="space-y-2 mb-6">
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i><span>Provisionamento, migração e hardening de ambientes</span></li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i><span>Backups locais e em nuvem com política de recuperação</span></li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i><span>Documentação essencial para continuidade operacional</span></li>
-                    </ul>
-                    <div class="mb-6 text-sm text-text-secondary font-medium">Ideal para operações que exigem estabilidade, segurança e capacidade de recuperação rápida.</div>
-                    <a href="#contact" class="btn-primary inline-flex items-center justify-center mt-auto self-stretch sm:self-start"><i class="fas fa-network-wired mr-2"></i>Estruturar ambiente crítico</a>
-                </div>
                 </div>
 
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="card text-center" data-aos="fade-up">
-                    <div class="service-icon mx-auto">
-                        <i class="fas fa-globe"></i>
+                    <div class="card text-center" data-aos="fade-up">
+                        <div class="service-icon mx-auto">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Sites institucionais e páginas de conversão</h3>
+                        <p class="text-text-secondary mb-4">
+                            Projetos para posicionar a marca com mais autoridade e transformar interesse em oportunidade
+                            comercial.
+                        </p>
+                        <ul class="text-left space-y-2 mb-6">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Arquitetura de conteúdo, oferta e credibilidade institucional</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>SEO técnico, performance e responsividade</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Foco em percepção de valor, leads e vendas</span>
+                            </li>
+                        </ul>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Sites institucionais e páginas de conversão</h3>
-                    <p class="text-text-secondary mb-4">
-                        Projetos para posicionar a marca com mais autoridade e transformar interesse em oportunidade comercial.
-                    </p>
-                    <ul class="text-left space-y-2 mb-6">
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Arquitetura de conteúdo, oferta e credibilidade institucional</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>SEO técnico, performance e responsividade</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Foco em percepção de valor, leads e vendas</span>
-                        </li>
-                    </ul>
-                </div>
 
-                <div class="card text-center" data-aos="fade-up" data-aos-delay="100">
-                    <div class="service-icon mx-auto">
-                        <i class="fas fa-mobile-alt"></i>
+                    <div class="card text-center" data-aos="fade-up" data-aos-delay="100">
+                        <div class="service-icon mx-auto">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Aplicativos para atendimento e produtividade</h3>
+                        <p class="text-text-secondary mb-4">
+                            Aplicativos para rotina operacional, equipe de campo, vendas ou jornada de atendimento.
+                        </p>
+                        <ul class="text-left space-y-2 mb-6">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Apps híbridos ou nativos conforme cenário</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Integração com APIs, CRM e sistemas internos</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Publicação, monitoramento e evolução contínua</span>
+                            </li>
+                        </ul>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Aplicativos para atendimento e produtividade</h3>
-                    <p class="text-text-secondary mb-4">
-                        Aplicativos para rotina operacional, equipe de campo, vendas ou jornada de atendimento.
-                    </p>
-                    <ul class="text-left space-y-2 mb-6">
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Apps híbridos ou nativos conforme cenário</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Integração com APIs, CRM e sistemas internos</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Publicação, monitoramento e evolução contínua</span>
-                        </li>
-                    </ul>
-                </div>
 
-                <div class="card text-center" data-aos="fade-up" data-aos-delay="200">
-                    <div class="service-icon mx-auto">
-                        <i class="fas fa-chart-line"></i>
+                    <div class="card text-center" data-aos="fade-up" data-aos-delay="200">
+                        <div class="service-icon mx-auto">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Sistemas web e desktop para operação</h3>
+                        <p class="text-text-secondary mb-4">
+                            Sistemas sob medida para controlar processos, reduzir retrabalho e centralizar informação
+                            crítica.
+                        </p>
+                        <ul class="text-left space-y-2 mb-6">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Modelagem aderente ao fluxo real do negócio</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Dashboards, permissões e indicadores operacionais</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Automação de tarefas e integrações estratégicas</span>
+                            </li>
+                        </ul>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Sistemas web e desktop para operação</h3>
-                    <p class="text-text-secondary mb-4">
-                        Sistemas sob medida para controlar processos, reduzir retrabalho e centralizar informação crítica.
-                    </p>
-                    <ul class="text-left space-y-2 mb-6">
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Modelagem aderente ao fluxo real do negócio</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Dashboards, permissões e indicadores operacionais</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Automação de tarefas e integrações estratégicas</span>
-                        </li>
-                    </ul>
-                </div>
 
-                <div class="card text-center" data-aos="fade-up">
-                    <div class="service-icon mx-auto">
-                        <i class="fas fa-laptop-medical"></i>
+                    <div class="card text-center" data-aos="fade-up">
+                        <div class="service-icon mx-auto">
+                            <i class="fas fa-laptop-medical"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Estações de trabalho e parque computacional</h3>
+                        <p class="text-text-secondary mb-4">
+                            Organização e manutenção do ambiente de trabalho com foco em produtividade, segurança e
+                            menos tempo parado.
+                        </p>
+                        <ul class="text-left space-y-2 mb-6">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Diagnóstico confiável e plano de correção objetivo</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Upgrade, otimização e manutenção preventiva</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Atendimento remoto, presencial e padronização básica</span>
+                            </li>
+                        </ul>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Estações de trabalho e parque computacional</h3>
-                    <p class="text-text-secondary mb-4">
-                        Organização e manutenção do ambiente de trabalho com foco em produtividade, segurança e menos tempo parado.
-                    </p>
-                    <ul class="text-left space-y-2 mb-6">
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Diagnóstico confiável e plano de correção objetivo</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Upgrade, otimização e manutenção preventiva</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Atendimento remoto, presencial e padronização básica</span>
-                        </li>
-                    </ul>
-                </div>
 
-                <div class="card text-center" data-aos="fade-up" data-aos-delay="100">
-                    <div class="service-icon mx-auto">
-                        <i class="fas fa-server"></i>
+                    <div class="card text-center" data-aos="fade-up" data-aos-delay="100">
+                        <div class="service-icon mx-auto">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Servidores, virtualização e painéis</h3>
+                        <p class="text-text-secondary mb-4">
+                            Ambientes organizados para hospedagem, aplicações internas e serviços críticos da operação.
+                        </p>
+                        <ul class="text-left space-y-2 mb-6">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Provisionamento, migração e isolamento de ambientes</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Configuração de Proxmox, cPanel e CyberPanel</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Hardening, monitoramento e documentação essencial</span>
+                            </li>
+                        </ul>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Servidores, virtualização e painéis</h3>
-                    <p class="text-text-secondary mb-4">
-                        Ambientes organizados para hospedagem, aplicações internas e serviços críticos da operação.
-                    </p>
-                    <ul class="text-left space-y-2 mb-6">
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Provisionamento, migração e isolamento de ambientes</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Configuração de Proxmox, cPanel e CyberPanel</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Hardening, monitoramento e documentação essencial</span>
-                        </li>
-                    </ul>
-                </div>
 
-                <div class="card text-center" data-aos="fade-up" data-aos-delay="200">
-                    <div class="service-icon mx-auto">
-                        <i class="fas fa-network-wired"></i>
+                    <div class="card text-center" data-aos="fade-up" data-aos-delay="200">
+                        <div class="service-icon mx-auto">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Redes corporativas e políticas de backup</h3>
+                        <p class="text-text-secondary mb-4">
+                            Estruturação para reduzir falhas, proteger dados e manter capacidade real de recuperação.
+                        </p>
+                        <ul class="text-left space-y-2 mb-6">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Segmentação, topologia e revisão de ativos de rede</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Backups automáticos locais e em nuvem</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Plano de recuperação e continuidade para incidentes</span>
+                            </li>
+                        </ul>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Redes corporativas e políticas de backup</h3>
-                    <p class="text-text-secondary mb-4">
-                        Estruturação para reduzir falhas, proteger dados e manter capacidade real de recuperação.
-                    </p>
-                    <ul class="text-left space-y-2 mb-6">
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Segmentação, topologia e revisão de ativos de rede</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Backups automáticos locais e em nuvem</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Plano de recuperação e continuidade para incidentes</span>
-                        </li>
-                    </ul>
-                </div>
                 </div>
 
                 <div class="text-center mt-10">
@@ -1809,9 +2004,11 @@
                     <i class="fas fa-newspaper"></i>
                     Conteúdo estratégico
                 </div>
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">Blog com visão de <span class="gradient-text">gestão, tecnologia e operação</span></h2>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Blog com visão de <span class="gradient-text">gestão,
+                        tecnologia e operação</span></h2>
                 <p class="text-lg md:text-xl text-text-secondary max-w-3xl mx-auto">
-                    Artigos voltados para quem toma decisão ou precisa entender tecnologia com profundidade prática, sem ruído e sem excesso de jargão.
+                    Artigos voltados para quem toma decisão ou precisa entender tecnologia com profundidade prática, sem
+                    ruído e sem excesso de jargão.
                 </p>
             </div>
 
@@ -1839,9 +2036,12 @@
                         <i class="fas fa-envelope-open"></i>
                         Vamos conversar
                     </div>
-                    <h2 class="text-3xl md:text-4xl font-bold mb-6" data-cms-key="contact.title">Tenho interesse em trabalhar com você</h2>
-                    <p class="text-lg md:text-xl text-text-secondary mb-8" data-cms-key="contact.subtitle" data-cms-mode="html">
-                        Seja para um projeto novo, manutenção, ou consultoria técnica. Posso ajudar com desenvolvimento, infraestrutura ou ambos. Me envie os detalhes do que você precisa.
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6" data-cms-key="contact.title">Tenho interesse em
+                        trabalhar com você</h2>
+                    <p class="text-lg md:text-xl text-text-secondary mb-8" data-cms-key="contact.subtitle"
+                        data-cms-mode="html">
+                        Seja para um projeto novo, manutenção, ou consultoria técnica. Posso ajudar com desenvolvimento,
+                        infraestrutura ou ambos. Me envie os detalhes do que você precisa.
                     </p>
 
                     <div class="flex flex-wrap gap-3 mb-8">
@@ -1870,7 +2070,8 @@
                             </div>
                             <div>
                                 <div class="font-semibold">Telefone/WhatsApp</div>
-                                <a id="cms-contact-phone" href="https://wa.me/5564933004882" class="text-primary hover:underline">+55 (64)
+                                <a id="cms-contact-phone" href="https://wa.me/5564933004882"
+                                    class="text-primary hover:underline">+55 (64)
                                     93300-4882</a>
                             </div>
                         </div>
@@ -1882,7 +2083,8 @@
                             </div>
                             <div>
                                 <div class="font-semibold">Localização</div>
-                                  <div id="cms-contact-location" class="text-text-secondary">Goiás, Brasil - Trabalho Remoto Global</div>
+                                <div id="cms-contact-location" class="text-text-secondary">Goiás, Brasil - Trabalho
+                                    Remoto Global</div>
                             </div>
                         </div>
 
@@ -1893,7 +2095,7 @@
                             </div>
                             <div>
                                 <div class="font-semibold">CNPJ</div>
-                                  <div id="cms-contact-cnpj" class="text-text-secondary">63.005.629/0001-44</div>
+                                <div id="cms-contact-cnpj" class="text-text-secondary">63.005.629/0001-44</div>
                             </div>
                         </div>
                     </div>
@@ -1913,7 +2115,8 @@
                         <div class="case-label mb-3">Como conduzimos a entrada de novos projetos</div>
                         <div class="space-y-3 text-text-secondary">
                             <p>1. Entendimento do contexto atual, gargalos e objetivo de negócio.</p>
-                            <p>2. Direcionamento técnico com proposta compatível com estágio e prioridade da empresa.</p>
+                            <p>2. Direcionamento técnico com proposta compatível com estágio e prioridade da empresa.
+                            </p>
                             <p>3. Planejamento de implantação e sustentação conforme criticidade do cenário.</p>
                         </div>
                     </div>
@@ -1922,11 +2125,11 @@
                 <div data-aos="fade-left">
                     <div class="card">
                         <h3 class="text-2xl font-bold mb-2">Envie uma mensagem</h3>
-                        <p class="text-text-secondary mb-6">Descreva seu projeto ou necessidade. Vou analisar e retornar com um plano de ação.</p>
+                        <p class="text-text-secondary mb-6">Descreva seu projeto ou necessidade. Vou analisar e retornar
+                            com um plano de ação.</p>
                         <form id="contact-form" class="space-y-4">
                             <div>
-                                <input type="text" placeholder="Nome completo" class="form-input" required
-                                    id="name">
+                                <input type="text" placeholder="Nome completo" class="form-input" required id="name">
                             </div>
 
                             <div>
@@ -1950,8 +2153,9 @@
                             </div>
 
                             <div>
-                                <textarea placeholder="Descreva o cenário atual, a urgência, os principais gargalos e o resultado esperado..." rows="5"
-                                    class="form-input" required id="message"></textarea>
+                                <textarea
+                                    placeholder="Descreva o cenário atual, a urgência, os principais gargalos e o resultado esperado..."
+                                    rows="5" class="form-input" required id="message"></textarea>
                             </div>
 
                             <button type="submit" class="btn-primary w-full" id="btnContact">
@@ -1984,7 +2188,8 @@
                         </div>
                     </div>
                     <p class="text-gray-400">
-                        Desenvolvedor desde 2015. Especialista em desenvolvimento web, mobile e infraestrutura em nuvem. Focado em entregar soluções de qualidade que realmente funcionam.
+                        Desenvolvedor desde 2015. Especialista em desenvolvimento web, mobile e infraestrutura em nuvem.
+                        Focado em entregar soluções de qualidade que realmente funcionam.
                     </p>
                 </div>
 
@@ -2013,7 +2218,7 @@
                 <div>
                     <h4 class="text-lg font-bold mb-6">Conecte-se</h4>
                     <div class="flex space-x-4 mb-6 text-white">
-                       
+
                         <a href="https://www.instagram.com/adrianosena.dev.br/" target="_blank"
                             class="w-10 h-10 rounded-lg bg-pink-600 flex items-center justify-center hover:bg-pink-700 transition">
                             <i class="fab fa-instagram"></i>
@@ -2024,7 +2229,8 @@
                         </a>
                     </div>
                     <p class="text-gray-400 text-sm">
-                        © <span id="current-year">2024</span> Adriano Sena. Desenvolvedor Full Stack | DevOps. Todos os direitos reservados.
+                        © <span id="current-year">2024</span> Adriano Sena. Desenvolvedor Full Stack | DevOps. Todos os
+                        direitos reservados.
                     </p>
                     <a href="privacidade" class="text-gray-400 hover:text-white text-sm">Política de Privacidade</a>
                 </div>
@@ -2106,10 +2312,12 @@
             <div class="subscribe-modal-header">
                 <div class="flex items-start justify-between gap-4">
                     <div>
-                        <p class="text-xs uppercase tracking-wider text-primary font-semibold mb-2">Atualizações do Blog</p>
+                        <p class="text-xs uppercase tracking-wider text-primary font-semibold mb-2">Atualizações do Blog
+                        </p>
                         <h3 class="text-xl md:text-2xl font-bold">Ative notificações e receba novos posts</h3>
                     </div>
-                    <button id="push-subscribe-close" class="text-text-secondary hover:text-primary" aria-label="Fechar modal de notificações">
+                    <button id="push-subscribe-close" class="text-text-secondary hover:text-primary"
+                        aria-label="Fechar modal de notificações">
                         <i class="fas fa-times text-lg"></i>
                     </button>
                 </div>
@@ -2271,7 +2479,7 @@
                         project: 'newsletter',
                         message: 'Lead originado no modal de notificacoes da home'
                     })
-                }).catch(() => {});
+                }).catch(() => { });
 
                 return response.ok;
             } catch (_) {
@@ -2873,10 +3081,10 @@
         gtag('js', new Date());
         gtag('config', 'G-4KFFX809LT');
     </script>
-        <!-- ============================================================
+    <!-- ============================================================
         CMS LOADER — aplica dados do banco na página inicial
         ============================================================ -->
-        <script>
+    <script>
         (async function cmsLoader() {
             try {
                 const res = await fetch('/api/homepage');
@@ -2894,7 +3102,7 @@
 
                 // ---- SEO ----
                 if (d.seo) {
-                    if (d.seo.title)       document.title = d.seo.title;
+                    if (d.seo.title) document.title = d.seo.title;
                     const metaDesc = document.querySelector('meta[name="description"]');
                     if (metaDesc && d.seo.description) metaDesc.setAttribute('content', d.seo.description);
                     const ogTitle = document.querySelector('meta[property="og:title"]');
@@ -3005,7 +3213,7 @@
                 console.warn('[CMS] Falha ao carregar dados da homepage:', e.message);
             }
         })();
-        </script>
+    </script>
 </body>
 
 </html>

@@ -54,7 +54,10 @@ const DEFAULT_SECTIONS = {
   // Seções de HTML livre — editadas com TinyMCE no admin
   services_html: null,
   process_html: null,
-  projects_html: null
+  projects_html: null,
+  index_html: null,
+  index_css: null,
+  index_js: null
 };
 
 db.run(
