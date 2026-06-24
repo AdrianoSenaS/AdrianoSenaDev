@@ -2,764 +2,1339 @@
 <html lang="pt-BR" class="scroll-smooth">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="Adriano Sena" />
+    <meta name="theme-color" content="#0A0A0F" />
 
-<title>Blog | Adriano Sena Dev - Conteúdo para Empresas de Tecnologia</title>
-    <link rel="canonical" href="https://adrianosena.dev.br/blog"/>
-    <meta name="description" content="Artigos da Adriano Sena Dev sobre desenvolvimento web e mobile, infraestrutura, redes, backup e tecnologia aplicada ao crescimento de empresas.">
+    <title>Blog | Adriano Sena Dev - Conteúdo para Empresas de Tecnologia</title>
+    <link rel="canonical" href="https://adrianosena.dev.br/blog" />
+    <meta name="description"
+        content="Artigos da Adriano Sena Dev sobre desenvolvimento web e mobile, infraestrutura, redes, backup e tecnologia aplicada ao crescimento de empresas." />
+
     <!-- Open Graph -->
-    <meta property="og:title"
-        content="Blog | Adriano Sena Dev - Tecnologia aplicada a negócios" />
-      <meta property="og:description" content="Conteúdo prático sobre desenvolvimento, infraestrutura de TI e boas práticas para empresas que querem escalar com segurança." />
-    <meta property="og:image" content="https://adrianosena.dev.br/logoWeb.png" />
-    <meta property="og:url" content="https://adrianosena.dev.br/blog" />
+    <meta property="og:locale" content="pt_BR" />
     <meta property="og:type" content="website" />
+    <meta property="og:title" content="Blog | Adriano Sena Dev - Tecnologia aplicada a negócios" />
+    <meta property="og:description"
+        content="Conteúdo prático sobre desenvolvimento, infraestrutura de TI e boas práticas para empresas que querem escalar com segurança." />
+    <meta property="og:image" content="https://adrianosena.dev.br/logo.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:url" content="https://adrianosena.dev.br/blog" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@adrianosenas" />
-    <meta name="twitter:title"
-        content="Blog | Adriano Sena Dev - Conteúdo empresarial em tecnologia" />
-      <meta name="twitter:description" content="Insights sobre sites, apps, servidores, redes e suporte técnico para empresas que dependem de tecnologia de alta disponibilidade." />
-    <meta name="twitter:image" content="https://adrianosena.dev.br/logoWeb.png" />
-    <link rel="alternate" type="application/rss+xml" title="RSS Adriano Sena Dev" href="https://www.adrianosena.dev.br/rss.xml" />
+    <meta name="twitter:title" content="Blog | Adriano Sena Dev - Conteúdo empresarial em tecnologia" />
+    <meta name="twitter:description"
+        content="Insights sobre sites, apps, servidores, redes e suporte técnico para empresas que dependem de tecnologia de alta disponibilidade." />
+    <meta name="twitter:image" content="https://adrianosena.dev.br/logo.png" />
 
+    <link rel="alternate" type="application/rss+xml" title="RSS Adriano Sena Dev"
+        href="https://www.adrianosena.dev.br/rss.xml" />
+    <link rel="icon" type="image/png" sizes="32x32" href="https://adrianosena.dev.br/logo.png" />
+    <link rel="apple-touch-icon" href="https://adrianosena.dev.br/logo.png" />
 
-  <link rel="shortcut icon" href="logo.png" type="image/x-icon">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=Fira+Code:wght@400;500&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1602165210298822"
-     crossorigin="anonymous"></script>
-  <!-- AOS Animation Library -->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
-  <link rel="stylesheet" href="./css/blog.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #00E5FF;
+            --primary-glow: rgba(0, 229, 255, 0.25);
+            --secondary: #00E5FF;
+            --accent: #7C3AED;
+            --text-primary: #EAEAEF;
+            --text-secondary: #B0B0C0;
+            --text-muted: #6B7280;
+            --border-subtle: rgba(255, 255, 255, 0.06);
+            --border-medium: rgba(255, 255, 255, 0.10);
+            --card-bg: rgba(10, 10, 20, 0.50);
+            --card-bg-hover: rgba(10, 10, 20, 0.70);
+            --bg-dark: #0A0A0F;
+            --bg-section: rgba(5, 11, 31, 0.60);
+            --glass-bg: rgba(10, 10, 20, 0.55);
+            --glass-border: rgba(255, 255, 255, 0.07);
+            --gradient-accent: linear-gradient(135deg, #00E5FF 0%, #7C3AED 100%);
+            --gradient-text: linear-gradient(135deg, #00E5FF 0%, #60A5FA 100%);
+            --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.3);
+            --shadow-card-hover: 0 8px 40px rgba(0, 229, 255, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        html,
+        body {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            line-height: 1.25;
+            color: var(--text-primary);
+        }
+
+        a {
+            color: var(--secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #fff;
+        }
+
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0A0A0F;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+
+        #loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .loader {
+            width: 48px;
+            height: 48px;
+            border: 3px solid rgba(0, 229, 255, 0.15);
+            border-radius: 50%;
+            border-top-color: #00E5FF;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loader-text {
+            color: #8892A0;
+            font-size: 12px;
+            letter-spacing: 0.3em;
+            margin-top: 24px;
+            font-family: 'Inter', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .loader-logo {
+            margin-bottom: 32px;
+            width: 56px;
+            height: 56px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .loader-logo img {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+        }
+
+        #theme-toggle {
+            display: none !important;
+        }
+
+        .light {
+            display: none !important;
+        }
+
+        .glass-header {
+            background: rgba(10, 10, 20, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-subtle);
+            transition: all 0.4s ease;
+        }
+
+        .nav-link {
+            position: relative;
+            padding: 6px 0;
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.8125rem;
+            letter-spacing: 0.04em;
+            transition: color 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1.5px;
+            background: var(--gradient-accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--text-primary);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            box-shadow: var(--shadow-card);
+            transition: all 0.4s ease;
+        }
+
+        .glass-card:hover {
+            box-shadow: var(--shadow-card-hover);
+            border-color: rgba(255, 255, 255, 0.12);
+            background: var(--card-bg-hover);
+        }
+
+        .btn-accent {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            background: var(--gradient-accent);
+            color: #fff;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.8125rem;
+            letter-spacing: 0.03em;
+            border: none;
+            cursor: pointer;
+            transition: all 0.35s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-accent::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #38F0FF 0%, #9D6BFF 100%);
+            transition: left 0.45s ease;
+            z-index: -1;
+        }
+
+        .btn-accent:hover::before {
+            left: 0;
+        }
+
+        .btn-accent:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 229, 255, 0.2);
+            color: #fff;
+        }
+
+        .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            background: transparent;
+            color: var(--text-primary);
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 0.8125rem;
+            letter-spacing: 0.03em;
+            border: 1px solid var(--border-medium);
+            cursor: pointer;
+            transition: all 0.35s ease;
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--secondary);
+            color: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0, 229, 255, 0.08);
+        }
+
+        .gradient-text {
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--secondary);
+            font-size: 0.65rem;
+            letter-spacing: 0.3em;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .section-ornament {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border: 1px solid var(--border-medium);
+            border-radius: 6px;
+            color: var(--secondary);
+            font-size: 10px;
+            margin-bottom: 16px;
+            background: var(--card-bg);
+        }
+
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 44px;
+            height: 44px;
+            background: var(--gradient-accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.35s ease;
+            z-index: 1000;
+            border: none;
+            box-shadow: 0 4px 20px rgba(0, 229, 255, 0.15);
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 229, 255, 0.25);
+        }
+
+        /* Blog specific */
+        .blog-section {
+            position: relative;
+            overflow: hidden;
+            padding-top: 8rem;
+            padding-bottom: 5rem;
+        }
+
+        .blog-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .blog-bg .bg-image {
+            width: 100%;
+            height: 100%;
+            background-image: url('/hero-tech.png');
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            filter: blur(10px);
+            transform: scale(1.05);
+        }
+
+        .blog-bg .bg-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(5, 11, 31, 0.65);
+        }
+
+        .blog-content-wrapper {
+            position: relative;
+            z-index: 20;
+        }
+
+        .blog-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 229, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.12);
+        }
+
+        .blog-image {
+            width: 100%;
+            aspect-ratio: 16/9;
+            overflow: hidden;
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .blog-card:hover .blog-image img {
+            transform: scale(1.05);
+        }
+
+        .blog-card-body {
+            padding: 1.25rem 1.25rem 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-card-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 10px;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .blog-card-author {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .blog-author-avatar {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid var(--border-medium);
+        }
+
+        .blog-card-topic {
+            background: rgba(0, 229, 255, 0.08);
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: var(--secondary);
+            font-weight: 500;
+        }
+
+        .blog-card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            line-height: 1.4;
+            color: var(--text-primary);
+            transition: color 0.3s ease;
+        }
+
+        .blog-card:hover .blog-card-title {
+            color: #fff;
+        }
+
+        .blog-card-description {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-weight: 300;
+            flex: 1;
+        }
+
+        .blog-card-footer {
+            margin-top: 16px;
+            display: flex;
+            align-items: center;
+        }
+
+        .blog-card-button {
+            padding: 8px 16px;
+            font-size: 0.7rem;
+            letter-spacing: 0.05em;
+        }
+
+        /* Filters bar */
+        .blog-filters-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 2rem;
+            align-items: center;
+        }
+
+        .search-input {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-medium);
+            color: var(--text-primary);
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(0, 229, 255, 0.1);
+        }
+
+        .blog-category-filter {
+            min-width: 180px;
+        }
+
+        .blog-results-summary {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            letter-spacing: 0.04em;
+        }
+
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        /* Cookie consent bar */
+        .cookie-consent-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            background: rgba(10, 10, 20, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-top: 1px solid var(--border-medium);
+            padding: 1rem 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .cookie-consent-bar.hidden-bar {
+            transform: translateY(100%);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .consent-text {
+            flex: 1 1 300px;
+            line-height: 1.5;
+            font-weight: 300;
+        }
+
+        .consent-actions {
+            display: flex;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .modal-overlay {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+        }
+
+        .toggle-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 44px;
+            height: 24px;
+        }
+
+        .toggle-wrapper input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #374151;
+            transition: 0.3s;
+            border-radius: 24px;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .toggle-slider::before {
+            content: "";
+            position: absolute;
+            height: 18px;
+            width: 18px;
+            left: 2px;
+            bottom: 2px;
+            background-color: #EAEAEF;
+            transition: 0.3s;
+            border-radius: 50%;
+        }
+
+        .toggle-wrapper input:checked+.toggle-slider {
+            background-color: #00E5FF;
+            border-color: #00E5FF;
+        }
+
+        .toggle-wrapper input:checked+.toggle-slider::before {
+            transform: translateX(20px);
+            background-color: #0A0A0F;
+        }
+
+        .toggle-wrapper input:disabled+.toggle-slider {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .hero-glow {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            pointer-events: none;
+        }
+
+        .glow-primary {
+            background: rgba(0, 229, 255, 0.04);
+        }
+
+        @media (max-width: 768px) {
+            .blog-section {
+                padding-top: 6rem;
+            }
+
+            .posts-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cookie-consent-bar {
+                
+                align-items: flex-start;
+            }
+
+            .consent-actions {
+                width: 100%;
+                justify-content: flex-end;
+            }
+        }
+    </style>
 </head>
 
-<body class="bg-light text-text-primary">
-  <!-- Header -->
-  <header class="fixed w-full z-50 glass-effect transition-all duration-300">
-    <div class="container mx-auto px-6 py-4">
-      <div class="header-main-row flex justify-between items-center gap-4">
-        <!-- Logo -->
-        <a href="/" class="flex items-center space-x-3">
-          <div
-            class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-            <img src="https://adrianosena.dev.br/logo.png" alt="Adriano Sena Dev Logo" class="w-10 h-10">
-          </div>
-          <div>
-            <h1 class="text-lg font-bold">Adriano Sena Dev</h1>
-            <p class="text-xs text-text-secondary hidden sm:block">Empresa de Desenvolvimento e Infraestrutura</p>
-          </div>
-        </a>
+<body>
 
-        <!-- Desktop Navigation -->
-         <div class="header-subrow hidden lg:flex items-center justify-end gap-3 mt-4">
-        <div class="navbar-filter-field">
-          <i class="fas fa-search text-text-secondary"></i>
-          <input type="text" id="search-input-desktop" class="blog-search-input search-input" placeholder="Pesquisar artigos...">
+    <!-- LOADING -->
+    <div id="loading-screen">
+        <div class="loader-logo">
+            <img src="https://adrianosena.dev.br/logo.png" alt="Logo" />
         </div>
-        <select id="category-filter-desktop" class="blog-category-filter search-input navbar-category-filter">
-          <option value="">Todas as categorias</option>
-        </select>
-      </div>
-
-        <!-- Theme Toggle & CTA -->
-        <div class="flex items-center space-x-4">
-          <button id="theme-toggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition">
-            <i id="theme-icon" class="fas fa-moon text-gray-600"></i>
-          </button>
-          <button id="menu-toggle" class="md:hidden">
-            <i class="fas fa-bars text-xl"></i>
-          </button>
-        </div>
-      </div>
-
-    
-
-      <!-- Mobile Navigation -->
-      <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
-        <div class="flex flex-col space-y-4">
-          <div class="mobile-blog-filters">
-            <div class="navbar-filter-field">
-              <i class="fas fa-search text-text-secondary"></i>
-              <input type="text" id="search-input-mobile" class="blog-search-input search-input" placeholder="Pesquisar artigos...">
-            </div>
-            <select id="category-filter-mobile" class="blog-category-filter search-input w-full">
-              <option value="">Todas as categorias</option>
-            </select>
-            <button id="mobile-filters-apply" type="button" class="btn-secondary w-full text-center">
-              Aplicar filtros
-            </button>
-          </div>
-          
-        </div>
-      </div>
+        <div class="loader"></div>
+        <div class="loader-text">Carregando</div>
     </div>
-  </header>
 
-  <!-- Blog Content -->
-  <section class="pt-44 lg:pt-56 pb-16 px-6 bg-section-light">
-    <div class="container mx-auto">
-      <div class="blog-content-shell" data-aos="fade-up">
-        <div class="blog-results-bar card mb-8">
-          <div>
-            <span class="sidebar-kicker">Arquivo</span>
-            <h2 class="text-2xl font-bold mt-2">Últimos artigos e guias</h2>
-            <p class="text-text-secondary mt-2">Conteúdo com visual mais limpo, grid forte e leitura rápida para crescer como um blog profissional.</p>
-          </div>
-          <div id="blog-results-summary" class="blog-results-summary">Todos os artigos</div>
-        </div>
-
-        <div id="posts-container" class="posts-grid grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
-          <!-- Posts serão carregados via JavaScript -->
-        </div>
-
-        <div id="posts-loading" class="posts-loading hidden" aria-live="polite">
-          <span class="loading-spinner"></span>
-          <span>Carregando mais artigos...</span>
-        </div>
-
-        <div id="posts-end" class="posts-end hidden">Você chegou ao fim dos artigos por enquanto.</div>
-        <div id="posts-sentinel" class="posts-sentinel" aria-hidden="true"></div>
-      </div>
-
-      <!-- Newsletter Section -->
-      <div class="mt-20" data-aos="fade-up">
-        <div class="card max-w-3xl mx-auto text-center">
-          <div
-            class="w-20 h-20 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center mx-auto mb-6">
-            <i class="fas fa-envelope-open-text text-white text-2xl"></i>
-          </div>
-          <h2 class="text-2xl md:text-3xl font-bold mb-4">Receba Conteúdo Técnico no Email</h2>
-          <p class="text-text-secondary mb-6 max-w-2xl mx-auto">
-            Receba materiais sobre sistemas, apps, servidores, redes e boas práticas para manter
-            a operação da sua empresa segura e escalável.
-          </p>
-          <form id="newsletter-form" class="flex flex-col md:flex-row gap-4 max-w-md mx-auto">
-            <input id="newsletter-email" type="email" placeholder="Seu melhor email" class="flex-1 px-4 py-3 rounded-lg search-input" required>
-            <button type="submit" class="btn-primary px-6 py-3">
-              Inscrever-se
-            </button>
-          </form>
-          <p id="newsletter-feedback" class="text-sm text-text-secondary mt-4">
-            Não compartilhamos seu email. Você pode cancelar a qualquer momento.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="bg-dark text-white py-12 px-6">
-    <div class="container mx-auto">
-      <div class="grid md:grid-cols-4 gap-8">
-        <div>
-          <div class="flex items-center space-x-3 mb-6">
-            <div
-              class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-              <img src="https://adrianosena.dev.br/logo.png" alt="Adriano Sena Dev Logo" class="w-10 h-10">
-            </div>
-            <div>
-              <div class="font-bold text-lg">Adriano Sena Dev</div>
-              <div class="text-gray-400 text-sm">Empresa de Desenvolvimento e Infraestrutura</div>
-            </div>
-          </div>
-          <p class="text-gray-400">
-            Soluções empresariais em software, infraestrutura e suporte técnico para crescimento sustentável.
-          </p>
-        </div>
-
-        <div>
-          <h4 class="text-lg font-bold mb-6">Categorias do Blog</h4>
-          <ul class="space-y-3">
-            <li><a href="blog?category=frontend" class="text-gray-400 hover:text-white transition">Frontend</a></li>
-            <li><a href="blog?category=backend" class="text-gray-400 hover:text-white transition">Backend</a></li>
-            <li><a href="blog?category=devops" class="text-gray-400 hover:text-white transition">DevOps</a></li>
-            <li><a href="blog?category=unity" class="text-gray-400 hover:text-white transition">Unity3D</a></li>
-            <li><a href="blog?category=seguranca" class="text-gray-400 hover:text-white transition">Segurança</a></li>
-            <li><a href="blog?category=apis" class="text-gray-400 hover:text-white transition">APIs</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 class="text-lg font-bold mb-6">Links Rápidos</h4>
-          <ul class="space-y-3">
-            <li><a href="/" class="text-gray-400 hover:text-white transition">Início</a></li>
-            <li><a href="/#skills" class="text-gray-400 hover:text-white transition">Tecnologias</a></li>
-            <li><a href="/#projects" class="text-gray-400 hover:text-white transition">Cases</a></li>
-            <li><a href="/blog" class="text-gray-400 hover:text-white transition">Blog</a></li>
-            <li><a href="/#contact" class="text-gray-400 hover:text-white transition">Contato</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 class="text-lg font-bold mb-6">Conecte-se</h4>
-          <div class="flex space-x-4 mb-6">
-            
-            <a href="https://www.instagram.com/adrianosena.dev.br/" target="_blank"
-              class="w-10 h-10 rounded-lg bg-pink-600 flex items-center justify-center hover:bg-pink-700 transition">
-              <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://wa.me/5564933004882" target="_blank"
-              class="w-10 h-10 rounded-lg bg-green-600 flex items-center justify-center hover:bg-green-700 transition">
-              <i class="fab fa-whatsapp"></i>
-            </a>
-          </div>
-          <p class="text-gray-400 text-sm">
-            © <span id="current-year">2024</span> Adriano Sena Dev • CNPJ 63.005.629/0001-44. Todos os direitos reservados.
-          </p>
-          <a href="/privacidade" class="text-gray-400 hover:text-white text-sm">Política de Privacidade</a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Scroll to Top -->
-  <div class="scroll-top" id="scrollTop">
-    <i class="fas fa-arrow-up"></i>
-  </div>
-
-  <!-- Scripts -->
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
-    // Initialize AOS
-    AOS.init({
-      duration: 1000,
-      once: true,
-      offset: 100
-    });
-
-    // Tema - Correção definitiva
-    const themeToggle = document.getElementById('theme-toggle');
-    const themeIcon = document.getElementById('theme-icon');
-
-    // Verificar tema salvo ou preferência do sistema
-    const savedTheme = localStorage.getItem('theme');
-    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-    // Função para aplicar tema
-    function applyTheme(theme) {
-      if (theme === 'dark') {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        themeIcon.classList.remove('fa-moon', 'text-gray-600');
-        themeIcon.classList.add('fa-sun', 'text-yellow-400');
-      } else {
-        document.documentElement.removeAttribute('data-theme');
-        themeIcon.classList.remove('fa-sun', 'text-yellow-400');
-        themeIcon.classList.add('fa-moon', 'text-gray-600');
-      }
-    }
-
-    // Definir tema inicial
-    if (savedTheme) {
-      applyTheme(savedTheme);
-    } else if (systemPrefersDark) {
-      applyTheme('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      applyTheme('light');
-      localStorage.setItem('theme', 'light');
-    }
-
-    // Alternar tema
-    themeToggle.addEventListener('click', () => {
-      if (document.documentElement.getAttribute('data-theme') === 'dark') {
-        applyTheme('light');
-        localStorage.setItem('theme', 'light');
-      } else {
-        applyTheme('dark');
-        localStorage.setItem('theme', 'dark');
-      }
-    });
-
-    // CORREÇÃO DO MENU MOBILE - SIMPLIFICADO E FUNCIONAL
-    const menuToggle = document.getElementById('menu-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-
-    menuToggle.addEventListener('click', function (e) {
-      e.stopPropagation(); // Evita que o clique se propague
-      mobileMenu.classList.toggle('hidden');
-
-      // Mudar o ícone do botão
-      const icon = menuToggle.querySelector('i');
-      if (mobileMenu.classList.contains('hidden')) {
-        icon.className = 'fas fa-bars text-xl';
-      } else {
-        icon.className = 'fas fa-times text-xl';
-      }
-    });
-
-    // Fechar o menu quando clicar em um link
-    document.querySelectorAll('#mobile-menu a').forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.add('hidden');
-        menuToggle.querySelector('i').className = 'fas fa-bars text-xl';
-      });
-    });
-
-    // Fechar o menu quando clicar fora (somente se estiver aberto)
-    document.addEventListener('click', function (e) {
-      if (!mobileMenu.classList.contains('hidden') &&
-        !mobileMenu.contains(e.target) &&
-        !menuToggle.contains(e.target)) {
-        mobileMenu.classList.add('hidden');
-        menuToggle.querySelector('i').className = 'fas fa-bars text-xl';
-      }
-    });
-
-    // Smooth Scroll
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        if (this.getAttribute('href') === '#') return;
-
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-        }
-      });
-    });
-
-    // Scroll to Top
-    const scrollTop = document.getElementById('scrollTop');
-
-    window.addEventListener('scroll', () => {
-      if (window.pageYOffset > 300) {
-        scrollTop.classList.add('show');
-      } else {
-        scrollTop.classList.remove('show');
-      }
-    });
-
-    scrollTop.addEventListener('click', () => {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    });
-
-    // Atualizar ano no footer
-    document.getElementById('current-year').textContent = new Date().getFullYear();
-
-    function closeMobileFiltersMenu() {
-      if (window.innerWidth >= 768) return;
-      mobileMenu.classList.add('hidden');
-      menuToggle.querySelector('i').className = 'fas fa-bars text-xl';
-    }
-
-    // Variáveis globais para posts e filtros
-    let allPosts = [];
-    let filteredPosts = [];
-    let currentPage = 1;
-    const authorPhotosCache = {};
-    const postsPerPage = 8;
-    let currentCategory = '';
-    let currentSearchTerm = '';
-    let isLoadingMore = false;
-    let postsObserver = null;
-
-    function getSearchInputs() {
-      return Array.from(document.querySelectorAll('.blog-search-input'));
-    }
-
-    function getCategoryFilters() {
-      return Array.from(document.querySelectorAll('.blog-category-filter'));
-    }
-
-    function syncSearchInputs(value) {
-      getSearchInputs().forEach((input) => {
-        if (input.value !== value) input.value = value;
-      });
-    }
-
-    function syncCategoryFilters(value) {
-      getCategoryFilters().forEach((select) => {
-        if (select.value !== value) select.value = value;
-      });
-    }
-
-    function setupInfiniteScroll() {
-      const sentinel = document.getElementById('posts-sentinel');
-      if (!sentinel) return;
-
-      if (postsObserver) postsObserver.disconnect();
-
-      postsObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          if (isLoadingMore) return;
-          if (currentPage * postsPerPage >= filteredPosts.length) return;
-          loadMorePosts();
-        });
-      }, { rootMargin: '220px 0px' });
-
-      postsObserver.observe(sentinel);
-    }
-
-    function setLoadingState(loading) {
-      isLoadingMore = loading;
-      document.getElementById('posts-loading')?.classList.toggle('hidden', !loading);
-    }
-
-    function updateResultsSummary() {
-      const summary = document.getElementById('blog-results-summary');
-      if (!summary) return;
-
-      const categoryLabel = currentCategory || 'Todos os temas';
-      const searchLabel = currentSearchTerm ? ` · busca: ${currentSearchTerm}` : '';
-      summary.textContent = `${filteredPosts.length} artigos em ${categoryLabel}${searchLabel}`;
-    }
-
-    function populateCategoryFilters(categories) {
-      getCategoryFilters().forEach((select) => {
-        select.innerHTML = '<option value="">Todas as categorias</option>';
-        categories.forEach((category) => {
-          const option = document.createElement('option');
-          option.value = category;
-          option.textContent = category;
-          select.appendChild(option);
-        });
-      });
-    }
-
-    // Carregar posts
-    document.addEventListener('DOMContentLoaded', function () {
-      // Inicializar posts de exemplo
-      initializeExamplePosts();
-
-      // Configurar campo de pesquisa
-      getSearchInputs().forEach((input) => {
-        input.addEventListener('input', function () {
-          currentSearchTerm = this.value.toLowerCase();
-          syncSearchInputs(this.value);
-          filterPosts();
-        });
-
-        input.addEventListener('keydown', function (event) {
-          if (event.key === 'Enter') {
-            event.preventDefault();
-            currentSearchTerm = this.value.toLowerCase();
-            syncSearchInputs(this.value);
-            filterPosts();
-            closeMobileFiltersMenu();
-          }
-        });
-      });
-
-      // Configurar filtro de categoria
-      getCategoryFilters().forEach((select) => {
-        select.addEventListener('change', function () {
-          currentCategory = this.value;
-          syncCategoryFilters(this.value);
-          filterPosts();
-        });
-      });
-
-      document.getElementById('mobile-filters-apply')?.addEventListener('click', () => {
-        filterPosts();
-        closeMobileFiltersMenu();
-      });
-
-      setupInfiniteScroll();
-    });
-
-
-
-    async function initializeExamplePosts() {
-      const res = await fetch('/api/posts');
-      allPosts = await res.json();
-
-      const urlParams = new URLSearchParams(window.location.search);
-      const categoryParam = (urlParams.get('category') || '').trim();
-      const searchParam = (urlParams.get('search') || '').trim();
-
-      if (searchParam) {
-        currentSearchTerm = searchParam.toLowerCase();
-        syncSearchInputs(searchParam);
-      }
-
-      // Extrair categorias únicas somente de posts publicados
-      const categories = [...new Set(
-        allPosts
-          .filter(post => post.status === 'published')
-          .map(post => post.category)
-          .filter(Boolean)
-      )];
-
-      populateCategoryFilters(categories);
-
-      // Aplicar categoria vinda da URL, se existir
-      if (categoryParam && categories.includes(categoryParam)) {
-        currentCategory = categoryParam;
-        syncCategoryFilters(categoryParam);
-      }
-
-      // Pré-carregar fotos dos autores únicos
-      const uniqueAuthors = [...new Set(allPosts.map(p => p.author || p.autor).filter(Boolean))];
-      await Promise.all(uniqueAuthors.map(async name => {
-        try {
-          const r = await fetch(`/api/public/author-profile?author=${encodeURIComponent(name)}`);
-          if (r.ok) {
-            const d = await r.json();
-            if (d.success && d.profile && d.profile.photo) authorPhotosCache[name] = d.profile.photo;
-          }
-        } catch (_) {}
-      }));
-
-      // Inicializar posts filtrados
-      filteredPosts = allPosts.filter(post => post.status === 'published');
-      updateResultsSummary();
-
-      // Exibir posts iniciais
-      filterPosts();
-    }
-
-    function filterPosts() {
-      filteredPosts = allPosts.filter(post => {
-
-
-        // Filtrar por status
-        if (post.status !== "published") return false;
-
-        // Filtrar por categoria
-        if (currentCategory && post.category !== currentCategory) return false;
-
-
-
-        // Filtrar por termo de busca
-        if (currentSearchTerm) {
-          const searchFields = [post.title, post.description, post.category].filter(Boolean);
-          const matchesSearch = searchFields.some(field =>
-            field.toLowerCase().includes(currentSearchTerm)
-          );
-          if (!matchesSearch) return false;
-        }
-
-        return true;
-      });
-
-      updateSeoForFilters();
-      updateResultsSummary();
-
-      // Resetar para a primeira página
-      currentPage = 1;
-      setLoadingState(false);
-      displayPosts();
-    }
-
-    function displayPosts() {
-      const postsContainer = document.getElementById('posts-container');
-      const endState = document.getElementById('posts-end');
-
-      // Se for a primeira página, limpar os posts de exemplo
-      if (currentPage === 1) {
-        postsContainer.innerHTML = '';
-      }
-
-      const startIndex = (currentPage - 1) * postsPerPage;
-      const endIndex = startIndex + postsPerPage;
-      const postsToShow = filteredPosts.slice(startIndex, endIndex);
-
-      if (postsToShow.length === 0 && currentPage === 1) {
-        postsContainer.innerHTML = `
-          <div class="col-span-full text-center py-12">
-            <i class="fas fa-search text-4xl text-text-secondary mb-4"></i>
-            <h3 class="text-xl font-bold text-text-primary mb-2">Nenhum artigo encontrado</h3>
-            <p class="text-text-secondary">Tente ajustar seus filtros ou termos de busca.</p>
-          </div>
-        `;
-        endState.classList.add('hidden');
-        return;
-      }
-
-      postsToShow.forEach((post, itemIndex) => {
-        const absoluteIndex = startIndex + itemIndex;
-        const postUrl = `/post?slug=${encodeURIComponent(post.slug || '')}`;
-        const cardVariant = pickCardVariant(post, absoluteIndex);
-        const authorName = getPostAuthor(post);
-        const topicName = post.category || 'Geral';
-        const postElement = document.createElement('article');
-        postElement.className = `blog-card ${cardVariant} animate__animated animate__fadeInUp`;
-        postElement.setAttribute('tabindex', '0');
-        postElement.setAttribute('role', 'link');
-        postElement.setAttribute('aria-label', `Abrir artigo ${post.title}`);
-
-        const authorPhotoUrl = authorPhotosCache[post.author || post.autor] || '';
-        const authorAvatarHtml = authorPhotoUrl
-          ? `<img src="${authorPhotoUrl}" alt="${authorName}" class="blog-author-avatar">`
-          : `<i class="far fa-user-circle"></i>`;
-
-        postElement.innerHTML = `
-          <div class="blog-image">
-            <img src="${post.image || '/logoWeb.png'}" alt="${post.title}">
-          </div>
-          <div class="blog-card-body">
-            <div class="blog-card-meta">
-              <span class="blog-card-author">${authorAvatarHtml} ${authorName}</span>
-              <span class="blog-card-topic">${topicName}</span>
-            </div>
-            <h3 class="text-lg md:text-xl font-bold blog-card-title">${post.title}</h3>
-            <p class="blog-card-description">${post.description || 'Conteúdo técnico com foco em resultado prático para o seu projeto.'}</p>
-            <div class="blog-card-footer">
-                <a href="${postUrl}" class="btn-secondary blog-card-button inline-flex items-center justify-center">
-                    <i class="fas fa-newspaper mr-2"></i>Ler artigo completo
+    <!-- HEADER -->
+    <header class="fixed w-full z-50 glass-header transition-all duration-500">
+        <div class="container mx-auto px-6 py-3.5">
+            <div class="flex justify-between items-center">
+                <a href="/" class="flex items-center space-x-3">
+                    <div
+                        class="w-10 h-10 flex items-center justify-center border border-[var(--border-medium)] rounded-md">
+                        <img src="https://adrianosena.dev.br/logo.png" alt="Logo" class="w-6 h-6 object-contain">
+                    </div>
+                    <div>
+                        <span class="text-sm font-semibold text-[var(--text-primary)] tracking-[0.12em] uppercase"
+                            style="font-family:'Inter',sans-serif;">Adriano Sena</span>
+                        <span class="text-[10px] text-[var(--secondary)] tracking-[0.2em] uppercase block"
+                            style="font-family:'Inter',sans-serif;">Dev Solutions</span>
+                    </div>
                 </a>
+                <nav class="hidden md:flex items-center space-x-7">
+                    <a href="/" class="nav-link">Início</a>
+                    <a href="/#solucoes" class="nav-link">Soluções</a>
+                    <a href="/#demonstracoes" class="nav-link">Demonstrações</a>
+                    <a href="/#loja" class="nav-link">Loja</a>
+                    <a href="/#precos" class="nav-link">Planos</a>
+                    <a href="/#contato" class="nav-link">Contato</a>
+                    <a href="/blog" class="nav-link active" style="color: var(--secondary);">Blog</a>
+                </nav>
+                <div class="flex items-center space-x-3">
+                    <a href="/#contato" class="btn-accent hidden md:inline-flex text-xs py-2.5 px-5">
+                        Solicitar Orçamento <i class="fas fa-arrow-right ml-1.5 text-[9px]"></i>
+                    </a>
+                    <button id="menu-toggle" class="md:hidden text-[var(--text-primary)] text-xl">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
             </div>
-          </div>
-        `;
+            <div id="mobile-menu" class="hidden md:hidden mt-5 pb-4 border-t border-[var(--border-subtle)] pt-5">
+                <div class="flex flex-col space-y-4">
+                    <a href="/" class="nav-link text-sm">Início</a>
+                    <a href="/#solucoes" class="nav-link text-sm">Soluções</a>
+                    <a href="/#demonstracoes" class="nav-link text-sm">Demonstrações</a>
+                    <a href="/#loja" class="nav-link text-sm">Loja de Soluções</a>
+                    <a href="/#precos" class="nav-link text-sm">Planos</a>
+                    <a href="/#contato" class="nav-link text-sm">Contato</a>
+                    <a href="/blog" class="nav-link text-sm" style="color: var(--secondary);">Blog</a>
+                    <a href="/#contato" class="btn-accent w-full text-center py-3 text-sm">Solicitar Orçamento</a>
+                </div>
+            </div>
+        </div>
+    </header>
 
-        postElement.addEventListener('click', (event) => {
-          if (event.target.closest('a')) return;
-          window.location.href = postUrl;
+    <!-- BLOG SECTION -->
+    <section class="blog-section">
+        <div class="blog-bg">
+            <div class="bg-image"></div>
+            <div class="bg-overlay"></div>
+        </div>
+        <div class="hero-glow glow-primary absolute z-10"
+            style="top:30%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;opacity:0.05;"></div>
+
+        <div class="container mx-auto px-6 blog-content-wrapper">
+            <div data-aos="fade-up" data-aos-duration="800">
+                <div class="section-kicker mb-4"><i class="fas fa-newspaper"></i> Conteúdo Técnico</div>
+                <h1 class="text-3xl md:text-4xl font-bold mb-3 text-[var(--text-primary)]"
+                    style="font-family:'Inter',sans-serif;">
+                    Blog <span class="gradient-text">Adriano Sena Dev</span>
+                </h1>
+                <p class="text-[var(--text-secondary)] max-w-2xl mb-8 font-light leading-relaxed">
+                    Artigos, tutoriais e insights sobre desenvolvimento, infraestrutura e tecnologia para acelerar o seu
+                    negócio.
+                </p>
+            </div>
+
+            <!-- FILTERS BAR -->
+            <div class="blog-filters-bar" data-aos="fade-up" data-aos-delay="100">
+                <div style="position: relative; flex: 1; min-width: 200px;">
+                    <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-[var(--text-muted)] text-sm"></i>
+                    <input type="text" id="search-input-desktop" class="search-input w-full pl-10"
+                        placeholder="Pesquisar artigos...">
+                </div>
+                <select id="category-filter-desktop" class="search-input blog-category-filter">
+                    <option value="">Todas as categorias</option>
+                </select>
+            </div>
+
+            <div class="blog-results-summary mb-6" id="blog-results-summary" data-aos="fade-up" data-aos-delay="150">
+                Todos os artigos
+            </div>
+
+            <!-- POSTS GRID -->
+            <div id="posts-container" class="posts-grid" data-aos="fade-up" data-aos-delay="200">
+                <!-- Posts carregados via JavaScript -->
+            </div>
+
+            <div id="posts-loading" class="hidden text-center py-8 text-[var(--text-muted)]">
+                <i class="fas fa-spinner fa-spin mr-2"></i> Carregando mais artigos...
+            </div>
+            <div id="posts-end" class="hidden text-center py-8 text-[var(--text-muted)] text-sm">
+                Você chegou ao fim dos artigos por enquanto.
+            </div>
+            <div id="posts-sentinel" class="h-4" aria-hidden="true"></div>
+
+            <!-- NEWSLETTER -->
+            <div class="mt-20" data-aos="fade-up" data-aos-delay="300">
+                <div class="glass-card max-w-3xl mx-auto text-center p-8 md:p-10">
+                    <div
+                        class="w-20 h-20 rounded-xl bg-gradient-to-br from-[#00E5FF] to-[#7C3AED] flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-envelope-open-text text-white text-2xl"></i>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold mb-4 text-[var(--text-primary)]">Receba Conteúdo Técnico
+                        no Email</h2>
+                    <p class="text-[var(--text-secondary)] mb-6 max-w-2xl mx-auto font-light">
+                        Materiais sobre sistemas, apps, servidores, redes e boas práticas para manter a operação da sua
+                        empresa segura e escalável.
+                    </p>
+                    <form id="newsletter-form" class="flex flex-col md:flex-row gap-4 max-w-md mx-auto">
+                        <input id="newsletter-email" type="email" placeholder="Seu melhor email"
+                            class="search-input flex-1" required>
+                        <button type="submit" class="btn-accent px-6 py-3">
+                            Inscrever-se
+                        </button>
+                    </form>
+                    <p id="newsletter-feedback" class="text-sm text-[var(--text-muted)] mt-4 font-light">
+                        Não compartilhamos seu email. Você pode cancelar a qualquer momento.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#050510] text-white py-14 px-6 border-t border-[var(--border-subtle)]">
+        <div class="container mx-auto">
+            <div class="grid md:grid-cols-4 gap-10">
+                <div>
+                    <div class="flex items-center space-x-3 mb-5">
+                        <div
+                            class="w-10 h-10 flex items-center justify-center border border-[var(--border-medium)] rounded-md">
+                            <img src="https://adrianosena.dev.br/logo.png" alt="Logo" class="w-6 h-6 object-contain">
+                        </div>
+                        <div>
+                            <div class="font-semibold text-white tracking-wider text-sm"
+                                style="font-family:'Inter',sans-serif;">Adriano Sena</div>
+                            <div class="text-[var(--secondary)] text-[10px] tracking-[0.2em] uppercase">Dev Solutions
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-[var(--text-muted)] text-sm font-light leading-relaxed">Transformamos ideias em Sites,
+                        Aplicativos e Sistemas que geram resultados reais para o seu negócio.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4 text-xs tracking-[0.2em] uppercase"
+                        style="font-family:'Inter',sans-serif;">Categorias do Blog</h4>
+                    <ul class="space-y-2.5 text-sm text-[var(--text-muted)] font-light">
+                        <li><a href="/blog?category=frontend"
+                                class="hover:text-[var(--secondary)] transition-all duration-300">Frontend</a></li>
+                        <li><a href="/blog?category=backend"
+                                class="hover:text-[var(--secondary)] transition-all duration-300">Backend</a></li>
+                        <li><a href="/blog?category=devops"
+                                class="hover:text-[var(--secondary)] transition-all duration-300">DevOps</a></li>
+                        <li><a href="/blog?category=unity"
+                                class="hover:text-[var(--secondary)] transition-all duration-300">Unity3D</a></li>
+                        <li><a href="/blog?category=seguranca"
+                                class="hover:text-[var(--secondary)] transition-all duration-300">Segurança</a></li>
+                        <li><a href="/blog?category=apis"
+                                class="hover:text-[var(--secondary)] transition-all duration-300">APIs</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4 text-xs tracking-[0.2em] uppercase"
+                        style="font-family:'Inter',sans-serif;">Links Rápidos</h4>
+                    <ul class="space-y-2.5 text-sm text-[var(--text-muted)] font-light">
+                        <li><a href="/" class="hover:text-[var(--secondary)] transition-all duration-300">Início</a></li>
+                        <li><a href="/#solucoes"
+                                class="hover:text-[var(--secondary)] transition-all duration-300">Tecnologias</a></li>
+                        <li><a href="/#demonstracoes"
+                                class="hover:text-[var(--secondary)] transition-all duration-300">Cases</a></li>
+                        <li><a href="/blog"
+                                class="hover:text-[var(--secondary)] transition-all duration-300">Blog</a></li>
+                        <li><a href="/#contato"
+                                class="hover:text-[var(--secondary)] transition-all duration-300">Contato</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4 text-xs tracking-[0.2em] uppercase"
+                        style="font-family:'Inter',sans-serif;">Redes Sociais</h4>
+                    <div class="flex space-x-3 mb-5">
+                        <a href="https://www.instagram.com/adrianosena.dev.br/" target="_blank"
+                            class="w-10 h-10 border border-[var(--border-subtle)] flex items-center justify-center text-[var(--text-muted)] hover:text-[var(--secondary)] hover:border-[var(--secondary)] transition-all duration-300 rounded-md">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://wa.me/5564933004882" target="_blank"
+                            class="w-10 h-10 border border-[var(--border-subtle)] flex items-center justify-center text-[var(--text-muted)] hover:text-[var(--secondary)] hover:border-[var(--secondary)] transition-all duration-300 rounded-md">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                    <p class="text-[var(--text-muted)] text-xs font-light">&copy; <span id="current-year">2024</span>
+                        Adriano Sena Dev.<br>CNPJ: 63.005.629/0001-44.<br>Todos os direitos reservados.</p>
+                    <a href="/privacidade"
+                        class="text-[var(--secondary)] text-xs font-medium hover:text-white transition-all duration-300 mt-2 inline-block">Política
+                        de Privacidade</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCROLL TO TOP -->
+    <button class="scroll-top" id="scrollTop" aria-label="Voltar ao topo">
+        <i class="fas fa-arrow-up text-xs"></i>
+    </button>
+
+    <!-- ==================== COOKIE CONSENT BAR ==================== -->
+    <div id="cookie-consent-bar" class="cookie-consent-bar hidden-bar">
+        <div class="consent-text">
+            🍪 Utilizamos cookies para melhorar sua experiência, analisar o tráfego e personalizar conteúdos. Ao
+            continuar navegando, você concorda com nossa <a href="/privacidade"
+                class="underline hover:text-white">Política de Privacidade</a>.
+        </div>
+        <div class="consent-actions">
+            <button id="btn-configurar" class="btn-outline text-xs py-2.5 px-5">
+                <i class="fas fa-sliders-h mr-1.5"></i> Configurar
+            </button>
+            <button id="btn-aceitar-todos" class="btn-accent text-xs py-2.5 px-5">
+                <i class="fas fa-check mr-1.5"></i> Aceitar Todos
+            </button>
+        </div>
+    </div>
+
+    <!-- ==================== MODAL DE CONFIGURAÇÕES DE COOKIES ==================== -->
+    <div id="cookie-settings-modal"
+        class="fixed inset-0 z-[60] flex items-center justify-center modal-overlay hidden transition-opacity duration-300">
+        <div
+            class="glass-card max-w-lg mx-4 p-7 animate__animated animate__fadeInUp h-auto w-full shadow-2xl border-[var(--border-medium)]">
+            <div class="flex justify-between items-center mb-5">
+                <h3 class="text-lg font-semibold text-[var(--text-primary)]"
+                    style="font-family:'Inter',sans-serif;">
+                    <i class="fas fa-sliders-h mr-2 text-[var(--secondary)]"></i> Configurações de Cookies
+                </h3>
+                <button id="close-settings"
+                    class="text-[var(--text-muted)] hover:text-[var(--secondary)] transition-colors duration-300">
+                    <i class="fas fa-times text-lg"></i>
+                </button>
+            </div>
+            <p class="text-[var(--text-secondary)] text-sm mb-6 font-light leading-relaxed">
+                Selecione quais tipos de cookies você permite que utilizemos:
+            </p>
+            <div class="space-y-5 mb-7">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h4 class="font-semibold text-sm text-[var(--text-primary)]">Cookies Essenciais</h4>
+                        <p class="text-xs text-[var(--text-muted)] font-light">Necessários para o funcionamento básico do
+                            site</p>
+                    </div>
+                    <label class="toggle-wrapper">
+                        <input type="checkbox" id="essential-cookies" checked disabled>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h4 class="font-semibold text-sm text-[var(--text-primary)]">Cookies de Desempenho</h4>
+                        <p class="text-xs text-[var(--text-muted)] font-light">Nos ajudam a entender como os visitantes
+                            usam o site</p>
+                    </div>
+                    <label class="toggle-wrapper">
+                        <input type="checkbox" id="performance-cookies">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h4 class="font-semibold text-sm text-[var(--text-primary)]">Cookies de Marketing</h4>
+                        <p class="text-xs text-[var(--text-muted)] font-light">Usados para rastrear visitantes entre
+                            sites</p>
+                    </div>
+                    <label class="toggle-wrapper">
+                        <input type="checkbox" id="marketing-cookies">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+            </div>
+            <div class="flex justify-end">
+                <button id="save-settings" class="btn-accent px-6 py-3 rounded-lg font-semibold text-xs">
+                    <i class="fas fa-check mr-2"></i> Salvar Preferências
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // ===== LOADING =====
+        window.addEventListener('load', () => {
+            const loading = document.getElementById('loading-screen');
+            loading.classList.add('hidden');
+            setTimeout(() => { loading.style.display = 'none'; }, 600);
         });
 
-        postElement.addEventListener('keydown', (event) => {
-          if (event.key === 'Enter' || event.key === ' ') {
-            event.preventDefault();
-            window.location.href = postUrl;
-          }
+        // ===== AOS =====
+        AOS.init({ duration: 800, once: true, offset: 80 });
+
+        // ===== MENU MOBILE =====
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            mobileMenu.classList.toggle('hidden');
+            menuToggle.querySelector('i').className = mobileMenu.classList.contains('hidden') ? 'fas fa-bars' :
+                'fas fa-times';
+        });
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuToggle.querySelector('i').className = 'fas fa-bars';
+            });
+        });
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.classList.contains('hidden') && !mobileMenu.contains(e.target) && !menuToggle.contains(
+                e.target)) {
+                mobileMenu.classList.add('hidden');
+                menuToggle.querySelector('i').className = 'fas fa-bars';
+            }
         });
 
-        postsContainer.appendChild(postElement);
-      });
+        // ===== SCROLL TO TOP =====
+        const scrollTopBtn = document.getElementById('scrollTop');
+        window.addEventListener('scroll', () => scrollTopBtn.classList.toggle('show', window.pageYOffset > 500));
+        scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-      if (endIndex >= filteredPosts.length) {
-        endState.classList.toggle('hidden', filteredPosts.length === 0);
-      } else {
-        endState.classList.add('hidden');
-      }
-    }
+        // ===== COOKIE CONSENT =====
+        const consentBar = document.getElementById('cookie-consent-bar');
+        const modal = document.getElementById('cookie-settings-modal');
+        const openSettingsBtn = document.getElementById('btn-configurar');
+        const btnAceitarTodos = document.getElementById('btn-aceitar-todos');
+        const closeSettingsBtn = document.getElementById('close-settings');
+        const saveSettingsBtn = document.getElementById('save-settings');
 
-    function loadMorePosts() {
-      if (isLoadingMore) return;
-      if (currentPage * postsPerPage >= filteredPosts.length) return;
+        function hideConsentBar() { consentBar.classList.add('hidden-bar'); }
 
-      setLoadingState(true);
+        function showConsentBar() { consentBar.classList.remove('hidden-bar'); }
 
-      window.setTimeout(() => {
-        currentPage++;
-        displayPosts();
-        setLoadingState(false);
-      }, 220);
-    }
+        function hideModal() { modal.classList.add('hidden'); }
 
-    function pickCardVariant(post, index) {
-      const source = String(post.slug || post.title || index);
-      let hash = 0;
-      for (let charIndex = 0; charIndex < source.length; charIndex += 1) {
-        hash = (hash + source.charCodeAt(charIndex) * (charIndex + 1)) % 97;
-      }
+        function showModal() { modal.classList.remove('hidden'); }
 
-      const bucket = (index + hash) % 11;
-
-      if (bucket === 0) return 'gallery-variant-center-wide';
-      if (bucket === 1) return 'gallery-variant-left-wide';
-      if (bucket === 2) return 'gallery-variant-right-wide';
-      if (bucket === 3) return 'gallery-variant-tall';
-      if (bucket === 4 || bucket === 5) return 'gallery-variant-compact';
-      return 'gallery-variant-standard';
-    }
-
-    function getPostAuthor(post) {
-      return post.author || post.autor || 'Equipe Adriano Sena Dev';
-      console.log(post)
-    }
-
-    function formatDate(dateString) {
-      const date = new Date(dateString);
-      const options = { year: 'numeric', month: 'short', day: 'numeric' };
-      return date.toLocaleDateString('pt-BR', options);
-    }
-
-    // SEO dinâmico por filtro
-    function updateSeoForFilters() {
-      const categoryText = currentCategory ? `Categoria: ${currentCategory}. ` : '';
-      const searchText = currentSearchTerm ? `Busca: ${currentSearchTerm}. ` : '';
-      const title = currentCategory
-        ? `${currentCategory} | Blog Adriano Sena Dev`
-        : 'Blog | Adriano Sena Dev - Conteúdo para Empresas de Tecnologia';
-      const description = `${categoryText}${searchText}Artigos sobre desenvolvimento, sistemas, apps, servidores, redes e suporte técnico para operação empresarial.`.trim();
-
-      document.title = title;
-
-      const metaDescription = document.querySelector('meta[name="description"]');
-      if (metaDescription) metaDescription.setAttribute('content', description);
-
-      const ogTitle = document.querySelector('meta[property="og:title"]');
-      if (ogTitle) ogTitle.setAttribute('content', title);
-
-      const ogDescription = document.querySelector('meta[property="og:description"]');
-      if (ogDescription) ogDescription.setAttribute('content', description);
-
-      const twitterTitle = document.querySelector('meta[name="twitter:title"]');
-      if (twitterTitle) twitterTitle.setAttribute('content', title);
-
-      const twitterDescription = document.querySelector('meta[name="twitter:description"]');
-      if (twitterDescription) twitterDescription.setAttribute('content', description);
-    }
-
-    // Newsletter form (real)
-    const newsletterForm = document.getElementById('newsletter-form');
-    if (newsletterForm) {
-      newsletterForm.addEventListener('submit', async function (e) {
-        e.preventDefault();
-        const emailInput = document.getElementById('newsletter-email');
-        const feedback = document.getElementById('newsletter-feedback');
-        const email = emailInput.value.trim();
-        if (!email) return;
-
-        feedback.textContent = 'Enviando...';
-
-        const payload = {
-          name: 'Inscrição Newsletter Blog',
-          email,
-          source: 'blog',
-          wantsEmail: true,
-          wantsPush: false
-        };
-
-        try {
-          const response = await fetch('/api/subscribers', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-          });
-
-          await fetch('/api/contact', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              name: payload.name,
-              email,
-              status: 'new',
-              project: 'newsletter',
-              message: 'Lead originado no formulário de newsletter da página de blog'
-            })
-          }).catch(() => {});
-
-          if (response.ok) {
-            feedback.textContent = 'Inscrição confirmada! Você receberá conteúdos técnicos e estratégicos.';
-            emailInput.value = '';
-          } else {
-            feedback.textContent = 'Não foi possível concluir agora. Tente novamente em instantes.';
-          }
-        } catch (error) {
-          feedback.textContent = 'Falha de conexão. Verifique sua internet e tente novamente.';
+        function savePreferences(performance, marketing, essential = true) {
+            localStorage.setItem('cookiePreferences', JSON.stringify({ performance, marketing, essential }));
+            hideConsentBar();
+            hideModal();
         }
-      });
-    }
 
-  </script>
-  <script src="/js/site-consent-push.js"></script>
+        const savedPrefs = localStorage.getItem('cookiePreferences');
+        if (savedPrefs) {
+            try {
+                const prefs = JSON.parse(savedPrefs);
+                document.getElementById('performance-cookies').checked = prefs.performance || false;
+                document.getElementById('marketing-cookies').checked = prefs.marketing || false;
+                hideConsentBar();
+            } catch (e) { showConsentBar(); }
+        } else {
+            showConsentBar();
+        }
+
+        btnAceitarTodos.addEventListener('click', () => savePreferences(true, true, true));
+        openSettingsBtn.addEventListener('click', showModal);
+        closeSettingsBtn.addEventListener('click', hideModal);
+        modal.addEventListener('click', (e) => { if (e.target === modal) hideModal(); });
+        saveSettingsBtn.addEventListener('click', () => {
+            const performance = document.getElementById('performance-cookies').checked;
+            const marketing = document.getElementById('marketing-cookies').checked;
+            savePreferences(performance, marketing, true);
+        });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !modal.classList.contains('hidden'))
+                hideModal(); });
+
+        // ===== BLOG FUNCTIONALITY =====
+        let allPosts = [];
+        let filteredPosts = [];
+        let currentPage = 1;
+        const postsPerPage = 8;
+        let currentCategory = '';
+        let currentSearchTerm = '';
+        let isLoadingMore = false;
+        let postsObserver = null;
+        const authorPhotosCache = {};
+
+        const searchDesktop = document.getElementById('search-input-desktop');
+        const categoryDesktop = document.getElementById('category-filter-desktop');
+
+        function syncFilters() {
+            // Sincronização entre desktop e mobile (aqui só temos desktop, mas mantemos estrutura)
+        }
+
+        function setupInfiniteScroll() {
+            const sentinel = document.getElementById('posts-sentinel');
+            if (!sentinel) return;
+            if (postsObserver) postsObserver.disconnect();
+            postsObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting || isLoadingMore || currentPage * postsPerPage >=
+                        filteredPosts.length) return;
+                    loadMorePosts();
+                });
+            }, { rootMargin: '220px 0px' });
+            postsObserver.observe(sentinel);
+        }
+
+        function setLoadingState(loading) {
+            isLoadingMore = loading;
+            document.getElementById('posts-loading')?.classList.toggle('hidden', !loading);
+        }
+
+        function updateResultsSummary() {
+            const summary = document.getElementById('blog-results-summary');
+            if (!summary) return;
+            const categoryLabel = currentCategory || 'Todos os temas';
+            const searchLabel = currentSearchTerm ? ` · busca: "${currentSearchTerm}"` : '';
+            summary.textContent = `${filteredPosts.length} artigos em ${categoryLabel}${searchLabel}`;
+        }
+
+        function populateCategoryFilters(categories) {
+            [categoryDesktop].forEach(select => {
+                select.innerHTML = '<option value="">Todas as categorias</option>';
+                categories.forEach(cat => {
+                    const option = document.createElement('option');
+                    option.value = cat;
+                    option.textContent = cat;
+                    select.appendChild(option);
+                });
+            });
+        }
+
+        function filterPosts() {
+            filteredPosts = allPosts.filter(post => {
+                if (post.status !== 'published') return false;
+                if (currentCategory && post.category !== currentCategory) return false;
+                if (currentSearchTerm) {
+                    const searchFields = [post.title, post.description, post.category].filter(Boolean);
+                    if (!searchFields.some(field => field.toLowerCase().includes(currentSearchTerm)))
+                        return false;
+                }
+                return true;
+            });
+            updateResultsSummary();
+            currentPage = 1;
+            setLoadingState(false);
+            displayPosts();
+        }
+
+        function displayPosts() {
+            const container = document.getElementById('posts-container');
+            const endState = document.getElementById('posts-end');
+            if (currentPage === 1) container.innerHTML = '';
+            const startIndex = (currentPage - 1) * postsPerPage;
+            const endIndex = startIndex + postsPerPage;
+            const postsToShow = filteredPosts.slice(startIndex, endIndex);
+
+            if (postsToShow.length === 0 && currentPage === 1) {
+                container.innerHTML = `
+                    <div class="col-span-full text-center py-12">
+                        <i class="fas fa-search text-4xl text-[var(--text-muted)] mb-4"></i>
+                        <h3 class="text-xl font-bold mb-2">Nenhum artigo encontrado</h3>
+                        <p class="text-[var(--text-secondary)]">Tente ajustar seus filtros ou termos de busca.</p>
+                    </div>`;
+                endState.classList.add('hidden');
+                return;
+            }
+
+            postsToShow.forEach((post, idx) => {
+                const postUrl = `/post?slug=${encodeURIComponent(post.slug || '')}`;
+                const authorName = post.author || post.autor || 'Equipe Adriano Sena Dev';
+                const topicName = post.category || 'Geral';
+                const article = document.createElement('article');
+                article.className = 'blog-card animate__animated animate__fadeInUp';
+                article.setAttribute('tabindex', '0');
+                article.setAttribute('role', 'link');
+                article.setAttribute('aria-label', `Abrir artigo ${post.title}`);
+
+                const authorPhotoUrl = authorPhotosCache[post.author || post.autor] || '';
+                const authorAvatarHtml = authorPhotoUrl
+                    ? `<img src="${authorPhotoUrl}" alt="${authorName}" class="blog-author-avatar">`
+                    : `<i class="far fa-user-circle"></i>`;
+
+                article.innerHTML = `
+                    <div class="blog-image">
+                        <img src="${post.image || 'https://adrianosena.dev.br/logo.png'}" alt="${post.title}">
+                    </div>
+                    <div class="blog-card-body">
+                        <div class="blog-card-meta">
+                            <span class="blog-card-author">${authorAvatarHtml} ${authorName}</span>
+                            <span class="blog-card-topic">${topicName}</span>
+                        </div>
+                        <h3 class="blog-card-title">${post.title}</h3>
+                        <p class="blog-card-description">${post.description || 'Conteúdo técnico com foco em resultado prático para o seu projeto.'}</p>
+                        <div class="blog-card-footer">
+                            <a href="${postUrl}" class="btn-outline blog-card-button">
+                                <i class="fas fa-newspaper mr-2"></i>Ler artigo
+                            </a>
+                        </div>
+                    </div>`;
+                article.addEventListener('click', (e) => {
+                    if (e.target.closest('a')) return;
+                    window.location.href = postUrl;
+                });
+                article.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        window.location.href = postUrl;
+                    }
+                });
+                container.appendChild(article);
+            });
+
+            endState.classList.toggle('hidden', endIndex >= filteredPosts.length);
+        }
+
+        function loadMorePosts() {
+            if (isLoadingMore || currentPage * postsPerPage >= filteredPosts.length) return;
+            setLoadingState(true);
+            setTimeout(() => {
+                currentPage++;
+                displayPosts();
+                setLoadingState(false);
+            }, 220);
+        }
+
+        async function initializeBlog() {
+            try {
+                const res = await fetch('/api/posts');
+                allPosts = await res.json();
+            } catch (e) {
+                // fallback para dados de exemplo caso a API não esteja disponível
+                allPosts = [
+                    { title: "Otimização de performance para sites", slug: "otimizacao-performance", description: "Técnicas práticas para acelerar seu site.", category: "Frontend", status: "published", image: "https://adrianosena.dev.br/logo.png", author: "Adriano Sena" },
+                    { title: "Introdução ao React 18", slug: "introducao-react-18", description: "Novidades do React 18 e como utilizar.", category: "Frontend", status: "published", image: "https://adrianosena.dev.br/logo.png", author: "Adriano Sena" },
+                    { title: "DevOps para pequenas empresas", slug: "devops-pequenas-empresas", description: "Como implementar práticas DevOps com orçamento limitado.", category: "DevOps", status: "published", image: "https://adrianosena.dev.br/logo.png", author: "Equipe Adriano Sena Dev" }
+                ];
+            }
+
+            const categories = [...new Set(allPosts.filter(p => p.status === 'published').map(p => p.category).filter(Boolean))];
+            populateCategoryFilters(categories);
+
+            // Carregar fotos dos autores
+            const uniqueAuthors = [...new Set(allPosts.map(p => p.author || p.autor).filter(Boolean))];
+            await Promise.all(uniqueAuthors.map(async name => {
+                try {
+                    const r = await fetch(`/api/public/author-profile?author=${encodeURIComponent(name)}`);
+                    if (r.ok) {
+                        const d = await r.json();
+                        if (d.success && d.profile && d.profile.photo) authorPhotosCache[name] = d.profile
+                            .photo;
+                    }
+                } catch (_) {}
+            }));
+
+            filteredPosts = allPosts.filter(p => p.status === 'published');
+            updateResultsSummary();
+            filterPosts();
+            setupInfiniteScroll();
+        }
+
+        // Eventos de filtro
+        searchDesktop.addEventListener('input', function() {
+            currentSearchTerm = this.value.toLowerCase();
+            filterPosts();
+        });
+        categoryDesktop.addEventListener('change', function() {
+            currentCategory = this.value;
+            filterPosts();
+        });
+
+        // Inicializar
+        initializeBlog();
+
+        // Newsletter
+        const newsletterForm = document.getElementById('newsletter-form');
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                const emailInput = document.getElementById('newsletter-email');
+                const feedback = document.getElementById('newsletter-feedback');
+                const email = emailInput.value.trim();
+                if (!email) return;
+                feedback.textContent = 'Enviando...';
+                try {
+                    const response = await fetch('/api/subscribers', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ name: 'Inscrição Newsletter Blog', email, source: 'blog',
+                            wantsEmail: true, wantsPush: false })
+                    });
+                    await fetch('/api/contact', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ name: 'Newsletter Blog', email, status: 'new',
+                            project: 'newsletter', message: 'Lead originado no formulário de newsletter da página de blog.' })
+                    }).catch(() => {});
+                    if (response.ok) {
+                        feedback.textContent =
+                            'Inscrição confirmada! Você receberá conteúdos técnicos e estratégicos.';
+                        emailInput.value = '';
+                    } else {
+                        feedback.textContent =
+                        'Não foi possível concluir agora. Tente novamente em instantes.';
+                    }
+                } catch (error) {
+                    feedback.textContent = 'Falha de conexão. Verifique sua internet e tente novamente.';
+                }
+            });
+        }
+
+        // Ano atual
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+
+    <!-- Google Ads / Analytics -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1602165210298822"
+        crossorigin="anonymous">
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4KFFX809LT">
+    </script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-4KFFX809LT');
+    </script>
 </body>
 
 </html>

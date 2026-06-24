@@ -1,0 +1,1634 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Prime Residence | Imóveis de Alto Padrão</title>
+    <meta name="description" content="Imobiliária premium especializada em imóveis de alto padrão. Encontre casas, apartamentos e coberturas exclusivas com atendimento personalizado e segurança jurídica.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --white: #ffffff;
+            --off-white: #f8f7f5;
+            --cream: #f5f0e8;
+            --black: #0d0d0d;
+            --matte-black: #1a1a1a;
+            --graphite: #2d2d2d;
+            --dark-graphite: #3a3a3a;
+            --gold: #c8a45c;
+            --gold-hover: #b8943a;
+            --gold-light: #d4b872;
+            --gold-pale: rgba(200, 164, 92, 0.1);
+            --gold-subtle: rgba(200, 164, 92, 0.06);
+            --gray-light: #e8e5e0;
+            --gray-medium: #9a9690;
+            --gray-dark: #5c5852;
+            --shadow-sm: 0 2px 20px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 8px 40px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.12);
+            --shadow-xl: 0 30px 80px rgba(0, 0, 0, 0.18);
+            --transition-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            --font-display: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --header-height: 70px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+            scroll-padding-top: var(--header-height);
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--white);
+            color: var(--graphite);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+            padding-top: 0;
+        }
+
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--off-white);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--gray-medium);
+            border-radius: 2px;
+        }
+
+        /* HEADER */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.4s var(--transition-smooth);
+            background: transparent;
+            height: var(--header-height);
+        }
+        .header.scrolled {
+            background: rgba(13, 13, 13, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 8px 24px;
+            box-shadow: var(--shadow-lg);
+            height: 60px;
+        }
+        .header .logo {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            color: var(--white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.3s;
+        }
+        .header .logo .dot {
+            width: 6px;
+            height: 6px;
+            background: var(--gold);
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: 2px;
+        }
+        .header nav {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+        .header nav a {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 400;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+            position: relative;
+            padding: 4px 0;
+        }
+        .header nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--gold);
+            transition: width 0.35s var(--transition-smooth);
+        }
+        .header nav a:hover {
+            color: var(--white);
+        }
+        .header nav a:hover::after {
+            width: 100%;
+        }
+        .header .btn-header {
+            background: var(--gold);
+            color: var(--black);
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 0.78rem;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.3s var(--transition-smooth);
+            border: none;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        .header .btn-header:hover {
+            background: var(--gold-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(200, 164, 92, 0.35);
+        }
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--white);
+            font-size: 1.6rem;
+            line-height: 1;
+            padding: 4px 8px;
+            z-index: 1100;
+        }
+
+        /* HERO */
+        .hero {
+            position: relative;
+            height: 100vh;
+            height: 100dvh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: var(--black);
+        }
+        .hero-video-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.45;
+            pointer-events: none;
+        }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg,
+                    rgba(13, 13, 13, 0.6) 0%,
+                    rgba(13, 13, 13, 0.35) 40%,
+                    rgba(13, 13, 13, 0.8) 100%);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 700px;
+            padding: 0 20px;
+        }
+        .hero-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border: 1px solid rgba(200, 164, 92, 0.5);
+            border-radius: 50px;
+            color: var(--gold-light);
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            backdrop-filter: blur(4px);
+        }
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3.8rem);
+            font-weight: 600;
+            color: var(--white);
+            line-height: 1.15;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+        .hero h1 em {
+            font-style: italic;
+            color: var(--gold-light);
+        }
+        .hero-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+            font-weight: 300;
+            max-width: 460px;
+            margin: 0 auto 32px;
+            letter-spacing: 0.3px;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .btn-primary {
+            background: var(--gold);
+            color: var(--black);
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 0.85rem;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.3s var(--transition-smooth);
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        .btn-primary:hover {
+            background: var(--gold-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(200, 164, 92, 0.4);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--white);
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 400;
+            font-size: 0.85rem;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.3s var(--transition-smooth);
+            border: 1.5px solid rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        .btn-outline:hover {
+            border-color: var(--white);
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-2px);
+        }
+        .hero-search-bar {
+            position: relative;
+            z-index: 3;
+            margin-top: -30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            padding: 6px 10px;
+            box-shadow: var(--shadow-xl);
+            max-width: 880px;
+            margin-left: auto;
+            margin-right: auto;
+            align-items: center;
+            justify-content: center;
+        }
+        .hero-search-bar select,
+        .hero-search-bar input {
+            border: none;
+            padding: 10px 14px;
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            color: var(--graphite);
+            background: transparent;
+            outline: none;
+            cursor: pointer;
+            min-width: 100px;
+            border-right: 1px solid var(--gray-light);
+        }
+        .hero-search-bar select:last-of-type,
+        .hero-search-bar input:last-of-type {
+            border-right: none;
+        }
+        .hero-search-bar .btn-search-hero {
+            background: var(--gold);
+            color: var(--black);
+            border: none;
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+            transition: all 0.3s;
+        }
+        .hero-search-bar .btn-search-hero:hover {
+            background: var(--gold-hover);
+        }
+
+        /* SECTION STYLES */
+        .section {
+            padding: 80px 24px;
+        }
+        .section-dark {
+            background: var(--matte-black);
+            color: var(--white);
+        }
+        .section-cream {
+            background: var(--off-white);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-label {
+            font-size: 0.72rem;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.8rem, 3vw, 2.6rem);
+            font-weight: 600;
+            letter-spacing: -0.3px;
+            margin-bottom: 12px;
+            line-height: 1.2;
+            color: var(--matte-black);
+        }
+        .section-dark .section-title {
+            color: var(--white);
+        }
+        .section-subtitle {
+            color: var(--gray-dark);
+            font-size: 0.95rem;
+            font-weight: 300;
+            max-width: 500px;
+            margin-bottom: 40px;
+        }
+        .section-dark .section-subtitle {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* FILTERS */
+        .filters-container {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 20px 16px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 32px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: flex-end;
+            border: 1px solid var(--gray-light);
+        }
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            flex: 1;
+            min-width: 130px;
+        }
+        .filter-group label {
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gray-medium);
+            font-weight: 500;
+        }
+        .filter-group select,
+        .filter-group input {
+            padding: 10px 12px;
+            border: 1px solid var(--gray-light);
+            border-radius: var(--radius-sm);
+            font-family: var(--font-body);
+            font-size: 0.82rem;
+            color: var(--graphite);
+            background: var(--off-white);
+            transition: border-color 0.3s;
+            outline: none;
+            cursor: pointer;
+        }
+        .filter-group select:focus,
+        .filter-group input:focus {
+            border-color: var(--gold);
+            background: var(--white);
+        }
+        .btn-filter {
+            background: var(--matte-black);
+            color: var(--white);
+            border: none;
+            padding: 10px 22px;
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            font-size: 0.82rem;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+            transition: all 0.3s;
+            align-self: flex-end;
+            height: 42px;
+        }
+        .btn-filter:hover {
+            background: var(--black);
+            box-shadow: var(--shadow-md);
+        }
+        .btn-filter-reset {
+            background: transparent;
+            color: var(--gray-dark);
+            border: 1px solid var(--gray-light);
+            padding: 10px 18px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s;
+            align-self: flex-end;
+            height: 42px;
+        }
+        .btn-filter-reset:hover {
+            border-color: var(--graphite);
+            color: var(--graphite);
+        }
+
+        /* PROPERTY CARDS */
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+        }
+        .property-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.4s var(--transition-smooth);
+            cursor: pointer;
+            border: 1px solid transparent;
+            position: relative;
+        }
+        .property-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--gray-light);
+        }
+        .property-card-image {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+        }
+        .property-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s var(--transition-smooth);
+        }
+        .property-card:hover .property-card-image img {
+            transform: scale(1.05);
+        }
+        .property-card-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: var(--gold);
+            color: var(--black);
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            z-index: 2;
+        }
+        .property-card-tag {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(13, 13, 13, 0.75);
+            color: var(--white);
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 0.65rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            z-index: 2;
+            backdrop-filter: blur(8px);
+        }
+        .property-card-body {
+            padding: 16px 18px 20px;
+        }
+        .property-card-price {
+            font-family: var(--font-display);
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: var(--matte-black);
+            margin-bottom: 4px;
+        }
+        .property-card-location {
+            font-size: 0.8rem;
+            color: var(--gray-dark);
+            margin-bottom: 12px;
+            letter-spacing: 0.2px;
+        }
+        .property-card-features {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            font-size: 0.75rem;
+            color: var(--gray-medium);
+            padding-top: 12px;
+            border-top: 1px solid var(--gray-light);
+        }
+        .property-card-features span {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+        .property-card-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 14px;
+            flex-wrap: wrap;
+        }
+        .btn-sm {
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.74rem;
+            font-weight: 500;
+            letter-spacing: 0.4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            border: none;
+            flex: 1;
+            min-width: 80px;
+        }
+        .btn-sm-dark {
+            background: var(--matte-black);
+            color: var(--white);
+        }
+        .btn-sm-dark:hover {
+            background: var(--black);
+        }
+        .btn-sm-gold {
+            background: var(--gold);
+            color: var(--black);
+        }
+        .btn-sm-gold:hover {
+            background: var(--gold-hover);
+        }
+        .btn-sm-outline {
+            background: transparent;
+            color: var(--graphite);
+            border: 1px solid var(--gray-light);
+        }
+        .btn-sm-outline:hover {
+            border-color: var(--graphite);
+            background: var(--off-white);
+        }
+        .no-results {
+            text-align: center;
+            padding: 50px;
+            color: var(--gray-medium);
+            font-size: 1rem;
+        }
+
+        /* MODAL */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            background: rgba(13, 13, 13, 0.9);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s;
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        .modal {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            max-width: 700px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: var(--shadow-xl);
+            overscroll-behavior: contain;
+        }
+        .modal-close {
+            position: sticky;
+            top: 12px;
+            float: right;
+            z-index: 10;
+            background: var(--white);
+            border: 1px solid var(--gray-light);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            transition: all 0.3s;
+            box-shadow: var(--shadow-sm);
+        }
+        .modal-close:hover {
+            background: var(--off-white);
+            border-color: var(--graphite);
+        }
+        .modal-gallery {
+            position: relative;
+            height: 280px;
+            overflow: hidden;
+            border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+        }
+        .modal-gallery img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .modal-gallery-nav {
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+        }
+        .modal-gallery-nav button {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .modal-gallery-nav button:active {
+            background: var(--white);
+            transform: scale(0.95);
+        }
+        .modal-body {
+            padding: 24px 20px;
+        }
+        .modal-body h2 {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            margin-bottom: 6px;
+            color: var(--matte-black);
+        }
+        .modal-body .modal-price {
+            font-family: var(--font-display);
+            font-size: 1.7rem;
+            color: var(--gold-hover);
+            font-weight: 600;
+            margin-bottom: 14px;
+        }
+        .modal-features-row {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+            font-size: 0.85rem;
+            color: var(--gray-dark);
+        }
+        .modal-desc {
+            color: var(--gray-dark);
+            line-height: 1.8;
+            margin-bottom: 16px;
+            font-size: 0.9rem;
+        }
+        .modal-actions-fixed {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            padding-top: 16px;
+            border-top: 1px solid var(--gray-light);
+        }
+        .modal-actions-fixed .btn-primary,
+        .modal-actions-fixed .btn-sm {
+            flex: 1;
+            justify-content: center;
+        }
+        .simulator-box {
+            background: var(--off-white);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            margin-top: 16px;
+        }
+        .simulator-box h4 {
+            font-family: var(--font-display);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        .simulator-row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            align-items: end;
+        }
+        .simulator-row input {
+            padding: 10px 12px;
+            border: 1px solid var(--gray-light);
+            border-radius: var(--radius-sm);
+            font-family: var(--font-body);
+            font-size: 0.82rem;
+            flex: 1;
+            min-width: 100px;
+        }
+        .simulator-row .btn-sm {
+            flex: 0 0 auto;
+        }
+        .simulator-result {
+            margin-top: 10px;
+            font-weight: 600;
+            color: var(--matte-black);
+            font-size: 0.9rem;
+        }
+
+        /* CONSULTORIA */
+        .consultoria-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        .consultoria-image {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            height: 400px;
+        }
+        .consultoria-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s;
+        }
+        .consultoria-text .stat-row {
+            display: flex;
+            gap: 30px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        .stat-item p {
+            font-size: 0.75rem;
+            color: var(--gray-medium);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .stat-item .stat-number {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--matte-black);
+        }
+
+        /* DEPOIMENTOS */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .testimonial-card {
+            background: var(--white);
+            padding: 24px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--gray-light);
+        }
+        .testimonial-card .quote-icon {
+            font-size: 2.5rem;
+            color: var(--gold-pale);
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+        .testimonial-card p {
+            font-style: italic;
+            color: var(--gray-dark);
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+        .testimonial-card .author {
+            font-weight: 600;
+            color: var(--matte-black);
+            font-size: 0.85rem;
+        }
+        .testimonial-card .author-role {
+            font-size: 0.72rem;
+            color: var(--gray-medium);
+        }
+        .stars {
+            color: var(--gold);
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            margin-bottom: 6px;
+        }
+
+        /* AREAS */
+        .areas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 12px;
+        }
+        .area-card {
+            position: relative;
+            height: 160px;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+        .area-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .area-card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(13,13,13,0.8) 0%, transparent 60%);
+            display: flex;
+            align-items: flex-end;
+            padding: 14px;
+        }
+        .area-card-overlay span {
+            color: var(--white);
+            font-weight: 500;
+            font-size: 0.85rem;
+        }
+
+        /* AGENDAMENTO */
+        .agendamento-form {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            padding: 28px 20px;
+            box-shadow: var(--shadow-lg);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            border: 1px solid var(--gray-light);
+        }
+        .agendamento-form .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .agendamento-form .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+        .agendamento-form label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gray-medium);
+        }
+        .agendamento-form input,
+        .agendamento-form select,
+        .agendamento-form textarea {
+            padding: 10px 14px;
+            border: 1px solid var(--gray-light);
+            border-radius: var(--radius-sm);
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            color: var(--graphite);
+            background: var(--off-white);
+            outline: none;
+            width: 100%;
+        }
+        .agendamento-form .btn-submit {
+            grid-column: 1 / -1;
+            background: var(--gold);
+            color: var(--black);
+            border: none;
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 0.88rem;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+        }
+
+        /* DIFERENCIAIS */
+        .diferenciais-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+        }
+        .diferencial-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+        }
+        .diferencial-card .dif-line {
+            width: 28px;
+            height: 2px;
+            background: var(--gold);
+            margin-bottom: 16px;
+        }
+        .diferencial-card h4 {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            margin-bottom: 6px;
+            color: var(--white);
+        }
+        .diferencial-card p {
+            color: rgba(255,255,255,0.55);
+            font-size: 0.82rem;
+            line-height: 1.6;
+        }
+
+        /* FOOTER */
+        .footer {
+            background: var(--black);
+            color: rgba(255,255,255,0.6);
+            padding: 40px 24px 24px;
+            font-size: 0.8rem;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .footer h5 {
+            color: var(--white);
+            font-family: var(--font-display);
+            font-size: 1rem;
+            margin-bottom: 12px;
+        }
+        .footer a {
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            transition: color 0.3s;
+            display: block;
+            margin-bottom: 6px;
+        }
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 24px auto 0;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.35);
+        }
+
+        /* WHATSAPP FLOAT */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 999;
+            background: #25D366;
+            color: white;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            box-shadow: 0 6px 24px rgba(37, 211, 102, 0.4);
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: transform 0.2s var(--transition-bounce);
+        }
+
+        /* TOAST */
+        .toast {
+            position: fixed;
+            bottom: 85px;
+            right: 20px;
+            z-index: 3000;
+            background: var(--matte-black);
+            color: var(--white);
+            padding: 12px 20px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            box-shadow: var(--shadow-lg);
+            opacity: 0;
+            transform: translateY(15px);
+            pointer-events: none;
+            transition: all 0.35s var(--transition-smooth);
+            max-width: 260px;
+        }
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: all;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 968px) {
+            .header nav {
+                display: none;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+            .header nav.mobile-open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(13,13,13,0.98);
+                padding: 20px;
+                gap: 16px;
+                backdrop-filter: blur(20px);
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+            .hero-search-bar {
+                flex-direction: column;
+                border-radius: var(--radius-lg);
+                padding: 12px;
+                margin-top: -36px;
+                width: 92%;
+            }
+            .hero-search-bar select,
+            .hero-search-bar input {
+                border-right: none;
+                border-bottom: 1px solid var(--gray-light);
+                width: 100%;
+            }
+            .consultoria-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .consultoria-image {
+                height: 280px;
+            }
+            .agendamento-form {
+                grid-template-columns: 1fr;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+            }
+            .properties-grid {
+                grid-template-columns: 1fr;
+            }
+            .filters-container {
+                flex-direction: column;
+            }
+            .filter-group {
+                min-width: 100%;
+            }
+            .modal-gallery {
+                height: 220px;
+            }
+            .modal-body {
+                padding: 20px 16px;
+            }
+            .diferenciais-grid {
+                grid-template-columns: 1fr;
+            }
+            .areas-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 8px 16px;
+                height: 60px;
+            }
+            .header.scrolled {
+                height: 56px;
+                padding: 6px 16px;
+            }
+            .hero {
+                height: 100vh;
+                height: 100dvh;
+                min-height: 550px;
+            }
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .hero-subtitle {
+                font-size: 0.9rem;
+            }
+            .hero-buttons .btn-primary,
+            .hero-buttons .btn-outline {
+                width: 100%;
+                font-size: 0.8rem;
+                padding: 12px 20px;
+            }
+            .hero-search-bar {
+                margin-top: -24px;
+                width: 94%;
+            }
+            .section {
+                padding: 60px 16px;
+            }
+            .section-title {
+                font-size: 1.6rem;
+            }
+            .properties-grid {
+                grid-template-columns: 1fr;
+            }
+            .property-card-image {
+                height: 200px;
+            }
+            .modal {
+                max-height: 90vh;
+                border-radius: var(--radius-lg);
+            }
+            .modal-gallery {
+                height: 180px;
+                border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+            }
+            .modal-actions-fixed .btn-primary,
+            .modal-actions-fixed .btn-sm {
+                font-size: 0.75rem;
+                padding: 10px 14px;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .whatsapp-float {
+                width: 48px;
+                height: 48px;
+                bottom: 16px;
+                right: 16px;
+            }
+            .toast {
+                bottom: 75px;
+                right: 16px;
+                max-width: 220px;
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header" id="header">
+        <a href="#" class="logo">PRIME<span class="dot"></span> RESIDENCE</a>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">☰</button>
+        <nav id="mainNav">
+            <a href="#catalogo">Imóveis</a>
+            <a href="#consultoria">Consultoria</a>
+            <a href="#destaques">Destaques</a>
+            <a href="#depoimentos">Clientes</a>
+            <a href="#agendamento">Agendar Visita</a>
+            <a href="#contato" class="btn-header">Falar com Especialista</a>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="hero">
+        <video class="hero-video-bg" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&q=80">
+            <source src="https://cdn.coverr.co/videos/coverr-aerial-view-of-luxury-villa-7124/1080p.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <span class="hero-badge">Imobiliária Premium</span>
+            <h1>O imóvel ideal para o <em>próximo capítulo</em> da sua vida.</h1>
+            <p class="hero-subtitle">Encontre imóveis exclusivos com atendimento personalizado e consultoria especializada.</p>
+            <div class="hero-buttons">
+                <a href="#catalogo" class="btn-primary">Buscar Imóveis</a>
+                <a href="#contato" class="btn-outline">Falar com Especialista</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- HERO SEARCH BAR -->
+    <div class="hero-search-bar" id="heroSearchBar">
+        <select id="heroFinalidade" aria-label="Finalidade">
+            <option value="">Comprar ou Alugar</option>
+            <option value="venda">Comprar</option>
+            <option value="aluguel">Alugar</option>
+            <option value="temporada">Temporada</option>
+        </select>
+        <select id="heroTipo" aria-label="Tipo de imóvel">
+            <option value="">Tipo do imóvel</option>
+            <option value="casa">Casa</option>
+            <option value="apartamento">Apartamento</option>
+            <option value="cobertura">Cobertura</option>
+            <option value="terreno">Terreno</option>
+            <option value="fazenda">Fazenda</option>
+            <option value="chacara">Chácara</option>
+            <option value="sala-comercial">Sala Comercial</option>
+            <option value="galpao">Galpão</option>
+        </select>
+        <input type="text" id="heroCidade" placeholder="Cidade" aria-label="Cidade">
+        <input type="text" id="heroBairro" placeholder="Bairro" aria-label="Bairro">
+        <select id="heroPreco" aria-label="Faixa de preço">
+            <option value="">Faixa de preço</option>
+            <option value="0-500000">Até R$ 500 mil</option>
+            <option value="500000-1000000">R$ 500 mil - R$ 1 mi</option>
+            <option value="1000000-3000000">R$ 1 mi - R$ 3 mi</option>
+            <option value="3000000-8000000">R$ 3 mi - R$ 8 mi</option>
+            <option value="8000000-999999999">Acima de R$ 8 mi</option>
+        </select>
+        <button class="btn-search-hero" onclick="applyHeroSearch()">Buscar</button>
+    </div>
+
+    <!-- CATÁLOGO -->
+    <section class="section section-cream" id="catalogo">
+        <div class="container">
+            <span class="section-label">Catálogo Exclusivo</span>
+            <h2 class="section-title">Imóveis Selecionados</h2>
+            <p class="section-subtitle">Cada imóvel do nosso portfólio passa por uma curadoria rigorosa.</p>
+
+            <div class="filters-container" id="filtersContainer">
+                <div class="filter-group">
+                    <label>Tipo</label>
+                    <select id="filterTipo"><option value="">Todos</option><option value="casa">Casa</option><option value="apartamento">Apartamento</option><option value="cobertura">Cobertura</option><option value="terreno">Terreno</option><option value="fazenda">Fazenda</option><option value="chacara">Chácara</option><option value="sala-comercial">Sala Comercial</option><option value="galpao">Galpão</option></select>
+                </div>
+                <div class="filter-group">
+                    <label>Finalidade</label>
+                    <select id="filterFinalidade"><option value="">Todas</option><option value="venda">Venda</option><option value="aluguel">Aluguel</option><option value="temporada">Temporada</option></select>
+                </div>
+                <div class="filter-group">
+                    <label>Quartos</label>
+                    <select id="filterQuartos"><option value="">Qualquer</option><option value="1">1+</option><option value="2">2+</option><option value="3">3+</option><option value="4">4+</option><option value="5">5+</option></select>
+                </div>
+                <div class="filter-group">
+                    <label>Banheiros</label>
+                    <select id="filterBanheiros"><option value="">Qualquer</option><option value="1">1+</option><option value="2">2+</option><option value="3">3+</option><option value="4">4+</option></select>
+                </div>
+                <div class="filter-group">
+                    <label>Vagas</label>
+                    <select id="filterGaragem"><option value="">Qualquer</option><option value="1">1+</option><option value="2">2+</option><option value="3">3+</option></select>
+                </div>
+                <div class="filter-group">
+                    <label>Preço Máx (R$)</label>
+                    <input type="number" id="filterPrecoMax" placeholder="Ex: 5000000">
+                </div>
+                <div class="filter-group">
+                    <label>Destaques</label>
+                    <select id="filterDestaque"><option value="">Todos</option><option value="piscina">Piscina</option><option value="area-gourmet">Área Gourmet</option><option value="financiamento">Financiamento</option></select>
+                </div>
+                <button class="btn-filter" onclick="applyFilters()">Filtrar</button>
+                <button class="btn-filter-reset" onclick="resetFilters()">Limpar</button>
+            </div>
+
+            <div class="properties-grid" id="propertiesGrid"></div>
+            <div class="no-results" id="noResults" style="display:none;">Nenhum imóvel encontrado.</div>
+        </div>
+    </section>
+
+    <!-- CONSULTORIA -->
+    <section class="section" id="consultoria">
+        <div class="container">
+            <div class="consultoria-grid">
+                <div class="consultoria-image">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&q=80" alt="Corretor Prime Residence" loading="lazy">
+                </div>
+                <div class="consultoria-text">
+                    <span class="section-label">Consultoria Especializada</span>
+                    <h2 class="section-title">Especialistas em transformar sonhos em patrimônio.</h2>
+                    <p class="section-subtitle">Nossa equipe oferece atendimento personalizado e profundo conhecimento das melhores regiões.</p>
+                    <div class="stat-row">
+                        <div class="stat-item"><span class="stat-number">+1.200</span><p>Imóveis Negociados</p></div>
+                        <div class="stat-item"><span class="stat-number">98%</span><p>Clientes Satisfeitos</p></div>
+                        <div class="stat-item"><span class="stat-number">+15</span><p>Anos de Experiência</p></div>
+                    </div>
+                    <a href="#contato" class="btn-primary">Solicitar Consultoria</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DESTAQUES -->
+    <section class="section section-cream" id="destaques">
+        <div class="container">
+            <span class="section-label">Seleção Especial</span>
+            <h2 class="section-title">Imóveis em Destaque</h2>
+            <p class="section-subtitle">Lançamentos e oportunidades únicas do nosso portfólio premium.</p>
+            <div class="properties-grid" id="destaquesGrid"></div>
+        </div>
+    </section>
+
+    <!-- DEPOIMENTOS -->
+    <section class="section section-dark" id="depoimentos">
+        <div class="container">
+            <span class="section-label">Prova Social</span>
+            <h2 class="section-title" style="color:var(--white)">O Que Nossos Clientes Dizem</h2>
+            <p class="section-subtitle" style="color:rgba(255,255,255,0.6)">Histórias reais de quem encontrou o imóvel ideal.</p>
+            <div class="testimonials-grid">
+                <div class="testimonial-card"><div class="stars">★★★★★</div><div class="quote-icon">“</div><p>"Encontramos nosso imóvel ideal com total segurança. A Prime Residence superou todas as expectativas."</p><p class="author">Família Albuquerque</p><p class="author-role">Casa em condomínio fechado</p></div>
+                <div class="testimonial-card"><div class="stars">★★★★★</div><div class="quote-icon">“</div><p>"Atendimento personalizado fez toda diferença. Me senti seguro durante todo o processo."</p><p class="author">Roberto Carvalho</p><p class="author-role">Investidor, cobertura duplex</p></div>
+                <div class="testimonial-card"><div class="stars">★★★★★</div><div class="quote-icon">“</div><p>"A curadoria de imóveis é realmente diferenciada. Visitei apenas opções que se encaixavam no meu perfil."</p><p class="author">Carla Mendonça</p><p class="author-role">Empresária, casa alto padrão</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ÁREAS DE ATUAÇÃO -->
+    <section class="section" id="areas">
+        <div class="container">
+            <span class="section-label">Onde Atuamos</span>
+            <h2 class="section-title">Áreas de Atuação</h2>
+            <p class="section-subtitle">Presentes nos bairros e regiões mais valorizadas.</p>
+            <div class="areas-grid">
+                <div class="area-card"><img src="https://images.unsplash.com/photo-1515263487990-61b07816b324?w=600&q=80" alt="Jardim Europa" loading="lazy"><div class="area-card-overlay"><span>Jardim Europa</span></div></div>
+                <div class="area-card"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80" alt="Alphaville" loading="lazy"><div class="area-card-overlay"><span>Alphaville</span></div></div>
+                <div class="area-card"><img src="https://images.unsplash.com/photo-1600566753086-00f18f6b0050?w=600&q=80" alt="Itaim Bibi" loading="lazy"><div class="area-card-overlay"><span>Itaim Bibi</span></div></div>
+                <div class="area-card"><img src="https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=600&q=80" alt="Vila Nova Conceição" loading="lazy"><div class="area-card-overlay"><span>Vila Nova Conceição</span></div></div>
+                <div class="area-card"><img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=600&q=80" alt="Morumbi" loading="lazy"><div class="area-card-overlay"><span>Morumbi</span></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DIFERENCIAIS -->
+    <section class="section section-dark" id="diferenciais">
+        <div class="container">
+            <span class="section-label">Nossos Diferenciais</span>
+            <h2 class="section-title" style="color:var(--white)">Por Que Escolher a Prime Residence</h2>
+            <p class="section-subtitle" style="color:rgba(255,255,255,0.6)">Compromisso com a excelência em cada etapa.</p>
+            <div class="diferenciais-grid">
+                <div class="diferencial-card"><div class="dif-line"></div><h4>Atendimento Personalizado</h4><p>Acompanhamento individual com corretor dedicado.</p></div>
+                <div class="diferencial-card"><div class="dif-line"></div><h4>Segurança Jurídica</h4><p>Negociações seguras e transparentes com assessoria completa.</p></div>
+                <div class="diferencial-card"><div class="dif-line"></div><h4>Curadoria de Imóveis</h4><p>Seleção rigorosa de imóveis de alto padrão.</p></div>
+                <div class="diferencial-card"><div class="dif-line"></div><h4>Agilidade</h4><p>Processos rápidos e eficientes, sem burocracia.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AGENDAMENTO -->
+    <section class="section section-cream" id="agendamento">
+        <div class="container">
+            <span class="section-label">Agende Sua Visita</span>
+            <h2 class="section-title">Visita Exclusiva</h2>
+            <p class="section-subtitle">Preencha o formulário e um especialista entrará em contato.</p>
+            <form class="agendamento-form" id="agendamentoForm" onsubmit="handleAgendamento(event)">
+                <div class="form-group"><label>Nome Completo *</label><input type="text" placeholder="Seu nome" required id="agNome"></div>
+                <div class="form-group"><label>Telefone *</label><input type="tel" placeholder="(11) 99999-9999" required id="agTelefone"></div>
+                <div class="form-group"><label>E-mail *</label><input type="email" placeholder="seu@email.com" required id="agEmail"></div>
+                <div class="form-group"><label>Imóvel de Interesse</label><select id="agImovel"><option value="">Selecione um imóvel</option></select></div>
+                <div class="form-group"><label>Data Desejada</label><input type="date" id="agData"></div>
+                <div class="form-group"><label>Horário Preferencial</label><select id="agHorario"><option value="">Selecione</option><option value="manha">Manhã (9h-12h)</option><option value="tarde">Tarde (14h-17h)</option><option value="sabado">Sábado (9h-12h)</option></select></div>
+                <div class="form-group full-width"><label>Mensagem (opcional)</label><textarea rows="3" placeholder="Conte-nos sobre o que você procura..." id="agMensagem"></textarea></div>
+                <button type="submit" class="btn-submit">Agendar Visita Exclusiva</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section class="section section-dark" id="contato" style="text-align:center;">
+        <div class="container">
+            <span class="section-label">Fale Conosco</span>
+            <h2 class="section-title" style="color:var(--white);">Pronto para encontrar o imóvel dos seus sonhos?</h2>
+            <p class="section-subtitle" style="color:rgba(255,255,255,0.6);max-width:600px;margin:0 auto 28px;">Nossos especialistas estão preparados para oferecer a melhor consultoria imobiliária.</p>
+            <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
+                <a href="https://wa.me/5511999999999" target="_blank" rel="noopener" class="btn-primary" style="background:#25D366;color:white;">WhatsApp</a>
+                <a href="tel:+5511999999999" class="btn-outline">Ligar Agora</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-grid">
+            <div><h5>PRIME RESIDENCE</h5><p style="color:rgba(255,255,255,0.45);">Imobiliária premium especializada em imóveis de alto padrão.</p></div>
+            <div><h5>Links</h5><a href="#catalogo">Catálogo</a><a href="#consultoria">Consultoria</a><a href="#destaques">Destaques</a><a href="#agendamento">Agendar Visita</a></div>
+            <div><h5>Contato</h5><a href="tel:+5511999999999">(11) 99999-9999</a><a href="mailto:contato@primeresidence.com.br">contato@primeresidence.com.br</a><a href="#">São Paulo - SP</a></div>
+            <div><h5>Redes Sociais</h5><a href="#">Instagram</a><a href="#">LinkedIn</a><a href="#">YouTube</a></div>
+        </div>
+        <div class="footer-bottom">&copy; 2026 Prime Residence Imóveis. Todos os direitos reservados.</div>
+    </footer>
+
+    <a href="https://wa.me/5511999999999" target="_blank" rel="noopener" class="whatsapp-float" aria-label="WhatsApp">W</a>
+    <div class="toast" id="toast"></div>
+
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal" id="modalContent">
+            <button class="modal-close" onclick="closeModal()">✕</button>
+            <div class="modal-gallery" id="modalGallery">
+                <img src="" alt="Imóvel" id="modalMainImage">
+                <div class="modal-gallery-nav">
+                    <button onclick="modalPrevImage()">◂</button>
+                    <button onclick="modalNextImage()">▸</button>
+                </div>
+            </div>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+    </div>
+
+    <script>
+        const allProperties = [
+            { id: 1, tipo: 'casa', finalidade: 'venda', titulo: 'Mansão Contemporânea com Piscina', preco: 5800000, precoDisplay: 'R$ 5.800.000', local: 'Jardim Europa, São Paulo', metragem: 680, quartos: 5, banheiros: 6, garagem: 4, destaque: 'piscina', aceitaFinanciamento: true, imagens: ['https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80','https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80','https://images.unsplash.com/photo-1600566753086-00f18f6b0050?w=800&q=80'], descricao: 'Deslumbrante mansão contemporânea no coração do Jardim Europa.', plantaUrl: 'https://images.unsplash.com/photo-1628624747186-a941c5a9f5a5?w=600&q=80', tag: 'Lançamento' },
+            { id: 2, tipo: 'apartamento', finalidade: 'venda', titulo: 'Cobertura Duplex Vista Panorâmica', preco: 4200000, precoDisplay: 'R$ 4.200.000', local: 'Itaim Bibi, São Paulo', metragem: 420, quartos: 4, banheiros: 5, garagem: 3, destaque: 'area-gourmet', aceitaFinanciamento: true, imagens: ['https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=800&q=80','https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800&q=80'], descricao: 'Cobertura duplex com vista 360° da cidade.', tag: 'Exclusivo' },
+            { id: 3, tipo: 'casa', finalidade: 'aluguel', titulo: 'Residência Premium em Condomínio', preco: 18500, precoDisplay: 'R$ 18.500/mês', local: 'Alphaville, Barueri', metragem: 520, quartos: 4, banheiros: 4, garagem: 3, destaque: 'piscina', aceitaFinanciamento: false, imagens: ['https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&q=80'], descricao: 'Linda residência em condomínio fechado de alto padrão.', tag: 'Disponível' },
+            { id: 4, tipo: 'cobertura', finalidade: 'venda', titulo: 'Cobertura Triplex com Piscina', preco: 7500000, precoDisplay: 'R$ 7.500.000', local: 'Vila Nova Conceição, São Paulo', metragem: 580, quartos: 5, banheiros: 7, garagem: 5, destaque: 'piscina', aceitaFinanciamento: true, imagens: ['https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80'], descricao: 'A mais impressionante cobertura triplex da região.', tag: 'Super Luxo' },
+            { id: 5, tipo: 'casa', finalidade: 'temporada', titulo: 'Casa de Praia Luxo Temporada', preco: 25000, precoDisplay: 'R$ 25.000/mês', local: 'Jurerê Internacional, Florianópolis', metragem: 400, quartos: 5, banheiros: 6, garagem: 3, destaque: 'piscina', aceitaFinanciamento: false, imagens: ['https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&q=80'], descricao: 'Casa de praia luxuosa frente ao mar.', tag: 'Temporada' },
+            { id: 6, tipo: 'apartamento', finalidade: 'venda', titulo: 'Apartamento Vista Parque', preco: 2900000, precoDisplay: 'R$ 2.900.000', local: 'Morumbi, São Paulo', metragem: 350, quartos: 3, banheiros: 3, garagem: 2, destaque: 'area-gourmet', aceitaFinanciamento: true, imagens: ['https://images.unsplash.com/photo-1600047509358-9dc75507daeb?w=800&q=80'], descricao: 'Apartamento amplo com vista permanente para o parque.', tag: 'Oportunidade' },
+            { id: 7, tipo: 'terreno', finalidade: 'venda', titulo: 'Terreno Exclusivo Granja Viana', preco: 1800000, precoDisplay: 'R$ 1.800.000', local: 'Granja Viana, Cotia', metragem: 2000, quartos: 0, banheiros: 0, garagem: 0, destaque: '', aceitaFinanciamento: true, imagens: ['https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&q=80'], descricao: 'Terreno plano de 2.000m² em localização privilegiada.', tag: 'Terreno Noble' },
+            { id: 8, tipo: 'fazenda', finalidade: 'venda', titulo: 'Fazenda com Sede Principal', preco: 12000000, precoDisplay: 'R$ 12.000.000', local: 'Itu, Interior de SP', metragem: 50000, quartos: 8, banheiros: 10, garagem: 8, destaque: 'piscina', aceitaFinanciamento: true, imagens: ['https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?w=800&q=80'], descricao: 'Magnífica fazenda com 50 hectares.', tag: 'Fazenda Premium' }
+        ];
+
+        let filteredProperties = [...allProperties];
+        let currentModalProperty = null;
+        let currentModalImageIndex = 0;
+
+        function renderProperties(properties, gridId) {
+            const grid = document.getElementById(gridId);
+            if (!grid || properties.length === 0) { if(grid) grid.innerHTML = ''; return; }
+            grid.innerHTML = properties.map(p => {
+                const features = [];
+                if (p.metragem) features.push(`${p.metragem}m²`);
+                if (p.quartos) features.push(`${p.quartos} Quartos`);
+                if (p.banheiros) features.push(`${p.banheiros} Banheiros`);
+                if (p.garagem) features.push(`${p.garagem} Vagas`);
+                const destaqueText = [p.destaque === 'piscina' ? 'Piscina' : '', p.destaque === 'area-gourmet' ? 'Área Gourmet' : '', p.aceitaFinanciamento ? 'Financiamento' : ''].filter(Boolean).join(' · ') || 'Alto Padrão';
+                return `<div class="property-card" onclick="openPropertyModal(${p.id})">
+                    <div class="property-card-image"><img src="${p.imagens[0]}" alt="${p.titulo}" loading="lazy">${p.tag ? `<span class="property-card-badge">${p.tag}</span>` : ''}<span class="property-card-tag">${destaqueText}</span></div>
+                    <div class="property-card-body"><div class="property-card-price">${p.precoDisplay}</div><div class="property-card-location">${p.local}</div><div class="property-card-features">${features.join(' · ')}</div>
+                    <div class="property-card-actions" onclick="event.stopPropagation()"><button class="btn-sm btn-sm-dark" onclick="openPropertyModal(${p.id})">Detalhes</button><button class="btn-sm btn-sm-gold" onclick="quickSchedule(${p.id})">Agendar</button><a href="https://wa.me/5511999999999?text=${encodeURIComponent('Olá, interesse no imóvel: '+p.titulo)}" target="_blank" rel="noopener" class="btn-sm btn-sm-outline">WhatsApp</a></div></div></div>`;
+            }).join('');
+        }
+
+        function renderAll() {
+            renderProperties(filteredProperties, 'propertiesGrid');
+            const destaques = allProperties.filter(p => p.tag && ['Lançamento','Super Luxo','Exclusivo'].includes(p.tag) || p.preco > 4000000).slice(0,4);
+            renderProperties(destaques, 'destaquesGrid');
+            const agImovelSelect = document.getElementById('agImovel');
+            if(agImovelSelect) agImovelSelect.innerHTML = '<option value="">Selecione um imóvel</option>' + allProperties.map(p => `<option value="${p.id}">${p.titulo} - ${p.precoDisplay}</option>`).join('');
+            document.getElementById('noResults').style.display = filteredProperties.length === 0 ? 'block' : 'none';
+        }
+
+        function applyFilters() {
+            const tipo = document.getElementById('filterTipo')?.value || '';
+            const finalidade = document.getElementById('filterFinalidade')?.value || '';
+            const quartos = parseInt(document.getElementById('filterQuartos')?.value) || 0;
+            const banheiros = parseInt(document.getElementById('filterBanheiros')?.value) || 0;
+            const garagem = parseInt(document.getElementById('filterGaragem')?.value) || 0;
+            const precoMax = parseFloat(document.getElementById('filterPrecoMax')?.value) || Infinity;
+            const destaque = document.getElementById('filterDestaque')?.value || '';
+            filteredProperties = allProperties.filter(p => {
+                if(tipo && p.tipo !== tipo) return false;
+                if(finalidade && p.finalidade !== finalidade) return false;
+                if(quartos && p.quartos < quartos) return false;
+                if(banheiros && p.banheiros < banheiros) return false;
+                if(garagem && p.garagem < garagem) return false;
+                if(p.preco > precoMax) return false;
+                if(destaque === 'piscina' && p.destaque !== 'piscina') return false;
+                if(destaque === 'area-gourmet' && p.destaque !== 'area-gourmet') return false;
+                if(destaque === 'financiamento' && !p.aceitaFinanciamento) return false;
+                return true;
+            });
+            renderAll();
+            document.getElementById('catalogo').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function resetFilters() {
+            ['filterTipo','filterFinalidade','filterQuartos','filterBanheiros','filterGaragem','filterPrecoMax','filterDestaque'].forEach(id => { const el = document.getElementById(id); if(el) el.value = ''; });
+            filteredProperties = [...allProperties];
+            renderAll();
+            showToast('Filtros limpos');
+        }
+
+        function applyHeroSearch() {
+            const finalidade = document.getElementById('heroFinalidade')?.value || '';
+            const tipo = document.getElementById('heroTipo')?.value || '';
+            const cidade = (document.getElementById('heroCidade')?.value || '').toLowerCase();
+            const bairro = (document.getElementById('heroBairro')?.value || '').toLowerCase();
+            const precoRange = document.getElementById('heroPreco')?.value || '';
+            filteredProperties = allProperties.filter(p => {
+                if(finalidade && p.finalidade !== finalidade) return false;
+                if(tipo && p.tipo !== tipo) return false;
+                if(cidade && !p.local.toLowerCase().includes(cidade)) return false;
+                if(bairro && !p.local.toLowerCase().includes(bairro)) return false;
+                if(precoRange) { const [min,max] = precoRange.split('-').map(Number); if(p.preco < min || (max && p.preco > max)) return false; }
+                return true;
+            });
+            renderAll();
+            document.getElementById('catalogo').scrollIntoView({ behavior: 'smooth' });
+            if(!filteredProperties.length) showToast('Nenhum imóvel encontrado.');
+        }
+
+        function openPropertyModal(id) {
+            const prop = allProperties.find(p => p.id === id);
+            if(!prop) return;
+            currentModalProperty = prop;
+            currentModalImageIndex = 0;
+            updateModalImage();
+            document.getElementById('modalBody').innerHTML = `
+                <h2>${prop.titulo}</h2><div class="modal-price">${prop.precoDisplay}</div>
+                <div class="modal-features-row">${prop.metragem?`<span>${prop.metragem}m²</span>`:''} ${prop.quartos?`<span>${prop.quartos} Quartos</span>`:''} ${prop.banheiros?`<span>${prop.banheiros} Banheiros</span>`:''} ${prop.garagem?`<span>${prop.garagem} Vagas</span>`:''} <span>${prop.local}</span></div>
+                <p class="modal-desc">${prop.descricao}</p>
+                ${prop.plantaUrl ? `<div style="margin:12px 0"><strong>Planta Baixa:</strong><br><img src="${prop.plantaUrl}" alt="Planta" style="width:100%;max-width:300px;border-radius:8px;margin-top:6px;"></div>` : ''}
+                <div class="simulator-box"><h4>Simulação de Financiamento</h4><div class="simulator-row"><input type="number" id="simValor" value="${prop.preco}" readonly><input type="number" id="simEntrada" placeholder="Entrada" value="${Math.round(prop.preco*0.2)}"><input type="number" id="simPrazo" placeholder="Meses" value="360"><button class="btn-sm btn-sm-dark" onclick="simularFinanciamento()">Simular</button></div><div class="simulator-result" id="simResultado"></div></div>
+                <div class="modal-actions-fixed"><button class="btn-primary" onclick="quickSchedule(${prop.id});closeModal();">Agendar Visita</button><a href="https://wa.me/5511999999999?text=${encodeURIComponent('Olá, interesse no imóvel: '+prop.titulo)}" target="_blank" rel="noopener" class="btn-sm btn-sm-outline">WhatsApp</a><button class="btn-sm btn-sm-outline" onclick="closeModal()">Fechar</button></div>`;
+            document.getElementById('modalOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => simularFinanciamento(), 200);
+        }
+
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.remove('active');
+            document.body.style.overflow = '';
+            currentModalProperty = null;
+        }
+
+        function updateModalImage() {
+            if(!currentModalProperty) return;
+            document.getElementById('modalMainImage').src = currentModalProperty.imagens[currentModalImageIndex] || currentModalProperty.imagens[0];
+        }
+        function modalNextImage() { if(currentModalProperty) { currentModalImageIndex = (currentModalImageIndex + 1) % currentModalProperty.imagens.length; updateModalImage(); } }
+        function modalPrevImage() { if(currentModalProperty) { currentModalImageIndex = (currentModalImageIndex - 1 + currentModalProperty.imagens.length) % currentModalProperty.imagens.length; updateModalImage(); } }
+
+        function simularFinanciamento() {
+            const valor = parseFloat(document.getElementById('simValor')?.value) || 0;
+            const entrada = parseFloat(document.getElementById('simEntrada')?.value) || 0;
+            const prazo = parseInt(document.getElementById('simPrazo')?.value) || 360;
+            const financiado = Math.max(0, valor - entrada);
+            const taxa = Math.pow(1.095, 1/12) - 1;
+            const parcela = financiado > 0 && taxa > 0 ? financiado * (taxa * Math.pow(1+taxa, prazo)) / (Math.pow(1+taxa, prazo) - 1) : 0;
+            document.getElementById('simResultado').innerHTML = financiado > 0 ? `Financiado: R$ ${financiado.toLocaleString('pt-BR')} | Parcela: <strong>R$ ${parcela.toLocaleString('pt-BR',{minimumFractionDigits:2})}</strong>` : 'Preencha os valores.';
+        }
+
+        function quickSchedule(id) { document.getElementById('agImovel').value = id; document.getElementById('agendamento').scrollIntoView({behavior:'smooth'}); }
+        function handleAgendamento(e) {
+            e.preventDefault();
+            const msg = `Olá! Agendamento: Nome: ${document.getElementById('agNome').value} Tel: ${document.getElementById('agTelefone').value}`;
+            window.open(`https://wa.me/5511999999999?text=${encodeURIComponent(msg)}`, '_blank');
+            showToast('Redirecionando para WhatsApp...');
+            document.getElementById('agendamentoForm').reset();
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg; toast.classList.add('show');
+            clearTimeout(toast._t); toast._t = setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            const nav = document.getElementById('mainNav');
+            nav.classList.toggle('mobile-open');
+            this.textContent = nav.classList.contains('mobile-open') ? '✕' : '☰';
+        });
+        document.querySelectorAll('#mainNav a').forEach(a => a.addEventListener('click', () => {
+            document.getElementById('mainNav').classList.remove('mobile-open');
+            document.getElementById('mobileMenuBtn').textContent = '☰';
+        }));
+
+        window.addEventListener('scroll', () => {
+            document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+        });
+        document.getElementById('modalOverlay').addEventListener('click', function(e) { if(e.target === this) closeModal(); });
+        document.addEventListener('keydown', function(e) {
+            if(e.key === 'Escape') closeModal();
+        });
+
+        renderAll();
+    </script>
+</body>
+</html>

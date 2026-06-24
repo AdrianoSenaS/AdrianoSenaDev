@@ -1,0 +1,1312 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Oficina mecânica premium especializada em manutenção automotiva de alto padrão. Diagnóstico preciso, equipamentos modernos e profissionais certificados. Solicite seu orçamento.">
+    <meta name="keywords" content="oficina mecânica premium, manutenção automotiva, diagnóstico automotivo, revisão completa, mecânica de alto padrão, oficina de luxo">
+    <meta name="author" content="AutoPrime Premium">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="AutoPrime Premium | Oficina Mecânica de Alto Padrão">
+    <meta property="og:description" content="Seu veículo merece atendimento de alto nível. Diagnóstico preciso e manutenção especializada.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
+    <title>AutoPrime Premium | Oficina Mecânica de Alto Padrão</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'deep-black': '#0A0A0A',
+                        'graphite': '#151515',
+                        'metallic': '#2A2A2A',
+                        'electric-blue': '#0066FF',
+                        'electric-blue-light': '#1a7fff',
+                        'electric-blue-dark': '#0052cc',
+                    },
+                    fontFamily: {
+                        'sans': ['"Inter"', 'system-ui', '-apple-system', 'sans-serif'],
+                        'display': ['"Outfit"', '"Inter"', 'system-ui', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.8s ease-out forwards',
+                        'slide-up': 'slideUp 0.8s ease-out forwards',
+                        'slide-down': 'slideDown 0.5s ease-out forwards',
+                        'pulse-glow': 'pulseGlow 2s ease-in-out infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'scroll-indicator': 'scrollIndicator 2s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        slideDown: {
+                            '0%': { opacity: '0', transform: 'translateY(-20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { boxShadow: '0 0 20px rgba(0,102,255,0.3)' },
+                            '50%': { boxShadow: '0 0 40px rgba(0,102,255,0.6)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        scrollIndicator: {
+                            '0%, 100%': { transform: 'translateY(0)', opacity: '1' },
+                            '50%': { transform: 'translateY(10px)', opacity: '0.5' },
+                        },
+                    },
+                },
+            },
+        };
+    </script>
+
+    <!-- Google Fonts: Inter + Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js">
+    </script>
+
+    <style>
+        :root {
+            --deep-black: #0A0A0A;
+            --graphite: #151515;
+            --metallic: #2A2A2A;
+            --electric-blue: #0066FF;
+            --white: #FFFFFF;
+        }
+
+        * {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--deep-black);
+            color: #e5e5e5;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Scrollbar premium */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--deep-black);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--metallic);
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--electric-blue);
+        }
+
+        /* Glassmorphism */
+        .glass {
+            background: rgba(21, 21, 21, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .glass-light {
+            background: rgba(42, 42, 42, 0.5);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* Card hover glow */
+        .card-glow {
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-glow::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center,
+                    rgba(0, 102, 255, 0.08) 0%,
+                    transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .card-glow:hover::before {
+            opacity: 1;
+        }
+
+        .card-glow:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(0, 102, 255, 0.2),
+                0 0 40px rgba(0, 102, 255, 0.1);
+        }
+
+        .card-glow>* {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Parallax hero */
+        .hero-parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        @media (max-width: 768px) {
+            .hero-parallax {
+                background-attachment: scroll;
+            }
+        }
+
+        /* Input focus styles */
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--electric-blue) !important;
+            box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        /* Button hover animation */
+        .btn-premium {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            z-index: 1;
+        }
+
+        .btn-premium::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+            z-index: -1;
+        }
+
+        .btn-premium:hover::after {
+            width: 400px;
+            height: 400px;
+        }
+
+        /* Star rating */
+        .star-filled {
+            fill: #F59E0B;
+        }
+
+        /* Animated gradient border */
+        .gradient-border {
+            position: relative;
+        }
+
+        .gradient-border::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--electric-blue), transparent);
+            transform: scaleX(0);
+            transition: transform 0.5s ease;
+            transform-origin: center;
+        }
+
+        .gradient-border.visible::after {
+            transform: scaleX(1);
+        }
+
+        /* Mobile menu */
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+
+        /* Reveal animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 {
+            transition-delay: 0.1s;
+        }
+        .reveal-delay-2 {
+            transition-delay: 0.2s;
+        }
+        .reveal-delay-3 {
+            transition-delay: 0.3s;
+        }
+        .reveal-delay-4 {
+            transition-delay: 0.4s;
+        }
+        .reveal-delay-5 {
+            transition-delay: 0.5s;
+        }
+
+        /* Loading shimmer */
+        @keyframes shimmer {
+            0% {
+                background-position: -200% 0;
+            }
+            100% {
+                background-position: 200% 0;
+            }
+        }
+
+        /* Success toast */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 9999;
+            transform: translateY(120px);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .toast.show {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-deep-black text-gray-200 antialiased">
+
+    <!-- ==================== HEADER / NAVEGAÇÃO ==================== -->
+    <header id="header" class="fixed top-0 left-0 w-full z-50 transition-all duration-400 glass">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 lg:h-20">
+                <!-- Logo -->
+                <a href="#hero" class="flex items-center gap-2 group">
+                    <div class="w-10 h-10 bg-electric-blue rounded-lg flex items-center justify-center transition-all duration-300 group-hover:shadow-lg group-hover:shadow-electric-blue/30">
+                        <i data-lucide="car" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <span class="text-white font-display font-bold text-xl tracking-tight">
+                        Auto<span class="text-electric-blue">Prime</span>
+                    </span>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex items-center gap-8">
+                    <a href="#sobre" class="text-sm font-medium text-gray-300 hover:text-electric-blue transition-colors duration-300">Sobre</a>
+                    <a href="#servicos" class="text-sm font-medium text-gray-300 hover:text-electric-blue transition-colors duration-300">Serviços</a>
+                    <a href="#diferenciais" class="text-sm font-medium text-gray-300 hover:text-electric-blue transition-colors duration-300">Diferenciais</a>
+                    <a href="#portfolio" class="text-sm font-medium text-gray-300 hover:text-electric-blue transition-colors duration-300">Portfólio</a>
+                    <a href="#depoimentos" class="text-sm font-medium text-gray-300 hover:text-electric-blue transition-colors duration-300">Depoimentos</a>
+                    <a href="#agendamento" class="text-sm font-medium text-gray-300 hover:text-electric-blue transition-colors duration-300">Agendamento</a>
+                </div>
+
+                <!-- Desktop CTAs -->
+                <div class="hidden lg:flex items-center gap-3">
+                    <a href="#orcamento" class="btn-premium px-5 py-2.5 bg-transparent border border-electric-blue text-electric-blue rounded-full text-sm font-semibold hover:bg-electric-blue hover:text-white transition-all duration-300">
+                        Orçamento
+                    </a>
+                    <a href="#agendamento" class="btn-premium px-5 py-2.5 bg-electric-blue text-white rounded-full text-sm font-semibold hover:bg-electric-blue-light transition-all duration-300 shadow-lg shadow-electric-blue/25">
+                        Agendar
+                    </a>
+                </div>
+
+                <!-- Mobile Hamburger -->
+                <button id="mobile-menu-btn" class="lg:hidden relative w-10 h-10 flex flex-col items-center justify-center gap-1.5 z-50" aria-label="Abrir menu">
+                    <span class="block w-6 h-0.5 bg-white rounded-full transition-all duration-300 origin-center" id="bar1"></span>
+                    <span class="block w-6 h-0.5 bg-white rounded-full transition-all duration-300 origin-center" id="bar2"></span>
+                    <span class="block w-4 h-0.5 bg-white rounded-full transition-all duration-300 origin-center ml-auto" id="bar3"></span>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 w-full max-w-sm h-screen bg-graphite/98 backdrop-blur-xl z-40 flex flex-col pt-24 px-8 lg:hidden">
+                <div class="flex flex-col gap-6 text-lg">
+                    <a href="#sobre" class="mobile-link text-gray-300 hover:text-electric-blue transition-colors duration-300 font-medium py-2 border-b border-white/5">Sobre Nós</a>
+                    <a href="#servicos" class="mobile-link text-gray-300 hover:text-electric-blue transition-colors duration-300 font-medium py-2 border-b border-white/5">Serviços</a>
+                    <a href="#diferenciais" class="mobile-link text-gray-300 hover:text-electric-blue transition-colors duration-300 font-medium py-2 border-b border-white/5">Diferenciais</a>
+                    <a href="#portfolio" class="mobile-link text-gray-300 hover:text-electric-blue transition-colors duration-300 font-medium py-2 border-b border-white/5">Portfólio</a>
+                    <a href="#depoimentos" class="mobile-link text-gray-300 hover:text-electric-blue transition-colors duration-300 font-medium py-2 border-b border-white/5">Depoimentos</a>
+                    <a href="#agendamento" class="mobile-link text-gray-300 hover:text-electric-blue transition-colors duration-300 font-medium py-2 border-b border-white/5">Agendamento</a>
+                </div>
+                <div class="flex flex-col gap-3 mt-8">
+                    <a href="#orcamento" class="mobile-link btn-premium w-full text-center py-3 bg-transparent border border-electric-blue text-electric-blue rounded-full font-semibold hover:bg-electric-blue hover:text-white transition-all duration-300">
+                        Solicitar Orçamento
+                    </a>
+                    <a href="#agendamento" class="mobile-link btn-premium w-full text-center py-3 bg-electric-blue text-white rounded-full font-semibold hover:bg-electric-blue-light transition-all duration-300">
+                        Agendar Serviço
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Overlay for mobile menu -->
+    <div id="mobile-overlay" class="fixed inset-0 bg-black/60 z-30 hidden lg:hidden transition-opacity duration-400"></div>
+
+    <!-- ==================== HERO SECTION ==================== -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden hero-parallax"
+    style="background-image: url('https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=1920&q=80'); background-size: cover; background-position: center;">
+    <!-- Overlay escuro -->
+    <div class="absolute inset-0 bg-gradient-to-b from-deep-black/85 via-deep-black/75 to-deep-black/95 z-10"></div>
+
+    <!-- Partículas tecnológicas sutis -->
+    <div class="absolute inset-0 z-10 opacity-20">
+        <div class="absolute top-1/4 left-1/4 w-1 h-1 bg-electric-blue rounded-full animate-pulse"></div>
+        <div class="absolute top-1/3 right-1/3 w-0.5 h-0.5 bg-electric-blue rounded-full animate-pulse" style="animation-delay: 0.5s;"></div>
+        <div class="absolute bottom-1/3 left-1/2 w-1 h-1 bg-electric-blue rounded-full animate-pulse" style="animation-delay: 1s;"></div>
+        <div class="absolute top-1/2 right-1/4 w-0.5 h-0.5 bg-white rounded-full animate-pulse" style="animation-delay: 1.5s;"></div>
+        <div class="absolute bottom-1/4 left-1/3 w-1 h-1 bg-electric-blue-light rounded-full animate-pulse" style="animation-delay: 0.8s;"></div>
+    </div>
+
+    <!-- Linhas geométricas decorativas -->
+    <div class="absolute inset-0 z-10 opacity-10">
+        <div class="absolute top-20 left-10 w-32 h-px bg-gradient-to-r from-transparent via-electric-blue to-transparent"></div>
+        <div class="absolute bottom-40 right-10 w-48 h-px bg-gradient-to-r from-transparent via-electric-blue to-transparent"></div>
+        <div class="absolute top-1/2 left-0 w-px h-24 bg-gradient-to-b from-transparent via-electric-blue to-transparent"></div>
+        <div class="absolute top-1/3 right-0 w-px h-32 bg-gradient-to-b from-transparent via-electric-blue to-transparent"></div>
+    </div>
+
+    <!-- Conteúdo -->
+    <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-20">
+        <!-- Badge -->
+        <div class="inline-flex items-center gap-2 glass-light rounded-full px-4 py-2 mb-8 animate-fade-in">
+            <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+            <span class="text-xs sm:text-sm font-medium text-gray-300 tracking-wide uppercase">Oficina Premium • Atendimento Exclusivo</span>
+        </div>
+
+        <!-- Headline -->
+        <h1 class="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight mb-6 animate-slide-up max-w-4xl mx-auto tracking-tight">
+            Seu Veículo Merece
+            <span class="block text-electric-blue">Atendimento de Alto Nível</span>
+        </h1>
+
+        <!-- Subheadline -->
+        <p class="text-base sm:text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mb-10 animate-slide-up reveal-delay-1 leading-relaxed font-light">
+            Diagnóstico preciso, manutenção especializada e atendimento transparente para garantir máxima performance e segurança.
+        </p>
+
+        <!-- Botões -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16 animate-slide-up reveal-delay-2">
+            <a href="#orcamento" class="btn-premium px-8 py-4 bg-electric-blue text-white rounded-full text-base font-semibold hover:bg-electric-blue-light transition-all duration-300 shadow-xl shadow-electric-blue/30 inline-flex items-center justify-center gap-2 group">
+                Solicitar Orçamento
+                <i data-lucide="arrow-right" class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"></i>
+            </a>
+            <a href="#agendamento" class="btn-premium px-8 py-4 bg-transparent border-2 border-white/30 text-white rounded-full text-base font-semibold hover:bg-white/10 hover:border-white/50 transition-all duration-300 inline-flex items-center justify-center gap-2 group">
+                Agendar Serviço
+                <i data-lucide="calendar" class="w-5 h-5 transition-transform duration-300 group-hover:scale-110"></i>
+            </a>
+        </div>
+
+        <!-- Destaques rápidos -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto animate-slide-up reveal-delay-3">
+            <div class="glass-light rounded-2xl p-4 sm:p-5 text-center hover:bg-white/5 transition-all duration-300">
+                <i data-lucide="badge-check" class="w-7 h-7 text-electric-blue mx-auto mb-2"></i>
+                <p class="text-xs sm:text-sm font-semibold text-white">Mecânicos<br>Especializados</p>
+            </div>
+            <div class="glass-light rounded-2xl p-4 sm:p-5 text-center hover:bg-white/5 transition-all duration-300">
+                <i data-lucide="cpu" class="w-7 h-7 text-electric-blue mx-auto mb-2"></i>
+                <p class="text-xs sm:text-sm font-semibold text-white">Equipamentos<br>Modernos</p>
+            </div>
+            <div class="glass-light rounded-2xl p-4 sm:p-5 text-center hover:bg-white/5 transition-all duration-300">
+                <i data-lucide="shield-check" class="w-7 h-7 text-electric-blue mx-auto mb-2"></i>
+                <p class="text-xs sm:text-sm font-semibold text-white">Garantia dos<br>Serviços</p>
+            </div>
+            <div class="glass-light rounded-2xl p-4 sm:p-5 text-center hover:bg-white/5 transition-all duration-300">
+                <i data-lucide="zap" class="w-7 h-7 text-electric-blue mx-auto mb-2"></i>
+                <p class="text-xs sm:text-sm font-semibold text-white">Atendimento<br>Rápido</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 animate-scroll-indicator">
+        <span class="text-xs text-gray-500 tracking-widest uppercase">Scroll</span>
+        <i data-lucide="chevron-down" class="w-5 h-5 text-gray-500"></i>
+    </div>
+</section>
+
+<!-- ==================== SEÇÃO SOBRE ==================== -->
+<section id="sobre" class="py-20 lg:py-28 bg-graphite relative overflow-hidden">
+    <!-- Decoração de fundo -->
+    <div class="absolute top-0 right-0 w-96 h-96 bg-electric-blue/3 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4 pointer-events-none"></div>
+    <div class="absolute bottom-0 left-0 w-72 h-72 bg-electric-blue/2 rounded-full blur-3xl translate-y-1/2 -translate-x-1/4 pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center">
+            <!-- Coluna de texto -->
+            <div class="reveal">
+                <span class="text-electric-blue text-sm font-semibold tracking-widest uppercase mb-4 block">Nossa História</span>
+                <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
+                    Excelência e Precisão
+                    <span class="text-electric-blue">Desde 2008</span>
+                </h2>
+                <p class="text-gray-400 leading-relaxed mb-6 text-base sm:text-lg">
+                    A <strong class="text-white">AutoPrime Premium</strong> nasceu da paixão por automóveis e do compromisso com a excelência técnica. Somos uma oficina que une o melhor da tecnologia automotiva com um atendimento personalizado e transparente.
+                </p>
+                <p class="text-gray-400 leading-relaxed mb-8 text-base sm:text-lg">
+                    Nossa equipe é formada por profissionais certificados pelas principais montadoras, com constante atualização técnica. Utilizamos equipamentos de diagnóstico de última geração e trabalhamos apenas com peças de qualidade comprovada.
+                </p>
+                <a href="#agendamento" class="btn-premium inline-flex items-center gap-2 px-6 py-3 bg-electric-blue text-white rounded-full font-semibold hover:bg-electric-blue-light transition-all duration-300 shadow-lg shadow-electric-blue/25">
+                    Conheça Nossa Estrutura
+                    <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                </a>
+            </div>
+
+            <!-- Coluna de números -->
+            <div class="grid grid-cols-2 gap-6 reveal reveal-delay-2">
+                <div class="glass-light rounded-2xl p-6 sm:p-8 text-center group hover:bg-white/5 transition-all duration-300">
+                    <span class="text-4xl sm:text-5xl font-display font-extrabold text-electric-blue block mb-2" data-counter="16">0</span>
+                    <span class="text-sm text-gray-400 font-medium">Anos de Experiência</span>
+                </div>
+                <div class="glass-light rounded-2xl p-6 sm:p-8 text-center group hover:bg-white/5 transition-all duration-300">
+                    <span class="text-4xl sm:text-5xl font-display font-extrabold text-electric-blue block mb-2" data-counter="12500">0</span>
+                    <span class="text-sm text-gray-400 font-medium">Veículos Atendidos</span>
+                </div>
+                <div class="glass-light rounded-2xl p-6 sm:p-8 text-center group hover:bg-white/5 transition-all duration-300">
+                    <span class="text-4xl sm:text-5xl font-display font-extrabold text-electric-blue block mb-2" data-counter="9800">0</span>
+                    <span class="text-sm text-gray-400 font-medium">Clientes Satisfeitos</span>
+                </div>
+                <div class="glass-light rounded-2xl p-6 sm:p-8 text-center group hover:bg-white/5 transition-all duration-300">
+                    <span class="text-4xl sm:text-5xl font-display font-extrabold text-electric-blue block mb-2">4.9</span>
+                    <span class="text-sm text-gray-400 font-medium">Avaliação Média ★</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== SEÇÃO SERVIÇOS ==================== -->
+<section id="servicos" class="py-20 lg:py-28 bg-deep-black relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Cabeçalho da seção -->
+        <div class="text-center mb-16 reveal">
+            <span class="text-electric-blue text-sm font-semibold tracking-widest uppercase mb-4 block">Nossos Serviços</span>
+            <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+                Tecnologia e Precisão para<br>o Seu Veículo
+            </h2>
+            <p class="text-gray-400 max-w-2xl mx-auto text-base sm:text-lg">
+                Oferecemos uma gama completa de serviços automotivos com o mais alto padrão de qualidade.
+            </p>
+        </div>
+
+        <!-- Grid de serviços -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Card 1 -->
+            <div class="card-glow glass-light rounded-2xl p-6 sm:p-7 text-center cursor-pointer reveal">
+                <div class="w-14 h-14 bg-electric-blue/10 rounded-xl flex items-center justify-center mx-auto mb-5 group-hover:bg-electric-blue/20 transition-all duration-300">
+                    <i data-lucide="clipboard-check" class="w-7 h-7 text-electric-blue"></i>
+                </div>
+                <h3 class="text-white font-semibold text-lg mb-3">Revisão Completa</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Checklist completo com mais de 80 itens verificados para sua segurança.</p>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="card-glow glass-light rounded-2xl p-6 sm:p-7 text-center cursor-pointer reveal reveal-delay-1">
+                <div class="w-14 h-14 bg-electric-blue/10 rounded-xl flex items-center justify-center mx-auto mb-5">
+                    <i data-lucide="droplets" class="w-7 h-7 text-electric-blue"></i>
+                </div>
+                <h3 class="text-white font-semibold text-lg mb-3">Troca de Óleo</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Óleos sintéticos premium e filtros originais para máxima proteção do motor.</p>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="card-glow glass-light rounded-2xl p-6 sm:p-7 text-center cursor-pointer reveal reveal-delay-2">
+                <div class="w-14 h-14 bg-electric-blue/10 rounded-xl flex items-center justify-center mx-auto mb-5">
+                    <i data-lucide="disc" class="w-7 h-7 text-electric-blue"></i>
+                </div>
+                <h3 class="text-white font-semibold text-lg mb-3">Freios e Suspensão</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Diagnóstico preciso e manutenção com componentes de alto desempenho.</p>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="card-glow glass-light rounded-2xl p-6 sm:p-7 text-center cursor-pointer reveal reveal-delay-3">
+                <div class="w-14 h-14 bg-electric-blue/10 rounded-xl flex items-center justify-center mx-auto mb-5">
+                    <i data-lucide="activity" class="w-7 h-7 text-electric-blue"></i>
+                </div>
+                <h3 class="text-white font-semibold text-lg mb-3">Injeção Eletrônica</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Limpeza e calibração com scanners de última geração.</p>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="card-glow glass-light rounded-2xl p-6 sm:p-7 text-center cursor-pointer reveal">
+                <div class="w-14 h-14 bg-electric-blue/10 rounded-xl flex items-center justify-center mx-auto mb-5">
+                    <i data-lucide="snowflake" class="w-7 h-7 text-electric-blue"></i>
+                </div>
+                <h3 class="text-white font-semibold text-lg mb-3">Ar Condicionado</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Recarga, higienização e reparo completo do sistema de climatização.</p>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="card-glow glass-light rounded-2xl p-6 sm:p-7 text-center cursor-pointer reveal reveal-delay-1">
+                <div class="w-14 h-14 bg-electric-blue/10 rounded-xl flex items-center justify-center mx-auto mb-5">
+                    <i data-lucide="rotate-cw" class="w-7 h-7 text-electric-blue"></i>
+                </div>
+                <h3 class="text-white font-semibold text-lg mb-3">Alinhamento e Balanceamento</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Equipamentos 3D de precisão milimétrica para direção perfeita.</p>
+            </div>
+
+            <!-- Card 7 -->
+            <div class="card-glow glass-light rounded-2xl p-6 sm:p-7 text-center cursor-pointer reveal reveal-delay-2">
+                <div class="w-14 h-14 bg-electric-blue/10 rounded-xl flex items-center justify-center mx-auto mb-5">
+                    <i data-lucide="monitor" class="w-7 h-7 text-electric-blue"></i>
+                </div>
+                <h3 class="text-white font-semibold text-lg mb-3">Diagnóstico Computadorizado</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Scanners avançados que detectam falhas com precisão cirúrgica.</p>
+            </div>
+
+            <!-- Card 8 -->
+            <div class="card-glow glass-light rounded-2xl p-6 sm:p-7 text-center cursor-pointer reveal reveal-delay-3">
+                <div class="w-14 h-14 bg-electric-blue/10 rounded-xl flex items-center justify-center mx-auto mb-5">
+                    <i data-lucide="wrench" class="w-7 h-7 text-electric-blue"></i>
+                </div>
+                <h3 class="text-white font-semibold text-lg mb-3">Mecânica Geral</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Manutenção completa com peças originais e mão de obra qualificada.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== SEÇÃO DIFERENCIAIS ==================== -->
+<section id="diferenciais" class="py-20 lg:py-28 bg-graphite relative overflow-hidden">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-electric-blue/2 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="text-center mb-16 reveal">
+            <span class="text-electric-blue text-sm font-semibold tracking-widest uppercase mb-4 block">Por Que Nos Escolher</span>
+            <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+                Diferenciais que Fazem a<br>Diferença
+            </h2>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="flex gap-5 reveal">
+                <div class="flex-shrink-0 w-12 h-12 bg-electric-blue/10 rounded-xl flex items-center justify-center">
+                    <i data-lucide="file-text" class="w-6 h-6 text-electric-blue"></i>
+                </div>
+                <div>
+                    <h3 class="text-white font-semibold text-lg mb-2">Orçamento Transparente</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Sem surpresas. Você aprova cada etapa antes da execução do serviço.</p>
+                </div>
+            </div>
+
+            <div class="flex gap-5 reveal reveal-delay-1">
+                <div class="flex-shrink-0 w-12 h-12 bg-electric-blue/10 rounded-xl flex items-center justify-center">
+                    <i data-lucide="cpu" class="w-6 h-6 text-electric-blue"></i>
+                </div>
+                <div>
+                    <h3 class="text-white font-semibold text-lg mb-2">Equipamentos de Última Geração</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Tecnologia de ponta para diagnóstico e reparo com precisão máxima.</p>
+                </div>
+            </div>
+
+            <div class="flex gap-5 reveal reveal-delay-2">
+                <div class="flex-shrink-0 w-12 h-12 bg-electric-blue/10 rounded-xl flex items-center justify-center">
+                    <i data-lucide="award" class="w-6 h-6 text-electric-blue"></i>
+                </div>
+                <div>
+                    <h3 class="text-white font-semibold text-lg mb-2">Profissionais Certificados</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Equipe com certificações das principais montadoras e constante atualização.</p>
+                </div>
+            </div>
+
+            <div class="flex gap-5 reveal">
+                <div class="flex-shrink-0 w-12 h-12 bg-electric-blue/10 rounded-xl flex items-center justify-center">
+                    <i data-lucide="shield-check" class="w-6 h-6 text-electric-blue"></i>
+                </div>
+                <div>
+                    <h3 class="text-white font-semibold text-lg mb-2">Garantia dos Serviços</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Todos os serviços possuem garantia por escrito, com cobertura nacional.</p>
+                </div>
+            </div>
+
+            <div class="flex gap-5 reveal reveal-delay-1">
+                <div class="flex-shrink-0 w-12 h-12 bg-electric-blue/10 rounded-xl flex items-center justify-center">
+                    <i data-lucide="package-check" class="w-6 h-6 text-electric-blue"></i>
+                </div>
+                <div>
+                    <h3 class="text-white font-semibold text-lg mb-2">Peças de Qualidade</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Trabalhamos apenas com peças originais ou de qualidade comprovada.</p>
+                </div>
+            </div>
+
+            <div class="flex gap-5 reveal reveal-delay-2">
+                <div class="flex-shrink-0 w-12 h-12 bg-electric-blue/10 rounded-xl flex items-center justify-center">
+                    <i data-lucide="timer" class="w-6 h-6 text-electric-blue"></i>
+                </div>
+                <div>
+                    <h3 class="text-white font-semibold text-lg mb-2">Atendimento Ágil</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Respeitamos seu tempo com prazos realistas e cumprimento rigoroso.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== SEÇÃO PORTFÓLIO ==================== -->
+<section id="portfolio" class="py-20 lg:py-28 bg-deep-black">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16 reveal">
+            <span class="text-electric-blue text-sm font-semibold tracking-widest uppercase mb-4 block">Galeria</span>
+            <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+                Nossa Estrutura e<br>Trabalhos Realizados
+            </h2>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
+            <div class="relative group rounded-2xl overflow-hidden cursor-pointer reveal aspect-[4/3]">
+                <img src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=600&q=80" alt="Oficina moderna" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+                <div class="absolute inset-0 bg-gradient-to-t from-deep-black/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex items-end p-5">
+                    <span class="text-white font-semibold text-sm">Nossa Oficina</span>
+                </div>
+            </div>
+            <div class="relative group rounded-2xl overflow-hidden cursor-pointer reveal reveal-delay-1 aspect-[4/3]">
+                <img src="https://images.unsplash.com/photo-1625047509248-ec889cbff17f?w=600&q=80" alt="Equipamentos modernos" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+                <div class="absolute inset-0 bg-gradient-to-t from-deep-black/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex items-end p-5">
+                    <span class="text-white font-semibold text-sm">Equipamentos de Diagnóstico</span>
+                </div>
+            </div>
+            <div class="relative group rounded-2xl overflow-hidden cursor-pointer reveal reveal-delay-2 aspect-[4/3]">
+                <img src="https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=600&q=80" alt="Carro premium" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+                <div class="absolute inset-0 bg-gradient-to-t from-deep-black/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex items-end p-5">
+                    <span class="text-white font-semibold text-sm">Veículos Atendidos</span>
+                </div>
+            </div>
+            <div class="relative group rounded-2xl overflow-hidden cursor-pointer reveal aspect-[4/3]">
+                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&q=80" alt="Mecânico trabalhando" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+                <div class="absolute inset-0 bg-gradient-to-t from-deep-black/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex items-end p-5">
+                    <span class="text-white font-semibold text-sm">Profissionais em Ação</span>
+                </div>
+            </div>
+            <div class="relative group rounded-2xl overflow-hidden cursor-pointer reveal reveal-delay-1 aspect-[4/3]">
+                <img src="https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?w=600&q=80" alt="Diagnóstico computadorizado" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+                <div class="absolute inset-0 bg-gradient-to-t from-deep-black/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex items-end p-5">
+                    <span class="text-white font-semibold text-sm">Tecnologia de Ponta</span>
+                </div>
+            </div>
+            <div class="relative group rounded-2xl overflow-hidden cursor-pointer reveal reveal-delay-2 aspect-[4/3]">
+                <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=600&q=80" alt="Motor" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+                <div class="absolute inset-0 bg-gradient-to-t from-deep-black/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex items-end p-5">
+                    <span class="text-white font-semibold text-sm">Serviços Realizados</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== SEÇÃO PROCESSO DE ATENDIMENTO ==================== -->
+<section id="processo" class="py-20 lg:py-28 bg-graphite relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-80 h-80 bg-electric-blue/3 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="text-center mb-16 reveal">
+            <span class="text-electric-blue text-sm font-semibold tracking-widest uppercase mb-4 block">Como Funciona</span>
+            <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+                Processo de Atendimento
+            </h2>
+            <p class="text-gray-400 max-w-2xl mx-auto">Simples, rápido e transparente. Veja como é fácil cuidar do seu veículo conosco.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Step 1 -->
+            <div class="text-center reveal group">
+                <div class="w-20 h-20 bg-electric-blue/10 rounded-full flex items-center justify-center mx-auto mb-5 group-hover:bg-electric-blue/20 transition-all duration-300 relative">
+                    <i data-lucide="message-square" class="w-9 h-9 text-electric-blue"></i>
+                    <span class="absolute -top-1 -right-1 w-7 h-7 bg-electric-blue rounded-full flex items-center justify-center text-white text-xs font-bold">1</span>
+                </div>
+                <h3 class="text-white font-semibold text-lg mb-2">Solicite seu Orçamento</h3>
+                <p class="text-gray-400 text-sm">Envie os detalhes do seu veículo e do serviço desejado.</p>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="text-center reveal reveal-delay-1 group">
+                <div class="w-20 h-20 bg-electric-blue/10 rounded-full flex items-center justify-center mx-auto mb-5 group-hover:bg-electric-blue/20 transition-all duration-300 relative">
+                    <i data-lucide="search" class="w-9 h-9 text-electric-blue"></i>
+                    <span class="absolute -top-1 -right-1 w-7 h-7 bg-electric-blue rounded-full flex items-center justify-center text-white text-xs font-bold">2</span>
+                </div>
+                <h3 class="text-white font-semibold text-lg mb-2">Receba Avaliação Técnica</h3>
+                <p class="text-gray-400 text-sm">Nossa equipe analisa e prepara um diagnóstico detalhado.</p>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="text-center reveal reveal-delay-2 group">
+                <div class="w-20 h-20 bg-electric-blue/10 rounded-full flex items-center justify-center mx-auto mb-5 group-hover:bg-electric-blue/20 transition-all duration-300 relative">
+                    <i data-lucide="calendar-check" class="w-9 h-9 text-electric-blue"></i>
+                    <span class="absolute -top-1 -right-1 w-7 h-7 bg-electric-blue rounded-full flex items-center justify-center text-white text-xs font-bold">3</span>
+                </div>
+                <h3 class="text-white font-semibold text-lg mb-2">Agende o Serviço</h3>
+                <p class="text-gray-400 text-sm">Escolha a melhor data e horário para a execução.</p>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="text-center reveal reveal-delay-3 group">
+                <div class="w-20 h-20 bg-electric-blue/10 rounded-full flex items-center justify-center mx-auto mb-5 group-hover:bg-electric-blue/20 transition-all duration-300 relative">
+                    <i data-lucide="car-front" class="w-9 h-9 text-electric-blue"></i>
+                    <span class="absolute -top-1 -right-1 w-7 h-7 bg-electric-blue rounded-full flex items-center justify-center text-white text-xs font-bold">4</span>
+                </div>
+                <h3 class="text-white font-semibold text-lg mb-2">Entrega com Garantia</h3>
+                <p class="text-gray-400 text-sm">Receba seu veículo revisado e com garantia documentada.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== SEÇÃO DEPOIMENTOS ==================== -->
+<section id="depoimentos" class="py-20 lg:py-28 bg-deep-black">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16 reveal">
+            <span class="text-electric-blue text-sm font-semibold tracking-widest uppercase mb-4 block">Depoimentos</span>
+            <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+                O Que Nossos Clientes Dizem
+            </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Depoimento 1 -->
+            <div class="glass-light rounded-2xl p-7 reveal">
+                <div class="flex items-center gap-1 mb-4">
+                    <svg class="w-5 h-5 star-filled" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg class="w-5 h-5 star-filled" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg class="w-5 h-5 star-filled" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg class="w-5 h-5 star-filled" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg class="w-5 h-5 star-filled" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+                <p class="text-gray-300 leading-relaxed mb-6 text-sm">"Atendimento impecável! Levei meu Audi para revisão e fiquei impressionado com o profissionalismo e a transparência. Recomendo de olhos fechados."</p>
+                <div class="flex items-center gap-3 border-t border-white/5 pt-4">
+                    <div class="w-10 h-10 bg-electric-blue/20 rounded-full flex items-center justify-center text-electric-blue font-bold text-sm">RM</div>
+                    <div>
+                        <p class="text-white font-semibold text-sm">Ricardo Mendes</p>
+                        <p class="text-gray-500 text-xs">Audi A5 2023</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Depoimento 2 -->
+            <div class="glass-light rounded-2xl p-7 reveal reveal-delay-1">
+                <div class="flex items-center gap-1 mb-4">
+                    <svg class="w-5 h-5 star-filled" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg class="w-5 h-5 star-filled" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg class="w-5 h-5 star-filled" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg class="w-5 h-5 star-filled" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg class="w-5 h-5 star-filled" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+                <p class="text-gray-300 leading-relaxed mb-6 text-sm">"Equipamentos de última geração e equipe super qualificada. Resolveram um problema crônico no ar condicionado que outras oficinas não conseguiram."</p>
+                <div class="flex items-center gap-3 border-t border-white/5 pt-4">
+                    <div class="w-10 h-10 bg-electric-blue/20 rounded-full flex items-center justify-center text-electric-blue font-bold text-sm">AS</div>
+                    <div>
+                        <p class="text-white font-semibold text-sm">Aline Souza</p>
+                        <p class="text-gray-500 text-xs">BMW X5 2022</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Depoimento 3 -->
+            <div class="glass-light rounded-2xl p-7 reveal reveal-delay-2">
+                <div class="flex items-center gap-1 mb-4">
+                    <svg class="w-5 h-5 star-filled" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg class="w-5 h-5 star-filled" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg class="w-5 h-5 star-filled" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg class="w-5 h-5 star-filled" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg class="w-5 h-5 star-filled" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+                <p class="text-gray-300 leading-relaxed mb-6 text-sm">"A garantia dos serviços é real! Tive um pequeno ajuste pós-serviço e eles resolveram na hora, sem custo adicional. Profissionalismo nota 10."</p>
+                <div class="flex items-center gap-3 border-t border-white/5 pt-4">
+                    <div class="w-10 h-10 bg-electric-blue/20 rounded-full flex items-center justify-center text-electric-blue font-bold text-sm">PC</div>
+                    <div>
+                        <p class="text-white font-semibold text-sm">Paulo Cezar</p>
+                        <p class="text-gray-500 text-xs">Mercedes C300 2024</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== SEÇÃO AGENDAMENTO ==================== -->
+<section id="agendamento" class="py-20 lg:py-28 bg-graphite relative overflow-hidden">
+    <div class="absolute bottom-0 left-0 w-96 h-96 bg-electric-blue/2 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="text-center mb-12 reveal">
+            <span class="text-electric-blue text-sm font-semibold tracking-widest uppercase mb-4 block">Agende Seu Serviço</span>
+            <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+                Agendamento Online
+            </h2>
+            <p class="text-gray-400 max-w-2xl mx-auto">Preencha o formulário abaixo e nossa equipe confirmará seu horário em instantes.</p>
+        </div>
+
+        <div class="glass-light rounded-3xl p-6 sm:p-10 reveal reveal-delay-1">
+            <form id="form-agendamento" class="space-y-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-2">Nome Completo *</label>
+                        <input type="text" required placeholder="Seu nome completo" class="w-full bg-deep-black/60 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:border-electric-blue transition-all duration-300 text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-2">Telefone *</label>
+                        <input type="tel" required placeholder="(11) 99999-9999" class="w-full bg-deep-black/60 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:border-electric-blue transition-all duration-300 text-sm" id="telefone-agendamento">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-2">E-mail *</label>
+                        <input type="email" required placeholder="seu@email.com" class="w-full bg-deep-black/60 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:border-electric-blue transition-all duration-300 text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-2">Veículo *</label>
+                        <input type="text" required placeholder="Modelo, ano e versão" class="w-full bg-deep-black/60 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:border-electric-blue transition-all duration-300 text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-2">Serviço Desejado *</label>
+                        <select required class="w-full bg-deep-black/60 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:border-electric-blue transition-all duration-300 text-sm appearance-none cursor-pointer">
+                            <option value="" disabled selected class="bg-graphite">Selecione o serviço</option>
+                            <option value="revisao" class="bg-graphite">Revisão Completa</option>
+                            <option value="oleo" class="bg-graphite">Troca de Óleo</option>
+                            <option value="freios" class="bg-graphite">Freios e Suspensão</option>
+                            <option value="injecao" class="bg-graphite">Injeção Eletrônica</option>
+                            <option value="ar" class="bg-graphite">Ar Condicionado</option>
+                            <option value="alinhamento" class="bg-graphite">Alinhamento e Balanceamento</option>
+                            <option value="diagnostico" class="bg-graphite">Diagnóstico Computadorizado</option>
+                            <option value="geral" class="bg-graphite">Mecânica Geral</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-2">Data *</label>
+                        <input type="date" required class="w-full bg-deep-black/60 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:border-electric-blue transition-all duration-300 text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-2">Horário Preferencial *</label>
+                        <input type="time" required class="w-full bg-deep-black/60 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:border-electric-blue transition-all duration-300 text-sm">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-300 mb-2">Observações</label>
+                    <textarea rows="3" placeholder="Descreva detalhes adicionais sobre o serviço..." class="w-full bg-deep-black/60 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:border-electric-blue transition-all duration-300 text-sm resize-none"></textarea>
+                </div>
+                <button type="submit" class="btn-premium w-full py-4 bg-electric-blue text-white rounded-xl font-semibold text-base hover:bg-electric-blue-light transition-all duration-300 shadow-xl shadow-electric-blue/25 flex items-center justify-center gap-2">
+                    Agendar Agora
+                    <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== SEÇÃO ORÇAMENTO RÁPIDO ==================== -->
+<section id="orcamento" class="py-20 lg:py-28 bg-deep-black relative">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12 reveal">
+            <span class="text-electric-blue text-sm font-semibold tracking-widest uppercase mb-4 block">Orçamento Rápido</span>
+            <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+                Solicite Seu Orçamento
+            </h2>
+            <p class="text-gray-400">Respondemos em até 30 minutos com uma avaliação personalizada.</p>
+        </div>
+
+        <div class="glass-light rounded-3xl p-6 sm:p-10 reveal reveal-delay-1">
+            <form id="form-orcamento" class="space-y-5">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-2">Nome *</label>
+                        <input type="text" required placeholder="Seu nome" class="w-full bg-deep-black/60 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:border-electric-blue transition-all duration-300 text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-2">WhatsApp *</label>
+                        <input type="tel" required placeholder="(11) 99999-9999" class="w-full bg-deep-black/60 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:border-electric-blue transition-all duration-300 text-sm" id="whatsapp-orcamento">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-300 mb-2">Veículo *</label>
+                    <input type="text" required placeholder="Marca, modelo, ano e versão" class="w-full bg-deep-black/60 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:border-electric-blue transition-all duration-300 text-sm">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-300 mb-2">Problema Relatado *</label>
+                    <textarea rows="4" required placeholder="Descreva o problema ou serviço que precisa..." class="w-full bg-deep-black/60 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:border-electric-blue transition-all duration-300 text-sm resize-none"></textarea>
+                </div>
+                <button type="submit" class="btn-premium w-full py-4 bg-electric-blue text-white rounded-xl font-semibold text-base hover:bg-electric-blue-light transition-all duration-300 shadow-xl shadow-electric-blue/25 flex items-center justify-center gap-2">
+                    Solicitar Orçamento
+                    <i data-lucide="send" class="w-5 h-5"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== CTA FINAL ==================== -->
+<section class="py-20 lg:py-28 bg-graphite relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-r from-electric-blue/5 via-transparent to-electric-blue/5 pointer-events-none"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-electric-blue/3 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+        <div class="reveal">
+            <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
+                Seu carro merece o<br>melhor cuidado.
+            </h2>
+            <p class="text-gray-400 text-lg mb-10 max-w-2xl mx-auto">
+                Solicite um orçamento ou agende seu atendimento agora mesmo. Nossa equipe está pronta para oferecer o melhor serviço automotivo.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#orcamento" class="btn-premium px-8 py-4 bg-electric-blue text-white rounded-full text-base font-semibold hover:bg-electric-blue-light transition-all duration-300 shadow-xl shadow-electric-blue/30 inline-flex items-center justify-center gap-2 group">
+                    Solicitar Orçamento
+                    <i data-lucide="arrow-right" class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"></i>
+                </a>
+                <a href="#agendamento" class="btn-premium px-8 py-4 bg-transparent border-2 border-white/30 text-white rounded-full text-base font-semibold hover:bg-white/10 hover:border-white/50 transition-all duration-300 inline-flex items-center justify-center gap-2">
+                    Agendar Serviço
+                    <i data-lucide="calendar" class="w-5 h-5"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="bg-deep-black border-t border-white/5 py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+            <!-- Coluna 1 - Logo e descrição -->
+            <div class="lg:col-span-1">
+                <a href="#hero" class="flex items-center gap-2 mb-4">
+                    <div class="w-10 h-10 bg-electric-blue rounded-lg flex items-center justify-center">
+                        <i data-lucide="car" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <span class="text-white font-display font-bold text-xl tracking-tight">
+                        Auto<span class="text-electric-blue">Prime</span>
+                    </span>
+                </a>
+                <p class="text-gray-500 text-sm leading-relaxed mb-6">
+                    Oficina mecânica premium com tecnologia de ponta e profissionais certificados. Seu veículo em boas mãos.
+                </p>
+                <div class="flex gap-3">
+                    <a href="#" class="w-9 h-9 bg-white/5 rounded-lg flex items-center justify-center hover:bg-electric-blue transition-all duration-300" aria-label="Instagram">
+                        <i data-lucide="instagram" class="w-4 h-4 text-gray-400 hover:text-white transition-colors"></i>
+                    </a>
+                    <a href="#" class="w-9 h-9 bg-white/5 rounded-lg flex items-center justify-center hover:bg-electric-blue transition-all duration-300" aria-label="Facebook">
+                        <i data-lucide="facebook" class="w-4 h-4 text-gray-400 hover:text-white transition-colors"></i>
+                    </a>
+                    <a href="#" class="w-9 h-9 bg-white/5 rounded-lg flex items-center justify-center hover:bg-electric-blue transition-all duration-300" aria-label="YouTube">
+                        <i data-lucide="youtube" class="w-4 h-4 text-gray-400 hover:text-white transition-colors"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Coluna 2 - Links rápidos -->
+            <div>
+                <h4 class="text-white font-semibold mb-4">Links Rápidos</h4>
+                <ul class="space-y-3">
+                    <li><a href="#sobre" class="text-gray-500 text-sm hover:text-electric-blue transition-colors">Sobre Nós</a></li>
+                    <li><a href="#servicos" class="text-gray-500 text-sm hover:text-electric-blue transition-colors">Serviços</a></li>
+                    <li><a href="#portfolio" class="text-gray-500 text-sm hover:text-electric-blue transition-colors">Portfólio</a></li>
+                    <li><a href="#depoimentos" class="text-gray-500 text-sm hover:text-electric-blue transition-colors">Depoimentos</a></li>
+                    <li><a href="#agendamento" class="text-gray-500 text-sm hover:text-electric-blue transition-colors">Agendamento</a></li>
+                </ul>
+            </div>
+
+            <!-- Coluna 3 - Contato -->
+            <div>
+                <h4 class="text-white font-semibold mb-4">Contato</h4>
+                <ul class="space-y-3">
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="map-pin" class="w-4 h-4 text-electric-blue flex-shrink-0 mt-0.5"></i>
+                        <span class="text-gray-500 text-sm">Av. Paulista, 2000 - Sala 501<br>São Paulo - SP, 01310-200</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i data-lucide="phone" class="w-4 h-4 text-electric-blue flex-shrink-0"></i>
+                        <span class="text-gray-500 text-sm">(11) 3456-7890</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i data-lucide="smartphone" class="w-4 h-4 text-electric-blue flex-shrink-0"></i>
+                        <span class="text-gray-500 text-sm">(11) 98765-4321</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i data-lucide="mail" class="w-4 h-4 text-electric-blue flex-shrink-0"></i>
+                        <span class="text-gray-500 text-sm">contato@autoprimepremium.com.br</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Coluna 4 - Horário -->
+            <div>
+                <h4 class="text-white font-semibold mb-4">Horário de Atendimento</h4>
+                <ul class="space-y-3">
+                    <li class="flex items-center gap-3">
+                        <i data-lucide="clock" class="w-4 h-4 text-electric-blue flex-shrink-0"></i>
+                        <span class="text-gray-500 text-sm">Seg - Sex: 8h às 18h</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i data-lucide="clock" class="w-4 h-4 text-electric-blue flex-shrink-0"></i>
+                        <span class="text-gray-500 text-sm">Sábado: 8h às 13h</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i data-lucide="clock" class="w-4 h-4 text-electric-blue flex-shrink-0"></i>
+                        <span class="text-gray-500 text-sm">Domingo: Fechado</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Linha divisória -->
+        <div class="border-t border-white/5 mt-12 pt-8 text-center">
+            <p class="text-gray-600 text-sm">
+                &copy; 2026 <span class="text-white">AutoPrime Premium</span>. Todos os direitos reservados.
+            </p>
+        </div>
+    </div>
+</footer>
+
+<!-- ==================== WHATSAPP FLOATING BUTTON ==================== -->
+<a href="https://wa.me/5511987654321?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento." target="_blank" rel="noopener noreferrer"
+class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-green-500 rounded-full flex items-center justify-center shadow-xl shadow-green-500/30 hover:bg-green-400 transition-all duration-300 hover:scale-110 animate-float group"
+aria-label="Fale conosco pelo WhatsApp">
+<svg class="w-7 h-7 text-white" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+</svg>
+<span class="absolute -top-10 right-0 bg-white text-gray-900 text-xs font-semibold px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap shadow-lg pointer-events-none">
+    Fale Conosco
+</span>
+</a>
+
+<!-- ==================== TOAST DE SUCESSO ==================== -->
+<div id="toast" class="toast glass-light rounded-xl px-6 py-4 flex items-center gap-3 shadow-2xl border border-green-500/20">
+    <div class="w-8 h-8 bg-green-500/20 rounded-full flex items-center justify-center flex-shrink-0">
+        <i data-lucide="check" class="w-5 h-5 text-green-400"></i>
+    </div>
+    <div>
+        <p class="text-white font-semibold text-sm">Enviado com sucesso!</p>
+        <p class="text-gray-400 text-xs">Entraremos em contato em breve.</p>
+    </div>
+    <button onclick="hideToast()" class="ml-4 text-gray-500 hover:text-white transition-colors">
+        <i data-lucide="x" class="w-4 h-4"></i>
+    </button>
+</div>
+
+<!-- ==================== SCRIPTS ==================== -->
+<script>
+    // Inicializar ícones Lucide
+    lucide.createIcons();
+
+    // ============ MOBILE MENU ============
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileOverlay = document.getElementById('mobile-overlay');
+    const bar1 = document.getElementById('bar1');
+    const bar2 = document.getElementById('bar2');
+    const bar3 = document.getElementById('bar3');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    let menuOpen = false;
+
+    function toggleMenu() {
+        menuOpen = !menuOpen;
+        mobileMenu.classList.toggle('open', menuOpen);
+        mobileOverlay.classList.toggle('hidden', !menuOpen);
+        document.body.style.overflow = menuOpen ? 'hidden' : '';
+
+        // Animação do hamburger
+        if (menuOpen) {
+            bar1.style.transform = 'rotate(45deg) translateY(6px)';
+            bar2.style.opacity = '0';
+            bar3.style.transform = 'rotate(-45deg) translateY(-6px)';
+            bar3.style.width = '24px';
+        } else {
+            bar1.style.transform = 'rotate(0) translateY(0)';
+            bar2.style.opacity = '1';
+            bar3.style.transform = 'rotate(0) translateY(0)';
+            bar3.style.width = '16px';
+        }
+    }
+
+    mobileMenuBtn.addEventListener('click', toggleMenu);
+    mobileOverlay.addEventListener('click', toggleMenu);
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (menuOpen) toggleMenu();
+        });
+    });
+
+    // ============ HEADER SCROLL EFFECT ============
+    const header = document.getElementById('header');
+    let lastScroll = 0;
+
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        if (currentScroll > 80) {
+            header.style.boxShadow = '0 4px 30px rgba(0,0,0,0.5)';
+        } else {
+            header.style.boxShadow = 'none';
+        }
+        lastScroll = currentScroll;
+    });
+
+    // ============ REVEAL ANIMATIONS (Intersection Observer) ============
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -50px 0px'
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // ============ COUNTER ANIMATION ============
+    const counterElements = document.querySelectorAll('[data-counter]');
+    const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const el = entry.target;
+                const target = parseInt(el.getAttribute('data-counter'));
+                const duration = 2000;
+                const startTime = performance.now();
+                const startVal = 0;
+
+                function updateCounter(timestamp) {
+                    const elapsed = timestamp - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    const eased = 1 - Math.pow(1 - progress, 3);
+                    const current = Math.floor(startVal + (target - startVal) * eased);
+                    el.textContent = current.toLocaleString('pt-BR');
+                    if (progress < 1) {
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        el.textContent = target.toLocaleString('pt-BR');
+                    }
+                }
+                requestAnimationFrame(updateCounter);
+                counterObserver.unobserve(el);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    counterElements.forEach(el => counterObserver.observe(el));
+
+    // ============ FORM SUBMISSION ============
+    const formAgendamento = document.getElementById('form-agendamento');
+    const formOrcamento = document.getElementById('form-orcamento');
+    const toast = document.getElementById('toast');
+
+    function showToast() {
+        toast.classList.add('show');
+        setTimeout(hideToast, 4000);
+    }
+
+    function hideToast() {
+        toast.classList.remove('show');
+    }
+
+    // Expor hideToast globalmente
+    window.hideToast = hideToast;
+
+    formAgendamento.addEventListener('submit', function(e) {
+        e.preventDefault();
+        showToast();
+        formAgendamento.reset();
+        // Scroll suave para o topo do formulário
+        document.getElementById('agendamento').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    formOrcamento.addEventListener('submit', function(e) {
+        e.preventDefault();
+        showToast();
+        formOrcamento.reset();
+        document.getElementById('orcamento').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    // ============ TELEFONE MASK SIMPLES ============
+    function applyPhoneMask(input) {
+        input.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 11) value = value.slice(0, 11);
+            if (value.length > 10) {
+                value = value.replace(/^(\d{2})(\d{5})(\d{4}).*/, '($1) $2-$3');
+            } else if (value.length > 6) {
+                value = value.replace(/^(\d{2})(\d{4})(\d{0,4}).*/, '($1) $2-$3');
+            } else if (value.length > 2) {
+                value = value.replace(/^(\d{2})(\d{0,5}).*/, '($1) $2');
+            } else if (value.length > 0) {
+                value = value.replace(/^(\d*)/, '($1');
+            }
+            e.target.value = value;
+        });
+    }
+
+    const telefoneAgendamento = document.getElementById('telefone-agendamento');
+    const whatsappOrcamento = document.getElementById('whatsapp-orcamento');
+    if (telefoneAgendamento) applyPhoneMask(telefoneAgendamento);
+    if (whatsappOrcamento) applyPhoneMask(whatsappOrcamento);
+
+    // ============ PARALLAX HERO (suave para desktop) ============
+    if (window.innerWidth > 768) {
+        const heroSection = document.getElementById('hero');
+        window.addEventListener('scroll', () => {
+            const scrollY = window.pageYOffset;
+            if (scrollY < window.innerHeight) {
+                const offset = scrollY * 0.4;
+                heroSection.style.backgroundPositionY = `calc(50% + ${offset}px)`;
+            }
+        });
+    }
+
+    // ============ SMOOTH SCROLL PARA LINKS COM HASH ============
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href === '#') return;
+            const target = document.querySelector(href);
+            if (target) {
+                e.preventDefault();
+                const headerHeight = header.offsetHeight;
+                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset -
+                    headerHeight - 10;
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // ============ ATUALIZAR ÍCONES APÓS INTERAÇÕES ============
+    // Recriar ícones Lucide após mudanças no DOM
+    setTimeout(() => lucide.createIcons(), 500);
+
+    console.log('%c🚗 AutoPrime Premium %c| Site Carregado com Sucesso',
+        'color: #0066FF; font-weight: bold; font-size: 16px;',
+        'color: #e5e5e5;');
+    console.log('%cExcelência em serviços automotivos de alto padrão.',
+        'color: #888; font-style: italic;');
+</script>
+</body>
+</html>

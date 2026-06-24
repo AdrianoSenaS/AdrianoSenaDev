@@ -1,0 +1,1829 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Studio Bronze Lux — Bronzeamento premium e estética de luxo para mulheres que sabem o seu valor. Experiência VIP, técnicas avançadas e atendimento exclusivo.">
+    <meta name="keywords" content="bronzeamento, estética feminina, bronzeamento premium, studio de beleza, bronze glow, estética de luxo, autoestima feminina">
+    <meta name="author" content="Studio Bronze Lux">
+    <meta property="og:title" content="Studio Bronze Lux — Beleza & Bronzeamento Premium">
+    <meta property="og:description" content="Realce sua beleza. Revele sua melhor versão. Bronzeamento premium e estética de luxo.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
+    <meta name="theme-color" content="#0D0D0D">
+    <title>Studio Bronze Lux | Bronzeamento Premium & Estética de Luxo</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --gold: #C8A96E;
+            --gold-bright: #D4AF37;
+            --gold-light: #E8D5B0;
+            --gold-pale: #F2E8D8;
+            --dark: #0B0B0B;
+            --dark-soft: #111111;
+            --dark-card: #181818;
+            --dark-overlay: #0D0D0D;
+            --nude: #E8D5C8;
+            --nude-warm: #DCC8B8;
+            --bronze: #B8865E;
+            --bronze-deep: #8B5E3C;
+            --bronze-glow: #C4956A;
+            --cream: #F9F7F4;
+            --white-soft: #F5F0E8;
+            --text-light: #D4D0CA;
+            --text-muted: #A09B94;
+            --text-dark: #1A1A1A;
+            --font-display: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+            --font-body: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+            --font-accent: 'Cormorant Garamond', Georgia, serif;
+            --transition-smooth: 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+            --transition-bounce: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --shadow-gold: 0 8px 40px rgba(200, 169, 110, 0.15);
+            --shadow-card: 0 4px 30px rgba(0, 0, 0, 0.4);
+            --border-gold-subtle: 1px solid rgba(200, 169, 110, 0.25);
+            --border-gold: 1px solid rgba(200, 169, 110, 0.5);
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--dark);
+            color: var(--text-light);
+            line-height: 1.7;
+            overflow-x: hidden;
+            cursor: default;
+            letter-spacing: 0.01em;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--dark);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--gold-bright);
+        }
+
+        /* Selection */
+        ::selection {
+            background: rgba(200, 169, 110, 0.35);
+            color: #fff;
+        }
+
+        /* ============ PRELOADER ============ */
+        .preloader {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            background: var(--dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+            pointer-events: all;
+        }
+        .preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        .preloader__inner {
+            text-align: center;
+        }
+        .preloader__icon {
+            font-size: 3rem;
+            color: var(--gold);
+            animation: preloaderPulse 1.2s ease-in-out infinite;
+        }
+        @keyframes preloaderPulse {
+            0%,
+            100% {
+                opacity: 0.4;
+                transform: scale(0.9);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.15);
+            }
+        }
+        .preloader__text {
+            font-family: var(--font-display);
+            color: var(--gold-light);
+            letter-spacing: 0.2em;
+            font-size: 0.85rem;
+            margin-top: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        /* ============ NAVBAR ============ */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1.2rem 2rem;
+            transition: all var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: transparent;
+        }
+        .navbar.scrolled {
+            background: rgba(11, 11, 11, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 0.8rem 2rem;
+            border-bottom: 1px solid rgba(200, 169, 110, 0.12);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+        .navbar__logo {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color var(--transition-smooth);
+        }
+        .navbar__logo span {
+            color: var(--gold);
+            font-weight: 700;
+        }
+        .navbar__logo-icon {
+            font-size: 1.3rem;
+            color: var(--gold-bright);
+        }
+        .navbar__links {
+            display: flex;
+            list-style: none;
+            gap: 2.2rem;
+            align-items: center;
+        }
+        .navbar__links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: color var(--transition-smooth);
+            position: relative;
+            padding-bottom: 4px;
+        }
+        .navbar__links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--gold);
+            transition: width var(--transition-smooth);
+        }
+        .navbar__links a:hover {
+            color: var(--gold-light);
+        }
+        .navbar__links a:hover::after {
+            width: 100%;
+        }
+        .navbar__cta-btn {
+            background: var(--gold);
+            color: var(--dark) !important;
+            padding: 0.6rem 1.4rem !important;
+            border-radius: 50px;
+            font-weight: 600 !important;
+            letter-spacing: 0.08em !important;
+            transition: all var(--transition-smooth) !important;
+            font-size: 0.75rem !important;
+            border: 2px solid var(--gold);
+        }
+        .navbar__cta-btn:hover {
+            background: transparent !important;
+            color: var(--gold) !important;
+            box-shadow: 0 0 30px rgba(200, 169, 110, 0.3);
+        }
+        .navbar__cta-btn::after {
+            display: none !important;
+        }
+        .navbar__hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            z-index: 1001;
+            background: none;
+            border: none;
+            padding: 8px;
+        }
+        .navbar__hamburger span {
+            display: block;
+            width: 28px;
+            height: 2px;
+            background: #fff;
+            transition: all var(--transition-smooth);
+            border-radius: 2px;
+        }
+        .navbar__hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .navbar__hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .navbar__hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            inset: 0;
+            background: rgba(11, 11, 11, 0.97);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all var(--transition-smooth);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .mobile-menu.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .mobile-menu a {
+            color: #fff;
+            text-decoration: none;
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            letter-spacing: 0.1em;
+            transition: color var(--transition-smooth);
+            text-transform: uppercase;
+        }
+        .mobile-menu a:hover {
+            color: var(--gold);
+        }
+        .mobile-menu .mobile-cta {
+            background: var(--gold);
+            color: var(--dark) !important;
+            padding: 0.9rem 2.5rem;
+            border-radius: 50px;
+            font-family: var(--font-body);
+            font-size: 0.85rem !important;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            margin-top: 1rem;
+        }
+
+        /* ============ HERO ============ */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: var(--dark-overlay);
+        }
+        .hero__bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            background:
+                radial-gradient(ellipse at 30% 25%, rgba(200, 169, 110, 0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 60%, rgba(184, 134, 94, 0.06) 0%, transparent 55%),
+                radial-gradient(ellipse at 50% 80%, rgba(212, 175, 55, 0.04) 0%, transparent 50%),
+                linear-gradient(180deg, #0B0B0B 0%, #0F0D0A 40%, #111010 100%);
+        }
+        .hero__texture {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            opacity: 0.03;
+            background-image: repeating-linear-gradient(0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(200, 169, 110, 0.3) 2px,
+                    rgba(200, 169, 110, 0.3) 2.5px);
+            pointer-events: none;
+        }
+        .hero__sparkle {
+            position: absolute;
+            z-index: 1;
+            pointer-events: none;
+            border-radius: 50%;
+            background: var(--gold-bright);
+            box-shadow: 0 0 20px 4px rgba(212, 175, 55, 0.5), 0 0 60px 12px rgba(212, 175, 55, 0.2);
+            animation: sparkleFloat 8s ease-in-out infinite;
+            width: 3px;
+            height: 3px;
+        }
+        .hero__sparkle:nth-child(1) {
+            top: 15%;
+            left: 20%;
+            animation-delay: 0s;
+            width: 2px;
+            height: 2px;
+        }
+        .hero__sparkle:nth-child(2) {
+            top: 22%;
+            right: 25%;
+            animation-delay: 2s;
+            width: 3px;
+            height: 3px;
+        }
+        .hero__sparkle:nth-child(3) {
+            bottom: 30%;
+            left: 35%;
+            animation-delay: 4s;
+            width: 2px;
+            height: 2px;
+        }
+        .hero__sparkle:nth-child(4) {
+            top: 55%;
+            right: 30%;
+            animation-delay: 1.5s;
+            width: 2.5px;
+            height: 2.5px;
+        }
+        .hero__sparkle:nth-child(5) {
+            bottom: 20%;
+            right: 18%;
+            animation-delay: 5s;
+            width: 1.5px;
+            height: 1.5px;
+        }
+        @keyframes sparkleFloat {
+            0%,
+            100% {
+                opacity: 0.2;
+                transform: translateY(0) scale(1);
+            }
+            30% {
+                opacity: 1;
+                transform: translateY(-30px) scale(1.8);
+            }
+            60% {
+                opacity: 0.5;
+                transform: translateY(-15px) scale(1.3);
+            }
+        }
+        .hero__content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+            padding: 2rem;
+        }
+        .hero__overline {
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+        .hero__title {
+            font-family: var(--font-display);
+            font-size: clamp(2.8rem, 6vw, 5rem);
+            font-weight: 600;
+            color: #fff;
+            line-height: 1.15;
+            letter-spacing: 0.02em;
+            margin-bottom: 1.2rem;
+        }
+        .hero__title em {
+            font-style: italic;
+            color: var(--gold-light);
+            display: block;
+            font-weight: 400;
+        }
+        .hero__subtitle {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            font-weight: 300;
+            color: var(--text-muted);
+            letter-spacing: 0.06em;
+            max-width: 550px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.8;
+        }
+        .hero__buttons {
+            display: flex;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.2rem;
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all var(--transition-smooth);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn--primary {
+            background: var(--gold);
+            color: var(--dark);
+            border-color: var(--gold);
+            box-shadow: 0 4px 25px rgba(200, 169, 110, 0.25);
+        }
+        .btn--primary:hover {
+            background: transparent;
+            color: var(--gold);
+            box-shadow: 0 8px 40px rgba(200, 169, 110, 0.4);
+            transform: translateY(-2px);
+        }
+        .btn--outline {
+            background: transparent;
+            color: #fff;
+            border-color: rgba(255, 255, 255, 0.35);
+        }
+        .btn--outline:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            box-shadow: 0 8px 35px rgba(200, 169, 110, 0.2);
+            transform: translateY(-2px);
+        }
+        .btn__shine {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.15),
+                    transparent);
+            transition: left 0.6s ease;
+        }
+        .btn:hover .btn__shine {
+            left: 100%;
+        }
+        .hero__scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            animation: bounceDown 2s ease-in-out infinite;
+            cursor: pointer;
+        }
+        .hero__scroll-indicator span {
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+        .hero__scroll-line {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, var(--gold), transparent);
+            border-radius: 1px;
+        }
+        @keyframes bounceDown {
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(10px);
+            }
+        }
+
+        /* ============ SECTIONS GERAL ============ */
+        .section {
+            padding: 6rem 2rem;
+            position: relative;
+        }
+        .section__header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        .section__overline {
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 0.8rem;
+            font-weight: 500;
+        }
+        .section__title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            font-weight: 600;
+            color: #fff;
+            letter-spacing: 0.03em;
+            line-height: 1.2;
+        }
+        .section__divider {
+            width: 60px;
+            height: 2px;
+            background: var(--gold);
+            margin: 1.2rem auto 0;
+            border-radius: 1px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+        .reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 {
+            transition-delay: 0.1s;
+        }
+        .reveal-delay-2 {
+            transition-delay: 0.2s;
+        }
+        .reveal-delay-3 {
+            transition-delay: 0.3s;
+        }
+        .reveal-delay-4 {
+            transition-delay: 0.4s;
+        }
+        .reveal-delay-5 {
+            transition-delay: 0.5s;
+        }
+
+        /* ============ SOBRE ============ */
+        .about {
+            background: var(--dark-soft);
+            position: relative;
+        }
+        .about__grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .about__visual {
+            position: relative;
+            aspect-ratio: 3/4;
+            background: linear-gradient(135deg,
+                    #1a1510 0%,
+                    #2a1f15 25%,
+                    #1e1812 50%,
+                    #251d14 75%,
+                    #1a1510 100%);
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .about__visual-inner {
+            text-align: center;
+            color: var(--gold-light);
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            letter-spacing: 0.1em;
+            opacity: 0.6;
+        }
+        .about__visual-glow {
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at center,
+                    rgba(200, 169, 110, 0.05) 0%,
+                    transparent 60%);
+            pointer-events: none;
+            animation: glowRotate 20s linear infinite;
+        }
+        @keyframes glowRotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        .about__visual-border {
+            position: absolute;
+            inset: 15px;
+            border: 1px solid rgba(200, 169, 110, 0.2);
+            border-radius: 2px;
+            pointer-events: none;
+        }
+        .about__text h3 {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            color: #fff;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+        }
+        .about__text p {
+            color: var(--text-muted);
+            margin-bottom: 1.2rem;
+            font-weight: 300;
+            line-height: 1.9;
+            font-size: 0.95rem;
+        }
+        .about__highlights {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        .about__highlight {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+        }
+        .about__highlight-icon {
+            font-size: 1.5rem;
+            color: var(--gold);
+            flex-shrink: 0;
+        }
+        .about__highlight-text strong {
+            display: block;
+            color: #fff;
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+        }
+        .about__highlight-text span {
+            color: var(--text-muted);
+            font-size: 0.78rem;
+        }
+
+        /* ============ SERVIÇOS ============ */
+        .services {
+            background: var(--dark);
+            position: relative;
+        }
+        .services__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+        }
+        .service-card {
+            background: var(--dark-card);
+            border: var(--border-gold-subtle);
+            border-radius: 6px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            transition: all var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+            cursor: default;
+        }
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 0%,
+                    rgba(200, 169, 110, 0.04) 0%,
+                    transparent 70%);
+            opacity: 0;
+            transition: opacity var(--transition-smooth);
+        }
+        .service-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(200, 169, 110, 0.5);
+            box-shadow: var(--shadow-gold);
+        }
+        .service-card:hover::before {
+            opacity: 1;
+        }
+        .service-card__icon {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 1.3rem;
+            transition: transform var(--transition-bounce);
+        }
+        .service-card:hover .service-card__icon {
+            transform: scale(1.15);
+        }
+        .service-card__title {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            color: #fff;
+            margin-bottom: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+        }
+        .service-card__desc {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+        .service-card__badge {
+            display: inline-block;
+            margin-top: 1.2rem;
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold);
+            border: 1px solid rgba(200, 169, 110, 0.3);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            transition: all var(--transition-smooth);
+        }
+        .service-card:hover .service-card__badge {
+            background: rgba(200, 169, 110, 0.1);
+            border-color: var(--gold);
+        }
+
+        /* ============ PORTFÓLIO ============ */
+        .portfolio {
+            background: var(--dark-soft);
+            position: relative;
+        }
+        .portfolio__grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 220px;
+            gap: 1rem;
+        }
+        .portfolio__item {
+            border-radius: 4px;
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+            transition: all var(--transition-smooth);
+        }
+        .portfolio__item:nth-child(1) {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+        .portfolio__item:nth-child(4) {
+            grid-column: span 2;
+        }
+        .portfolio__item:nth-child(7) {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+        .portfolio__img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s ease, filter 0.4s ease;
+            /* Gradients simulando tons bronzeados */
+            background-size: cover;
+            background-position: center;
+        }
+        .portfolio__item:nth-child(1) .portfolio__img {
+            background: linear-gradient(160deg, #d4b896 0%, #b8906a 40%, #8b5e3c 80%, #5a3825 100%);
+        }
+        .portfolio__item:nth-child(2) .portfolio__img {
+            background: linear-gradient(140deg, #e8d5c8 0%, #c4957a 50%, #a07050 100%);
+        }
+        .portfolio__item:nth-child(3) .portfolio__img {
+            background: linear-gradient(150deg, #ddc3a8 0%, #b88060 45%, #7a4e35 100%);
+        }
+        .portfolio__item:nth-child(4) .portfolio__img {
+            background: linear-gradient(130deg, #c9a87c 0%, #9d6b4a 50%, #6b3f28 100%);
+        }
+        .portfolio__item:nth-child(5) .portfolio__img {
+            background: linear-gradient(145deg, #e0c8b0 0%, #ba8d6e 40%, #8a5a3c 100%);
+        }
+        .portfolio__item:nth-child(6) .portfolio__img {
+            background: linear-gradient(155deg, #dabfa0 0%, #a87855 50%, #6e422a 100%);
+        }
+        .portfolio__item:nth-child(7) .portfolio__img {
+            background: linear-gradient(135deg, #e5ceb5 0%, #c4956a 45%, #7d4e30 90%);
+        }
+        .portfolio__overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(11, 11, 11, 0.55);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity var(--transition-smooth);
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+        }
+        .portfolio__item:hover .portfolio__overlay {
+            opacity: 1;
+        }
+        .portfolio__item:hover .portfolio__img {
+            transform: scale(1.06);
+            filter: brightness(1.1);
+        }
+        .portfolio__overlay-icon {
+            font-size: 2rem;
+            color: #fff;
+            background: rgba(200, 169, 110, 0.3);
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            transition: all var(--transition-bounce);
+        }
+        .portfolio__item:hover .portfolio__overlay-icon {
+            transform: scale(1.1);
+            background: rgba(200, 169, 110, 0.5);
+        }
+
+        /* ============ AGENDAMENTO ============ */
+        .booking {
+            background: var(--dark);
+            position: relative;
+        }
+        .booking__grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+        .booking__form {
+            background: var(--dark-card);
+            border: var(--border-gold-subtle);
+            border-radius: 6px;
+            padding: 3rem 2.5rem;
+        }
+        .booking__form h3 {
+            font-family: var(--font-display);
+            color: #fff;
+            font-size: 1.6rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.04em;
+        }
+        .booking__form .subtitle {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 2rem;
+        }
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+        .form-group label {
+            display: block;
+            color: var(--text-light);
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 0.4rem;
+            font-weight: 500;
+        }
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.9rem 1.2rem;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 4px;
+            color: #fff;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            transition: all var(--transition-smooth);
+            outline: none;
+        }
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 15px rgba(200, 169, 110, 0.1);
+            background: rgba(255, 255, 255, 0.06);
+        }
+        .form-group select {
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M6 8L1 3h10z' fill='%23C8A96E'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            cursor: pointer;
+        }
+        .form-group select option {
+            background: #1a1a1a;
+            color: #fff;
+        }
+        .booking__info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        .booking__info-card {
+            background: var(--dark-card);
+            border: var(--border-gold-subtle);
+            border-radius: 6px;
+            padding: 2rem;
+            text-align: center;
+            transition: all var(--transition-smooth);
+        }
+        .booking__info-card:hover {
+            border-color: rgba(200, 169, 110, 0.4);
+            box-shadow: var(--shadow-gold);
+        }
+        .booking__info-icon {
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+        .booking__info-card h4 {
+            font-family: var(--font-display);
+            color: #fff;
+            font-size: 1.1rem;
+            margin-bottom: 0.4rem;
+        }
+        .booking__info-card p {
+            color: var(--text-muted);
+            font-size: 0.82rem;
+            line-height: 1.6;
+        }
+        .booking__info-highlight {
+            background: linear-gradient(135deg, rgba(200, 169, 110, 0.08), rgba(200, 169, 110, 0.02));
+            border: 1px solid rgba(200, 169, 110, 0.3);
+            border-radius: 6px;
+            padding: 2rem;
+            text-align: center;
+        }
+        .booking__info-highlight .price {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            color: var(--gold-bright);
+            font-weight: 600;
+        }
+        .booking__info-highlight .price-label {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* ============ DEPOIMENTOS ============ */
+        .testimonials {
+            background: var(--dark-soft);
+            position: relative;
+        }
+        .testimonials__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .testimonial-card {
+            background: var(--dark-card);
+            border: var(--border-gold-subtle);
+            border-radius: 6px;
+            padding: 2.5rem 2rem;
+            position: relative;
+            transition: all var(--transition-smooth);
+        }
+        .testimonial-card:hover {
+            border-color: rgba(200, 169, 110, 0.4);
+            box-shadow: var(--shadow-gold);
+            transform: translateY(-3px);
+        }
+        .testimonial-card__quote {
+            font-size: 4rem;
+            color: var(--gold);
+            opacity: 0.3;
+            font-family: var(--font-display);
+            line-height: 0.5;
+            margin-bottom: 1rem;
+        }
+        .testimonial-card__text {
+            color: var(--text-light);
+            font-style: italic;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+        .testimonial-card__author {
+            font-family: var(--font-display);
+            color: #fff;
+            font-size: 1rem;
+            letter-spacing: 0.05em;
+            font-weight: 500;
+        }
+        .testimonial-card__author span {
+            display: block;
+            color: var(--gold);
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-family: var(--font-body);
+            margin-top: 0.2rem;
+            font-weight: 400;
+        }
+        .testimonial-card__stars {
+            color: var(--gold-bright);
+            margin-bottom: 0.8rem;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+        }
+
+        /* ============ CTA FINAL ============ */
+        .cta-final {
+            position: relative;
+            background: var(--dark);
+            text-align: center;
+            padding: 7rem 2rem;
+            overflow: hidden;
+        }
+        .cta-final__bg {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 50% 50%, rgba(200, 169, 110, 0.06) 0%, transparent 70%),
+                radial-gradient(ellipse at 80% 20%, rgba(212, 175, 55, 0.04) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        .cta-final__content {
+            position: relative;
+            z-index: 2;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+        .cta-final__title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4.5vw, 3.2rem);
+            color: #fff;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            margin-bottom: 1rem;
+        }
+        .cta-final__subtitle {
+            color: var(--text-muted);
+            font-size: 1rem;
+            font-weight: 300;
+            margin-bottom: 2.5rem;
+            letter-spacing: 0.05em;
+        }
+        .btn--large {
+            padding: 1.2rem 3rem;
+            font-size: 0.9rem;
+            letter-spacing: 0.12em;
+        }
+
+        /* ============ FOOTER ============ */
+        .footer {
+            background: var(--dark-soft);
+            border-top: 1px solid rgba(200, 169, 110, 0.1);
+            padding: 3rem 2rem 1.5rem;
+            text-align: center;
+        }
+        .footer__brand {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            color: #fff;
+            letter-spacing: 0.06em;
+            margin-bottom: 0.5rem;
+        }
+        .footer__brand span {
+            color: var(--gold);
+        }
+        .footer__social {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin: 1.5rem 0;
+        }
+        .footer__social a {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            transition: color var(--transition-smooth);
+            text-decoration: none;
+        }
+        .footer__social a:hover {
+            color: var(--gold);
+        }
+        .footer__copy {
+            color: var(--text-muted);
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* ============ WHATSAPP FLOAT ============ */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 900;
+            background: #25D366;
+            color: #fff;
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.7rem;
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.35);
+            transition: all var(--transition-smooth);
+            text-decoration: none;
+            animation: pulseWhats 2.5s ease-in-out infinite;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 40px rgba(37, 211, 102, 0.5);
+            color: #fff;
+        }
+        @keyframes pulseWhats {
+            0%,
+            100% {
+                box-shadow: 0 8px 30px rgba(37, 211, 102, 0.35);
+            }
+            50% {
+                box-shadow: 0 8px 50px rgba(37, 211, 102, 0.6), 0 0 0 16px rgba(37, 211, 102, 0.08);
+            }
+        }
+        .whatsapp-float__tooltip {
+            position: absolute;
+            right: 70px;
+            background: #fff;
+            color: #1a1a1a;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            white-space: nowrap;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            opacity: 0;
+            visibility: hidden;
+            transition: all var(--transition-smooth);
+            pointer-events: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        .whatsapp-float:hover .whatsapp-float__tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* ============ RESPONSIVO ============ */
+        @media (max-width: 1024px) {
+            .about__grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+            .about__visual {
+                aspect-ratio: 16/9;
+                max-height: 350px;
+            }
+            .booking__grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+            .portfolio__grid {
+                grid-template-columns: repeat(3, 1fr);
+                grid-auto-rows: 180px;
+            }
+            .portfolio__item:nth-child(1) {
+                grid-column: span 2;
+                grid-row: span 1;
+            }
+            .portfolio__item:nth-child(7) {
+                grid-column: span 2;
+                grid-row: span 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar__links {
+                display: none;
+            }
+            .navbar__hamburger {
+                display: flex;
+            }
+            .navbar {
+                padding: 1rem 1.2rem;
+            }
+            .navbar.scrolled {
+                padding: 0.7rem 1.2rem;
+            }
+            .section {
+                padding: 4rem 1.2rem;
+            }
+            .hero__content {
+                padding: 1rem;
+            }
+            .hero__buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.8rem;
+            }
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                text-align: center;
+            }
+            .portfolio__grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-auto-rows: 150px;
+                gap: 0.6rem;
+            }
+            .portfolio__item:nth-child(1),
+            .portfolio__item:nth-child(4),
+            .portfolio__item:nth-child(7) {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+            .services__grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+            .testimonials__grid {
+                grid-template-columns: 1fr;
+                max-width: 450px;
+                margin: 0 auto;
+            }
+            .booking__form {
+                padding: 2rem 1.5rem;
+            }
+            .about__highlights {
+                flex-direction: column;
+                gap: 1.2rem;
+            }
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                font-size: 1.4rem;
+                bottom: 1.2rem;
+                right: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero__title {
+                font-size: 2.2rem;
+            }
+            .hero__subtitle {
+                font-size: 0.85rem;
+            }
+            .section__title {
+                font-size: 1.6rem;
+            }
+            .portfolio__grid {
+                grid-template-columns: 1fr 1fr;
+                grid-auto-rows: 130px;
+                gap: 0.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="preloader__inner">
+            <div class="preloader__icon">✦</div>
+            <p class="preloader__text">Studio Bronze Lux</p>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <a href="#" class="navbar__logo">
+            <span class="navbar__logo-icon">✦</span> Studio <span>Bronze Lux</span>
+        </a>
+        <ul class="navbar__links">
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#servicos">Serviços</a></li>
+            <li><a href="#portfolio">Portfólio</a></li>
+            <li><a href="#depoimentos">Depoimentos</a></li>
+            <li><a href="#agendamento" class="navbar__cta-btn">Agendar VIP</a></li>
+        </ul>
+        <button class="navbar__hamburger" id="hamburger" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#sobre">Sobre</a>
+        <a href="#servicos">Serviços</a>
+        <a href="#portfolio">Portfólio</a>
+        <a href="#depoimentos">Depoimentos</a>
+        <a href="#agendamento" class="mobile-cta">Agendar Experiência VIP</a>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero" id="home">
+        <div class="hero__bg"></div>
+        <div class="hero__texture"></div>
+        <div class="hero__sparkle"></div>
+        <div class="hero__sparkle"></div>
+        <div class="hero__sparkle"></div>
+        <div class="hero__sparkle"></div>
+        <div class="hero__sparkle"></div>
+        <div class="hero__content">
+            <p class="hero__overline">Boutique de Beleza Exclusiva</p>
+            <h1 class="hero__title">
+                Realce sua beleza.<br><em>Revele sua melhor versão.</em>
+            </h1>
+            <p class="hero__subtitle">
+                Bronzeamento premium e estética de luxo para mulheres que sabem o seu valor.
+                Uma experiência transformadora em um ambiente pensado para exaltar sua autoestima.
+            </p>
+            <div class="hero__buttons">
+                <a href="#agendamento" class="btn btn--primary">
+                    Agendar Experiência VIP
+                    <span class="btn__shine"></span>
+                </a>
+                <a href="#portfolio" class="btn btn--outline">
+                    Ver Portfólio
+                    <span class="btn__shine"></span>
+                </a>
+            </div>
+        </div>
+        <div class="hero__scroll-indicator" onclick="document.getElementById('sobre').scrollIntoView({behavior:'smooth'})">
+            <span>Deslize</span>
+            <div class="hero__scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- Sobre -->
+    <section class="section about" id="sobre">
+        <div class="container">
+            <div class="section__header reveal">
+                <p class="section__overline">Conheça o Studio</p>
+                <h2 class="section__title">Onde a beleza encontra<br>a exclusividade</h2>
+                <div class="section__divider"></div>
+            </div>
+            <div class="about__grid">
+                <div class="about__visual reveal reveal-delay-1">
+                    <div class="about__visual-glow"></div>
+                    <div class="about__visual-border"></div>
+                    <div class="about__visual-inner">
+                        ✦<br>Bronze<br>Lux
+                    </div>
+                </div>
+                <div class="about__text reveal reveal-delay-2">
+                    <h3>Uma experiência pensada para elevar sua autoestima</h3>
+                    <p>
+                        No <strong>Studio Bronze Lux</strong>, cada detalhe é cuidadosamente planejado para oferecer
+                        uma vivência única de beleza e bem-estar. Nosso espaço foi criado para mulheres que buscam
+                        o bronze perfeito em um ambiente que respira sofisticação, privacidade e conforto absoluto.
+                    </p>
+                    <p>
+                        Utilizamos técnicas avançadas de bronzeamento, produtos premium e um atendimento
+                        verdadeiramente personalizado — porque você merece mais do que um serviço: merece
+                        uma transformação.
+                    </p>
+                    <div class="about__highlights">
+                        <div class="about__highlight">
+                            <span class="about__highlight-icon">✦</span>
+                            <div class="about__highlight-text">
+                                <strong>Atendimento Exclusivo</strong>
+                                <span>Uma cliente por vez, atenção plena</span>
+                            </div>
+                        </div>
+                        <div class="about__highlight">
+                            <span class="about__highlight-icon">✦</span>
+                            <div class="about__highlight-text">
+                                <strong>Produtos Premium</strong>
+                                <span>Fórmulas importadas de alta performance</span>
+                            </div>
+                        </div>
+                        <div class="about__highlight">
+                            <span class="about__highlight-icon">✦</span>
+                            <div class="about__highlight-text">
+                                <strong>Ambiente VIP</strong>
+                                <span>Espaço projetado para seu conforto</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Serviços -->
+    <section class="section services" id="servicos">
+        <div class="container">
+            <div class="section__header reveal">
+                <p class="section__overline">Nossos Serviços</p>
+                <h2 class="section__title">Excelência em cada<br>detalhe</h2>
+                <div class="section__divider"></div>
+            </div>
+            <div class="services__grid">
+                <div class="service-card reveal reveal-delay-1">
+                    <div class="service-card__icon"><i class="fa-solid fa-sun"></i></div>
+                    <h3 class="service-card__title">Bronze Natural Premium</h3>
+                    <p class="service-card__desc">Técnica exclusiva que realça o tom natural da sua pele com resultado uniforme, dourado e luminoso. Hidratação profunda durante o processo.</p>
+                    <span class="service-card__badge">Duração: 7 a 10 dias</span>
+                </div>
+                <div class="service-card reveal reveal-delay-2">
+                    <div class="service-card__icon"><i class="fa-solid fa-sparkles"></i></div>
+                    <h3 class="service-card__title">Bronze Glow Iluminado</h3>
+                    <p class="service-card__desc">O bronze mais desejado: glow intenso com partículas iluminadoras que deixam a pele radiante, com efeito "capa de revista".</p>
+                    <span class="service-card__badge">Efeito instantâneo</span>
+                </div>
+                <div class="service-card reveal reveal-delay-3">
+                    <div class="service-card__icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                    <h3 class="service-card__title">Estética Corporal</h3>
+                    <p class="service-card__desc">Tratamentos modeladores, esfoliação luxuosa e hidratação profunda para preparar e manter sua pele no padrão Bronze Lux.</p>
+                    <span class="service-card__badge">Protocolo completo</span>
+                </div>
+                <div class="service-card reveal reveal-delay-4">
+                    <div class="service-card__icon"><i class="fa-solid fa-crown"></i></div>
+                    <h3 class="service-card__title">Pacote VIP Mensal</h3>
+                    <p class="service-card__desc">A experiência definitiva: bronzeamento ilimitado, tratamentos exclusivos, prioridade de agenda e mimos surpresa todo mês.</p>
+                    <span class="service-card__badge">O mais exclusivo</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfólio -->
+    <section class="section portfolio" id="portfolio">
+        <div class="container">
+            <div class="section__header reveal">
+                <p class="section__overline">Portfólio</p>
+                <h2 class="section__title">Resultados que falam<br>por si</h2>
+                <div class="section__divider"></div>
+            </div>
+            <div class="portfolio__grid reveal reveal-delay-1">
+                <div class="portfolio__item">
+                    <div class="portfolio__img" role="img" aria-label="Resultado bronze natural premium"></div>
+                    <div class="portfolio__overlay">
+                        <div class="portfolio__overlay-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                    </div>
+                </div>
+                <div class="portfolio__item">
+                    <div class="portfolio__img" role="img" aria-label="Resultado bronze glow iluminado"></div>
+                    <div class="portfolio__overlay">
+                        <div class="portfolio__overlay-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                    </div>
+                </div>
+                <div class="portfolio__item">
+                    <div class="portfolio__img" role="img" aria-label="Resultado bronze corporal"></div>
+                    <div class="portfolio__overlay">
+                        <div class="portfolio__overlay-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                    </div>
+                </div>
+                <div class="portfolio__item">
+                    <div class="portfolio__img" role="img" aria-label="Resultado estética bronze"></div>
+                    <div class="portfolio__overlay">
+                        <div class="portfolio__overlay-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                    </div>
+                </div>
+                <div class="portfolio__item">
+                    <div class="portfolio__img" role="img" aria-label="Resultado bronze luxo"></div>
+                    <div class="portfolio__overlay">
+                        <div class="portfolio__overlay-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                    </div>
+                </div>
+                <div class="portfolio__item">
+                    <div class="portfolio__img" role="img" aria-label="Resultado bronze premium feminino"></div>
+                    <div class="portfolio__overlay">
+                        <div class="portfolio__overlay-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                    </div>
+                </div>
+                <div class="portfolio__item">
+                    <div class="portfolio__img" role="img" aria-label="Resultado bronze glow dourado"></div>
+                    <div class="portfolio__overlay">
+                        <div class="portfolio__overlay-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Depoimentos -->
+    <section class="section testimonials" id="depoimentos">
+        <div class="container">
+            <div class="section__header reveal">
+                <p class="section__overline">Depoimentos</p>
+                <h2 class="section__title">O que nossas clientes<br>estão dizendo</h2>
+                <div class="section__divider"></div>
+            </div>
+            <div class="testimonials__grid">
+                <div class="testimonial-card reveal reveal-delay-1">
+                    <div class="testimonial-card__stars">★★★★★</div>
+                    <div class="testimonial-card__quote">"</div>
+                    <p class="testimonial-card__text">
+                        "Nunca me senti tão confiante! O bronze ficou perfeito, muito natural e iluminado.
+                        O atendimento é impecável, realmente uma experiência VIP do início ao fim."
+                    </p>
+                    <p class="testimonial-card__author">Juliana M.<span>Cliente VIP · há 8 meses</span></p>
+                </div>
+                <div class="testimonial-card reveal reveal-delay-2">
+                    <div class="testimonial-card__stars">★★★★★</div>
+                    <div class="testimonial-card__quote">"</div>
+                    <p class="testimonial-card__text">
+                        "O Studio Bronze Lux transformou minha relação com o espelho. Saí de lá me sentindo
+                        poderosa, linda. O bronze glow é viciante — já agendei o pacote mensal!"
+                    </p>
+                    <p class="testimonial-card__author">Amanda R.<span>Cliente · há 3 meses</span></p>
+                </div>
+                <div class="testimonial-card reveal reveal-delay-3">
+                    <div class="testimonial-card__stars">★★★★★</div>
+                    <div class="testimonial-card__quote">"</div>
+                    <p class="testimonial-card__text">
+                        "Ambiente maravilhoso, atendimento personalizado e o resultado superou todas as minhas
+                        expectativas. É mais que estética, é autoestima elevada. Super recomendo!"
+                    </p>
+                    <p class="testimonial-card__author">Patrícia L.<span>Cliente · há 1 mês</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Agendamento -->
+    <section class="section booking" id="agendamento">
+        <div class="container">
+            <div class="section__header reveal">
+                <p class="section__overline">Agende Agora</p>
+                <h2 class="section__title">Garanta seu horário VIP</h2>
+                <div class="section__divider"></div>
+            </div>
+            <div class="booking__grid">
+                <div class="booking__form reveal reveal-delay-1" id="bookingForm">
+                    <h3>Reserve sua experiência</h3>
+                    <p class="subtitle">Preencha o formulário e entraremos em contato para confirmar seu horário exclusivo.</p>
+                    <form id="scheduleForm">
+                        <div class="form-group">
+                            <label for="name">Nome completo</label>
+                            <input type="text" id="name" name="name" placeholder="Seu nome" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">WhatsApp</label>
+                            <input type="tel" id="phone" name="phone" placeholder="(00) 00000-0000" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="service">Serviço desejado</label>
+                            <select id="service" name="service" required>
+                                <option value="" disabled selected>Selecione o serviço</option>
+                                <option value="Bronze Natural Premium">Bronze Natural Premium</option>
+                                <option value="Bronze Glow Iluminado">Bronze Glow Iluminado</option>
+                                <option value="Estética Corporal">Estética Corporal</option>
+                                <option value="Pacote VIP Mensal">Pacote VIP Mensal</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="date">Data preferida</label>
+                            <input type="date" id="date" name="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="time">Horário preferido</label>
+                            <select id="time" name="time" required>
+                                <option value="" disabled selected>Selecione o horário</option>
+                                <option value="09:00">09:00</option>
+                                <option value="10:00">10:00</option>
+                                <option value="11:00">11:00</option>
+                                <option value="13:00">13:00</option>
+                                <option value="14:00">14:00</option>
+                                <option value="15:00">15:00</option>
+                                <option value="16:00">16:00</option>
+                                <option value="17:00">17:00</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn--primary" style="width:100%;margin-top:0.8rem;">
+                            Garantir meu horário VIP
+                            <span class="btn__shine"></span>
+                        </button>
+                    </form>
+                </div>
+                <div class="booking__info reveal reveal-delay-2">
+                    <div class="booking__info-card">
+                        <div class="booking__info-icon"><i class="fa-solid fa-clock"></i></div>
+                        <h4>Horários Exclusivos</h4>
+                        <p>Atendimento de segunda a sábado, das 9h às 18h. Apenas com agendamento prévio.</p>
+                    </div>
+                    <div class="booking__info-card">
+                        <div class="booking__info-icon"><i class="fa-solid fa-location-dot"></i></div>
+                        <h4>Localização Premium</h4>
+                        <p>Ambiente privativo em localização selecionada. O endereço é compartilhado após confirmação.</p>
+                    </div>
+                    <div class="booking__info-highlight">
+                        <p class="price-label">A partir de</p>
+                        <p class="price">R$ 180</p>
+                        <p style="color:var(--text-muted);font-size:0.8rem;margin-top:0.3rem;">por sessão · Pacotes com desconto</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="cta-final">
+        <div class="cta-final__bg"></div>
+        <div class="cta-final__content reveal">
+            <h2 class="cta-final__title">Sua melhor versão<br>começa com uma escolha.</h2>
+            <p class="cta-final__subtitle">Dê o primeiro passo para se sentir mais confiante, radiante e poderosa. O bronze dos seus sonhos está a um clique de distância.</p>
+            <a href="#agendamento" class="btn btn--primary btn--large">
+                Quero meu bronze perfeito
+                <span class="btn__shine"></span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer__brand">Studio <span>Bronze Lux</span></div>
+        <p style="color:var(--text-muted);font-size:0.8rem;margin-bottom:1rem;">Beleza · Bronzeamento · Autoestima</p>
+        <div class="footer__social">
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="#" aria-label="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
+            <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+        </div>
+        <p class="footer__copy">&copy; 2026 Studio Bronze Lux. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/5500000000000?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20experi%C3%AAncia%20VIP%20no%20Studio%20Bronze%20Lux!" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Fale pelo WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+        <span class="whatsapp-float__tooltip">Fale conosco!</span>
+    </a>
+
+    <script>
+        // Preloader
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('preloader').classList.add('hidden');
+            }, 800);
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 60) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Intersection Observer for reveal animations
+        const revealElements = document.querySelectorAll('.reveal');
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px 0px -60px 0px',
+            threshold: 0.15
+        };
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // Booking form - WhatsApp integration
+        const scheduleForm = document.getElementById('scheduleForm');
+        scheduleForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const service = document.getElementById('service').value;
+            const date = document.getElementById('date').value;
+            const time = document.getElementById('time').value;
+
+            if (!name || !phone || !service || !date || !time) {
+                alert('Por favor, preencha todos os campos para agendar sua experiência VIP.');
+                return;
+            }
+
+            const formattedDate = new Date(date + 'T00:00:00').toLocaleDateString('pt-BR', {
+                timeZone: 'UTC'
+            });
+
+            const message =
+                `Olá, Studio Bronze Lux! ✨%0A%0A` +
+                `Gostaria de agendar minha experiência VIP:%0A%0A` +
+                `👤 Nome: ${name}%0A` +
+                `📱 WhatsApp: ${phone}%0A` +
+                `💎 Serviço: ${service}%0A` +
+                `📅 Data: ${formattedDate}%0A` +
+                `⏰ Horário: ${time}%0A%0A` +
+                `Aguardo a confirmação!`;
+
+            const whatsappNumber = '5500000000000'; // Substituir pelo número real
+            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${message}`;
+            window.open(whatsappURL, '_blank');
+        });
+
+        // Set minimum date for booking to today
+        const dateInput = document.getElementById('date');
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.setAttribute('min', today);
+
+        // Smooth parallax effect on hero sparkles
+        document.addEventListener('mousemove', (e) => {
+            const sparkles = document.querySelectorAll('.hero__sparkle');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+
+            sparkles.forEach((sparkle, index) => {
+                const speed = 15 + index * 8;
+                const offsetX = (x - 0.5) * speed;
+                const offsetY = (y - 0.5) * speed;
+                sparkle.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+            });
+        });
+    </script>
+
+    <!-- Schema.org para SEO local -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "BeautySalon",
+            "name": "Studio Bronze Lux",
+            "description": "Bronzeamento premium e estética de luxo para mulheres que buscam o bronze perfeito e elevação da autoestima em ambiente VIP.",
+            "priceRange": "$$$",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "São Paulo",
+                "addressRegion": "SP",
+                "addressCountry": "BR"
+            },
+            "telephone": "+55 00 00000-0000",
+            "openingHours": "Mo-Sa 09:00-18:00",
+            "currenciesAccepted": "BRL",
+            "paymentAccepted": "Cash, Credit Card, PIX"
+        }
+    </script>
+</body>
+</html>
